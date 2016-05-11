@@ -1,0 +1,124 @@
+﻿@model NHH.Models.Project.ProjectDetailInfoModel
+
+<h4 class="lighter">详细信息</h4>
+<a class="edit-btn" href="javascript:void(0);" id="lbtnEditProjectDetailInfo">编辑信息</a>
+<div class="hr hr-18 hr-double dotted"></div>
+<dl class="form-content">
+    <dt><i>项目体量</i></dt>
+    <dd>
+        <label>地上建筑面积：</label>
+        @Model.GroundArea.ToString("#,##0.00") 平方米
+    </dd>
+    <dd>
+        <label>地下建筑面积：</label>
+        @Model.UndergroundArea.ToString("#,##0.00") 平方米
+    </dd>
+    <dd>
+        <label>总建筑面积：</label>
+        @Model.TotalArea.ToString("#,##0.00") 平方米
+    </dd>
+</dl>
+<div class="clear"></div>
+<dl class="form-content">
+    <dt><i>开业信息</i></dt>
+    <dd>
+        <label>所处阶段：</label>
+        @Model.ProjectStage
+    </dd>
+    <dd>
+        <label>开业时间：</label>
+        @Model.GrandOpeningDate
+    </dd>
+</dl>
+<div class="clear"></div>
+<dl class="form-content">
+    <dt><i>其他信息</i></dt>
+    <dd>
+        <label>广告位：</label>
+        @Model.AdPointNum 个
+    </dd>
+    <dd>
+        <label>停车位：</label>
+        @Model.ParkingLotNum 个
+    </dd>
+    <dd>
+        <label>多经点位：</label>
+        @Model.MultiBizPositionNum 个
+    </dd>
+</dl>
+<div class="clear"></div>
+<dl class="form-content">
+    <dt><i>效果图</i></dt>
+</dl>
+<div class="clear"></div>
+     <div class="uploadimg">
+        @*<ul class="ace-thumbnails clearfix" id="detailImageShow">*@
+         <ul class="" id="detailImageShow">
+             @foreach (var image in Model.RenderingFileList)
+             {
+                 <li name="detialInfoImageli" class="detialInfoImageli" style="float:left; margin-left:5px;">
+                     <a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(image)" class="complaintImage" data-src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(image)" data-rel="colorbox" style="margin-left:5px;">
+                         <img src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(image, 100)" width="100" />
+                     </a>
+                 </li>
+             }
+         </ul>
+     </div>
+
+    @*<div class="uploadimg">
+        <ul class="ace-thumbnails clearfix">
+            @foreach (var image in Model.RenderingFileList)
+            {
+                <li>
+                    <a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(image)" data-rel="colorbox" class="complaintImage" data-src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(image)">
+                        <img width="100" height="73" alt="100x73" src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(image, 100)" />
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>*@
+
+    <script type="text/javascript">
+        $(function () {
+
+      
+
+            $(".complaintImage").click(function () {
+                $(".detialInfoImageli").attr("style", "");
+                //$(".tdimg").find("ul").removeClass("ace-thumbnails clearfix");
+                $("#detailImageShow").addClass("ace-thumbnails clearfix");
+                var $overflow = '';
+                var colorbox_params = {
+                    rel: 'colorbox',
+                    reposition: true,
+                    scalePhotos: true,
+                    scrolling: false,
+                    previous: '<i class="ace-icon fa fa-arrow-left"></i>',
+                    next: '<i class="ace-icon fa fa-arrow-right"></i>',
+                    close: '&times;',
+                    current: '{current} / {total}',
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    onOpen: function () {
+                        $overflow = document.body.style.overflow;
+                        document.body.style.overflow = 'auto';
+                    },
+                    onClosed: function () {
+                        document.body.style.overflow = $overflow;
+                    },
+                    onComplete: function () {
+                        $.colorbox.resize();
+                    }
+                };
+
+                $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
+                $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange'></i>");//let's add a custom loading icon
+            });
+        });
+        $("#lbtnEditProjectDetailInfo").click(function () {
+            var url = "@Url.Action("EditDetailInfo", "ProjectMgmt", new { area = "Project" })"
+            url += "?projectId=" + $("#ProjectId").val();
+            $("#detailInfo").load(url);
+
+        });
+    </script>

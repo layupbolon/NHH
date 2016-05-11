@@ -1,0 +1,238 @@
+﻿@model NHH.Models.Plan.ProjectUnitSpecModel
+<h4 class="lighter">交付标准</h4>
+<a class="edit-btn-canl cancelEditUnitSpen" href="javascript:void(0);">取消编辑</a>
+<div class="hr hr-18 hr-double dotted"></div>
+<dl class="form-content textstyle-edit form-content-edit form-row-comb">
+    <dt><i>交房标准</i></dt>
+    <dd>
+        <label>交房标准：</label>
+        <span>
+            <label class="form-radio-nomal">
+                @Html.RadioButton("Condition", 1, Model.Condition == 1, new { @id = "Condition1", @name = "Condition" })
+                精装
+            </label>
+            <label class="form-radio-nomal">
+                @Html.RadioButton("Condition", 2, Model.Condition == 2, new { @id = "Condition2", @name = "Condition" })
+                统装
+            </label>
+            <label class="form-radio-nomal">
+                @Html.RadioButton("Condition", 3, Model.Condition == 3, new { @id = "Condition3", @name = "Condition" })
+                毛胚
+            </label>
+        </span>
+    </dd>
+    <dd>
+        <label>选择模板：</label>
+        <span>
+            @Html.DropDownList("TemplateId", ViewData["TemplateList"] as SelectList, "选择模板")
+        </span>
+    </dd>
+</dl>
+<div class="clear"></div>
+<!-- 交房标准-编辑效果 -->
+<dl class="form-content textstyle-edit form-content-edit form-row-comb">
+    <dt><i>建筑结构</i></dt>
+    <dd>
+        <label>地面：</label>
+        <span>
+            @Html.TextArea("Floor", Model.Floor, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>顶面：</label>
+        <span>
+            @Html.TextArea("Ceiling", Model.Ceiling, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>墙：</label>
+        <span>
+            @Html.TextArea("Wall", Model.Wall, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>柱：</label>
+        <span>
+            @Html.TextArea("Pillar", Model.Pillar, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>楼板承重：</label>
+        <span>
+            @Html.TextArea("FloorBearing", Model.FloorBearing, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>给水：</label>
+        <span>
+            @Html.TextArea("WaterSupply", Model.WaterSupply, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>排水：</label>
+        <span>
+            @Html.TextArea("WaterDrain", Model.WaterDrain, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>店铺门面/标牌：</label>
+        <span>@Html.TextArea("Logo", Model.Logo, new { cols = "50" })</span>
+    </dd>
+</dl>
+<div class="clear"></div>
+<!-- 建筑结构-编辑效果 -->
+
+<dl class="form-content textstyle-edit form-content-edit form-row-comb">
+    <dt><i>机电设施</i></dt>
+    <dd>
+        <label>供电系统：</label>
+        <span>
+            @Html.TextArea("ElectricityUsage", Model.ElectricityUsage, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>消防系统：</label>
+        <span>
+            @Html.TextArea("FireProtection", Model.FireProtection, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>广播系统：</label>
+        <span>
+            @Html.TextArea("Broadcasting", Model.Broadcasting, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>空调系统：</label>
+        <span>
+            @Html.TextArea("AirCondition", Model.AirCondition, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>排油烟系统：</label>
+        <span>
+            @Html.TextArea("Smoke", Model.Smoke, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>安防系统：</label>
+        <span>
+            @Html.TextArea("Security", Model.Security, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>综合布线：</label>
+        <span>
+            @Html.TextArea("Wiring", Model.Wiring, new { cols = "50" })
+        </span>
+    </dd>
+    <dd>
+        <label>煤气：</label>
+        <span>@Html.TextArea("Gas", Model.Gas, new { cols = "50" })</span>
+    </dd>
+</dl>
+<!-- 机电设施-编辑效果 -->
+<div class="clear"></div>
+
+<div class="cont-temp">
+    <label>
+    <input id="Template" type="checkbox" value="0"><span>保存此份信息为模板</span>
+    <span>
+        @Html.TextBox("TemplateName", "", new { style = "display:none" })
+    </span>
+    </label>
+</div>
+<div class="btn-edit">
+    @Html.Hidden("UnitSpecID", Model.UnitSpecID)
+    <a href="###" class="btn btn-info mr20" id="btnUnitSpec">保存信息</a>
+    <a href="###" class="btn cancelEditUnitSpen">取消编辑</a>
+</div>
+<!-- 交付标准-编辑效果 -->
+
+<script language="javascript" type="text/javascript">
+    //模板更换
+    $("#TemplateId").change(function () {
+        var templateId = $(this).val();
+
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("GetUnitSpecTemplate","ProjectUnitSpec",new { area="Ajax"})",
+            data: "templateId=" + templateId,
+            dataType: "JSON",
+            success: function (data, status) {
+                $("#Floor").val(data.Floor);
+                $("#Ceiling").val(data.Ceiling);
+                $("#Wall").val(data.Wall);
+                $("#Pillar").val(data.Pillar);
+                $("#FloorBearing").val(data.FloorBearing);
+                $("#WaterSupply").val(data.WaterSupply);
+                $("#WaterDrain").val(data.WaterDrain);
+                $("#Logo").val(data.Logo);
+                $("#ElectricityUsage").val(data.ElectricityUsage);
+                $("#FireProtection").val(data.FireProtection);
+                $("#Broadcasting").val(data.Broadcasting);
+                $("#AirCondition").val(data.AirCondition);
+                $("#Smoke").val(data.Smoke);
+                $("#Security").val(data.Security);
+                $("#Wiring").val(data.Wiring);
+                $("#Gas").val(data.Gas);
+
+                $("#TemplateName").val(data.TemplateName);
+            }
+        });
+    });
+
+    $("#Template").change(function () {
+        if ($(this).prop("checked")) {
+            $("#TemplateName").show();
+            $(this).val(1);
+        }
+        else {
+            $("#TemplateName").hide();
+            $(this).val(0);
+        }
+    });
+
+    //保存
+    $("#btnUnitSpec").click(function () {
+        var data = {};
+        data.UnitId = $("#UnitId").val();
+        data.UnitSpecID = $("#UnitSpecID").val();
+
+        data.Condition = $("input[name='Condition']:checked").val();
+        data.Floor = $("#Floor").val();
+        data.Ceiling = $("#Ceiling").val();
+        data.Wall = $("#Wall").val();
+        data.Pillar = $("#Pillar").val();
+        data.FloorBearing = $("#FloorBearing").val();
+        data.WaterSupply = $("#WaterSupply").val();
+        data.WaterDrain = $("#WaterDrain").val();
+        data.Logo = $("#Logo").val();
+        data.ElectricityUsage = $("#ElectricityUsage").val();
+        data.FireProtection = $("#FireProtection").val();
+        data.Broadcasting = $("#Broadcasting").val();
+        data.AirCondition = $("#AirCondition").val();
+        data.Smoke = $("#Smoke").val();
+        data.Security = $("#Security").val();
+        data.Wiring = $("#Wiring").val();
+        data.Gas = $("#Gas").val();
+
+        data.Template = $("#Template").val() == 1;
+        data.TemplateId = $("#TemplateId").val();
+        data.TemplateName = $("#TemplateName").val();
+
+
+        var url = "@Url.Action("EditUnitSpec","ProjectUnit",new { area="Plan"})";
+        $("#unitSpec").load(url, data, function (response, status, xhr) {
+            $(this).html(response);
+        });
+    });
+
+    //取消编辑
+    $(".cancelEditUnitSpen").click(function () {
+        var url = "@Url.Action("UnitSpec","ProjectUnit",new { area="Plan"})";
+        url += "?unitId=" + $("#UnitId").val();
+        $("#unitSpec").load(url);
+    });
+
+</script>

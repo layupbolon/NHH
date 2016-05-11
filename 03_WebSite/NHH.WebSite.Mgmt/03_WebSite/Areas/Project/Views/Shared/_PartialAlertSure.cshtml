@@ -1,0 +1,44 @@
+﻿
+   @Html.AntiForgeryToken()
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span class="white">×</span>
+                    </button>
+                    操作提示
+                </div>
+            </div>
+
+            <div class="modal-body no-padding nothing">
+                <div class="popWinStyle popWin-form">
+                    <dl>
+                        <dd>
+                            <label for="inputWarning" style="text-align:center; font-size:23px;color:brown;" class="col-xs-12 col-sm-7 control-label no-padding-right text-label">保存完成:</label>
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="ui-btngroup" style="visibility:collapse">
+                    <a href="javascript:void(0)" class="btn btn-xs btn-success btn-font mr20 btnSubmit" id="SubmitFloorForm">保存</a>
+                    <a href="javascript:void(0)" class="btn btn-xs btn-font btn-cancel" id="btnCancel" data-dismiss="modal" aria-hidden="true">取消</a>
+                </div>
+
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    @*@Html.HiddenFor(m => m.DepartmentID, new { id = "DepartmentIdEdit" })*@
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        setTimeout(CollapseSure(), 2200);
+    });
+    function CollapseSure()
+    {
+        $("#btnCancel").trigger("click");
+        $(".modal-backdrop").css('display', 'none');
+    }
+</script>

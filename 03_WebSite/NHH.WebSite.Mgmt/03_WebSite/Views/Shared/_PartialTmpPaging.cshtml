@@ -1,0 +1,30 @@
+﻿@model NHH.Models.Common.PageInfoTmp
+<ul class="pagination pull-right no-margin">
+    @if (Model.PageIndex > 1)
+    {
+        <li class="prev">
+            <a href="javascript:void(0);" onclick="PageingFunction(this)" class="page" data-page="@(Model.PageIndex-1)">
+                上一页
+            </a>
+            <input type="hidden" value="@Model.PageIndex" />
+        </li>
+    }
+
+    @for (int page = 1; page <= Model.PageCount; page++)
+    {
+        <li class="@(Model.PageIndex == page ? "active" : "")">
+            <a href="javascript:void(0);" onclick="PageingFunctionIndex(this)" class="page" data-page="@page">@page</a>
+            <input type="hidden" value="@page" />
+        </li>
+    }
+
+    @if (Model.PageIndex < Model.PageCount)
+    {
+        <li class="next">
+            <a href="javascript:void(0);" onclick="PageingFunction(this)" class="page" data-page="@(Model.PageIndex+1)">
+                下一页
+            </a>
+            <input type="hidden" value="@Model.PageIndex" />
+        </li>
+    }
+</ul>

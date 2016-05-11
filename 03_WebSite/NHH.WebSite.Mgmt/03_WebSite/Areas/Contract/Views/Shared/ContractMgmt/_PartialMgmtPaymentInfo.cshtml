@@ -1,0 +1,40 @@
+﻿@model NHH.Models.Contract.PaymentTermInfo
+
+<h4 class="lighter">物业费</h4>
+<a class="edit-btn-canl" href="javascript:void(0);" id="lbtnMgmtPaymentInfo">取消编辑</a>
+<dl class="form-content form-content-edit form-row-comb">
+    <dd>
+        <label>月物业费：</label>
+        <span>@Html.TextBox("PaymentMonthlyAmount", Model.PaymentMonthlyAmount.ToString("0.00")) 元/月</span>
+    </dd>
+    <dd>
+        <label>日物业费：</label>
+        <span>@Model.PaymentDailyAmount.ToString("0.00") 元/天/平方米</span>
+    </dd>
+</dl>
+<div class="btn-edit">
+    <a href="###" class="btn btn-info mr20" id="btnMgmtPaymentInfo">保存信息</a>
+    <a href="###" class="btn cancelEditMgmtPaymentInfo">取消编辑</a>
+</div>
+<script type="text/javascript">
+    $("#lbtnMgmtPaymentInfo").click(function () {
+        var url = "@Url.Action("MgmtPaymentInfo", "ContractInfo", new { area = "Contract" })";
+        url += "?contractId=" + $("#ContractID").val();
+        $("#mgmtPaymentInfo").load(url);
+    });
+    $(".cancelEditMgmtPaymentInfo").click(function () {
+        var url = "@Url.Action("MgmtPaymentInfo", "ContractInfo", new { area = "Contract" })";
+        url += "?contractId=" + $("#ContractID").val();
+        $("#mgmtPaymentInfo").load(url);
+    });
+    $("#btnMgmtPaymentInfo").click(function () {
+        var paymentInfo = {};
+        paymentInfo.ContractID = $("#ContractID").val();
+        paymentInfo.PaymentMonthlyAmount = $("#PaymentMonthlyAmount").val();
+        var url = "@Url.Action("UpdateMgmtPaymentInfo", "ContractMgmt", new { area = "Contract" })";
+        $("#mgmtPaymentInfo").load(url, paymentInfo, function (response, status, xhs) {
+            $(this).html(response);
+        });
+    });
+</script>
+<div class="clear"></div>

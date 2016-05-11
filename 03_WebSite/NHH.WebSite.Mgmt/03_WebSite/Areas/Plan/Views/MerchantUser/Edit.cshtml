@@ -1,0 +1,269 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.MerchantUserDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>@Model.UserName</h1>
+        </div><!-- /.page-header -->
+        <div class="row">
+            <div class="col-lg-12">
+                @using (Html.BeginForm("Edit", "MerchantUser", new { area = "Plan" }, FormMethod.Post, new { @class = "form-horizontal", id = "EditMerchantUserForm", role = "form", novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <p class="titleA">账号信息</p>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>用户名称： </label>
+                        <div class="col-lg-9">
+                            <span class="defauletext">@Model.UserName</span>（此账号为唐小二登录账号）
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>角色类型： </label>
+                        <div class="col-lg-9 input-merge">
+                            <ul>
+                                <li>
+                                    <label>
+                                        @Html.RadioButtonFor(m => m.RoleId, 1, new { @id = "RoleId1", @name = "RoleId" }) 管理员
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        @Html.RadioButtonFor(m => m.RoleId, 2, new { @id = "RoleId2", @name = "RoleId" }) 操作员
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 所属商铺：</label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("StoreId", ViewData["StoreList"] as SelectList, "请选择")
+                        </div>
+                    </div>
+                    <p class="titleA">基本信息</p>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">证件照： </label>
+                        <div class="col-lg-9">
+                            <div class="uploadimg" id="UserPhotoShow">
+                                <dl id="file-@Model.UserId" style="float:left;">
+                                    <dd id="ddHeadPhoto">
+                                        <a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(Model.PhotoFile)" target="_blank">
+                                            <img class="PhotoImageItem" src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(Model.PhotoFile)">
+                                        </a>
+                                    </dd>
+                                    <dd class="pull-left" style="margin-top:10px;">
+                                        <a class="btn btn-add btn-font upload-btn">
+                                            <div class="load-text">上传图片</div>
+                                            <div class="input-wrap">
+                                                <input type="button" class="webuploader-invisible" id="btnHeadUpload" />
+                                            </div>
+                                        </a>
+                                        <p class="muted">附件大小不能超过2M</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>姓名： </label>
+                        <div class="col-lg-9 input-merge">
+                            @Html.TextBoxFor(m => m.NickName, null, new { @class = "col-lg-7" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessageFor(m => m.NickName)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>性别： </label>
+                        <div class="col-lg-9 input-merge">
+                            <ul>
+                                <li><label>@Html.RadioButtonFor(m => m.Gender, 1, new { @id = "Gender1", @name = "Gender" }) 男</label></li>
+                                <li><label>@Html.RadioButtonFor(m => m.Gender, 2, new { @id = "Gender2", @name = "Gender" }) 女</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 邮箱： </label>
+                        <div class="col-lg-9 input-merge">
+                            @Html.TextBoxFor(m => m.Email, null, new { @class = "col-lg-7" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>手机： </label>
+                        <div class="col-lg-9 input-merge">
+                            @Html.TextBoxFor(m => m.Mobile, null, new { @class = "col-lg-7" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessageFor(m => m.Mobile)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">出生年月： </label>
+                        <div class="col-lg-2">
+                            <span class="input-daterange">
+                                @Html.TextBox("Birthday", Model.Birthday.HasValue ? Model.Birthday.Value.ToString("yyyy-MM-dd") : string.Empty, new { style = "width:195px", @class = "form-control iconTime" })
+                            </span>                            
+                        </div>
+                        <label class="col-lg-2 control-label">政治面貌：</label>
+                        <div class="col-lg-2">
+                            @Html.DropDownList("PoliticalStatus", ViewData["PoliticalStatuslist"] as SelectList, "请选择政治面貌", new { style = "width:195px" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">身高： </label>
+                        <div class="col-lg-2">
+                            <div class="input-group">
+                                @Html.TextBox("Height", Model.Height, new { style = "width:195px", @class = "form-control" })
+                                <div class="input-group-addon">CM</div>
+                            </div>
+                        </div>
+                        <label class="col-lg-2 control-label">体重：</label>
+                        <div class="col-lg-2">
+                            <div class="input-group">
+                                @Html.TextBox("Weight", Model.Weight, new { style = "width:195px", @class = "form-control" })
+                                <div class="input-group-addon">KG</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">民族： </label>
+                        <div class="col-lg-2">
+                            @Html.DropDownList("Nation", ViewData["NationList"] as SelectList, "请选择民族", new { style = "width:195px" })
+                        </div>
+                        <label class="col-lg-2 control-label"><span class="req">&nbsp;</span>学历：</label>
+                        <div class="col-lg-2">
+                            @Html.DropDownList("Education", ViewData["EducationList"] as SelectList, "请选择学历", new { style = "width:195px" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">婚姻状况： </label>
+                        <div class="col-lg-9 input-merge">
+                            <ul>
+                                <li>
+                                    <label>
+                                        @Html.RadioButtonFor(m => m.MaritalStatus, 1, new { @id = "MaritalStatus1", @name = "MaritalStatus" }) 已婚
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        @Html.RadioButtonFor(m => m.MaritalStatus, 2, new { @id = "MaritalStatus2", @name = "MaritalStatus" }) 未婚
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 身份证： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBoxFor(m => m.IDNumber, null, new { @class = "col-lg-7" })
+                        </div>
+                    </div>
+                    <p class="titleA">详细信息</p>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">紧急联系人： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBoxFor(m => m.EmergencyContact, null, new { @class = "col-lg-7" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">紧急联系人电话： </label>
+
+                        <div class="col-lg-9">
+                            @Html.TextBoxFor(m => m.EmergencyPhone, null, new { @class = "col-lg-7" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">邮编： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBoxFor(m => m.ZipCode, null, new { @class = "col-lg-7" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">通信地址： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBoxFor(m => m.Address, null, new { @class = "col-lg-7" })
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 教育经历： </label>
+                        <div class="col-lg-9">
+                            @Html.TextArea("EducationExperience", Model.EducationExperience, new { @class = "col-lg-7", rows = "5" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 工作经历： </label>
+                        <div class="col-lg-9">
+                            @Html.TextArea("WorkExperience", Model.WorkExperience, new { @class = "col-lg-7", rows = "5" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 家庭成员： </label>
+                        <div class="col-lg-9">
+                            @Html.TextArea("FamilyMembers", Model.FamilyMembers, new { @class = "col-lg-7", rows = "5" })
+                        </div>
+                    </div>
+                    <div class="clearfix form-actions">
+                        <div class="col-lg-offset-3 col-lg-9">
+                            <input class="btn btn-cancel btn-font" type="reset" value="重置" />
+                            <input class="btn btn-success btn-font" id="UserAttachPaperSubmit" type="submit" value="提交信息" />
+                            @{
+                            if (Model.Status == 1)
+                            {
+                                <input class="btn btn-xs btn-success btn-font input-btn" id="UserJobChangeSubmit" data-status="-2" type="button" value="离职" />
+                            }
+                            else if (Model.Status == -2)
+                            {
+                                <input class="btn btn-xs btn-success btn-font input-btn" id="UserJobChangeSubmit" data-status="1" type="button" value="在职" />
+                            }
+                            }
+                        </div>
+                    </div>
+                    @Html.Hidden("PhotoFile", Model.PhotoFile)
+                    @Html.Hidden("UserId", Model.UserId)
+                    @Html.Hidden("MerchantId", Model.MerchantId)
+                    @Html.HiddenFor(m => m.Status)
+                }<!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content-area -->
+    </div>
+</div>
+<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;"></div>
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //文件上传
+        $("#btnHeadUpload").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.ParamManager.GetStringValue("ImageSite")" + "MerchantUser/Upload",
+            "buttonText": "",
+            "fileTypeExts": "*.jpg;*.png",
+            "multi": false,
+            "onUploadStart": function (file) {
+                //获取项目ID
+                var formData = {};
+                formData.merchantId = $("#MerchantId").val();
+                formData.merchantUserId = $("#UserId").val();
+                $("#btnHeadUpload").uploadify("settings", "formData", formData);
+            },
+            "onUploadSuccess": function (file, data, response) {
+                var result = JSON.parse(data);
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+                $("#PhotoFile").val(result.FilePath);
+                $(".PhotoImageItem").attr("src", result.FileUrl);
+            }
+        });
+        //在职状态切换
+        $("#UserJobChangeSubmit").click(function () {
+            $("#Status").val($(this).attr("data-status"));
+            $("#EditMerchantUserForm").submit();
+        });
+    });
+</script>

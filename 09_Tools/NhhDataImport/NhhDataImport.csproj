@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CBF7350D-2570-4444-8394-380C00B13010}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NhhDataImport</RootNamespace>
+    <AssemblyName>NhhDataImport</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>发布\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\10_Include\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\10_Include\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHH.Framework.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\NHH.Framework.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\10_Include\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\10_Include\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\10_Include\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\10_Include\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entity\BaseEntity.cs" />
+    <Compile Include="Entity\BrandEntity.cs" />
+    <Compile Include="Entity\PaymentCommissionInfo.cs" />
+    <Compile Include="Entity\CompanyEntity.cs" />
+    <Compile Include="Entity\ContractAppendixEntity.cs" />
+    <Compile Include="Entity\ContractBrandEntity.cs" />
+    <Compile Include="Entity\ContractEntity.cs" />
+    <Compile Include="Entity\ContractPaymentTermsEntity.cs" />
+    <Compile Include="Entity\ContractSupplementaryEntity.cs" />
+    <Compile Include="Entity\ContractUnitEntity.cs" />
+    <Compile Include="Entity\ContractUnitSpecEntity.cs" />
+    <Compile Include="Entity\DepartmentEntity.cs" />
+    <Compile Include="Entity\EmployeeEntity.cs" />
+    <Compile Include="Entity\PaymentIncreaseInfo.cs" />
+    <Compile Include="Entity\MerchantBrandEntity.cs" />
+    <Compile Include="Entity\MerchantEntity.cs" />
+    <Compile Include="Entity\ProjectBuildingEntity.cs" />
+    <Compile Include="Entity\ProjectEntity.cs" />
+    <Compile Include="Entity\ProjectFloorEntity.cs" />
+    <Compile Include="Entity\ProjectInfo.cs" />
+    <Compile Include="Entity\ProjectUnitEntity.cs" />
+    <Compile Include="Entity\ProjectUnitLeasingEntity.cs" />
+    <Compile Include="Entity\ProjectUnitPlanEntity.cs" />
+    <Compile Include="Process\BaseEntityProcess.cs" />
+    <Compile Include="Process\BrandPictureProcess.cs" />
+    <Compile Include="Process\CommonUtil.cs" />
+    <Compile Include="Process\BrandUtil.cs" />
+    <Compile Include="Process\CompanyUtil.cs" />
+    <Compile Include="Process\ContractAppendixProcess.cs" />
+    <Compile Include="Process\ContractBrandProcess.cs" />
+    <Compile Include="Process\ContractPaymentTermsProcess.cs" />
+    <Compile Include="Process\ContractSupplementaryProcess.cs" />
+    <Compile Include="Process\ContractUnitProcess.cs" />
+    <Compile Include="Process\ContractUnitSpecProcess.cs" />
+    <Compile Include="Process\MerchantAttachmentProcess.cs" />
+    <Compile Include="Process\MerchantFinanceProcess.cs" />
+    <Compile Include="Process\MerchantUserProcess.cs" />
+    <Compile Include="Process\MultPictureProcess.cs" />
+    <Compile Include="Process\PictureProcess.cs" />
+    <Compile Include="Process\ProjectBuildingPictureProcess.cs" />
+    <Compile Include="Process\ProjectFloorPictureProcess.cs" />
+    <Compile Include="Process\ProjectOwnerProcess.cs" />
+    <Compile Include="Process\ProjectPictureProcess.cs" />
+    <Compile Include="Utility\DirectoryUtil.cs" />
+    <Compile Include="Process\INhhDataProcess.cs" />
+    <Compile Include="Entity\MerchantStoreEntity.cs" />
+    <Compile Include="Process\MerchantBrandProcess.cs" />
+    <Compile Include="Process\MerchantStoreProcess.cs" />
+    <Compile Include="Process\MerchantUtil.cs" />
+    <Compile Include="Process\NhhException.cs" />
+    <Compile Include="Utility\PictureUtil.cs" />
+    <Compile Include="Process\ProjectUnitLeasingProcess.cs" />
+    <Compile Include="Process\ProjectUnitProcess.cs" />
+    <Compile Include="Process\ProjectUtil.cs" />
+    <Compile Include="Utility\SqlHelper.cs" />
+    <Compile Include="Process\BaseDataProcess.cs" />
+    <Compile Include="Process\BrandProcess.cs" />
+    <Compile Include="Process\CompanyProcess.cs" />
+    <Compile Include="Process\ContractProcess.cs" />
+    <Compile Include="Process\DepartmentProcess.cs" />
+    <Compile Include="Process\EmployeeProcess.cs" />
+    <Compile Include="Utility\ExcelHelper.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\MerchantProcess.cs" />
+    <Compile Include="Process\NhhDataProcess.cs" />
+    <Compile Include="Process\ProjectBuildingProcess.cs" />
+    <Compile Include="Process\ProjectFloorProcess.cs" />
+    <Compile Include="Process\ProjectProcess.cs" />
+    <Compile Include="Process\ProjectUnitPlanProcess.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="ReProcess\NHH商场管理系统_数据导入模板.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\10_Include\ICSharpCode.SharpZipLib.dll">
+      <Link>dll\ICSharpCode.SharpZipLib.dll</Link>
+    </Content>
+    <Content Include="..\..\10_Include\Newtonsoft.Json.dll">
+      <Link>dll\Newtonsoft.Json.dll</Link>
+    </Content>
+    <Content Include="..\..\10_Include\NHH.Framework.Core.dll">
+      <Link>dll\NHH.Framework.Core.dll</Link>
+    </Content>
+    <Content Include="..\..\10_Include\NPOI.dll">
+      <Link>dll\NPOI.dll</Link>
+    </Content>
+    <Content Include="..\..\10_Include\NPOI.OOXML.dll">
+      <Link>dll\NPOI.OOXML.dll</Link>
+    </Content>
+    <Content Include="..\..\10_Include\NPOI.OOXML.xml">
+      <Link>dll\NPOI.OOXML.xml</Link>
+    </Content>
+    <Content Include="..\..\10_Include\NPOI.OpenXml4Net.dll">
+      <Link>dll\NPOI.OpenXml4Net.dll</Link>
+    </Content>
+    <Content Include="..\..\10_Include\NPOI.OpenXml4Net.xml">
+      <Link>dll\NPOI.OpenXml4Net.xml</Link>
+    </Content>
+    <Content Include="..\..\10_Include\NPOI.OpenXmlFormats.dll">
+      <Link>dll\NPOI.OpenXmlFormats.dll</Link>
+    </Content>
+    <Content Include="..\..\10_Include\NPOI.xml">
+      <Link>dll\NPOI.xml</Link>
+    </Content>
+    <Content Include="Import.ico" />
+    <Content Include="Logs\日志文件.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Processed\已处理完成文件夹.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Processing\处理中文件夹.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

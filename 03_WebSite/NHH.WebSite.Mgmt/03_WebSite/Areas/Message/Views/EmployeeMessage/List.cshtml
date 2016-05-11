@@ -1,0 +1,104 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Message.EmployeeMessageListModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>员工消息查询</h1>
+        </div><!-- /.page-header -->
+        @using (Html.BeginForm("List", "EmployeeMessage", new { area = "Message" }, FormMethod.Post, new { @class = "queryInfo",name="EMSend",id="EMSend" }))
+        {
+            <div class="screen-area" style="height:40px">
+                <dl class="list-screen">
+                    <dt>发送的公司：</dt>
+                    <dd>
+                        @{
+                            if (ViewData["CompanyIdList"] != null)
+                            {
+                                @Html.DropDownList("CompanyId", ViewData["CompanyIdList"] as SelectList, "全部公司", new { style = "width:160px" });
+                            }
+                            else
+                            {
+                                <select style="width:160px;" id="MerchantType">
+                                    <option value="-1">没有对应的公司</option>
+                                </select>
+                            }
+                        }
+                    </dd>
+                    <dt>员工：</dt>
+                    <dd>
+                        @Html.TextBox("EmployeeName", Model.QueryInfo.EmployeeName, new { @class = "form-control mr10" })
+                    </dd>
+                    <dt>时间：</dt>
+                    <dd class="input-merge input-daterange input-group" style="width:399px">
+                        @Html.TextBoxFor(m => m.QueryInfo.StartTime, Model.QueryInfo.StartTime.HasValue ? Model.QueryInfo.StartTime.Value.ToString("yyyy-MM-dd") : "", new { @class = "input-sm iconTime" })
+                        <b>-</b>
+                        @Html.TextBoxFor(m => m.QueryInfo.EndTime, Model.QueryInfo.EndTime.HasValue ? Model.QueryInfo.EndTime.Value.ToString("yyyy-MM-dd") : "", new { @class = "input-sm iconTime" })                        
+                    </dd>
+                </dl>
+                <div class="result-btn">
+                    <input type="submit" class="btn btn-xs btn-success btn-font input-btn" id="lnkSearch" value="查询" />
+                </div>
+            </div>
+        }
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="lighter mt30">
+                    员工消息列表
+                </h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>@Html.SortLink("消息ID", "MessageID")</th>
+                            <th class="hidden-480">收件人部门</th>
+                            <th>收件人</th>
+                            <th>发送标题</th>
+                            <th>@Html.SortLink("发送时间", "InDate")</th>
+                            @*<th>消息类型</th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.UserMessageList)
+                        {
+                            <tr>
+                                <td>@item.MessageID</td>
+                                <td>@item.DepartmentName</td>
+                                <td>@item.EmployeeName</td>
+                                <td>@Html.ActionLink(item.Subject, "Detail", "EmployeeMessage", new { area = "Message", @class = "ToDedail", messageId = item.MessageID }, new { @class = "btn btn-link btn-font" })</td>
+                                <td>@item.InDate.ToString("yyyy-MM-dd HH:mm")</td>                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @{ Html.RenderPartial("_PartialPaging", Model.PagingInfo);}                
+            </div><!-- /.span -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>
+
+<script language="javascript" type="text/javascript">
+    $(function () {
+        new nhhui.nhhtable({
+            searchBtn: "lnkSearch",
+            sortBy: "@Model.QueryInfo.OrderBy",
+            sortMode: "@Model.QueryInfo.OrderMode",
+            url: "@Url.Action("List", "EmployeeMessage", new { area = "Message" })",
+            onInit: function () {
+                return getRequestData();
+            },
+        }).init();
+    });
+
+    var getRequestData = function () {
+        var requestData = {};
+        requestData.CompanyId = $("#CompanyId").val();
+        requestData.MerchantType = $("#MerchantType").val();
+        requestData.EmployeeName = $("#EmployeeName").val();
+        requestData.StartTime = $("#StartTime").val();
+        requestData.EndTime = $("#EndTime").val();
+        return requestData;
+    };
+</script>

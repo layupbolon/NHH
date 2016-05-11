@@ -1,0 +1,283 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Official.NewsModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<script type="text/javascript">
+    document.domain = "@NHH.Framework.Utility.ParamManager.GetStringValue("domain")";
+</script>
+
+<style>
+    .uploadify-queue {
+        display: none;
+    }
+</style>
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>创建新闻资讯</h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("Add", "News", new { area = "Official" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>新闻类型： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownList("NewsType", ViewData["NewsTypeList"] as SelectList, new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>目标： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownList("NewsTarget", ViewData["NewsTargetList"] as SelectList, new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>标题： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBox("NewsTitle", "", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("NewsTitle")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>简介： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBox("NewsBrief", "", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("NewsBrief")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>横幅图片： </label>
+                    @*<div class="col-sm-9">
+                            <a class="btn btn-add btn-font upload-btn">
+                                <div class="load-text">点击上传</div>
+                                <div class="input-wrap">
+                                    <input type="button" class="webuploader-invisible" id="btnUpload"/>
+                                </div>
+                            </a>
+                            <div class="uploadimg">
+                                <dl>
+                                    <dd><img src="~/Content/assets/images/default-img.jpg" id="imgIdMap"></dd>
+                                </dl>
+                            </div>
+                        </div>*@
+
+                    <div class="col-sm-9 ">
+                        <a class="btn btn-add btn-font upload-btn">
+                            <div class="load-text">上传图片</div>
+                            <div class="input-wrap">
+                                <input type="button" id="btnUpload" class="load-text"/>
+                            </div>
+                        </a>
+                        <p class="muted">图片大小不能超过2M，图片类型为jpg、png</p>
+                        <div class="uploadimg" id="fileQueue">
+                            <dl>
+                                <dd><img src="~/Content/assets/images/default-img.jpg" id="img1"></dd>
+                            </dl>
+                        </div>
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("Error")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>所属公司： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownList("CompanyID", ViewData["CompanyList"] as SelectList, new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>所属项目： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownList("ProjectID", ViewData["ProjectList"] as SelectList, new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">是否置顶： </label>
+                    <div class="col-lg-5 input-merge">
+                        <ul>
+                            <li>
+                                <label>
+                                    @Html.RadioButton("Stick", "1")  是
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    @Html.RadioButton("Stick", "0", true)  否
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 发布时间： </label>
+                    <div class="col-sm-9 input-merge input-daterange input-group">
+                        <span class="date-icon chosen-icon">
+                            @Html.TextBoxFor(m => m.PublishDate, null, new { @class = "input-sm form-control col-xs-10 col-sm-2" })
+                            <i class="date-exchange"></i>
+                        </span>
+                        <span class="date-icon chosen-icon">
+                            @Html.DropDownListFor(m => m.PublishDateTime, ViewData["PublishTimeList"] as SelectList, new { @class = "input-sm form-control col-xs-10 col-sm-5" })
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">发布状态： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">未发布</span>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+                <fieldset>
+                    <legend>新闻内容编辑</legend>
+                    <div class="form-group">
+                        <div class="form-horizontal">
+                            @Html.TextAreaFor(m => m.NewsContent)
+                        </div>
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.NewsContent)
+                            </span>
+                        </span>
+                    </div>
+                </fieldset>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"></label>
+                    <div class="col-sm-9">
+                        <button class="btn btn-xs btn-success btn-font" type="submit" id="btnSubmit">保存</button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn btn-xs btn-success btn-font" type="reset">取消</button>
+                    </div>
+                </div>
+                @Html.HiddenFor(a => a.NewsCover)
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval", "~/Scripts/ueditor/ueditor.config.js", "~/Scripts/ueditor/ueditor.all.js")
+    <script type="text/javascript">
+        var editorOption = {
+            //initialFrameWidth: 1024,
+            initialFrameHeight: 600,
+            maximumWords: 9999999
+        };
+        var editor = new baidu.editor.ui.Editor(editorOption);
+        editor.render('NewsContent');
+    </script>
+}
+
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        fileUpload();
+
+        $("#NewsTarget").change(function () {
+            var target = $("#NewsTarget").val();
+            var ProjectId = $("#ProjectID");
+
+            if (target === "2") {
+                $.ajax({
+                    url: "@Url.Action("GetProjectList", "NHHCG", new {area = "Official"})",
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    cache: false,
+                    async: true,
+                    success: function (data) {
+                        ProjectId.empty();
+                        var optionValue = "<option value='0'>全部</option>";
+                        data.forEach(function (item) {
+                            optionValue += "<option value='" + item.ProjectID + "'>" + item.ProjectName + "</option>";
+                        });
+                        ProjectId.append(optionValue);
+                    },
+                    complete: function () {
+                    },
+                    error: function (xh) {
+                        alert(xh.message);
+                    }
+                });
+            } else if (target === "1") {
+                $.ajax({
+                    url: "@Url.Action("GetAllProject", "Project", new { area = "Ajax" })",
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    cache: false,
+                    async: true,
+                    success: function (data) {
+                        ProjectId.empty();
+                        var optionValue = "";
+                        data.forEach(function (item) {
+                            optionValue += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                        });
+                        ProjectId.append(optionValue);
+                    },
+                    complete: function () {
+                    },
+                    error: function (xh) {
+                        alert(xh.message);
+                    }
+                });
+            }
+        });
+    });
+
+    var fileUpload = function () {
+        //图片上传
+        $("#btnUpload").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.ParamManager.GetStringValue("ImageSite")" + "News/Upload",
+            "buttonText": "",
+            "fileTypeExts": "*.jpg;*.png",
+            "multi": false,
+            "onUploadStart": function (file) {
+                //获取项目ID
+                var formData = {};
+                $("#btnUpload").uploadify("settings", "formData", formData);
+            },
+            "onUploadSuccess": function (file, data, response) {
+                var result = JSON.parse(data);
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+
+                var innerHtml = "<dl id='img-" + result.FileId + "'>" +
+                                    "<dt><a href='###' class='close-icon btnClose' data-id='" + result.FileId + "'></a></dt>" +
+                                    "<dd><img class='imgItem' src='" + result.FileUrl + "' data-filePath='" + result.FilePath + "'></dd>" +
+                                 "</dl>";
+                var img1 = $("#img1");
+                if (img1.length > 0) {
+                    img1.remove();
+                }
+                $("#fileQueue").html(innerHtml);
+                //删除事件
+                $(".btnClose").unbind().click(function () {
+                    var id = $(this).attr("data-id");
+                    $("#img-" + id).remove();
+                });
+
+                $("#NewsCover").val(result.FilePath);
+            }
+        });
+
+    }
+</script>

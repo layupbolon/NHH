@@ -1,0 +1,92 @@
+﻿
+<form class="form-horizontal" novalidate="novalidate">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span class="white">×</span>
+                    </button>
+                    重新指派
+                </div>
+            </div>
+            <div class="modal-body no-padding nothing">
+                <div class="popWinStyle">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">重新指派原因： </label>
+                        @Html.DropDownList("ReAssignReason", ViewData["ReAssignReasonList"] as SelectList, new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">维修负责人： </label>
+                        @Html.DropDownList("ServiceUserId", ViewData["RepairUserList"] as SelectList, "请选择", new { @class = "col-xs-10 col-sm-5" })
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right red repairUser" style="display:none">请选择负责人</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">备注： </label>
+                        @Html.TextArea("Remarks", null, 5, 5, new { @class = "col-xs-10 col-sm-5", @placeHolder = "您还可以在此添加其他备注信息" })
+                    </div>
+                </div>
+            </div>
+            <div class="ui-btngroup">
+                <a href="javascript:void(0)" class="btn btn-xs btn-success btn-font  btnReAssign">保存</a>
+                <a href="javascript:void(0)" class="btn btn-xs btn-font btn-cancel" data-dismiss="modal" aria-hidden="true">取消</a>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</form>
+<script type="text/javascript">
+    $(function () {
+        ///保存重新指派
+        $(".btnReAssign").click(function () {
+            var assignInfo = {};
+            assignInfo.RepairId = $("#HiddRepairId").val();
+            assignInfo.RepairUserId = $("#ServiceUserId").val();
+            assignInfo.EstimatedHour = $("#EstimatedHour").val();
+            assignInfo.ReAssignReason = $("#ReAssignReason").find("option:selected").text();
+            assignInfo.RequestSrcType = $("#HiddRequestSrcType").val();
+            assignInfo.RequestUserId = $("#HiddRequestUserId").val();
+            assignInfo.RequestUserName = $("#RequestUserName").text();
+            assignInfo.Location = $("#Location").text();
+            assignInfo.RequestTime = $("#RequestTime").text();
+            assignInfo.RepairUserName = $("#DetailRepairUserName").text().trim();
+            assignInfo.EstimatedFinishTime = $("#EstimatedFinishTime").text().trim();
+            //对维修人员做判断
+            if (!TextBoxEmptyValidate()) {
+                return;
+            }
+
+            $.ajax({
+                url: "@Url.Action("ReAssign", "Repair", new { area = "Estate" }, null)",
+                type: "POST",
+                data: assignInfo,
+                dataType: "JSON",
+                cache: false,
+                success: function (result, status) {
+                    if (result.IsSuccess) {
+                        var url = "@Url.Action("Detail", "Repair", new { area="Estate"},null)";
+                        url += "?repairID=" + assignInfo.RepairId;
+                        location.href = url;
+                    } else {
+                        alert(result.Message);
+                    }
+                }
+            });
+        });
+
+
+
+    });
+
+    //验证文本框
+    var TextBoxEmptyValidate = function () {
+        var flag = true;
+        var repairUser = $("#ServiceUserId").val().trim();
+        if (repairUser == "") {
+            $(".repairUser").css("display", "block");
+            flag = false;
+        } else {
+            $(".repairUser").css("display", "none");
+        }
+        return flag;
+    };
+</script>

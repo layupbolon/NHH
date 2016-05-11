@@ -1,0 +1,156 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Estate.ComplaintListModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>投诉信息</h1>
+        </div><!-- /.page-header -->
+        @using (Html.BeginForm("List", "Complaint", new { area = "Estate" }, FormMethod.Get, new { @class = "queryInfo", role = "form", novalidate = "novalidate" }))
+        {
+            <div class="screen-area" id="divMoreSearchItems" style="height:40px;">
+                <dl class="list-screen">
+                    <dt>投诉编号：</dt>
+                    <dd>
+                        @Html.TextBoxFor(m => m.QueryInfo.ComplaintId, Model.QueryInfo.ComplaintId)
+                    </dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>投诉类型：</dt>
+                    <dd>
+                        @Html.DropDownListFor(m => m.QueryInfo.ComplaintType, ViewData["ComplaintTypeList"] as SelectList, "请选择", null)
+                    </dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>客服负责人：</dt>
+                    <dd>
+                        @Html.DropDownListFor(m => m.QueryInfo.ServiceUserId, ViewData["ServiceUserList"] as SelectList, "请选择", null)
+                    </dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>时间：</dt>
+                    <dd class="col-sm-9 input-merge input-daterange input-group" style="width:399px">
+                        <span class="date-icon chosen-icon">
+                            @Html.TextBoxFor(m => m.QueryInfo.FromDate, Model.QueryInfo.FromDate.HasValue ? Model.QueryInfo.FromDate.Value.ToString("yyyy-MM-dd") : string.Empty, new { id = "FromDate", @class = "input-sm form-control col-xs-10 col-sm-2", name = "start" })
+                            <i class="date-exchange"></i>
+                        </span>
+                        <b>-</b>
+                        <span class="date-icon chosen-icon">
+                            @Html.TextBoxFor(m => m.QueryInfo.ToDate, Model.QueryInfo.ToDate.HasValue ? Model.QueryInfo.ToDate.Value.ToString("yyyy-MM-dd") : string.Empty, new { id = "ToDate", @class = "input-sm form-control col-xs-10 col-sm-2", name = "start" })
+                            <i class="date-exchange"></i>
+                        </span>
+                    </dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>投诉进度：</dt>
+                    <dd>
+                        @Html.DropDownListFor(m => m.QueryInfo.ComplaintStatus, ViewData["ComplaintStatusList"] as SelectList, "所有记录", null)
+                    </dd>
+                </dl>
+                <div class="result-btn">
+                    <input type="submit" class="btn btn-xs btn-success btn-font input-btn" value="搜索" />
+                </div>
+
+                @Html.HiddenFor(m => m.QueryInfo.Page, new { id = "queryPageIndex" })
+            </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="row">
+                <h4 class="lighter mt30">
+                    投诉列表
+                </h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+                <div class="col-xs-12">
+
+                    <table class="table table-striped table-bordered table-hover table-txthover">
+                        <thead>
+                            <tr>
+                                <th>投诉编号</th>
+                                <th>投诉类型</th>
+                                <th>投诉时间</th>
+                                <th>投诉进度</th>
+                                <th>客服人员</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ComplaintListInfo)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(item.ComplaintId + "", "Detail", "Complaint", new { area = "Estate", complaintId = item.ComplaintId }, null)
+                                    </td>
+                                    <td>@item.ComplaintTypeName</td>
+                                    <td>@item.RequestTime</td>
+                                    <td>@item.ComplaintStatusName</td>
+                                    <td>
+                                        <a role="button" class="userDetail" href="javascript:void(0);" data-id="@item.ComplaintId" data-uid="@item.ServiceUserId">@item.ServiceUserName</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @{Html.RenderPartial("_PartialPaging", Model.PagingInfo);}
+                </div><!-- /.span -->
+            </div><!-- /.row -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content-area -->
+@Html.Hidden("HiddComplaintId")
+<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;"></div>
+<script type="text/javascript">
+    $(function () {
+        //获取指派客服人员弹出框
+        $(".userDetail").click(function () {
+            var serviceUserId = $(this).attr("data-uid");
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetServiceUserDetail", "Complaint", new { area = "Estate" })",
+                dataType: "HTML",
+                data: "serviceUserId=" + serviceUserId,
+                success: function (result, status) {
+                    $("#modal").html(result).modal();
+                }
+            });
+        });
+
+        ///更多搜索选项
+        $("a[data-id='btnMore']").click(function () {
+            $("#divMoreSearchItems").slideToggle();
+        });
+
+        ///翻页查询功能
+        $(".page").click(function () {
+            var page = $(this).attr("data-page");
+            CommonPageQuery(page);
+        });
+
+        ///按投诉编号搜索
+        $("a[data-id='btnIdSearch']").click(function () {
+            var url = "@Url.Action("List", "Complaint", new { area = "Estate" }, null)";
+            location.href = url + "?ComplaintId=" + $("#ComplaintId").val();
+        });
+
+        //时间控件bug修复
+        $("#FromDate,#ToDate").change(function () {
+            var fromDate = $("#FromDate").val().trim();
+            var toDate = $("#ToDate").val().trim();
+            if (fromDate > toDate && fromDate != "" && toDate != "") {
+                $("#FromDate,#ToDate").val($(this).val());
+            }
+        });
+
+    })
+
+    //根据输入框条件和页面pageIndex条件查找数据
+    var CommonPageQuery = function (page) {
+        var url = "@Url.Action("List", "Complaint", new { area = "Estate" }, null)";
+        $("#queryPageIndex").val(page);
+        location.href = url + "?" + $(".queryInfo").serialize();
+    };
+</script>
+

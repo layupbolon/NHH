@@ -1,0 +1,101 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.MerchantMessage
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>对外通知</h1>
+        </div><!-- /.page-header -->
+        <div class="row">
+            <div class="col-xs-12">
+                @using (Html.BeginForm("Complaint", "AdminMerChantIssuances", new { area = "Complaint" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>选择发送对象： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            @Html.TextBox("Subject", Model.Subject, new { @class = "col-xs-10 col-sm-5" })
+ 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>收件人： </label>
+
+                        @*<dl id="file-@file.PaperID" style="float:left;" class="ace-thumbnails clearfix">
+                            <dt>
+                               <a href="javascript:void(0)" class="close-icon btnClose" data-id="file-@file.PaperID"></a>
+                            </dt>
+                            <dd>
+                                <a href="javascript:void(0)" data-rel="colorbox" class=""></a>
+                            </dd>
+                        </dl>*@  
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>标题： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            @Html.TextBox("Subject",Model.Subject, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red" id="SubjectVai">
+                                    @Html.ValidationMessage("Subject")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>主要内容： </label>
+                        <div class="col-sm-9 input-merge input-group" >
+                            @Html.TextArea("Content", Model.Content, new { @class = "col-xs-10 col-sm-5", style = "height:300px;" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red" id="ContentVai">
+                                    @Html.ValidationMessage("Content")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 发布部门： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            @*@Html.TextBox("AddressLine", "", new { @class = "col-xs-10 col-sm-5" })*@
+                            @{
+                                if (ViewData["DepartmentName"] != null) 
+                                {
+                                    <span>@ViewData["DepartmentName"]</span>
+                                }
+                            }                         
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">发布人： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            @{
+                               if (ViewData["EmployeeName"] != null)
+                                {
+                                    <span>@ViewData["EmployeeName"]</span>
+                                }
+                            }
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 发布时间： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                           @string.Format("{0:g}", DateTime.Now)
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input class="btn btn-xs btn-success btn-font input-btn" type="submit" value="提交" id="submitCreat" style="border-radius: 7px;" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div><!-- /.page-content-area -->

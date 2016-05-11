@@ -1,0 +1,42 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Report.DefaultPageModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>
+                项目总览
+            </h1>
+            <br />
+            <div class="row">
+                <div class="col-hs-3 mt15 width-100">
+                    @foreach (var countInfo in Model.CountInfoList)
+                    {
+                        <dl class="mb20">
+                            <dt>@countInfo.ProjectName</dt>
+                            <dd><i>总计信息</i></dd>
+                            <dd>
+                                <label>项目总面积：</label>
+                                <span>@countInfo.TotalArea.ToString("#,##0.00") 平方米</span>
+                            </dd>
+                            <dd>
+                                <label>项目总铺数：</label>
+                                <span>@countInfo.TotalUnit 个</span>
+                            </dd>
+                            <dd>
+                                <label>项目已签约面积：</label>
+                                <span>@countInfo.SignedTotalArea.ToString("#,##0.00") 平方米</span>
+                            </dd>
+                            <dd>
+                                <label>项目已签约铺数：</label>
+                                <span>@countInfo.SignedTotalUnit 个</span>
+                            </dd>
+                        </dl>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

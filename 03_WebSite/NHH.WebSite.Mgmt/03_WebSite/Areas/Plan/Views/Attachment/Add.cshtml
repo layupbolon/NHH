@@ -1,0 +1,141 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.MerchantAttachmentDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<style>
+    .uploadify-queue {
+        display: none;
+    }
+</style>
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>新增证照</h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                <form class="form-horizontal attachmentInfo" role="form">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 证照类型： </label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("AttachmentType", ViewData["AttachmentTypeList"] as SelectList, new { @class = "col-lg-5" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 证照名称：</label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("AttachmentName", "", new { @class = "col-lg-5", @readonly = "readonly", placeholder = "附件名称" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 证照编号： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("AttachmentCode", "", new { @class = "col-lg-5" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 证照有效期： </label>
+                        <div class="col-lg-9 input-daterange">
+                            @Html.TextBox("ExpiredDate", Model.ExpiredDate, new { @class = "iconTime" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 附件： </label>
+                        <div class="col-lg-9">
+                            <a class="btn btn-add btn-font upload-btn">
+                                <div class="load-text">选择文件</div>
+                                <div class="input-wrap">
+                                    <input type="button" class="webuploader-invisible" id="btnUpload" />
+                                </div>
+                            </a>
+                            <p class="muted">附件大小不能超过2M</p>
+                            <div class="uploadimg">
+                                <dl>
+                                    <dd><img src="~/Content/assets/images/default-img.jpg" id="imgIdMap"></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-lg-offset-3 col-lg-9">
+                            <a class="btn btn-success btn-font btnSave" href="javascript:void(0)">完成</a>
+                            <input class="btn btn-font btn-cancel" type="reset" value="重置" />
+                        </div>
+                    </div>
+                    @Html.Hidden("MerchantId", Model.MerchantId)
+                    @Html.Hidden("FilePath")
+                </form>
+            </div>
+            <!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>
+
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#AttachmentType").change(function () {
+            var type = $(this).val();
+            if (type == "6") {
+                $("#AttachmentName").removeAttr("readonly");
+            }
+            else {
+                $("#AttachmentName").attr("readonly", "readonly");
+            }
+        });
+
+        //文件上传
+        var formData = {};
+        formData.merchantId = $("#MerchantId").val();
+        $("#btnUpload").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.ParamManager.GetStringValue("ImageSite")" + "Merchant/Upload",
+            "fileTypeExts": "*.*",
+            "multi": false,
+            "buttonText": "",
+            'auto': true,
+            'formData': formData,
+            "onUploadSuccess": function (file, data, response) {
+                var result = JSON.parse(data);
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+                $("#imgIdMap").attr("src", result.FileUrl);
+                $("#FilePath").val(result.FilePath);
+                $("#AttachmentName").val(result.FileName);
+            }
+        });
+
+        //保存
+        $(".btnSave").click(function () {
+            var data = {};
+            data.MerchantId = $("#MerchantId").val();
+            data.AttachmentType = $("#AttachmentType").val();
+            data.AttachmentCode = $("#AttachmentCode").val();
+            data.ExpiredDate = $("#ExpiredDate").val();
+            data.AttachmentPath = $("#FilePath").val();
+            data.AttachmentName = $("#AttachmentName").val();
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Add", "Attachment", new { area = "Plan" })",
+                data: data,
+                dataType: "JSON",
+                success: function (result, status) {
+                    if (!result.IsSuccess) {
+                        alert(result.Message);
+                    } else {
+                        var merchantId = $("#MerchantId").val();
+                        var url = "@Url.Action("List", "Attachment", new { area = "Plan" }, null)";
+                        location.href = url + "?merchantId=" + merchantId;
+                    }
+                }
+            });
+        });
+    });
+</script>

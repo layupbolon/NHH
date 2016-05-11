@@ -1,0 +1,187 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.MerchantDetailModel
+
+<style type="text/css">
+    .col-sm-9 {
+        margin-top: 11px;
+    }
+</style>
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>@Model.MerchantName</h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 公司名称： </label>
+                        <div class="col-sm-9">@Model.MerchantName</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 公司类型： </label>
+                        <div class="col-sm-9">@Model.MerchantTypeInfo.Name</div>
+                    </div>
+                    <!-- Success Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 公司中文简称： </label>
+                        <div class="col-sm-9">@Model.BriefName</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 公司编码： </label>
+                        <div class="col-sm-9">@Model.MerchantCode</div>
+                    </div>
+                    <!-- double input Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 公司地址： </label>
+                        <div class="col-sm-9">@Model.ProvinceInfo.Name, @Model.CityInfo.Name, @Model.AddressLine</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 邮政编码： </label>
+                        <div class="col-sm-9">@Model.Zipcode</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 营业执照注册号码： </label>
+                        <div class="col-sm-9 input-merge">@Model.LicenseId</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 注册地址： </label>
+                        <div class="col-sm-9 input-merge">@Model.RegisterProvinceInfo.Name, @Model.RegisterCityInfo.Name, @Model.RegisterAddressLine</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 法人姓名： </label>
+                        <div class="col-sm-9 input-merge">@Model.OwnerName</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 联系人姓名： </label>
+                        <div class="col-sm-9 input-merge">@Model.ContactName</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 联系人身份证号码： </label>
+                        <div class="col-sm-9 input-merge">@Model.ContactIDNumber</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 联系人邮箱： </label>
+                        <div class="col-sm-9 input-merge">@Model.ContactEmail</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 联系人电话： </label>
+                        <div class="col-sm-9 input-merge">@Model.ContactPhone</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 银行账号： </label>
+                        <div class="col-sm-9 input-merge">@Model.FinanceInfo.BankAccount</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开户银行： </label>
+                        <div class="col-sm-9 input-merge">@Model.FinanceInfo.BankName</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开户支行： </label>
+                        <div class="col-sm-9 input-merge">@Model.FinanceInfo.SubBranch</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 开户名称： </label>
+                        <div class="col-sm-9 input-merge">@Model.FinanceInfo.AccountName</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 支付宝账号： </label>
+                        <div class="col-sm-9 input-merge">@Model.FinanceInfo.AlipayAccount</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 微信商家账号： </label>
+                        <div class="col-sm-9 input-merge">@Model.FinanceInfo.WechatAccount</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 财务联系人： </label>
+                        <div class="col-sm-9 input-merge">@Model.FinanceInfo.FinanceContact</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 财务联系方式： </label>
+                        <div class="col-sm-9 input-merge">@Model.FinanceInfo.FinancePhone</div>
+                    </div>
+
+                    <!-- 证照上传 -->
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 证照列表：</label>
+                        <div class="col-sm-9 ">
+                            <div class="uploadimg">
+                                @foreach (var att in Model.AttachmentList)
+                                {
+                                    <dl>
+                                        <dt>@att.AttTypeName</dt>
+                                        <dd>
+                                            <a target="_blank" href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(att.AttPath)">
+                                                @if (att.AttPath.EndsWith(".png") || att.AttPath.EndsWith(".jpg"))
+                                                {
+                                                    <img src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(att.AttPath)" alt="@att.AttName" title="@att.AttName" width="100" />
+                                                }
+                                                else
+                                                {
+                                                    @att.AttName
+                                                }
+                                            </a>
+
+                                        </dd>
+                                    </dl>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input class="btn btn-xs btn-success btn-font input-btn btnBack" type="button" value="返回" />
+                            &nbsp; &nbsp; &nbsp;
+
+                            @Html.ActionLink("编辑", Model.MerchantType == 1 ? "Edit" : "Edit2", "Merchant", new { area = "Plan", merchantId = Model.MerchantId }, new { @class = "btn btn-xs btn-success btn-font" })
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>
+<script type="text/javascript">
+    $(".btnBack").click(function () {
+        location.href = history.back();
+    });
+
+</script>

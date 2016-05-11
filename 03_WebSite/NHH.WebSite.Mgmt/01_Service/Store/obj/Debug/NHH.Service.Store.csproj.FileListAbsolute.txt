@@ -1,0 +1,12 @@
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\01_Service\Store\bin\Debug\NHH.Service.Store.dll.config
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\01_Service\Store\bin\Debug\NHH.Service.Store.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\01_Service\Store\bin\Debug\NHH.Service.Store.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\01_Service\Store\bin\Debug\EntityFramework.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\01_Service\Store\bin\Debug\EntityFramework.SqlServer.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\01_Service\Store\bin\Debug\EntityFramework.xml
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\01_Service\Store\bin\Debug\EntityFramework.SqlServer.xml
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\01_Service\Store\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\01_Service\Store\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\01_Service\Store\obj\Debug\NHH.Service.Store.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\01_Service\Store\obj\Debug\NHH.Service.Store.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\01_Service\Store\obj\Debug\NHH.Service.Store.csprojResolveAssemblyReference.cache

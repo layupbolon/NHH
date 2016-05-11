@@ -1,0 +1,167 @@
+﻿@using NHH.Framework.Web
+@model NHH.Models.Approve.ApproveBaseModel
+
+<h4 class="lighter">审批记录</h4>
+<div class="hr hr-18 hr-double dotted"></div>
+<table border="1" style="width: 100%" class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>操作人</th>
+            <th>所属部门</th>
+            <th>审批结果</th>
+            <th>审批意见</th>
+            <th>审批勾选项</th>
+            <th>审批时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ApproveRecordInfos != null && Model.ApproveRecordInfos.ApproveRecordInfos.Any())
+        {
+            foreach (var item in Model.ApproveRecordInfos.ApproveRecordInfos)
+            {
+                <tr>
+                    <td>@( string.IsNullOrEmpty(item.ApproverName) ? @item.RoleName : item.ApproverName)</td>
+                    <td>@item.ShowDeptName</td>
+                    <td>@(item.Result == 1 ? "通过" : item.Result == 2 ? "驳回" : "未审批")</td>
+                    <td>@item.Reason</td>
+                    <td>@item.CheckOptions</td>
+                    <td>@item.ApproveTime</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@if (Model.CurrentApprover != null && Model.CurrentApprover.Any() && Model.CurrentApprover.Contains(NHHWebContext.Current.UserID))
+{
+    @Html.Hidden("GroupNum", Model.ApproveRecordInfos == null || Model.ApproveRecordInfos.ApproveRecordInfos == null || !Model.ApproveRecordInfos.ApproveRecordInfos.Any() ? 0 : Model.ApproveRecordInfos.ApproveRecordInfos.Select(a => a.GroupNum).Distinct().Max())
+    @Html.Hidden("ConfigType", Model.ApproveRecordInfos == null || Model.ApproveRecordInfos.ApproveRecordInfos == null || !Model.ApproveRecordInfos.ApproveRecordInfos.Any() ? 0 : Model.ApproveRecordInfos.ApproveRecordInfos.Select(a => a.ConfigType).First())
+
+    <h4 class="lighter">审批意见</h4>
+    <div class="hr hr-18 hr-double dotted"></div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="space-4"></div>
+
+            @if (Model.CheckOptions != null && Model.CheckOptions.Any())
+            {
+                <div class="form-group">
+                    @foreach (var c in Model.CheckOptions)
+                    {
+                        <li>
+                            <label>
+                                <input type="checkbox" value="@c.Option" class="checkOptions" data-required="@(c.Required==1)" data-optionname="@c.OptionName" />
+                                @if (c.Required == 1)
+                                {
+                                    <span class="req">*</span>
+                                }
+                                <label>@c.OptionName</label>
+                            </label>
+                        </li>
+                    }
+                </div>
+            }
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right"> 审批意见： </label>
+                <div class="col-sm-9 input-merge">
+                    @Html.TextArea("Approve", new { @class = "col-xs-10 col-sm-5" })
+                </div>
+            </div>
+
+            @*<div class="space-4"></div>*@
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right"></label>
+                <div class="col-sm-9">
+                    <button class="btn btn-xs btn-success btn-font" type="button" id="btnAgree">同意</button>
+                    &nbsp; &nbsp; &nbsp;
+                    <button class="btn btn-xs btn-success btn-font" type="button" id="btnReject">驳回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function() {
+            $("#btnAgree").click(function() {
+                if (IsAllCheck()) {
+                    PostData(1);
+                }
+            });
+
+            $("#btnReject").click(function() {
+                if ($("#Approve").val() === "") {
+                    alert("请填写审批意见");
+                    return;
+                }
+                PostData(2);
+            });
+        });
+
+        //判断是否所有需要勾选的项都勾选了
+        function IsAllCheck() {
+            var i = 0;
+            $(".checkOptions").each(function () {
+                if ($(this).attr("data-required")==="True" && this.checked===false) {
+                    alert("请您确认【" + $(this).attr("data-OptionName") + "】，若确认请勾选");
+                    i++;
+                    return false;
+                }
+                return true;
+            });
+            return i <= 0;
+        }
+
+        function GetCheckOptions() {
+            var options = new Array();
+            $(".checkOptions").each(function () {
+                var item = {
+                    Option: $(this).val(),
+                    //OptionName: $(this).attr("data-OptionName"),
+                    Required: $(this).attr("data-required")==="True"?"1":"0",
+                    Checked: this.checked===true?"1":"0"
+                };
+                options.push(item);
+            });
+            return options;
+        }
+
+        //提交数据
+        function PostData(result) {
+            var reason = "";
+            if (result === 1) {
+                reason = "同意";
+            } else if (result === 2) {
+                reason = "不同意";
+            }
+
+            var approve = {
+                GroupNum: $("#GroupNum").val(),
+                ConfigType: $("#ConfigType").val(),
+                RefID: @Model.RefID,
+                Approver: @NHHWebContext.Current.UserID,
+                ApproveTime: "",
+                Reason: $("#Approve").val() === "" ? reason:$("#Approve").val(),
+                Result: result,
+                CheckOptions :JSON.stringify(GetCheckOptions())
+            }
+
+            $.ajax({
+                url: "@Model.ApproveUrl",
+                data: { approve: approve },
+                type: "POST",
+                dataType: "json",
+                cache: false,
+                success: function(result) {
+                    if (result) {
+                        alert("操作成功！");
+                        location.href = "@Model.RedirectUrl";}
+                    else
+                        alert("操作失败！");
+                },
+                error: function(result) {
+                    alert("操作失败！"+result);
+                }
+            });
+        }
+    </script>
+}

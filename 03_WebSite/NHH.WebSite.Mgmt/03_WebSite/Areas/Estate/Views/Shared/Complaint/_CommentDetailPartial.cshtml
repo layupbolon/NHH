@@ -1,0 +1,43 @@
+﻿@model NHH.Models.Estate.ComplaintCommentDetailModel
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header no-padding">
+            <div class="table-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="white">×</span>
+                </button>
+                评价详情
+            </div>
+            <div class="modal-body no-padding nothing">
+                <div class="popWinStyle">
+                    <label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">评价编号：</label>
+                    <label>@Model.CommentId</label>
+                </div>
+                <div class="popWinStyle">
+                    <label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">投诉编号：</label>
+                    <label>@Model.ComplaintId</label>
+                </div>
+                <div class="popWinStyle">
+                    <label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">响应速度：</label>
+                    <label>@Model.Speed</label>
+                </div>
+                <div class="popWinStyle">
+                    <label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">投诉结果：</label>
+                    <label>@Model.Quality</label>
+                </div>
+                <div class="popWinStyle">
+                    <label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">服务态度：</label>
+                    <label>@Model.Attitude</label>
+                </div>
+                <div class="popWinStyle">
+                    <label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">投诉评分：</label>
+                    <label>@Model.Overall</label>
+                </div>
+                <div class="popWinStyle">
+                    <label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">投诉评价：</label>
+                    <label>@Model.AllComment</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

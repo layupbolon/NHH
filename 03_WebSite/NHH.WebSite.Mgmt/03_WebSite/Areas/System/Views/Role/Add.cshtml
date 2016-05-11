@@ -1,0 +1,41 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@model NHH.Models.Configure.SysRoleDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>添加角色</h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("Add", "Role", new { area = "System" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span> 角色名称： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.RoleName, null, new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.RoleName)
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"></label>
+                    <div class="col-sm-9">
+                        <input class="btn btn-xs btn-success btn-font" type="submit" id="btnSave" value="保存">
+                        &nbsp; &nbsp; &nbsp;
+                        <input class="btn btn-xs btn-success btn-font" type="reset" value="取消">
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

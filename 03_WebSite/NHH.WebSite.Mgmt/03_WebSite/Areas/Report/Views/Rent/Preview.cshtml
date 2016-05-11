@@ -1,0 +1,239 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Report.RentPreviewModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>
+                租金预估
+            </h1>
+        </div><!-- /.page-header -->
+        <div class="screen-area">
+            @using (Html.BeginForm("Preview", "Rent", FormMethod.Get))
+            {
+                <dl class="list-screen">
+                    <dt>选择项目：</dt>
+                    <dd>@Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList)</dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>选择楼宇：</dt>
+                    <dd>@Html.DropDownList("BuildingId", ViewData["BuildingList"] as SelectList, "全部")</dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>选择楼层：</dt>
+                    <dd>@Html.DropDownList("FloorId", ViewData["FloorList"] as SelectList, "全部")</dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>类型：</dt>
+                    <dd>@Html.DropDownList("UnitType", ViewData["UnitTypeList"] as SelectList, "全部")</dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>业态：</dt>
+                    <dd>@Html.DropDownList("BizTypeId", ViewData["BizTypeList"] as SelectList, "全部")</dd>
+                </dl>
+                <div class="result-btn">
+                    <input class="btn btn-xs btn-success btn-font input-btn" type="submit" value="查询" />
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="lighter mt30">
+                    商铺列表
+                </h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+                <div id="table-wrap" class="table-wrapbar table-wrap2">
+                    <div class="list-table">
+                        <dl>
+                            <dd><i>铺位数：</i><span id="totalUnit"></span>个</dd>
+                            <dd><i>总面积：</i><span id="totalArea"></span>平方米</dd>
+                            <dd><i>总租金：</i><span id="totalRent"></span>元/月</dd>
+                            <dd><i>总物业费：</i><span id="totalMgmt"></span>元/月</dd>
+                        </dl>
+                    </div>
+                    <div class="table-fixd">
+                        <table id="sample-table-2" class="table table-striped table-bordered table-hover table-btn" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th width="8%">楼层</th>
+                                    <th width="10%">铺位号</th>
+                                    <th width="6%">业态</th>
+                                    <th width="6%">类型</th>
+                                    <th width="10%">签约状态</th>
+                                    <th width="8%">商铺面积</th>
+                                    <th width="18%">租金单价</th>
+                                    <th width="18%">物业费单价</th>
+                                    <th width="8%">月租金</th>
+                                    <th width="8%">月物业费</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <table id="sample-table-1" class="table table-striped table-bordered table-hover table-btn table-color" style="width:100%">
+                    <tbody>
+                        @foreach (var unit in Model.UnitList)
+                        {
+                            <tr id="unit_@unit.UnitID">
+                                <td width="8%">@unit.FloorName</td>
+                                <td width="10%">@unit.UnitNumber</td>
+                                <td width="6%">@unit.BizTypeName</td>
+                                <td width="6%">@unit.UnitTypeName</td>
+                                <td width="10%" class="UnitStatus" data-status="@unit.UnitStatus">@unit.UnitStatusName</td>
+                                <td width="8%"><span class="UnitArea">@unit.UnitArea</span></td>
+                                <td width="18%">
+                                    <input class="StandardRent" type="text" value="@unit.StandardRent" data-unitid="@unit.UnitID" />
+                                </td>
+                                <td width="18%">
+                                    <input class="StandardMgmtFee" type="text" value="@unit.StandardMgmtFee" data-unitid="@unit.UnitID" />
+                                </td>
+                                <td width="8%"><span class="MonthlyRent">@unit.MonthlyRent.ToString("0.00")</span></td>
+                                <td width="8%"><span class="MonthlyMgmt">@unit.MonthlyMgmt.ToString("0.00")</span></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div><!-- /.span -->
+        </div><!-- /.row -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+
+<script language="javascript" type="text/javascript">
+
+    //项目
+    $("#ProjectId").change(function () {
+        var projectId = $(this).val();
+        $.ajax({
+            url: "@Url.Action("GetBuildingList", "Project", new { area = "Ajax" })",
+            data: "projectId=" + projectId,
+            success: function (result, status) {
+                var strHtml = "<option value=''>全部</option>";
+                var length = result.length;
+                for (var n = 0; n < length;n++) {
+                    strHtml += "<option value='" + result[n].Id + "'>" + result[n].Name + "</option>";
+                }
+                $("#BuildingId").html(strHtml);
+                $("#FloorId").html("<option value=''>全部</option>");
+            }
+        });
+    });
+
+    //楼宇
+    $("#BuildingId").change(function () {
+        var projectId = $("#ProjectId").val();
+        var buildingId = $(this).val();
+        $.ajax({
+            url: "@Url.Action("GetFloorList", "Project", new { area = "Ajax" })",
+            data: "projectId=" + projectId + "&buildingId=" + buildingId,
+            success: function (result, status) {
+                var strHtml = "<option value=''>全部</option>";
+                var length = result.length;
+                for (var n = 0; n < length; n++) {
+                    strHtml += "<option value='" + result[n].FloorId + "'>" + result[n].FloorName + "</option>";
+                }
+                $("#FloorId").html(strHtml);
+            }
+        });
+    });
+
+    //租金
+    $(".StandardRent").blur(function () {
+        var unitId = $(this).attr("data-unitId");
+        var tr = $("#unit_" + unitId);
+        var unitArea = tr.find(".UnitArea").text();
+        var standardRent = $(this).val();
+        var rent = unitArea * standardRent * 30;
+        var tdRent = tr.find(".MonthlyRent");
+        tdRent.text(rent.toFixed(2));
+        tdRent.addClass("link03");
+        setTimeout(function () {
+            tdRent.removeClass("link03");
+        }, 3000);
+        countRent();
+    });
+    //物业费
+    $(".StandardMgmtFee").blur(function () {
+        var unitId = $(this).attr("data-unitId");
+        var tr = $("#unit_" + unitId);
+        var unitArea = tr.find(".UnitArea").text();
+        var standardMgmtFee = $(this).val();
+        var mgmt = unitArea * standardMgmtFee * 30;
+        var tdMgmt = tr.find(".MonthlyMgmt");
+        tdMgmt.text(mgmt.toFixed(2));
+        tdMgmt.addClass("link03");
+        setTimeout(function () {
+            tdMgmt.removeClass("link03");
+        }, 3000);
+        countRent();
+    });
+
+    $(function () {
+        countRent();
+    });
+
+    //Switch TabBarBox Positon
+    var TabHead = $("#table-wrap"),
+        TabHeadPlace = $('<div class="tabPlaceHolder"></div>');
+    TabHead.after(TabHeadPlace);
+    $(window).bind("scroll", function () {
+        var st = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop;
+        if (!TabHeadPlace.offset()) return;
+        if (st > TabHeadPlace.offset().top) {
+            TabHead.next(".tabPlaceHolder").css("height", TabHead.height());
+            //TabHead.addClass("tabHeadFixed");
+            TabHead.css({
+                position: "fixed",
+                zIndex: 100,
+                width: TabHead.width(),
+                top: 0,
+                backgroundColor: "#fff"
+            });
+        }
+        else {
+            TabHead.next(".tabPlaceHolder").css("height", 0);
+            //TabHead.removeClass("tabHeadFixed");
+            TabHead.css({
+                position: "",
+                zIndex: "",
+                width: "auto",
+                top: "auto"
+            });
+        }
+    });
+
+
+    //汇总
+    var countRent = function () {
+        var totalArea = 0;
+        var totalRent = 0;
+        var totalMgmt = 0;
+
+        $(".UnitArea").each(function (item) {
+            totalArea += parseFloat(this.innerText);
+        });;
+        $(".MonthlyRent").each(function (item) {
+            totalRent += parseFloat(this.innerText);
+        });
+        $(".MonthlyMgmt").each(function (item) {
+            totalMgmt += parseFloat(this.innerText);
+        });        
+
+        $("#totalUnit").text($(".UnitArea").length);
+        $("#totalArea").text(totalArea.toFixed(2));
+        $("#totalRent").text(totalRent.toFixed(2));
+        $("#totalMgmt").text(totalMgmt.toFixed(2));
+        $(".UnitStatus").each(function (item) {
+            var td = $(this);
+            var status = td.attr("data-status");
+            if (status == "4") {
+                td.addClass("link01");
+            } else if (status == "2") {
+                td.addClass("link02");
+            } else if (status == "3") {
+                td.addClass("link03");
+            }
+        });
+    }
+</script>

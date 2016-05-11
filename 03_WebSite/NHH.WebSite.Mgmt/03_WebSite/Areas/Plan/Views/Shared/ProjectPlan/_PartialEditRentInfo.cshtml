@@ -1,0 +1,208 @@
+﻿@model NHH.Models.Plan.ProjectUnitInfoModel
+<h4 class="lighter">租赁信息</h4>
+<a class="edit-btn-canl cancelEditUnitInfo" href="javascript:void(0);">取消编辑</a>
+<div class="hr hr-18 hr-double dotted"></div>
+<dl class="form-content form-content-edit form-row-comb">
+    <dt><i>租赁相关</i></dt>
+    <dd>
+        <label>租决租金标准：</label>
+        @Model.StandardRent
+        <span class="middle">元/天/平方米</span>
+    </dd>
+    <dd>
+        <label>指导租金价格：</label>
+        @Html.TextBox("RecommendedRent", Model.RecommendedRent)
+        <span class="middle">元/天/平方米</span>
+        <span class="red RecommendedRent"></span>
+
+    </dd>
+    <dd>
+        <label>门店实际租金：</label>
+        @Html.TextBox("QuotationRent", Model.QuotationRent)
+        <span class="middle">月</span>
+        <span class="red QuotationRent"></span>
+    </dd>
+    <dd>
+        <label>租决物业费标准：</label>
+        @Html.TextBox("StandardMgmtFee", Model.StandardMgmtFee)
+        <span class="middle">元/天/平方米</span>
+        <span class="red StandardMgmtFee"></span>
+    </dd>
+    <dd>
+        <label>租赁期限上限：</label>
+        @Html.TextBox("RentLengthUpper", Model.RentLengthUpper)
+        <span class="middle">月</span>
+        <span class="red RentLengthUpper"></span>
+    </dd>
+    <dd>
+        <label>免租期上限：</label>
+        @Html.DropDownList("RentFreeLength", ViewData["RentFreeLengthList"] as SelectList)
+        <span class="middle">月</span>
+    </dd>
+    <dd>
+        <label>商铺质保金要求：</label>
+        @Html.TextBox("QualityBond", Model.QualityBond)
+        <span class="middle">元</span>
+        <span class="red QualityBond"></span>
+    </dd>
+    <dd>
+        <label>租押方式要求：</label>
+        @Html.DropDownList("RentChargeMode", ViewData["RentChargeModeList"] as SelectList)
+    </dd>
+    <dd class="date-win">
+        <label>租金递增方式要求：</label>
+        自第 @Html.DropDownList("IncreaseStartYears", ViewData["IncreaseStartYearsList"] as SelectList) 年起，
+        每 @Html.DropDownList("IncreaseStepYears", ViewData["IncreaseStepYearsList"] as SelectList) 年
+        @Html.DropDownList("IncreaseType", ViewData["IncreaseTypeList"] as SelectList)
+        @Html.TextBox("IncreaseAmount", Model.IncreaseAmount, new { style = "width:80px" })
+        @Html.DropDownList("IncreaseAmountType", ViewData["IncreaseAmountTypeList"] as SelectList)
+        <span class="red IncreaseAmount"></span>
+    </dd>
+    <div class="clear"></div>
+</dl>
+<div class="clear"></div>
+<!-- 租赁相关-编辑效果 -->
+
+<dl class="form-content form-content-edit form-row-comb">
+    <dt><i>装修相关</i></dt>
+    <dd>
+        <label>装修期上限：</label>
+        @Html.DropDownList("DecorationLength", ViewData["DecorationLengthList"] as SelectList)
+        <span class="middle">月</span>
+    </dd>
+    <dd>
+        <label>装修管理费：</label>
+        @Html.TextBox("DecorationMgmtFee", Model.DecorationMgmtFee)
+        <span class="middle">元</span>
+        <span class="red DecorationMgmtFee"></span>
+    </dd>
+    <dd>
+        <label>装修保证金：</label>
+        @Html.TextBox("DecorationBond", Model.DecorationBond)
+        <span class="middle">元</span>
+        <span class="red DecorationBond"></span>
+    </dd>
+    <div class="clear"></div>
+</dl>
+<div class="clear"></div>
+<!-- 装修相关-编辑效果 -->
+
+<dl class="form-content form-content-edit form-row-comb">
+    <dt><i>其他信息</i></dt>
+    <dd>
+        <label>免费停车位信息：</label>
+        @Html.DropDownList("ParkingLotNum", ViewData["ParkingLotNumList"] as SelectList)
+        <span class="middle">个</span>
+    </dd>
+    <dd>
+        <label>免费广告位信息：</label>
+        @Html.DropDownList("AdPointNum", ViewData["AdPointNumList"] as SelectList)
+        <span class="middle">个</span>
+    </dd>
+</dl>
+<!-- 其他信息-编辑效果 -->
+<div class="clear"></div>
+
+<div class="btn-edit">
+    @Html.Hidden("UnitPlanId", Model.UnitPlanId)
+    <a href="###" class="btn btn-info mr20" id="btnUnitInfo">保存信息</a>
+    <a href="###" class="btn cancelEditUnitInfo">取消编辑</a>
+</div>
+
+<!-- 租赁信息-编辑效果 -->
+
+<script type="text/javascript">
+    $("#btnUnitInfo").click(function () {
+
+        if (!check()) {
+            return;
+        }
+
+        var data = {};
+        data.UnitId = $("#UnitId").val();
+        data.UnitPlanId = $("#UnitPlanId").val();
+
+        data.RecommendedRent = $("#RecommendedRent").val();
+        data.QuotationRent = $("#QuotationRent").val();
+        data.StandardMgmtFee = $("#StandardMgmtFee").val();
+        data.RentLengthUpper = $("#RentLengthUpper").val();
+        data.RentFreeLength = $("#RentFreeLength").val();
+        data.QualityBond = $("#QualityBond").val();
+        data.RentChargeMode = $("#RentChargeMode").val();
+        data.IncreaseStartYears = $("#IncreaseStartYears").val();
+        data.IncreaseStepYears = $("#IncreaseStepYears").val();
+        data.IncreaseType = $("#IncreaseType").val();
+        data.IncreaseAmount = $("#IncreaseAmount").val();
+        data.IncreaseAmountType = $("#IncreaseAmountType").val();
+        data.DecorationLength = $("#DecorationLength").val();
+        data.DecorationMgmtFee = $("#DecorationMgmtFee").val();
+        data.DecorationBond = $("#DecorationBond").val();
+        data.ParkingLotNum = $("#ParkingLotNum").val();
+        data.AdPointNum = $("#AdPointNum").val();
+
+        var url = "@Url.Action("EditRentInfo", "ProjectUnit", new { area="Plan"})";
+        $("#rentInfo").load(url, data, function (response, status, xhr) {
+            $(this).html(response);
+        });
+    });
+    //取消编辑
+    $(".cancelEditUnitInfo").click(function () {
+        var url = "@Url.Action("RentInfo", "ProjectUnit", new { area="Plan"})";
+        url += "?unitId=" + $("#UnitId").val();
+        $("#rentInfo").load(url);
+    });
+
+    var check = function () {
+        var recommendedRent = /^\d*(\.\d{0,2})?$/;
+        var quotationRent = /^\d*(\.\d{0,5})?$/;
+        var standardMgmtFee = /^\d*(\.\d{0,2})?$/;
+        var rentLengthUpper = /^\d+$/;
+        var qualityBond = /^\d*(\.\d{0,2})?$/;
+        var increaseAmount = /^\d*(\.\d{0,2})?$/;
+        var decorationMgmtFee = /^\d*(\.\d{0,2})?$/;
+        var decorationBond = /^\d*(\.\d{0,2})?$/;
+        var flag = true;
+        if (recommendedRent.test($("#RecommendedRent").val()) == false) {
+            $(".RecommendedRent").text("应为整数或小数点为0-2位");
+            flag = false;
+        }
+
+        if (quotationRent.test($("#QuotationRent").val()) == false) {
+            $(".QuotationRent").text("应为数字");
+            flag = false;
+        }
+
+        if (standardMgmtFee.test($("#StandardMgmtFee").val()) == false) {
+            $(".StandardMgmtFee").text("应为整数或小数点为0-2位");
+            flag = false;
+        }
+
+        if (rentLengthUpper.test($("#RentLengthUpper").val()) == false) {
+            $(".RentLengthUpper").text("应为整数");
+            flag = false;
+        }
+
+        if (qualityBond.test($("#QualityBond").val()) == false) {
+            $(".QualityBond").text("应为整数或小数点为0-2位");
+            flag = false;
+        }
+
+        if (increaseAmount.test($("#IncreaseAmount").val()) == false) {
+            $(".IncreaseAmount").text("应为数字");
+            flag = false;
+        }
+        
+        if (decorationMgmtFee.test($("#DecorationMgmtFee").val()) == false) {
+            $(".DecorationMgmtFee").text("应为整数或小数点为0-2位");
+            flag = false;
+        }
+        
+        if (decorationBond.test($("#DecorationBond").val()) == false) {
+            $(".DecorationBond").text("应为整数或小数点为0-2位");
+            flag = false;
+        }
+
+        return flag;
+
+    }
+</script>

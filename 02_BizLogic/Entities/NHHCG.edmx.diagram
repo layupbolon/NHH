@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e186679e97e348318b28ec544899cdfb" Name="Diagram1">
+        <EntityTypeShape EntityType="NHHModel.Approve_Config" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Approve_Process" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Banner" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Banner_Location" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.BannerInfo" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.BizCategory" Width="1.5" PointX="18.75" PointY="69.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.BizType" Width="1.5" PointX="16.5" PointY="69.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Brand" Width="1.5" PointX="10.5" PointY="61" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Campaign" Width="1.5" PointX="29.25" PointY="108.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Campaign_Attachment" Width="1.5" PointX="31.5" PointY="104" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Campaign_Comment" Width="1.5" PointX="31.5" PointY="107.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Campaign_Page" Width="1.5" PointX="31.5" PointY="112" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Campaign_Result" Width="1.5" PointX="31.5" PointY="116.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.City" Width="1.5" PointX="5.25" PointY="91.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Company" Width="1.5" PointX="5.25" PointY="82.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Company_Finance" Width="1.5" PointX="7.5" PointY="95.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Complaint" Width="1.5" PointX="9.75" PointY="82.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Complaint_Attachment" Width="1.5" PointX="12" PointY="76.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Complaint_Comment" Width="1.5" PointX="12" PointY="72.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Complaint_Log" Width="1.5" PointX="12" PointY="105.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Contract" Width="1.5" PointX="12.75" PointY="80.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Contract_Appendix" Width="1.5" PointX="15" PointY="82.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Contract_Brand" Width="1.5" PointX="15" PointY="86.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Contract_PaymentTerms" Width="1.5" PointX="18" PointY="83.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Contract_Supplementary" Width="1.5" PointX="21" PointY="83" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Contract_Template" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Contract_Unit" Width="1.5" PointX="15" PointY="105.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Contract_UnitSpec" Width="1.5" PointX="18" PointY="76.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Department" Width="1.5" PointX="14.5" PointY="94.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Dictionary" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.District" Width="1.5" PointX="7.5" PointY="91.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Employee" Width="1.5" PointX="24.75" PointY="96" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Finance_Accrual" Width="1.5" PointX="18" PointY="89" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Finance_Item" Width="1.5" PointX="15.75" PointY="90.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Finance_Settlement" Width="1.5" PointX="15" PointY="74.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Finance_SettlementDetail" Width="1.5" PointX="20.25" PointY="90.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.FloorMap_Unit" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Intention" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Material" Width="1.5" PointX="28.25" PointY="99.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant" Width="1.5" PointX="7.5" PointY="71.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_Attachment" Width="1.5" PointX="10.5" PointY="67.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_Brand" Width="1.5" PointX="12.75" PointY="63.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_Documents" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_Documents_DecorateRequest" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_Documents_GetOutRequest" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_Finance" Width="1.5" PointX="9.75" PointY="72.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_Message" Width="1.5" PointX="23.25" PointY="76.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_Request" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_Revenue" Width="1.5" PointX="26.25" PointY="77.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_Role" Width="1.5" PointX="9.75" PointY="90.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_Store" Width="1.5" PointX="21" PointY="75.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_StoreImage" Width="1.5" PointX="23.25" PointY="72.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_StoreMeter" Width="1.5" PointX="23.25" PointY="82" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_User" Width="1.5" PointX="29.25" PointY="75.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Merchant_UserPaper" Width="1.5" PointX="31.5" PointY="77.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Message" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Message_Template" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.News" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.NHHCG_ADPosition" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.NHHCG_Feedback" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.NHHCG_Kiosk" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.NHHCG_Pic" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.NHHCG_Project" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.NHHCG_Unit" Width="1.5" PointX="12.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project" Width="1.5" PointX="7.5" PointY="81.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_AdPoint" Width="1.5" PointX="12" PointY="100.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_Batch" Width="1.5" PointX="9.75" PointY="109.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_BizConfig" Width="1.5" PointX="15" PointY="100.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_Building" Width="1.5" PointX="9.75" PointY="117.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_Floor" Width="1.5" PointX="12" PointY="93.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_Kiosk" Width="1.5" PointX="17.25" PointY="98.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_Owner" Width="1.5" PointX="9.75" PointY="78.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_Unit" Width="1.5" PointX="20.25" PointY="98.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_UnitAdjust" Width="1.5" PointX="22.5" PointY="90.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_UnitBatch" Width="1.5" PointX="12" PointY="109.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_UnitLeasing" Width="1.5" PointX="22.5" PointY="94.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_UnitPlan" Width="1.5" PointX="22.5" PointY="99.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_UnitSpec" Width="1.5" PointX="22.5" PointY="108.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Project_UnitSpec_Template" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Province" Width="1.5" PointX="3" PointY="91.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Region" Width="1.5" PointX="0.75" PointY="81.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Repair" Width="1.5" PointX="25.25" PointY="86.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Repair_Attachment" Width="1.5" PointX="27.5" PointY="87.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Repair_Comment" Width="1.5" PointX="27.5" PointY="91.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Repair_Log" Width="1.5" PointX="27.5" PointY="95.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Repair_Material" Width="1.5" PointX="30.5" PointY="89.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Sys_Function" Width="1.5" PointX="30" PointY="125.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Sys_Menu" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Sys_Role" Width="1.5" PointX="27" PointY="117.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Sys_Role_Function" Width="1.5" PointX="32.25" PointY="120.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Sys_Role_Menu" Width="1.5" PointX="29.25" PointY="59.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Sys_User" Width="1.5" PointX="27" PointY="111.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Sys_User_Message" Width="1.5" PointX="29.25" PointY="120.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Sys_User_Role" Width="1.5" PointX="29.25" PointY="116.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.Utility_Bill" Width="1.5" PointX="25.5" PointY="81.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_CompanyType" Width="1.5" PointX="14.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_Condition" Width="1.5" PointX="8.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_ContractStatus" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_FloorMap_Unit" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_GenderType" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_Project_AdPoint" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_Project_Kiosk" Width="1.5" PointX="16.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_Project_Unit" Width="1.5" PointX="16.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_Project_Unit_Contract" Width="1.5" PointX="4.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_ProjectInfoShow" Width="1.5" PointX="6.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_Repair_Complaint_Supervisor" Width="1.5" PointX="8.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_Report_Contract" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_Report_Project_Count" Width="1.5" PointX="18.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_Report_Project_Unit" Width="1.5" PointX="18.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_Role_Function" Width="1.5" PointX="10.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_Role_Menu" Width="1.5" PointX="18.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_UnitStatus" Width="1.5" PointX="18.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_UnitType" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_User_Function" Width="1.5" PointX="12.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHHModel.View_User_Menu" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="NHHModel.FK_BizCategory_BizCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_BizCategory_BizType" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Brand_BizCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Store_BizCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Unit_BizCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Brand_BizType" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Store_BizType" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Unit_BizType" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Brand_Brand" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Campaign_Attachment_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Campaign_Comment_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Campaign_Page_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Campaign_PlanUser" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Campaign_Result_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Campaign_RunUser" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_City_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_District_City" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_City" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Company_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Company_Finance_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Company_Owner" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Contract_ManageCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Contract_Supplementary_ManageCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Employee_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Finance_Accrual_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Finance_Settlement_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_ManageCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Owner_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Complaint_Attachment_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Complaint_Comment_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Complaint_Log_Complaint" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Complaint_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Complaint_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Complaint_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Contract_Appendix_Contract" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Contract_Brand_Contract" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Contract_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Contract_PaymentTerms_Contract" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Contract_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Contract_Supplementary_Contract" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Contract_Unit_Contract" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Contract_UnitSpec_Contract" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Finance_Accrual_Contract" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Finance_Settlement_Contract" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Store_RentContract" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Contract_Brand_MerchantBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Contract_PaymentTerms_PaymentItem" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Contract_UnitSpec_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Department_Manager" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Employee_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Employee_Supervisor" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Sys_User_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Finance_Accrual_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Finance_Accrual_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Finance_Accrual_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Finance_SettlementDetail_Accrual" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Finance_SettlementDetail_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Finance_Settlement_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Finance_SettlementDetail_Settlement" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Repair_Material_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Attachment_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Brand_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Finance_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Message_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Revenue_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Role_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Store_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_StoreImage_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_StoreMeter_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_User_Merchant" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Brand_AuthorizedFile" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Message_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Message_User" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_Revenue_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_StoreImage_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_StoreMeter_Merchant_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_User_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Repair_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Utility_Bill_Merchant_StoreMeter" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Merchant_UserPaper_User" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_AdPoint_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Batch_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_BizConfig_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Building_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Floor_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Kiosk_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Owner_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Provice" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Region" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Unit_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Repair_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_AdPoint_Building" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_AdPoint_Floor" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_UnitBatch_Project_Batch" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_BizConfig_Building" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Floor_Building" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Kiosk_Building" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Unit_Building" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Kiosk_Floor" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_Unit_Floor" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Repair_Floor" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_UnitAdjust_Project_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_UnitAdjust_Project_Unit1" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_UnitBatch_Project_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_UnitLeasing_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_UnitPlan_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Project_UnitSpec_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Repair_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Province_Region" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Repair_Attachment_Repair" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Repair_Comment_Repair" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Repair_Log_Repair" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Repair_Material_Repair" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Sys_Role_Function_Function" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Sys_Menu_Parent" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Sys_Role_Menu_Menu" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Sys_Role_Function_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Sys_Role_Menu_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Sys_User_Role_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Sys_User_Message_User" ManuallyRouted="false" />
+        <AssociationConnector Association="NHHModel.FK_Sys_User_Role_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

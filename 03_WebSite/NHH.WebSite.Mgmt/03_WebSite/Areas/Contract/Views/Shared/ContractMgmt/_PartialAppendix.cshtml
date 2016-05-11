@@ -1,0 +1,13 @@
+﻿@model NHH.Models.Contract.ContractDetailModel
+
+<h4 class="lighter">合同附件</h4>
+<dl class="form-content textstyle">
+    @foreach (var appendix in Model.AppendixList)
+    {
+        <dd>
+            <label>@appendix.AppendixID：</label>
+            <span><a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(appendix.AppendixPath)" target="_blank">@appendix.AppendixName</a></span>
+        </dd>
+    }
+</dl>
+<div class="clear"></div>

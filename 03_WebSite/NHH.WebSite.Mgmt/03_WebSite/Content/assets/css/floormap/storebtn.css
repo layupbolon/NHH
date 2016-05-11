@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* common css ============================================== */
+* {font-family: '微软雅黑',"iconfont","FontAwesome","Microsoft YaHei"  !important;}
+.floormap {
+	float: left;
+	left: 60px;
+	border: 2px solid rgba(0,0,0,0.35);
+
+	margin-right: 40px;
+}
+
+.inforarea td{
+	border-bottom: 1px solid #EEE;
+	padding-top: 5px;
+	padding-right: 5px;
+}
+
+.infoarea-title{
+	width: 90px;
+}
+
+
+.btnarea {
+	margin-top: 20px;
+}
+.button {
+	padding: 0!important;
+}
+.sidebar+.main-content {
+	margin-right: 0px;
+}
+.btnarea a {
+	width: 120px;
+	height: 50px;
+}
+.btnarea p {
+	margin-bottom: 20px;
+}
+@media (max-width:1366px) {
+.btnarea {
+	position: relative;
+	width: 120px;
+	right:-1040px;
+	padding: 20px;
+}
+}
+@media (max-width:1366px) {
+.btnarea p {
+	height: 50px;
+}
+}
+
+@media (max-width:1366px) {
+.btnarea a {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	position: fixed;
+	display: block;	
+}
+}

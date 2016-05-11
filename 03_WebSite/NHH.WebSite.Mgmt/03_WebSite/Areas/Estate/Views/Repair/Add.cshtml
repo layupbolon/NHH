@@ -1,0 +1,244 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Estate.RepairDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<style>
+    .uploadify-queue {
+        display: none;
+    }
+</style>
+<div class="page-content">
+    <div class="page-header">
+        <h1>创建维修单</h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("Add", "Repair", new { area = "Estate" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"><span class="req">*</span> 报修类型： </label>
+                    <div class="col-sm-9 input-merge">
+                        <ul>
+                            <li>
+                                <label>@Html.RadioButton("RepairType", 1, Model.RepairType == 1, new { @name = "RepairType", @id = "RepairType1" }) 排水</label>
+                            </li>
+                            <li>
+                                <label>@Html.RadioButton("RepairType", 2, Model.RepairType == 2, new { @name = "RepairType", @id = "RepairType2" }) 强电</label>
+                            </li>
+                            <li>
+                                <label>@Html.RadioButton("RepairType", 3, Model.RepairType == 3, new { @name = "RepairType", @id = "RepairType3" }) 弱电</label>
+                            </li>
+                            <li>
+                                <label>@Html.RadioButton("RepairType", 4, Model.RepairType == 4, new { @name = "RepairType", @id = "RepairType4" }) 暖通</label>
+                            </li>
+                            <li>
+                                <label>@Html.RadioButton("RepairType", 5, Model.RepairType == 5, new { @name = "RepairType", @id = "RepairType5" }) 装饰</label>
+                            </li>
+                            <li>
+                                <label>@Html.RadioButton("RepairType", 6, Model.RepairType == 6, new { @name = "RepairType", @id = "RepairType6" }) 消防设备</label>
+                            </li>
+                            <li>
+                                <label>@Html.RadioButton("RepairType", 7, Model.RepairType == 7, new { @name = "RepairType", @id = "RepairType7" }) 安防设备</label>
+                            </li>
+                            <li>
+                                <label>@Html.RadioButton("RepairType", 8, Model.RepairType == 8, new { @name = "RepairType", @id = "RepairType8" }) 其他</label>
+                            </li>
+                            <li>
+                                <label>
+                                    <span class="middle red">
+                                        @Html.ValidationMessage("RepairType")
+                                    </span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>位置描述： </label>
+                    <div class="col-sm-9 input-merge">
+                        <ul>
+                            <li>
+                                <label>@Html.RadioButton("IsCommon", 2, true, new { @name = "IsCommon", @id = "IsCommon2" }) 公共区域</label>
+                            </li>
+                            <li>
+                                <label>
+                                    <span class="middle red">
+                                        @Html.ValidationMessage("IsCommon")
+                                    </span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>项目选择： </label>
+
+                    <div class="col-sm-9 input-merge">
+                        @Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList, "请选择项目", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("ProjectId")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+
+                    <div class="col-sm-9 input-merge">
+                        @Html.DropDownList("FloorId", ViewData["FloorList"] as SelectList, "请选择楼层", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("FloorId")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+
+                    <div class="col-sm-9 input-merge">
+                        @Html.TextBox("Location", "", new { @placeholder = "请输入铺位号或者店铺名称，如星巴克的", @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("Location")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+
+
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>报修描述： </label>
+                    <div class="col-sm-9">
+                        @Html.TextAreaFor(m => m.RequestDesc, 5, 5, new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("RequestDesc")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1">提交照片： </label>
+
+                    <div class="col-sm-9 ">
+                        <a class="btn btn-add btn-font upload-btn">
+                            <div class="load-text">上传图片</div>
+                            <div class="input-wrap">
+                                <input type="button" id="btnUpload" class="load-text" />
+                            </div>
+                        </a>
+                        <p class="muted">图片大小不能超过2M，图片类型为jpg、png</p>
+                        <div class="uploadimg" id="fileQueue">
+                            <dl>
+                                <dd><img src="~/Content/assets/images/default-img.jpg" id="img1"></dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"></label>
+                    <div class="col-sm-9">
+                        <button class="btn btn-xs btn-success btn-font formsubmit" type="submit" id="btnSubmit">确认提交</button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn btn-xs btn-success btn-font" type="reset">取消</button>
+                    </div>
+                </div>
+                @Html.Hidden("AttchmentImgPathList")
+            }
+        </div>
+    </div>
+</div>
+
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        fileUpload();
+        beforeUnload.config.enable = true;
+        //项目选择下拉框改变时调用
+        $("#ProjectId").change(function () {
+            var projectId = $(this).val();
+            if (projectId != '') {
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetAllFloor", "Project", new { area = "Ajax" })",
+                    data: "projectId=" + projectId,
+                    dataType: "JSON",
+                    success: function (data, status) {
+                        var length = data.length;
+                        var strHtml = "";
+                        for (var n = 0; n < length; n++) {
+                            strHtml += "<option value='" + data[n].FloorId + "'>" + data[n].FloorName + "</option>";
+                        }
+                        $("#FloorId").html(strHtml);
+                    }
+                });
+            }
+        });
+
+        //提交
+        $("#btnSubmit").click(function () {
+            var imgList = "";
+            $(".imgItem").each(function (item) {
+                imgList += $(this).attr("data-filePath") + ",";
+            });
+            $("#AttchmentImgPathList").val(imgList);
+            return true;
+        });
+    });
+
+    var fileUpload = function () {
+        //图片上传
+        $("#btnUpload").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.ParamManager.GetStringValue("ImageSite")" + "Repair/Upload",
+            "buttonText": "",
+            "fileTypeExts": "*.jpg;*.png",
+            "multi": false,
+            "onUploadStart": function (file) {
+                //获取项目ID
+                var formData = {};
+                formData.projectId = $("#ProjectId").val();
+                if (formData.projectId == "") {
+                    alert("请选择项目");
+                }
+                $("#btnUpload").uploadify("settings", "formData", formData);
+            },
+            "onUploadSuccess": function (file, data, response) {
+                var result = JSON.parse(data);//eval("(" + data + ")");
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+                var innerHtml = "<dl id='img-" + result.FileId + "'>" +
+                                    "<dt><a href='###' class='close-icon btnClose' data-id='" + result.FileId + "'></a></dt>" +
+                                    "<dd><img class='imgItem' src='" + result.FileUrl + "' data-filePath='" + result.FilePath + "'></dd>" +
+                                 "</dl>";
+                var img1 = $("#img1");
+                if (img1.length > 0) {
+                    img1.remove();
+                }
+                $("#fileQueue").append(innerHtml);
+                //删除事件
+                $(".btnClose").unbind().click(function () {
+                    var id = $(this).attr("data-id");
+                    $("#img-" + id).remove();
+                });
+            }
+        });
+
+    }
+
+</script>

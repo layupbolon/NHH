@@ -1,0 +1,133 @@
+﻿@model NHH.Models.Common.Department.DepartmentDetailModel
+
+@using (Html.BeginForm("Edit", "Department", new { area = "Common" }, FormMethod.Post, new { @class = "form-horizontal", novalidate = "novalidate", id = "deptFm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span class="white">×</span>
+                    </button>
+                    部门编辑
+                </div>
+            </div>
+
+            <div class="modal-body no-padding nothing">
+                <div class="popWinStyle">
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"><span class="req">*</span>部门名称：</label>
+                        @Html.TextBoxFor(m => m.DepartmentName, new { @class = "col-xs-10 col-sm-5" })
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right red vdeptName" style="display:none">请输入部门名称</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right"><span class="req">*</span>联系电话：</label>
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "col-xs-10 col-sm-5" })
+                        <label for="form-field-1" class="col-sm-3 control-label no-padding-right red vdeptPhone" style="display:none">请输入联系电话</label>
+                    </div>
+                </div>
+                <div class="ui-btngroup">
+                    <a href="javascript:void(0)" class="btn btn-xs btn-success btn-font  btnSubmit">保存</a>
+                    <a href="javascript:void(0)" class="btn btn-xs btn-del btn-font  btnDelete">作废</a>
+                    <a href="javascript:void(0)" class="btn btn-xs btn-font btn-cancel btnCancel" data-dismiss="modal" aria-hidden="true">取消</a>
+                </div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    @Html.HiddenFor(m => m.DepartmentID, new { id = "deptIdEdit" })
+}
+
+<script type="text/javascript">
+
+    //保存数据
+    $(".btnSubmit").click(function () {
+        if (!TextBoxEmptyValidate()) {
+            return;
+        }
+        //通过验证则往下执行，添加部门
+        $.ajax({
+            url: "@Url.Action("Edit", "Department", new { area = "Common" }, null)",
+            type: "POST",
+            data: $("#deptFm").serialize(),
+            dataType: "JSON",
+            cache: false,
+            success: function (result, status) {
+                if (result.IsSuccess) {
+                    var companyId = $("#HiddCompanyId").val();
+                    var url = "@Url.Action("List", "Department", new { area = "Common"}, null)";
+                    location.href = url + "?companyId=" + companyId;
+                    return true;
+                } else {
+                    alert(result.Message);
+                }
+            },
+            error: function (xhr, status, error) {
+                alert("请求服务失败,状态：" + xh.status);
+            }
+        });
+    });
+
+    //文本框键盘事件
+    $("#DepartmentName,#Phone").keyup(function () {
+        TextBoxEmptyValidate2($(this));
+    });
+
+    ///删除部门
+    $(".btnDelete").click(function () {
+        nhhui.confirm("确定要作废吗？作废后将不能恢复", function () {
+            var deptId = $("#deptIdEdit").val();
+            $.ajax({
+                url: "@Url.Action("Del", "Department", new { area = "Common" }, null)",
+                type: "POST",
+                data: { deptId: deptId },
+                dataType: "JSON",
+                cache: false,
+                success: function (result, status) {
+                    if (result.IsSuccess) {
+                        var companyId = $("#HiddCompanyId").val();
+                        var url = "@Url.Action("List", "Department", new { area = "Common" }, null)";
+                        location.href = url + "?companyId=" + companyId;;
+                    } else {
+                        alert(result.Message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert("请求服务失败,状态：" + xh.status);
+                }
+            });
+        });
+    });
+
+    //验证文本框
+    var TextBoxEmptyValidate2 = function (obj) {
+        var objValue = obj.val().trim();
+        if (objValue == "") {
+            obj.next().css("display", "block");;
+        } else {
+            obj.next().css("display", "none");
+        }
+    };
+
+    //验证文本框
+    var TextBoxEmptyValidate = function () {
+        var flag = true;
+        var deptName = $("#DepartmentName").val().trim();
+        var deptPhone = $("#Phone").val().trim();
+        if (deptName == "") {
+            $(".vdeptName").css("display", "block");
+            flag = false;
+        } else {
+            $(".vdeptName").css("display", "none");
+        }
+        if (deptPhone == "") {
+            $(".vdeptPhone").css("display", "block");
+            flag = false;
+        } else {
+            $(".vdeptPhone").css("display", "none");
+        }
+        return flag;
+    };
+</script>

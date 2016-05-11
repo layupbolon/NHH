@@ -1,0 +1,362 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Estate.RepairDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>报修单详情</h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-horizontal" role="form">
+                <p class="titleA">提报信息</p>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">报修编号： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.RepairID</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">报修人姓名： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext" id="RequestUserName">@Model.RequestUserName</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">报修人联系方式： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.RequestContact &nbsp;</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">报修提报时间： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext" id="RequestTime">@(Model.RequestTime.HasValue ? Model.RequestTime.Value.ToString("yyyy-MM-dd hh:mm:ss") : "")</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">报修类型： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.RepairTypeName</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">位置描述： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext" id="Location">@Model.Location &nbsp;</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">报修描述： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Html.Raw(Model.RequestDesc) &nbsp;</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">提交照片： </label>
+                    <div class="col-sm-9">
+                        <div class="uploadimg">
+                            <ul class="ace-thumbnails clearfix">
+                                @foreach (var item in Model.AttachmentInfos)
+                                {
+                                    <li>
+                                        <a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(item.AttachmentPath)" data-rel="colorbox">
+                                            <img width="100" height="73" src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(item.AttachmentPath, 100)" />
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <p class="titleA">处理信息</p>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">报修响应时间： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@(Model.AcceptTime.HasValue ? Model.AcceptTime.Value.ToString("yyyy-MM-dd hh:mm:ss") : "") &nbsp;</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                @if (Model.RepairStatus == 3)
+                {
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">报修完成时间： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">@(Model.RepairFinishTime.HasValue ? Model.RepairFinishTime.Value.ToString("yyyy-MM-dd hh:mm:ss") : "") &nbsp;</span>
+                        </div>
+                    </div>
+                }
+                @if (Model.RepairStatus == 4)
+                {
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">报修关闭时间： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">@(Model.RepairFinishTime.HasValue ? Model.RepairFinishTime.Value.ToString("yyyy-MM-dd hh:mm:ss") : "") &nbsp;</span>
+                        </div>
+                    </div>
+                }
+                <div class="space-4"></div>
+                @if (Model.RepairStatus == 1 || Model.RepairStatus == 2)
+                {
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">预计完成时间： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext" id="EstimatedFinishTime">@(Model.EstimatedFinishTime.HasValue ? Model.EstimatedFinishTime.Value.ToString("yyyy-MM-dd hh:mm:ss") : "") &nbsp;</span>
+                        </div>
+                    </div>
+                }
+
+
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">维修人员： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @if (Model.RepairUserId > 0)
+                            {
+                                <span id="DetailRepairUserName">
+                                    @Model.RepairUserName
+                                </span>
+                                if (Model.RepairStatus == 2)
+                                {
+                                    <a href="javascript:void(0);" class="btn btn-xs btn-success btn-font" id="lbtnReAssign" data-uid="@Model.RepairUserId">重新指派</a>
+                                }
+                            }
+                            else
+                            {
+                                <span id="DetailRepairUserName">
+                                    @Model.RepairUserName
+                                </span>
+                                <a href="javascript:void(0);" class="btn btn-xs btn-success btn-font" id="lbtnAssign" data-uid="@Model.RepairUserId">指派</a>
+                            }
+                        </span>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">维修人员电话： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.RepairMobile &nbsp;</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">维修人员标签： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.Tag &nbsp;</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">维修报价(元)： </label>
+                    @if (Model.RepairStatus == 1 || Model.RepairStatus == 2)
+                    {
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(m => m.QuoteAmount)
+                            &nbsp;<a href="javascript:void(0)" class="btn btn-xs btn-success btn-font btnSave">保存</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-9">
+                            <span class="defauletext">@Model.QuoteAmount &nbsp;</span>
+                        </div>
+                    }
+
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">紧急情况： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@(Model.Important == 2 ? "紧急" : "非紧急") &nbsp;</span>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">状态： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.RepairStatusName &nbsp;</span>
+                    </div>
+                </div>
+
+                @if (Model.RepairStatus == 3 || Model.RepairStatus == 4)
+                {
+                    <p class="titleA">维修评分</p>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">响应速度： <span class="defauletext">@Model.RepairCommentDetailModel.Speed &nbsp;</span></label>
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">维修结果： <span class="defauletext">@Model.RepairCommentDetailModel.Quality &nbsp;</span></label>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">服务态度： <span class="defauletext">@Model.RepairCommentDetailModel.Attitude &nbsp;</span></label>
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">维修评价： <span class="defauletext">@Model.RepairCommentDetailModel.AllComment &nbsp;</span></label>
+                    </div>
+                }
+                <p class="titleA">维修记录</p>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">维修记录：</label>
+                    <div class="col-sm-9">
+                        <div>
+                            <ul>
+                                @foreach (var item in Model.RepairLogInfoList)
+                                {
+                                    <li style="border-bottom: 1px solid #e7eaec;margin-top: 15px;">
+                                        @item.LogText<br />
+                                        <small class="text-muted">@item.LogTime.ToString("yyyy-MM-dd hh:mm:ss")  &nbsp; </small>
+                                    </li>
+                                }
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        @if (Model.RepairStatus == 2)
+                        {
+                            <a href="javascript:void(0)" class="btn btn-xs btn-success btn-font  btnFinish">结束维修</a>
+
+                            <a href="javascript:void(0)" class="btn btn-xs btn-success btn-font  btnShelve">搁置</a>
+
+                            <a href="javascript:void(0)" class="btn btn-xs btn-success btn-font  btnDelay">延迟</a>
+                        }
+
+
+                        &nbsp; &nbsp; &nbsp;
+                        <a href="javascript:void(0)" class="btn btn-xs btn-success btn-font  btnBack">返回</a>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+            </form>
+        </div>
+    </div>
+</div>
+@Html.Hidden("HiddRepairId", Model.RepairID)
+@Html.Hidden("HiddRequestSrcType", Model.RequestSrcType)
+@Html.Hidden("HiddRequestUserId", Model.RequestUserId)
+@Html.Hidden("HiddRepairUserId", Model.RepairUserId)
+@Html.HiddenFor(m => m.ProjectId)
+<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;"></div>
+<script src="~/Scripts/ImagePopUp.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //获取指派弹出页面
+        $("#lbtnAssign").click(function () {
+            var obj = {};
+            obj.repairUserId = $(this).attr("data-uid");
+            obj.projectId = $("#ProjectId").val();
+            $.ajax({
+                url: "@Url.Action("PopAssignDialog", "Repair", new { area = "Estate" })",
+                data: obj,
+                type: "GET",
+                dataType: "Html",
+                success: function (result, status) {
+                    $("#modal").html(result).modal();
+                }
+            });
+        });
+
+        //获取重新指派弹出页面
+        $("#lbtnReAssign").click(function () {
+            var obj = {};
+            obj.repairUserId = $(this).attr("data-uid");
+            obj.projectId = $("#ProjectId").val();
+            $.ajax({
+                url: "@Url.Action("PopReAssignDialog", "Repair", new { area = "Estate" })",
+                data: obj,
+                type: "GET",
+                dataType: "Html",
+                success: function (result, status) {
+                    $("#modal").html(result).modal();
+                }
+            });
+        });
+
+        //获取搁置弹出页面
+        $(".btnShelve").click(function () {
+            var obj = {};
+            $.ajax({
+                url: "@Url.Action("PopShelveDialog", "Repair", new { area = "Estate" })",
+                type: "GET",
+                dataType: "Html",
+                success: function (result, status) {
+                    $("#modal").html(result).modal();
+                }
+            });
+        });
+
+        //获取延迟弹出页面
+        $(".btnDelay").click(function () {
+            var obj = {};
+            $.ajax({
+                url: "@Url.Action("PopDelayDialog", "Repair", new { area = "Estate" })",
+                type: "GET",
+                dataType: "Html",
+                success: function (result, status) {
+                    $("#modal").html(result).modal();
+                }
+            });
+        });
+
+        //结束
+        $(".btnFinish").click(function () {
+            var obj = {};
+            obj.repairUserId = $("#HiddRepairUserId").val();
+            obj.repairId = $("#HiddRepairId").val();
+            obj.RequestSrcType = $("#HiddRequestSrcType").val();
+            obj.RequestUserId = $("#HiddRequestUserId").val();
+            obj.RequestUserName = $("#RequestUserName").text();
+            obj.Location = $("#Location").text();
+            obj.RequestTime = $("#RequestTime").text();
+            obj.EstimatedFinishTime = $("#EstimatedFinishTime").text().trim();
+            obj.RepairUserName = $("#DetailRepairUserName").text().trim();
+            $.ajax({
+                url: "@Url.Action("Finish", "Repair", new { area = "Estate" })",
+                data: obj,
+                type: "POST",
+                success: function (result, status) {
+                    var url = "@Url.Action("Detail", "Repair", new { area = "Estate" })";
+                    url += "?repairId=" + $("#HiddRepairId").val();
+                    location.href = url;
+                }
+            });
+        });
+
+        //保存维修报价
+        $(".btnSave").click(function () {
+            var obj = {};
+            obj.repairId = $("#HiddRepairId").val();
+            obj.quoteAmount = $("#QuoteAmount").val();
+            $.ajax({
+                url: "@Url.Action("Edit", "Repair", new { area="Estate"},null)",
+                data: obj,
+                dataType: "JSON",
+                type: "POST",
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        var url = "@Url.Action("Detail", "Repair", new { area = "Estate" })";
+                        url += "?repairId=" + obj.repairId;
+                        location.href = url;
+                    } else {
+                        alert(result.Message);
+                    }
+                }
+            });
+        });
+
+        ///返回按钮
+        $(".btnBack").click(function () {
+            location.href = history.back();
+        });
+
+    })
+
+</script>

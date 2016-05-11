@@ -1,0 +1,112 @@
+﻿@model NHH.Models.Estate.ComplaintAssignUserListModel
+<form class="form-horizontal" novalidate="novalidate">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span class="white">×</span>
+                    </button>
+                    指派
+                </div>
+            </div>
+            <div class="modal-body no-padding nothing">
+                <div class="popWinStyle">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">部门： </label>
+                        @Html.DropDownListFor(m => m.QueryInfo.DeptId, ViewData["DeptList"] as SelectList, "请选择部门", new { @class = "col-xs-10 col-sm-5", id = "DeptId" })
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">标签关键字： </label>
+                        @Html.TextBoxFor(m => m.QueryInfo.Tag, new { @class = "col-xs-10 col-sm-5", id = "Tag" })
+                        &nbsp;&nbsp;<a href="javascript:void(0)" class="btn btn-xs btn-success btn-font  btnSearch">搜索</a>
+                    </div>
+
+                    <div class="form-group">
+                        <div style="overflow-y:auto; overflow-x:auto; width:95%;height:400px">
+                            <table class="table table-striped table-bordered table-hover table-txthover">
+                                <thead>
+                                    <tr>
+                                        <th>部门</th>
+                                        <th>员工ID</th>
+                                        <th>姓名</th>
+                                        <th>标签</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.ComplaintAssignUserList)
+                                    {
+                                        <tr>
+                                            <td>@item.DeptName</td>
+                                            <td>@item.EmployeeId</td>
+                                            <td>@item.EmployeeName</td>
+                                            <td>@item.Tag</td>
+                                            <td>
+                                                <a href="javascript:void(0)" class="btn btn-xs btn-success btn-font  btnAssign" data-eid="@item.EmployeeId">指派</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-btngroup">
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</form>
+<script type="text/javascript">
+    $(function () {
+        $(".btnSearch").click(function () {
+            var obj = {};
+            obj.DeptId = $("#DeptId").val();
+            obj.Tag = $("#Tag").val();
+            obj.ProjectId = $("#ProjectId").val();
+            $.ajax({
+                url: "@Url.Action("PopAssignDialog", "Complaint", new { area = "Estate" }, null)",
+                type: "GET",
+                data: obj,
+                dataType: "HTML",
+                cache: false,
+                success: function (result) {
+                    $("#modal").html(result).modal();
+                }
+            });
+
+        });
+
+        //人员指派提交
+        $(".btnAssign").click(function () {
+            var assignInfo = {};
+            assignInfo.ComplaintId = $("#HiddComplaintId").val();
+            assignInfo.ServiceUserId = $(this).attr("data-eid");
+            assignInfo.RequestSrcType = $("#HiddRequestSrcType").val();
+            assignInfo.RequestUserId = $("#HiddRequestUserId").val();
+            assignInfo.RequestTime = $("#RequestTime").text().trim();
+            assignInfo.Location = $("#ProjectName").text().trim();
+            $.ajax({
+                url: "@Url.Action("Assign", "Complaint", new { area = "Estate" }, null)",
+                type: "POST",
+                data: assignInfo,
+                dataType: "JSON",
+                cache: false,
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        var url = "@Url.Action("Detail", "Complaint", new { area="Estate"},null)";
+                        url += "?complaintId=" + assignInfo.ComplaintId;
+                        location.href = url;
+                    } else {
+                        alert(result.Message);
+                    }
+                }
+            });
+
+        });
+    });
+
+
+</script>

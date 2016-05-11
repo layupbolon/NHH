@@ -1,0 +1,324 @@
+﻿@model NHH.Models.Project.ProjectDetailInfoModel
+<h4 class="lighter">详细信息</h4>
+<a class="edit-btn-canl cancelEditProjectDetail" href="javascript:void(0);">取消编辑</a>
+<div class="hr hr-18 hr-double dotted"></div>
+@using (Html.BeginForm("Edit", "ProjectMgmt", new { area = "Project", projectId = Model.ProjectID }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>地上建筑面积(平方米)： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.TextBox("GroundArea", Model.GroundArea, new { @class = "col-xs-10 col-sm-5 ProjectArea" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="gAreaVai">
+                    @Html.ValidationMessage("GroundArea")
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>地下建筑面积(平方米)： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.TextBox("UndergroundArea", Model.UndergroundArea, new { @class = "col-xs-10 col-sm-5 ProjectArea" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="ugAreaVai">
+                    @Html.ValidationMessage("UndergroundArea")
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>总建筑面积(平方米)：</label>
+        <div class="col-sm-9 input-merge input-group">
+            <span class="defauletext" id="totalArea">@Model.TotalArea</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>所处阶段： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.DropDownList("Stage", ViewData["ProjectStageList"] as SelectList, new { style = "width:160px", @class = "form-control mr10" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="stageVai">
+                    @Html.ValidationMessage("Stage")
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>开业时间： </label>
+        <div class="col-sm-9 input-merge input-group">
+            <span class="input-daterange">@Html.TextBox("GrandOpeningDate", Model.GrandOpeningDate, new { @class = "col-xs-10 col-sm-5" })<i class="date-exchange"></i></span>
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="GrandOpeningDateVaild">
+                    @Html.ValidationMessage("GrandOpeningDate")
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>广告位数量： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.TextBox("AdPointNum", Model.AdPointNum, new { @class = "col-xs-10 col-sm-5" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="adpVai">
+                    @Html.ValidationMessage("AdPointNum")
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>停车位数量： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.TextBox("ParkingLotNum", Model.ParkingLotNum, new { @class = "col-xs-10 col-sm-5" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="parkVai">
+                    @Html.ValidationMessage("ParkingLotNum")
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>多经点位数量： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.TextBox("MultiBizPositionNum", Model.MultiBizPositionNum, new { @class = "col-xs-10 col-sm-5" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="muVai">
+                    @Html.ValidationMessage("MultiBizPositionNum")
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right"> 项目图片：</label>
+        <div class="col-sm-9 ">
+            <a class="btn btn-add btn-font upload-btn">
+                <div class="input-wrap">
+                    <input type="file" class="webuploader-invisible btnUpload" id="btnUpload" accept=".jpg" data-type="4">
+                    <span style="visibility:collapse">@Html.TextBox("RenderingFileName", Model.RenderingFileName)</span>
+                </div>
+            </a>
+            <p class="muted">图片大小不能超过2M，图片类型为jpg、png</p>
+            <div class="uploadimg" id="projectImageList">
+                @{var n = 0;}
+                @foreach (var file in Model.RenderingFileList)
+                {
+                    n += 1;
+                    <dl id="file-@n">
+                        <dt>
+                            <a href="###" class="close-icon btnClose" data-id="file-@n"></a>
+                        </dt>
+                        <dd>
+                            <a href="###" onclick="SignImgShow(this)">
+                                <img class="projectImageItem" src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(file)" data-filepath="@file">
+                            </a>
+                        </dd>
+                    </dl>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="space-4"></div>
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-3 col-md-9">
+            <input type="button" style="border-radius: 7px;" id="editProjectDeailInfo" value="保存" class="btn btn-xs btn-success btn-font input-btn formsubmit" />
+        </div>
+    </div>
+}
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        beforeUnload.init();
+        //新图片上传
+        $("#btnUpload").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.ParamManager.GetStringValue("ImageSite")" + "Project/Upload",
+            "buttonText": "上传图片",
+            "fileTypeExts": "*.jpg;*.png",
+            "multi": false,
+            "onUploadStart": function (file) {
+                //获取项目ID
+                var formData = {};
+                formData.projectId = $("#ProjectId").val();
+                $("#btnUpload").uploadify("settings", "formData", formData);
+            },
+            "onUploadSuccess": function (file, data, response) {
+                var result = JSON.parse(data);
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+                var innerHtml = "<dl id='" + result.FileId + "'>" +
+                                    "<dt><a href='###' class='close-icon btnClose' data-id='" + result.FileId + "'></a></dt>" +
+                                     "<dd><a href='###' onclick='SignImgShow(this)'><img class='projectImageItem' src='" + result.FileUrl + "' data-filePath='" + result.FilePath + "'></a></dd>" +
+                                 "</dl>";
+                $("#projectImageList").append(innerHtml);
+                //删除事件
+                $(".btnClose").unbind().click(function () {
+                    var id = $(this).attr("data-id");
+                    $("#" + id).remove();
+                });
+            }
+        });
+        //
+        //图片删除
+        $(".btnClose").click(function () {
+            $("#" + $(this).attr("data-id")).remove();
+        });
+
+        $("#editProjectDeailInfo").click(function (event) {
+            var end = $("#GrandOpeningDate").val();
+            if (end != null && $.trim(end) != "") {
+                var endValue = new Date(end.replace(/-/g, "/"));
+                var beginValue = new Date();
+                if (beginValue - endValue > 0) {
+                    $("#GrandOpeningDateVaild").html("开业日期不能小于当前日期")
+                    event.preventDefault();
+                    return false;
+                }
+            }
+            //图片
+            var imgList = "";
+            $(".projectImageItem").each(function (item) {
+                imgList += $(this).attr("data-filePath") + ",";
+            });
+            $("#RenderingFileName").val(imgList);
+            var flag = true;
+            var data = {};
+            //data.GroundArea = $("#GroundArea").val().replace(/^\s+|\s+$/g, "");
+            data.GroundArea = jQuery.trim($("#GroundArea").val());
+            data.UndergroundArea =jQuery.trim($("#UndergroundArea").val());
+            //data.Stage = $("#Stage").val().replace(/^\s+|\s+$/g, "");
+            data.Stage = jQuery.trim($("#Stage").val());
+            //data.GrandOpeningDate = $("#GrandOpeningDate").val().replace(/^\s+|\s+$/g, "");
+            data.GrandOpeningDate =jQuery.trim($("#GrandOpeningDate").val());
+            data.AdPointNum = jQuery.trim($("#AdPointNum").val());
+            //data.ParkingLotNum = $("#ParkingLotNum").val().replace(/^\s+|\s+$/g, "");
+            data.ParkingLotNum =jQuery.trim($("#ParkingLotNum").val());
+            //data.MultiBizPositionNum = $("#MultiBizPositionNum").val().replace(/^\s+|\s+$/g, "");
+            data.MultiBizPositionNum =jQuery.trim($("#MultiBizPositionNum").val());
+            data.RenderingFileName = $("#RenderingFileName").val();
+            data.ProjectID = $("#ProjectId").val();
+
+            //数据验证
+            var regArea = /^\d*(\.\d{1,4})?$/;
+            var regNum = /[0-9]*$/;
+            if (data.GroundArea == null || data.GroundArea == "") {
+                $("#gAreaVai").html("请填写地上建筑面积");
+                flag = false;
+            }
+            if (regArea.test(data.GroundArea) == false)
+            {
+                $("#gAreaVai").html("只能填写数字");
+                flag = false;
+            }
+            if (data.UndergroundArea == null || data.UndergroundArea == "") {
+                $("#ugAreaVai").html("请填写地下建筑面积");
+                flag = false;
+            }
+            if (regArea.test(data.UndergroundArea) == false) {
+                $("#ugAreaVai").html("只能填写数字");
+                flag = false;
+            }
+            if (data.Stage == null || data.Stage == "") {
+                $("#stageVai").html("请选择当前开业状态");
+            }
+            if (data.GrandOpeningDate == null || data.GrandOpeningDate == "") {
+                $("#GrandOpeningDateVaild").html("请选择开业日期");
+                flag = false;
+            }
+            if (data.AdPointNum == null || data.AdPointNum == "") {
+                $("#adpVai").html("请填写广告位");
+                flag = false;
+            }
+            if (regNum.test(data.AdPointNum) == false)
+            {
+                $("#adpVai").html("只能填写数字");
+                flag = false;
+            }
+            if (data.ParkingLotNum == null || data.ParkingLotNum == "") {
+                $("#parkVai").html("请填写停车位");
+                flag = false;
+            }
+            if (regNum.test(data.ParkingLotNum) == false)
+            {
+                $("#parkVai").html("只能填写数字");
+                flag = false;
+            }
+            if (data.MultiBizPositionNum == null || data.MultiBizPositionNum == "") {
+                $("#muVai").html("请填写停车位");
+                flag = false;
+            }
+            if (regNum.test(data.MultiBizPositionNum) == false) {
+                $("#muVai").html("只能填写数字");
+                flag = false;
+            }
+            if (flag == true)
+            {
+                //
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("EditDetailInfo", "ProjectMgmt", new { area = "Project" })",
+                    cache: false,
+                    dataType: "text",
+                    data: data,
+                    success: function (result, status) {
+                        var url = "@Url.Action("DetailInfo", "ProjectInfo", new { area = "Project" })"
+                        url += "?projectId=" + $("#ProjectId").val();
+                        $("#detailInfo").load(url);
+                        //$("#modal").html(result).modal();
+                        @*var projectid = $("#ProjectID").val();
+                    window.location.href = "@Url.Action("Detail", "ProjectInfo", new { area = "Project"})" + "?projectId=" + projectid;*@
+                    }
+                });
+            }
+        });
+    })
+
+    function SignImgShow(obj) {
+        var src = jQuery($(obj).find("img")[0]).attr("data-filePath");
+        src = "@NHH.Framework.Utility.ParamManager.GetStringValue("ImageSite")" + src;
+        $("#modal").html("<div class='imgContent'><ul><li><img src='" + src + "' /></li></ul></div>").modal();
+    }
+
+    function AjaxSubmit()
+    {
+        var flag = true;
+        var data = {};
+        data.GroundArea = $("#GroundArea").val().replace(/^\s+|\s+$/g, "");
+        data.UndergroundArea = $("#UndergroundArea").val().replace(/^\s+|\s+$/g, "");
+        data.Stage = $("#Stage").val();
+        data.GrandOpeningDate = $("#GrandOpeningDate").val();
+        data.AdPointNum = $("#AdPointNum").val().replace(/^\s+|\s+$/g, "");
+        data.ParkingLotNum = $("#ParkingLotNum").val().replace(/^\s+|\s+$/g, "");
+        data.MultiBizPositionNum = $("#MultiBizPositionNum").val().replace(/^\s+|\s+$/g, "");
+        data.RenderingFileName = $("#RenderingFileName").val();
+        data.ProjectID = $("#ProjectId").val();
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("EditDetailInfo", "ProjectMgmt", new { area = "Project" })",
+            cache: false,
+            dataType: "text",
+            data: data,
+            success: function (result, status) {
+                var url = "@Url.Action("DetailInfo", "ProjectInfo", new { area = "Project" })"
+            url += "?projectId=" + $("#ProjectId").val();
+            $("#detailInfo").load(url);
+        }
+      });
+    }
+
+    //取消编辑
+    $(".cancelEditProjectDetail").click(function () {
+        var url = "@Url.Action("DetailInfo", "ProjectInfo", new { area = "Project" })"
+        url += "?projectId=" + $("#ProjectId").val();
+        $("#detailInfo").load(url);
+    });
+    $(function () {
+        $(".ProjectArea").change(function () {
+            var totalArea = parseFloat($("#GroundArea").val()) + parseFloat($("#UndergroundArea").val());
+            $("#totalArea").text(totalArea.toFixed(2));
+        });
+    });    
+</script>

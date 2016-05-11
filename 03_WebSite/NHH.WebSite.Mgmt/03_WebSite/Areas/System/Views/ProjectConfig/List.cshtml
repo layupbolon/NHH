@@ -1,0 +1,64 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Configure.ProjectBizConfigListModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>项目配置</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="lighter mt30">
+                配置列表
+            </h4>
+            <div class="hr hr-18 hr-double dotted"></div>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>配置ID</th>
+                        <th>业务类型</th>
+                        <th>项目名称</th>
+                        <th>楼宇名称</th>
+                        <th>参数1</th>
+                        <th>参数2</th>
+                        <th>参数3</th>
+                        <th>参数4</th>
+                        <th>参数5</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ConfigList)
+                    {
+                        <tr>
+                            <td>@item.BizConfigID</td>
+                            <td>@item.BizConfigTypeName</td>
+                            <td>@item.ProjectName</td>
+                            <td>@item.BuildingName</td>
+                            <td>@item.Param1</td>
+                            <td>@item.Param2</td>
+                            <td>@item.Param3</td>
+                            <td>@item.Param4</td>
+                            <td>@item.Param5</td>
+                            <td>@item.Remark</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @{Html.RenderPartial("_PartialPaging", Model.PagingInfo);}
+        </div><!-- /.span -->
+    </div><!-- /.row -->
+</div><!-- /.page-content-area -->
+
+
+<script type="text/javascript">
+    //分页
+    $(".page").click(function () {
+        var url = "@Url.Action("List", "ProjectConfig", new { area = "System" })";
+        url += "?page=" + $(this).attr("data-page");
+        location.href = url;
+    });
+</script>

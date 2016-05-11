@@ -1,0 +1,377 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Estate.ComplaintDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>投诉单详情</h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                <form class="form-horizontal" role="form">
+                    <p class="titleA">提报信息</p>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">投诉编号： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">
+                                @Model.ComplaintId.ToString()
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">项目： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext" id="ProjectName">
+                                @Model.ProjectName
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">投诉类型： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">
+                                @Model.ComplaintTypeName
+                            </span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">投诉对象： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">
+                                @Model.RequestTarget
+                            </span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">投诉描述： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">
+                                @Model.RequestDesc
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">投诉证据图： </label>
+                        <div class="col-sm-9">
+                            <div class="uploadimg">
+                                <ul class="ace-thumbnails clearfix">
+                                    @foreach (var item in Model.AttachmentInfoList)
+                                    {
+                                        <li>
+                                            <a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(item.AttachmentPath)" data-rel="colorbox">
+                                                <img width="100" height="73" src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(item.AttachmentPath, 100)" />
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">投诉提报时间： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext" id="RequestTime">
+                                @(Model.RequestTime.HasValue ? Model.RequestTime.Value.ToString("yyyy-MM-dd hh:mm:ss") : "")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">投诉申请人姓名： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext" id="RequestTime">
+                                @Model.RequestUserName
+                            </span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <p class="titleA">处理信息</p>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">投诉受理时间： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">
+                                @(Model.StartTime.HasValue ? Model.StartTime.Value.ToString("yyyy-MM-dd hh:mm:ss") : "")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">开始处理时间： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">
+                                @(Model.StartTime.HasValue ? Model.StartTime.Value.ToString("yyyy-MM-dd hh:mm:ss") : "")
+                            </span>
+                        </div>
+                    </div>
+                    @if (Model.ComplaintStatus == 3)
+                    {
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">投诉完成时间： </label>
+                            <div class="col-sm-9">
+                                <span class="defauletext">
+                                    @(Model.ServiceFinishTime.HasValue ? Model.ServiceFinishTime.Value.ToString("yyyy-MM-dd hh:mm:ss") : "")
+                                </span>
+                            </div>
+                        </div>
+                    }
+                    @if (Model.ComplaintStatus == 4)
+                    {
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">投诉关闭时间： </label>
+                            <div class="col-sm-9">
+                                <span class="defauletext">
+                                    @(Model.ServiceFinishTime.HasValue ? Model.ServiceFinishTime.Value.ToString("yyyy-MM-dd hh:mm:ss") : "")
+                                </span>
+                            </div>
+                        </div>
+                    }
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> 客服负责人： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">
+                                @if (Model.ServiceUserId > 0)
+                                {
+                                    <span id="detailServiceName">@Model.ServiceUserName</span>
+                                    if (Model.ComplaintStatus == 2)
+                                    {
+                                        <a class="btn btn-xs btn-success btn-font" id="lbtnReAssign" href="javascript:void(0);" data-eid="@Model.ServiceUserId">重新指派</a>
+                                    }
+                                }
+                                else
+                                {
+                                    <a class="btn btn-xs btn-success btn-font" id="lbtnAssign" href="javascript:void(0);">指派</a>
+                                }
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">客服负责人标签： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">
+                                &nbsp;
+                                @Model.Tag
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">投诉进度： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">
+                                &nbsp;
+                                @Model.ComplaintStatusName
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Password Form -->
+                    <div class="space-4"></div>
+
+                    @if (Model.ComplaintStatus == 3 || Model.ComplaintStatus == 4)
+                    {
+                        <p class="titleA">投诉评分</p>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">响应速度： <span class="defauletext">@Model.ComplaintCommentDetail.Speed &nbsp;</span></label>
+                            <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">投诉结果： <span class="defauletext">@Model.ComplaintCommentDetail.Quality &nbsp;</span></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">服务态度： <span class="defauletext">@Model.ComplaintCommentDetail.Attitude &nbsp;</span></label>
+                            <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">投诉评价： <span class="defauletext">@Model.ComplaintCommentDetail.AllComment &nbsp;</span></label>
+                        </div>
+                    }
+                    <p class="titleA">投诉记录</p>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">投诉记录：</label>
+                        <div class="col-sm-9">
+                            <div>
+                                <ul>
+                                    @foreach (var item in Model.ComplaintLogInfoList)
+                                    {
+                                        <li style="border-bottom: 1px solid #e7eaec;margin-top: 15px;">
+                                            @item.LogText<br />
+                                            <small class="text-muted">@item.LogTime.ToString("yyyy-MM-dd hh:mm:ss")  &nbsp; </small>
+                                        </li>
+                                    }
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <p class="titleA">处理结果</p>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">调查记录：</label>
+                        <div class="col-sm-9">
+                            @if (Model.ComplaintStatus == 3 || Model.ComplaintStatus == 4)
+                            {
+                                <span class="defauletext">@Model.InvestigationDesc &nbsp;</span>
+                            }
+                            else
+                            {
+                                @Html.TextAreaFor(m => m.InvestigationDesc, 5, 5, new { @class = "col-xs-10 col-sm-5" })
+                            }
+
+                        </div>
+                    </div>
+                    <!-- Disable Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> 投诉处理结果： </label>
+                        <div class="col-sm-9">
+                            @if (Model.ComplaintStatus == 3 || Model.ComplaintStatus == 4)
+                            {
+                                <span class="defauletext">@Model.ServiceDesc &nbsp;</span>
+                            }
+                            else
+                            {
+                                @Html.TextAreaFor(m => m.ServiceDesc, 5, 5, new { @class = "col-xs-10 col-sm-5" })
+                            }
+
+                        </div>
+                    </div>
+                    <!-- Disable Form -->
+                    <div class="space-4"></div>
+
+                    <!-- Typeahead Form -->
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+
+                            @if (Model.ComplaintStatus == 2)
+                            {
+                                <a href="javascript:void(0)" class="btn btn-xs btn-success btn-font  btnSave">保存</a>
+                                <a href="javascript:void(0)" class="btn btn-xs btn-success btn-font  btnFinish">结束任务</a>
+                                <a href="javascript:void(0)" class="btn btn-xs btn-success btn-font  btnShelve">搁置</a>
+                            }
+                            &nbsp; &nbsp; &nbsp;
+                            <a href="javascript:void(0)" class="btn btn-xs btn-success btn-font  btnBack">返回</a>
+                        </div>
+                    </div>
+
+                </form>
+                <!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content-area -->
+    </div>
+</div>
+@Html.Hidden("HiddComplaintId", Model.ComplaintId)
+@Html.Hidden("HiddRequestSrcType", Model.RequestSrcType)
+@Html.Hidden("HiddRequestUserId", Model.RequestUserId)
+@Html.HiddenFor(m => m.ProjectId)
+<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;"></div>
+<script src="~/Scripts/ImagePopUp.js"></script>
+<script language="javascript" type="text/javascript">
+    $(function () {
+
+        //指派
+        $("#lbtnAssign").click(function () {
+            var obj = {};
+            obj.ProjectId = $("#ProjectId").val();
+            $.ajax({
+                url: "@Url.Action("PopAssignDialog", "Complaint", new { area = "Estate" })",
+                data: obj,
+                type: "GET",
+                dataType: "HTML",
+                success: function (result, status) {
+                    $("#modal").html(result).modal();
+                }
+            });
+        });
+
+        //重新指派
+        $("#lbtnReAssign").click(function () {
+            var obj = {};
+            obj.projectId = $("#ProjectId").val();
+            $.ajax({
+                url: "@Url.Action("PopReAssignDialog", "Complaint", new { area = "Estate" })",
+                data: obj,
+                type: "GET",
+                dataType: "HTML",
+                success: function (result, status) {
+                    $("#modal").html(result).modal();
+                }
+            });
+        });
+
+        //获取搁置弹出页面
+        $(".btnShelve").click(function () {
+            $.ajax({
+                url: "@Url.Action("PopShelveDialog", "Complaint", new { area = "Estate" })",
+                type: "GET",
+                dataType: "HTML",
+                success: function (result, status) {
+                    $("#modal").html(result).modal();
+                }
+            });
+        });
+
+        //结束
+        $(".btnFinish").click(function () {
+            var obj = {};
+            obj.ComplaintId = $("#HiddComplaintId").val();
+            obj.RequestSrcType = $("#HiddRequestSrcType").val();
+            obj.RequestUserId = $("#HiddRequestUserId").val();
+            obj.RequestTime = $("#RequestTime").text().trim();
+            obj.Location = $("#ProjectName").text().trim();
+            $.ajax({
+                url: "@Url.Action("Finish", "Complaint", new { area = "Estate" })",
+                data: obj,
+                type: "POST",
+                success: function (result, status) {
+                    var url = "@Url.Action("Detail", "Complaint", new { area = "Estate" })";
+                    url += "?complaintId=" + obj.ComplaintId;
+                    location.href = url;
+                }
+            });
+        });
+
+        //保存信息
+        $(".btnSave").click(function () {
+            var obj = {};
+            obj.ComplaintId = $("#HiddComplaintId").val();
+            obj.InvestigationDesc = $("#InvestigationDesc").val();
+            obj.ServiceDesc = $("#ServiceDesc").val();
+            $.ajax({
+                url: "@Url.Action("Detail", "Complaint", new { area = "Estate" })",
+                data: obj,
+                type: "POST",
+                dataType: "JSON",
+                success: function (result, status) {
+                    if (result.IsSuccess) {
+                        var url = "@Url.Action("Detail", "Complaint", new { area="Estate"},null)";
+                        url += "?complaintId=" + obj.ComplaintId;
+                        location.href = url;
+                    } else {
+                        alert(result.Message);
+                    }
+
+                }
+            });
+        });
+
+        ///返回按钮
+        $(".btnBack").click(function () {
+            location.href = history.back();
+        });
+
+    });
+
+
+</script>

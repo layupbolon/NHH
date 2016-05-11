@@ -1,0 +1,188 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@using Gma.QrCodeNet.Encoding.DataEncodation
+@model NHH.Models.Official.Project.NHHCGProjectModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>官网项目编辑</h1>
+    </div>
+    <div class="rowA">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("EditProject", "NHHCG", new { area = "Official" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>项目名称： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.ProjectName, "", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("ProjectName")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>简称： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.BriefName, "", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("BriefName")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>特色介绍： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.Feature, "", new { @placeholder = "要求短而精练，例如：超大体量，业态丰富", @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("Feature")
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>商业类型： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownListFor(m => m.BusinessType, ViewData["BusinessTypeList"] as SelectList, new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("BusinessType")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>开业时间： </label>
+                    <span class="col-sm-9 input-daterange">
+                        @Html.TextBoxFor(m => m.OpeningDate, Model.OpeningDate.ToString("yyyy-MM-dd"), new { id = "OpeningDate", @class = "iconTime" })
+                    </span>
+                    <span class="help-inline col-xs-12 col-sm-7 middle red">
+                        @Html.ValidationMessage("OpeningDate")
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>运营面积（万平方米）： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.OperatingArea, "", new { @class = "col-xs-10 col-sm-2" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("OperatingArea")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>建筑面积（万平方米）： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.GrossArea, "", new { @class = "col-xs-10 col-sm-2" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("GrossArea")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>商圈人口（万人）： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.Population, "", new { @class = "col-xs-10 col-sm-2" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("Population")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>商圈位置： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.Position, "", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("Position")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>月人流量（万人次）： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.MonthlyHumanTraffic, "", new { @class = "col-xs-10 col-sm-2" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("MonthlyHumanTraffic")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>咨询电话： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.Tel, "", new { @class = "col-xs-10 col-sm-2" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("Tel")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1">经度： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.Longitude, "", new { @class = "col-xs-10 col-sm-2" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("Longitude")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1">纬度： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.Latitude, "", new { @class = "col-xs-10 col-sm-2" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("Latitude")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>公共交通： </label>
+                    <div class="col-sm-9">
+                        @Html.TextAreaFor(m => m.PublicTransport, 5, 5, new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("PublicTransport")
+                        </span>
+                    </div>
+                </div>
+                <div class="col-5" id="infoList">
+                    @{Html.RenderAction("PicInfoList", new { area = "Official", refID = Model.ProjectID, Type = 100, Title = "入驻商家Logo列表" });}
+                </div>
+                <div class="col-5" id="infoList1">
+                    @{Html.RenderAction("PicInfoList", new { area = "Official", refID = Model.ProjectID, Type = 101, Title = "官网项目图片列表" });}
+                </div>
+                <div class="space-4"></div>
+                <fieldset>
+                    <div class="page-header">
+                        <h1>项目介绍</h1>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-horizontal">
+                            @Html.TextAreaFor(m => m.Introduce)
+                        </div>
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.Introduce)
+                            </span>
+                        </span>
+                    </div>
+                </fieldset>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"></label>
+                    <div class="col-sm-9">
+                        <button class="btn btn-xs btn-success btn-font" type="submit" id="btnSubmit">保存</button>
+                    </div>
+                </div>
+
+                @Html.Hidden("ProjectID", Model.ProjectID)
+            }
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval", "~/Scripts/ueditor/ueditor.config.js", "~/Scripts/ueditor/ueditor.all.js")
+    <script type="text/javascript">
+        var editorOption = {
+            //initialFrameWidth: 1024,
+            initialFrameHeight: 600,
+            maximumWords: 9999999
+        };
+        var editor = new baidu.editor.ui.Editor(editorOption);
+        editor.render('Introduce');
+    </script>
+}

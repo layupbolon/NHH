@@ -1,0 +1,117 @@
+﻿@model NHH.Models.Contract.ContractUnitSpecInfo
+
+<h4 class="lighter">商户责任</h4>
+<a class="edit-btn-canl" href="javascript:void(0);" id="lbtnUnitSpec2">取消编辑</a>
+<dl class="form-content textstyle-edit form-content-edit form-row-comb">
+    <dd>
+        <label>地面：</label>
+        <span>@Html.TextArea("Floor", Model.Floor, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>顶面：</label>
+        <span>@Html.TextArea("Ceiling", Model.Ceiling, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>墙：</label>
+        <span>@Html.TextArea("Wall", Model.Wall, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>柱：</label>
+        <span>@Html.TextArea("Pillar", Model.Pillar, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>楼板承重：</label>
+        <span>@Html.TextArea("FloorBearing", Model.FloorBearing, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>给水：</label>
+        <span>@Html.TextArea("WaterSupply", Model.WaterSupply, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>排水：</label>
+        <span>@Html.TextArea("WaterDrain", Model.WaterDrain, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>店铺门面：</label>
+        <span>@Html.TextArea("Door", Model.Door, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>标牌：</label>
+        <span>@Html.TextArea("Logo", Model.Logo, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>供电系统：</label>
+        <span>@Html.TextArea("ElectricityUsage", Model.ElectricityUsage, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>消防系统：</label>
+        <span>@Html.TextArea("FireProtection", Model.FireProtection, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>广播系统：</label>
+        <span>@Html.TextArea("Broadcasting", Model.Broadcasting, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>空调系统：</label>
+        <span>@Html.TextArea("AirCondition", Model.AirCondition, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>排油烟系统：</label>
+        <span>@Html.TextArea("Smoke", Model.Smoke, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>安防系统：</label>
+        <span>@Html.TextArea("Security", Model.Security, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>综合布线：</label>
+        <span>@Html.TextArea("Wiring", Model.Wiring, new { cols = "50" })</span>
+    </dd>
+    <dd>
+        <label>煤气：</label>
+        <span>@Html.TextArea("Gas", Model.Gas, new { cols = "50" })</span>
+    </dd>
+</dl>
+<div class="btn-edit">
+    <a href="###" class="btn btn-info mr20" id="btnUnitSpec2">保存信息</a>
+    <a href="###" class="btn cancelEditUnitSpec2">取消编辑</a>
+</div>
+<script type="text/javascript">
+    $("#lbtnUnitSpec2").click(function () {
+        var url = "@Url.Action("UnitSpec2", "ContractInfo", new { area = "Contract" })";
+        url += "?contractId=" + $("#ContractID").val();
+        $("#unitSpec2").load(url);
+    });
+    $("#btnUnitSpec2").click(function () {
+        var unitSpec = {};
+        unitSpec.SpecType = 2;
+        unitSpec.ContractID = $("#ContractID").val();
+        unitSpec.Floor = $("#Floor").val();
+        unitSpec.Ceiling = $("#Ceiling").val();
+        unitSpec.Wall = $("#Wall").val();
+        unitSpec.Pillar = $("#Pillar").val();
+        unitSpec.FloorBearing = $("#FloorBearing").val();
+        unitSpec.WaterSupply = $("#WaterSupply").val();
+        unitSpec.WaterDrain = $("#WaterDrain").val();
+        unitSpec.Door = $("#Door").val();
+        unitSpec.Logo = $("#Logo").val();
+        unitSpec.ElectricityUsage = $("#ElectricityUsage").val();
+        unitSpec.FireProtection = $("#FireProtection").val();
+        unitSpec.Broadcasting = $("#Broadcasting").val();
+        unitSpec.AirCondition = $("#AirCondition").val();
+        unitSpec.Smoke = $("#Smoke").val();
+        unitSpec.Security = $("#Security").val();
+        unitSpec.Wiring = $("#Wiring").val();
+        unitSpec.Gas = $("#Gas").val();
+        var url = "@Url.Action("UpdateUnitSpec2", "ContractMgmt", new { area = "Contract" })";
+        $("#unitSpec2").load(url, unitSpec, function (response, status, xhs) {
+            $(this).html(response);
+        });
+    });
+    $(".cancelEditUnitSpec2").click(function () {
+        var url = "@Url.Action("UnitSpec2", "ContractInfo", new { area = "Contract" })";
+        url += "?contractId=" + $("#ContractID").val();
+        $("#unitSpec2").load(url);
+    });
+</script>
+<div class="clear"></div>

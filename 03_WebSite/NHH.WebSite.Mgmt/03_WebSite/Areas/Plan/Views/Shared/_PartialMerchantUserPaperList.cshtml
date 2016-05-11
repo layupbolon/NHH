@@ -1,0 +1,92 @@
+﻿@model List<NHH.Models.Merchant.MerchantUserPaperInfo>
+    <div class="uploadimg" id="UserPapaerShow">
+        <dl style="float:left;">
+            <dd>
+                <a href="###" onclick="addMerchantUserPaper(this)">
+                    <img class="projectImageItem" src="~/Content/assets/images/default-img.jpg">
+                </a>
+            </dd>
+        </dl>
+        @foreach (var file in Model)
+        {
+            <dl id="file-@file.PaperID" style="float:left;" class="ace-thumbnails clearfix">
+                <dt>
+                    <a href="javascript:void(0)" class="close-icon btnClose" data-id="file-@file.PaperID"></a>
+                </dt>
+                <dd>
+                    <a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(file.PaperPath)" data-rel="colorbox" class="merchantPaperImage">
+                        <img class="projectImageItem" alt="@file.TypeName" src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(file.PaperPath)" data-filepath="@file.PaperPath" data-filetype="@file.PaperType" data-fileid="@file.PaperID" data-filenumber="@file.PaperNumber">
+                        @*<span style="display:inline-block;">@file.TypeName</span>*@
+                    </a>
+                </dd>
+                <dd>
+                    <span style="padding-left:10px;">@file.TypeName</span>
+                </dd>
+            </dl>
+        }
+    </div>
+    <script type="text/javascript">
+        $(function () {
+ 
+            //图片展示
+            $(".merchantPaperImage").click(function () {
+                var $overflow = '';
+                var colorbox_params = {
+                    rel: 'colorbox',
+                    reposition: true,
+                    scalePhotos: true,
+                    scrolling: false,
+                    previous: '<i class="ace-icon fa fa-arrow-left"></i>',
+                    next: '<i class="ace-icon fa fa-arrow-right"></i>',
+                    close: '&times;',
+                    current: '{current} / {total}',
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    onOpen: function () {
+                        $overflow = document.body.style.overflow;
+                        document.body.style.overflow = 'auto';
+                    },
+                    onClosed: function () {
+                        document.body.style.overflow = $overflow;
+                    },
+                    onComplete: function () {
+                        $.colorbox.resize();
+                    }
+                };
+
+                $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
+                $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange'></i>");//let's add a custom loading icon
+            });
+        });
+
+        //图片删除
+        $(".btnClose").click(function () {
+            $("#" + $(this).attr("data-id")).remove();
+            //直接进入数据库根据id删除
+            //var pType = $(this).attr("data-filetype");
+            var pid = $(this).attr("data-fileid");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("DelMerchantUserPaperData", "MerchantUser", new { area = "Plan" })",
+                data: { PaperID: pid },
+            cache: false,
+            dataType: "json",
+            success: function (result, status) {
+                //重新加载局部页面
+                @*var url = "@Url.Action("MerchantUserPaperList", "MerchantUser", new { area = "Merchant", userId = Model.FirstOrDefault().UserID })";
+                $("#attachUserList").load(url);*@
+                }
+           });
+        });
+    //添加证件
+    function addMerchantUserPaper() {
+        $.ajax({
+            url: "@Url.Action("MerchantUserPaperAdd", "MerchantUser", new { area = "Plan" })",
+            data: "userid=" + $("#UserId").val(),
+            dataType: "HTML",
+            success: function (result, status) {
+                $("#modal").html(result).modal();
+            }
+        });
+    }
+    </script>

@@ -1,0 +1,212 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model NHH.Models.Plan.ProjectUnitRequestScheduleModel
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>
+                @Model.QueryInfo.BuildingName @Model.QueryInfo.FloorName
+            </h1>
+        </div><!-- /.page-header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <label>项目名称：</label>
+                        @Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList)
+                    </div>
+                    <div class="form-group">
+                        <label>楼层：</label>
+                        <select id="floorList" name="floorName">
+                            <option value="0">请选择</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>商铺类型：</label>
+                        @Html.DropDownList("unitType", ViewData["UnitTypeList"] as SelectList, "请选择")
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success btn-sm" id="btnSearch">查看招商进度</button>
+                        <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="###" id="btnTrack">查看招商跟踪</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="###" id="btnPDF">导出PDF文档</a></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-12">
+                <h2>合计数据</h2>
+                <small>招商筹划数据统计</small>
+                <ul class="list-group mt15">
+                    <li class="list-group-item">
+                        <span style="font-weight:bold">计划租凭面积：</span>
+                        <span class="text-danger">@Model.TotalArea.ToString("#,##0.00") 平方米</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span style="font-weight:bold">计租租金指标：</span>
+                        <span class="text-danger">@Model.TotalRent.ToString("#,##0.00") 万元</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span style="font-weight:bold">计划总商铺数：</span>
+                        <span class="text-danger">@Model.TotalUnit 个</span>                        
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-12">
+                <h2>分类图表</h2>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <h4>商铺数情况</h4>
+                        <div class="row text-center">
+                            <canvas id="chartUnit" height="200" width="200"></canvas>
+                            <div id="legendUnit" class="legend"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <h4>分类面积情况</h4>
+                        <div class="row text-center">
+                            <canvas id="chartArea" height="200" width="200"></canvas>
+                            <div id="legendArea" class="legend"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <h4>分类租金情况</h4>
+                        <div class="row text-center">
+                            <canvas id="chartRent" height="200" width="200"></canvas>
+                            <div id="legendRent" class="legend"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="lighter mt30">
+                    数据明细
+                </h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" valign="middle">租决状态</th>
+                            <th colspan="2">商铺数占比</th>
+                            <th colspan="2">分类面积占比</th>
+                            <th colspan="2">分类租金占比</th>
+                        </tr>
+                        <tr>
+                            <th>商铺数</th>
+                            <th>占比</th>
+                            <th>面积（平方米）</th>
+                            <th>占比</th>
+                            <th>实际/预计完成（万元）</th>
+                            <th>占比</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var scheduleItem in Model.ScheduleData)
+                        {
+                            <tr>
+                                <td>@scheduleItem.RequestStatusName</td>
+                                <td>@scheduleItem.UnitNum</td>
+                                <td>@scheduleItem.UnitNumProp.ToString(".00%")</td>
+                                <td>@scheduleItem.Area.ToString("#,##0.00")</td>
+                                <td>@scheduleItem.AreaProp.ToString(".00%")</td>
+                                <td>@scheduleItem.Rent.ToString("#,##0.00")</td>
+                                <td>@scheduleItem.RnetProp.ToString(".00%")</td>
+                            </tr> 
+                        }
+                        <tr>
+                            <td>合计</td>
+                            <td>@Model.TotalUnit</td>
+                            <td></td>
+                            <td>@Model.TotalArea.ToString("#,##0.00")</td>
+                            <td></td>
+                            <td>@Model.TotalRent.ToString("#,##0.00")</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript" src="~/Scripts/Chart.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var floorList = new nhhui.floorSelect({
+            controlId: "floorList",
+            url: "@Url.Action("GetBuildingGroup", "Project", new { area = "Ajax" })",
+            projectId: $("#ProjectId").val(),
+            buildingId: "@Model.QueryInfo.BuildingId",
+            floorId: "@Model.QueryInfo.FloorId",
+        });
+        floorList.init();
+        //切换项目
+        $("#ProjectId").change(function () {
+            floorList.bindSelect($(this).val());
+        });
+        $("#btnSearch").click(function () {
+            var url = "@Url.Action("Schedule", "ProjectUnitRequest", new { area = "Plan" })";
+            url += "?" + $.param(getQueryData());
+            window.location.href = url;
+            return true;
+        });
+        $("#btnTrack").click(function () {
+            var url = "@Url.Action("Track", "ProjectUnitRequest", new { area = "Plan" })";
+            url += "?" + $.param(getQueryData());
+            window.location.href = url;
+            return true;
+        });
+        $("#btnPDF").click(function () {
+            var loadingbox = new nhhui.loading("招商进度PDF文档生成中，大约需要1分钟，请耐心等待....", "招商租决");
+            loadingbox.show();
+
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("ScheduleToPdf", "ProjectUnitRequest", new { area = "Plan" })",
+                data: getQueryData(),
+                success: function (result, status) {
+                    loadingbox.hide();
+                    window.open(result.Message);
+                }
+            });
+            return true;
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("ScheduleChart", "ProjectUnitRequest", new { area = "Chart" })",
+            data: getQueryData(),
+            dataType: "json",
+            success: function (result, status) {
+                var ctxUnit = document.getElementById("chartUnit").getContext("2d");
+                var pieUnit = new Chart(ctxUnit).Pie(result.UnitNumChart.data);
+                $("#legendUnit").html(pieUnit.generateLegend());
+
+                var ctxArea = document.getElementById("chartArea").getContext("2d");
+                var pieArea = new Chart(ctxArea).Pie(result.AreaChart.data);
+                $("#legendArea").html(pieArea.generateLegend());
+
+                var ctxRent = document.getElementById("chartRent").getContext("2d");
+                var pieRent = new Chart(ctxRent).Pie(result.RentChart.data);
+                $("#legendRent").html(pieRent.generateLegend());
+            }
+        });
+    function getQueryData() {
+        var queryInfo = {};
+        queryInfo.projectId = $("#ProjectId").val();
+        queryInfo.buildingId = floorList.getBuildingId();
+        queryInfo.floorId = floorList.getFloorId();
+        queryInfo.unitType = $("#unitType").val();
+        return queryInfo;
+    };
+    });
+</script>

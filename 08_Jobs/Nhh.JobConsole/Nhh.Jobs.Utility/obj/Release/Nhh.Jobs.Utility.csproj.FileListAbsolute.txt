@@ -1,0 +1,14 @@
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\bin\Release\Nhh.Jobs.Utility.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\bin\Release\Nhh.Jobs.Utility.pdb
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\bin\Release\NHH.Framework.Core.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\bin\Release\NHH.Framework.Wechat.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\bin\Release\Nhh.Jobs.Model.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\bin\Release\NPOI.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\bin\Release\ICSharpCode.SharpZipLib.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\bin\Release\Nhh.Jobs.Model.pdb
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\bin\Release\NHH.Framework.Core.pdb
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\bin\Release\NHH.Framework.Wechat.pdb
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\bin\Release\NPOI.xml
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\obj\Release\Nhh.Jobs.Utility.csprojResolveAssemblyReference.cache
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\obj\Release\Nhh.Jobs.Utility.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Utility\obj\Release\Nhh.Jobs.Utility.pdb

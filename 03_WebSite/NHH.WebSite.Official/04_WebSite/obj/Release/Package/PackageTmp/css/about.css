@@ -1,0 +1,292 @@
+.aboutBanner {	
+	background: url(../img/banner_about.jpg) no-repeat center top;
+	background-attachment:fixed;
+	height: 700px;
+	position: relative;
+	display: block;
+}
+.aboutBanner em.txtabout {
+	background: url(../img/about_txt.png) no-repeat center 230px;
+	height: 100%;
+	width: 100%;
+	display: block;
+	background-attachment:fixed;
+}
+.aboutcmub {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	bottom: 0;
+}
+.aboutcmub ul {
+	margin: 0 auto;
+	width: 1200px;
+}
+.aboutcmub li {
+	float: left;
+	width: 400px;
+}
+.aboutcmub li h4 {
+	font-size: 18px;
+	padding: 15px 0 5px;
+	font-weight: normal;
+	color: #bebfc1;
+}
+.aboutcmub li em {
+	font-size: 12px;
+	color: #64696f;
+	padding: 0 0 10px;
+	font-style: normal;
+	display: block;
+}
+.aboutcmub li.current {
+	background-color: #fff;
+}
+.aboutcmub li.current h4 {
+	color: #11316b;
+}
+.aboutcmub li.current em {
+	color: #ccc;
+}
+.news p {
+	padding: 0;
+}
+.news {
+	text-align: center;
+	padding-left: 20px;
+}
+
+.listwrap {
+	background-color: #fff;
+	width: 570px;
+	height: 120px;
+	overflow: hidden;
+	float: left;
+	-moz-box-shadow:1px 1px 3px -1px #ccc;
+	-webkit-box-shadow:1px 1px 3px -1px #ccc;
+	box-shadow:1px 1px 3px -1px #ccc;
+}
+.listwrap dd {
+	padding: 15px 20px 0 140px;
+	text-align: left;
+	font-size: 12px;
+	line-height: 1.8em;
+}
+.listwrap dd a:hover, .listwrap dd a:hover h4 {
+	color: #e6162d;
+}
+.listwrap dd h4 {
+	font-weight: normal;
+	color: #11316b;
+	padding-bottom: 5px;
+}
+.listwrap dd em {
+	font-size: 12px;
+	text-align: left;
+	padding-top: 8px;
+}
+
+.listwrap .newstext {
+	font-size: 12px;
+	line-height: 1.8em;
+	padding: 15px 20px 15px 0px;
+	text-align: left;
+	float: left;
+}
+.btnMore {
+	text-align: center;
+}
+.btnMore.btn-loading .cmnBtn {
+	cursor: default;
+}
+.coment {
+	padding: 0 40px;
+}
+.newpre{
+	padding-top: 20px;
+}
+.details a{
+	font-size: 16px;
+	color: #32589e;
+}
+.details a:hover {
+	color: #e6162d;
+}
+.details .newsPre {
+	float: left;
+}
+.details .newsNext {
+	float: right;
+}
+.hei30 {
+	margin-top: 50px;
+	height: 25px;
+}
+.contents {
+	background-color: #fff;
+	padding: 10px;
+	-moz-box-shadow:1px 1px 3px -1px #ccc;
+	-webkit-box-shadow:1px 1px 3px -1px #ccc;
+	box-shadow:1px 1px 3px -1px #ccc;
+}
+.contents img {
+	float: left;
+}
+.contents p {
+	color: #11316b;
+	font-size: 18px;
+	line-height: 2.5em;
+	margin-left: 610px;
+}
+.contents strong{
+	font-size: 30px;
+	font-family: "Microsoft Yahei";
+	display: block;
+	margin-bottom: 20px;
+}
+.contents a {
+	color: #32589e;
+}
+.contents a:hover {
+	color: #e6162d;
+}
+.profile-content {
+	padding: 50px 0;
+}
+.topabout {
+	font-size: 24px;
+	line-height: 36px;
+}
+.nameTeam {
+	font-weight: normal;
+	padding-top:15px;
+	display: block;
+	color:#f60;
+}
+#allmap {
+	width: 575px;
+	height: 364px;
+	float: left;
+	overflow: hidden;
+	margin: 0;
+	font-family: "Microsoft Yahei";
+}
+/* Contact Page */
+.topban-contact {
+	background-image: url(../img/contact_topban.jpg);
+}
+.topban-contact .container {
+	padding-top: 55px;
+}
+.banner-tab {
+	padding-top: 60px;
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+	height: 26px;
+	line-height: 36px;
+}
+.banner-tab a {
+	display: inline-block;
+	color: #fff;
+	height: 36px;
+	line-height: 36px;	
+}
+.banner-tab b {
+	text-align: center;
+	margin-left: 20px;
+	margin-right: 20px;
+	color: #767d88;
+}
+.banner-tab .now {
+	font-weight: bold;
+	border-bottom: 1px solid #fff;	
+}
+/* Complain Page */
+.feedback-pageinfo{
+	background-color: #f3f3f3;
+	font-size: 18px;
+	text-align: center;
+	color: #11316b;
+	padding: 30px 0;
+}
+.formWrap {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 30px;
+}
+.formList input, .formList select, .formList textarea {
+	border: 1px solid #e0e0e0;
+	padding: 5px 10px;
+	height: 35px;
+	font-size: 16px;
+	line-height: 35px;
+	background-color: #fff;
+	width: 330px;
+	vertical-align: middle;
+}
+.formList dd {
+	margin: 10px 0;
+	float: left;
+	position: relative;
+}
+.formList dd label {
+	min-width: 100px;
+	text-align: right;
+	font-size: 16px;
+	margin-left: 50px;
+}
+.formList dd.ml100 {
+	margin-left: 100px;
+}
+.formList textarea {
+	min-width: 915px;
+	min-height: 150px;
+	line-height: 1.8em;
+}
+.formList .tips label{
+	vertical-align: top !important;
+}
+.formList select {
+	height: 50px;
+	width: 352px;
+	line-height: 50px;
+	position: relative;
+	z-index: 10;
+}
+.formList .selectDiv {
+	position: absolute;
+	height: 48px;
+	width: 348px;
+	border: 1px solid #e0e0e0;
+	background-color: none;
+	background:url(../img/select_arrow.gif) no-repeat 320px 18px;
+	right: 0px;
+	top: 0;
+	z-index: 1;
+}
+
+.formList .aarrow_select {
+	position: absolute;
+	background:url(../img/select_arrow.gif) no-repeat 0px 0px;
+	width: 21px;
+	height: 12px;
+	right: 0;
+	margin-top: 18px;
+	margin-right: 8px;
+}
+.btnT {
+	width: 100%;
+	text-align: left;
+}
+.btnT a {
+	text-align: center;
+	max-width: 220px;
+	margin-left: 133px;
+	margin-top: 15px;
+}
+.codenhh {
+	display: block;
+	width: 110px;
+	height: 110px;
+}

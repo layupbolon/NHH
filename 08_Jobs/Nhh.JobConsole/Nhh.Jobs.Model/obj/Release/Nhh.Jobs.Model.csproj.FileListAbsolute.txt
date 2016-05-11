@@ -1,0 +1,4 @@
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Model\bin\Release\Nhh.Jobs.Model.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Model\bin\Release\Nhh.Jobs.Model.pdb
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Model\obj\Release\Nhh.Jobs.Model.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Model\obj\Release\Nhh.Jobs.Model.pdb

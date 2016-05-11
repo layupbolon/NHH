@@ -1,0 +1,34 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Message.EmployeeMessageDetailModel
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="rowA">
+    <div class="col-5">
+        <h4 class="lighter">@Model.Subject</h4>
+        <div class="hr hr-18 hr-double dotted"></div>
+        <dl class="form-content">
+            <dd>
+                <label>收件人：</label>
+               @Model.EmployeeName
+            </dd>
+            <dd>
+                <label>部门：</label>
+               @Model.DepartmentName
+            </dd>
+            <dd>
+                <label>消息标题：</label>
+               @Model.Subject
+            </dd>
+            <dd>
+                <label>发送时间：</label>
+                @Model.InDate.ToString("yyyy-MM-dd HH:mm")
+            </dd>
+        </dl>
+        <div class="clear"></div>
+        <dl class="form-content textstyle">
+            <dt><i>内容</i></dt>
+            <dd>@Html.Raw(Model.Content)</dd>
+        </dl>
+        <div class="clear"></div>
+    </div>
+    <!-- /.col -->
+</div><!-- /.row -->

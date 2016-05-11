@@ -1,0 +1,9 @@
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Permission\bin\Debug\NHH.Models.Permission.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Permission\bin\Debug\NHH.Models.Permission.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Permission\bin\Debug\NHH.Models.Common.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Permission\bin\Debug\NHH.Models.Common.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Permission\obj\Debug\NHH.Models.Permission.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Permission\obj\Debug\NHH.Models.Permission.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Permission\bin\Debug\Newtonsoft.Json.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Permission\bin\Debug\Newtonsoft.Json.xml
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Permission\obj\Debug\NHH.Models.Permission.csprojResolveAssemblyReference.cache

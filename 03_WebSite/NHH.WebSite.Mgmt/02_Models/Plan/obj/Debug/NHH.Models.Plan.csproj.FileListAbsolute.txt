@@ -1,0 +1,11 @@
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Plan\bin\Debug\NHH.Models.Plan.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Plan\bin\Debug\NHH.Models.Plan.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Plan\bin\Debug\NHH.Models.Approve.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Plan\bin\Debug\NHH.Models.Common.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Plan\bin\Debug\NHH.Models.Common.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Plan\bin\Debug\NHH.Models.Approve.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Plan\obj\Debug\NHH.Models.Plan.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Plan\obj\Debug\NHH.Models.Plan.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Plan\bin\Debug\Newtonsoft.Json.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Plan\bin\Debug\Newtonsoft.Json.xml
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Plan\obj\Debug\NHH.Models.Plan.csprojResolveAssemblyReference.cache

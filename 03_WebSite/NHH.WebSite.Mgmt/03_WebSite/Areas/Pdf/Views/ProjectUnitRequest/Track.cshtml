@@ -1,0 +1,255 @@
+﻿@model NHH.Models.Plan.ProjectUnitRequestTrackModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>招商跟踪报表</title>
+    <link href="/Content/assets/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/Content/assets/css/chosen.css" rel="stylesheet" />
+    <link href="/Content/assets/css/datepicker.css" rel="stylesheet" />
+    <link href="/Content/assets/css/colorbox.css" rel="stylesheet" />
+    <link href="/Content/assets/css/ace.min.css" rel="stylesheet" />
+    <link href="/Content/assets/css/global.css" rel="stylesheet" />
+    <link href="/Content/assets/css/chart.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-2.1.4.js"></script>
+    <script src="/Scripts/JsonNet.js"></script>
+    <script src="/Scripts/json2.js"></script>
+    <script src="/Scripts/respond.min.js"></script>
+    <script src="/Scripts/jquery.validate.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <div class="page-content" style="width:1100px;">
+        <div class="page-content-area">
+            <h1 class="page-header">
+                @Model.QueryInfo.ProjectName @Model.QueryInfo.BuildingName @Model.QueryInfo.FloorName
+            </h1>
+        </div>
+        <div class="row mb20">
+            <div class="col-lg-12 chart">
+                <h4>招商计划</h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span style="font-weight:bold">计划租凭面积：</span>
+                        <span class="text-danger">@Model.TotalArea.ToString("#,##0.00") 平方米</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span style="font-weight:bold">计划租金指标：</span>
+                        <span class="text-danger">@Model.TotalRent.ToString("#,##0.00") 万元</span>
+                    </li>
+                    <li class="list-group-item">
+                        <span style="font-weight:bold">计划总铺位数：</span>
+                        <span class="text-danger">@Model.TotalUnit 个</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 chart">
+                <h4>铺位租决情况</h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+            </div>
+        </div>
+        <div class="row mb20">
+            <div class="col-lg-12 text-center">
+                <canvas id="chartTotalUnit" height="250" width="300"></canvas>
+                <div id="legendTotalUnit" class="legend"></div>
+            </div>
+            <div class="col-lg-12 text-center">
+                <canvas id="chartTotalArea" height="250" width="300"></canvas>
+                <div id="legendTotalArea" class="legend"></div>
+            </div>
+            <div class="col-lg-12 text-center">
+                <canvas id="chartTotalRent" height="250" width="300"></canvas>
+                <div id="legendTotalRent" class="legend"></div>
+            </div>
+        </div>
+        <div class="row mt30">
+            <div class="col-lg-12 chart">
+                <h4>铺位类型跟踪</h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+            </div>
+        </div>
+        <div class="row mb20">
+            <div class="col-lg-12 chartT3">
+                <h6>铺位完成情况</h6>
+                <div class="text-center">
+                    <canvas id="chartUnitType1" height="270" width="300"></canvas>
+                    <div id="legendUnitType1" class="legend"></div>
+                </div>
+            </div>
+            <div class="col-lg-12 chartT3">
+                <h6>面积完成情况</h6>
+                <div class="text-center">
+                    <canvas id="chartUnitType2" height="270" width="300"></canvas>
+                    <div id="legendUnitType2" class="legend"></div>
+                </div>
+            </div>
+            <div class="col-lg-12 chartT3 mb20">
+                <h6>租金完成情况</h6>
+                <div class="text-center">
+                    <canvas id="chartUnitType3" height="270" width="300"></canvas>
+                    <div id="legendUnitType3" class="legend"></div>
+                </div>
+            </div>
+            <table class="table table-bordered col-lg-12 mt15">
+                <thead>
+                    <tr>
+                        <th rowspan="2">区域</th>
+                        <th colspan="3">铺位完成情况（个）</th>
+                        <th colspan="3">面积完成情况（平方米）</th>
+                        <th colspan="3">租金完成情况（万元）</th>
+                    </tr>
+                    <tr>
+                        <th>计划</th>
+                        <th class="text-center">实际</th>
+                        <th class="text-center">占比</th>
+                        <th class="text-center">计划</th>
+                        <th class="text-center">实际</th>
+                        <th class="text-center">占比</th>
+                        <th class="text-center">计划</th>
+                        <th class="text-center">实际</th>
+                        <th class="text-center">占比</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var unitType in Model.UnitTypeList)
+                    {
+                        <tr>
+                            <td>@unitType.TrackTypeName</td>
+                            <td class="text-right">@unitType.UnitNum</td>
+                            <td class="text-right">@unitType.RequestUnitNum</td>
+                            <td class="text-right">@unitType.UnitNumProp.ToString("0.00%")</td>
+                            <td class="text-right">@unitType.Area.ToString("#,##0.00")</td>
+                            <td class="text-right">@unitType.RequestArea.ToString("#,##0.00")</td>
+                            <td class="text-right">@unitType.AreaProp.ToString("0.00%")</td>
+                            <td class="text-right">@unitType.Rent.ToString("#,##0.00")</td>
+                            <td class="text-right">@unitType.RequestRent.ToString("#,##0.00")</td>
+                            <td class="text-right">@unitType.RentProp.ToString("0.00%")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 chart">
+                <h4>业态跟踪</h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+            </div>
+            <div class="col-lg-12 mb20 chartT1">
+                <div class="text-center">
+                    <h6 style="margin-left:0">铺位完成情况</h6>
+                    <canvas id="chartBizType1" height="400" width="1000"></canvas>
+                    <div id="legendBizType1" class="legend"></div>
+                </div>
+            </div>
+            <div class="col-lg-12 mb20 mt30 chartT1">
+                <div class="text-center">
+                    <h6 style="margin-left:0">面积完成情况</h6>
+                    <canvas id="chartBizType2" height="400" width="1000"></canvas>
+                    <div id="legendBizType2" class="legend"></div>
+                </div>
+            </div>
+            <div class="col-lg-12 mb20 mt30 chartT1">
+                <div class="text-center">
+                    <h6 style="margin-left:0">租金完成情况</h6>
+                    <canvas id="chartBizType3" height="400" width="1000"></canvas>
+                    <div id="legendBizType3" class="legend"></div>
+                </div>
+            </div>
+            <table class="table table-bordered mt15 col-lg-12">
+                <thead>
+                    <tr>
+                        <th rowspan="2">区域</th>
+                        <th colspan="3">铺位完成情况（个）</th>
+                        <th colspan="3">面积完成情况（平方米）</th>
+                        <th colspan="3">租金完成情况（万元）</th>
+                    </tr>
+                    <tr>
+                        <th>计划</th>
+                        <th class="text-center">实际</th>
+                        <th class="text-center">占比</th>
+                        <th class="text-center">计划</th>
+                        <th class="text-center">实际</th>
+                        <th class="text-center">占比</th>
+                        <th class="text-center">计划</th>
+                        <th class="text-center">实际</th>
+                        <th class="text-center">占比</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var bizType in Model.BizTypeList)
+                    {
+                        <tr>
+                            <td>@bizType.TrackTypeName</td>
+                            <td class="text-right">@bizType.UnitNum</td>
+                            <td class="text-right">@bizType.RequestUnitNum</td>
+                            <td class="text-right">@bizType.UnitNumProp.ToString("0.00%")</td>
+                            <td class="text-right">@bizType.Area.ToString("#,##0.00")</td>
+                            <td class="text-right">@bizType.RequestArea.ToString("#,##0.00")</td>
+                            <td class="text-right">@bizType.AreaProp.ToString("0.00%")</td>
+                            <td class="text-right">@bizType.Rent.ToString("#,##0.00")</td>
+                            <td class="text-right">@bizType.RequestRent.ToString("#,##0.00")</td>
+                            <td class="text-right">@bizType.RentProp.ToString("0.00%")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    </div>
+    </div>
+    <script language="javascript" type="text/javascript" src="~/Scripts/Chart.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("TrackChart", "ProjectUnitRequest", new { area = "Chart" })",
+                data: getQueryData(),
+                dataType: "json",
+                success: function (result, status) {
+                    var ctxUnit = document.getElementById("chartTotalUnit").getContext("2d");
+                    var barUnit = new Chart(ctxUnit).Bar(result.TotalUnit, { scaleOverlay: true, animation: false, customTooltips: false });
+                    $("#legendTotalUnit").html(barUnit.generateLegend());
+
+                    var ctxArea = document.getElementById("chartTotalArea").getContext("2d");
+                    var barArea = new Chart(ctxArea).Bar(result.TotalArea, { scaleOverlay: true, animation: false,});
+                    $("#legendTotalArea").html(barArea.generateLegend());
+
+                    var ctxRent = document.getElementById("chartTotalRent").getContext("2d");
+                    var barRent = new Chart(ctxRent).Bar(result.TotalRent, { scaleOverlay: true, animation: false, });
+                    $("#legendTotalRent").html(barRent.generateLegend());
+
+                    var ctxUnitType1 = document.getElementById("chartUnitType1").getContext("2d");
+                    var barUnitType1 = new Chart(ctxUnitType1).Bar(result.UnitType1, { animation: false });
+                    $("#legendUnitType1").html(barUnitType1.generateLegend());
+                    var ctxUnitType2 = document.getElementById("chartUnitType2").getContext("2d");
+                    var barUnitType2 = new Chart(ctxUnitType2).Bar(result.UnitType2, { animation: false });
+                    $("#legendUnitType2").html(barUnitType2.generateLegend());
+                    var ctxUnitType3 = document.getElementById("chartUnitType3").getContext("2d");
+                    var barUnitType3 = new Chart(ctxUnitType3).Bar(result.UnitType3, { animation: false });
+                    $("#legendUnitType3").html(barUnitType3.generateLegend());
+
+                    var ctxBizType1 = document.getElementById("chartBizType1").getContext("2d");
+                    var barBizType1 = new Chart(ctxBizType1).Bar(result.BizType1, { animation: false });
+                    $("#legendBizType1").html(barBizType1.generateLegend());
+                    var ctxBizType2 = document.getElementById("chartBizType2").getContext("2d");
+                    var barBizType2 = new Chart(ctxBizType2).Bar(result.BizType2, { animation: false });
+                    $("#legendBizType2").html(barBizType2.generateLegend());
+                    var ctxBizType3 = document.getElementById("chartBizType3").getContext("2d");
+                    var barBizType3 = new Chart(ctxBizType3).Bar(result.BizType3, { animation: false });
+                    $("#legendBizType3").html(barBizType3.generateLegend());
+                }
+            });
+            function getQueryData() {
+                var queryInfo = {};
+                queryInfo.projectId = "@Model.QueryInfo.ProjectId";
+                queryInfo.buildingId = "@Model.QueryInfo.BuildingId";
+                queryInfo.floorId = "@Model.QueryInfo.FloorId";
+                return queryInfo;
+            };
+        });
+    </script>
+</body>
+</html>

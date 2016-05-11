@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>NHH</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{a1af6f91-7f45-4818-8870-9141986c59d3}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>NHH</RootNamespace>
+    <AssemblyName>NHH</AssemblyName>
+    <ModelCollation>2052,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>Chinese_PRC_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <SccProjectName>
+    </SccProjectName>
+    <SccProvider>
+    </SccProvider>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccLocalPath>
+    </SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NHH.publish.xml" />
+    <None Include="NHH_DQ.publish.xml" />
+    <None Include="dbo\Views\View_Repair_Complaint_Supervisor.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Repair.sql" />
+    <Build Include="dbo\Tables\Finance_Settlement.sql" />
+    <Build Include="dbo\Tables\Finance_SettlementDetail.sql" />
+    <Build Include="dbo\Tables\Repair_Attachment.sql" />
+    <Build Include="dbo\Tables\FloorMap_Unit.sql" />
+    <Build Include="dbo\Tables\Material.sql" />
+    <Build Include="dbo\Tables\Repair_Comment.sql" />
+    <Build Include="dbo\Tables\Merchant.sql" />
+    <Build Include="dbo\Tables\Repair_Log.sql" />
+    <Build Include="dbo\Tables\Repair_Material.sql" />
+    <Build Include="dbo\Tables\BizCategory.sql" />
+    <Build Include="dbo\Tables\Sys_Function.sql" />
+    <Build Include="dbo\Tables\Merchant_Attachment.sql" />
+    <Build Include="dbo\Tables\Sys_Role.sql" />
+    <Build Include="dbo\Tables\BizType.sql" />
+    <Build Include="dbo\Tables\Merchant_Brand.sql" />
+    <Build Include="dbo\Tables\Sys_Role_Function.sql" />
+    <Build Include="dbo\Tables\Brand.sql" />
+    <Build Include="dbo\Tables\Sys_User.sql" />
+    <Build Include="dbo\Tables\Merchant_Finance.sql" />
+    <Build Include="dbo\Tables\Campaign.sql" />
+    <Build Include="dbo\Tables\Sys_User_Message.sql" />
+    <Build Include="dbo\Tables\Merchant_Message.sql" />
+    <Build Include="dbo\Tables\Campaign_Attachment.sql" />
+    <Build Include="dbo\Tables\Sys_User_Role.sql" />
+    <Build Include="dbo\Tables\Merchant_Request.sql" />
+    <Build Include="dbo\Tables\Campaign_Comment.sql" />
+    <Build Include="dbo\Tables\Utility_Bill.sql" />
+    <Build Include="dbo\Tables\Merchant_Revenue.sql" />
+    <Build Include="dbo\Tables\Campaign_Page.sql" />
+    <Build Include="dbo\Tables\Merchant_Role.sql" />
+    <Build Include="dbo\Tables\Merchant_Store.sql" />
+    <Build Include="dbo\Tables\Campaign_Result.sql" />
+    <Build Include="dbo\Tables\City.sql" />
+    <Build Include="dbo\Tables\Merchant_StoreImage.sql" />
+    <Build Include="dbo\Tables\Merchant_User.sql" />
+    <Build Include="dbo\Tables\Company.sql" />
+    <Build Include="dbo\Tables\Company_Finance.sql" />
+    <Build Include="dbo\Tables\Merchant_UserPaper.sql" />
+    <Build Include="dbo\Tables\Message.sql" />
+    <Build Include="dbo\Tables\Complaint.sql" />
+    <Build Include="dbo\Tables\Project.sql" />
+    <Build Include="dbo\Tables\Complaint_Attachment.sql" />
+    <Build Include="dbo\Tables\Project_AdPoint.sql" />
+    <Build Include="dbo\Tables\Complaint_Comment.sql" />
+    <Build Include="dbo\Tables\Project_BizConfig.sql" />
+    <Build Include="dbo\Tables\Complaint_Log.sql" />
+    <Build Include="dbo\Tables\Contract.sql" />
+    <Build Include="dbo\Tables\Project_Building.sql" />
+    <Build Include="dbo\Tables\Contract_Appendix.sql" />
+    <Build Include="dbo\Tables\Project_Floor.sql" />
+    <Build Include="dbo\Tables\Contract_Brand.sql" />
+    <Build Include="dbo\Tables\Project_Kiosk.sql" />
+    <Build Include="dbo\Tables\Contract_PaymentTerms.sql" />
+    <Build Include="dbo\Tables\Contract_Supplementary.sql" />
+    <Build Include="dbo\Tables\Project_Owner.sql" />
+    <Build Include="dbo\Tables\Contract_Template.sql" />
+    <Build Include="dbo\Tables\Project_Unit.sql" />
+    <Build Include="dbo\Tables\Contract_Unit.sql" />
+    <Build Include="dbo\Tables\Contract_UnitSpec.sql" />
+    <Build Include="dbo\Tables\Project_UnitLeasing.sql" />
+    <Build Include="dbo\Tables\Department.sql" />
+    <Build Include="dbo\Tables\Project_UnitPlan.sql" />
+    <Build Include="dbo\Tables\Dictionary.sql" />
+    <Build Include="dbo\Tables\Project_UnitSpec.sql" />
+    <Build Include="dbo\Tables\District.sql" />
+    <Build Include="dbo\Tables\Project_UnitSpec_Template.sql" />
+    <Build Include="dbo\Tables\Employee.sql" />
+    <Build Include="dbo\Tables\Province.sql" />
+    <Build Include="dbo\Tables\Region.sql" />
+    <Build Include="dbo\Tables\Finance_Accrual.sql" />
+    <Build Include="dbo\Tables\Finance_Item.sql" />
+    <Build Include="dbo\Tables\Repair.sql" />
+    <Build Include="dbo\Views\View_ContractStatus.sql" />
+    <Build Include="dbo\Views\View_Report_Contract.sql" />
+    <Build Include="dbo\Views\View_UnitStatus.sql" />
+    <Build Include="dbo\Views\View_UnitType.sql" />
+    <Build Include="dbo\Views\View_Project_Unit_Contract.sql" />
+    <Build Include="dbo\Views\View_FloorMap_Unit.sql" />
+    <Build Include="dbo\Views\View_Project_Unit.sql" />
+    <Build Include="dbo\Views\View_Report_Project_Unit.sql" />
+    <Build Include="dbo\Views\View_CompanyType.sql" />
+    <Build Include="dbo\Views\View_Condition.sql" />
+    <Build Include="dbo\Views\View_GenderType.sql" />
+    <Build Include="dbo\Views\View_Project_AdPoint.sql" />
+    <Build Include="dbo\Views\View_Project_Kiosk.sql" />
+    <Build Include="dbo\Views\View_ProjectInfoShow.sql" />
+    <Build Include="dbo\Views\View_Report_Project_Count.sql" />
+    <Build Include="dbo\Views\View_Role_Function.sql" />
+    <Build Include="dbo\Views\View_User_Function.sql" />
+    <Build Include="dbo\Stored Procedures\GetCountMCount.sql" />
+    <Build Include="dbo\Stored Procedures\GetCountPCount.sql" />
+    <Build Include="dbo\Stored Procedures\ProjectInfoProc.sql" />
+    <Build Include="dbo\Stored Procedures\SP_Import_FloorMap_Unit.sql" />
+    <Build Include="dbo\Stored Procedures\SP_Job_Import_ProjectUnit.sql" />
+    <Build Include="dbo\Tables\Sys_Menu.sql" />
+    <Build Include="dbo\Tables\Sys_Role_Menu.sql" />
+    <Build Include="dbo\Views\View_Role_Menu.sql" />
+    <Build Include="dbo\Views\View_User_Menu.sql" />
+    <Build Include="dbo\Tables\Merchant_StoreMeter.sql" />
+  </ItemGroup>
+</Project>

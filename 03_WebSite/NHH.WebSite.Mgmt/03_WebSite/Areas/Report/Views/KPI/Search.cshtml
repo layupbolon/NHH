@@ -1,0 +1,249 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Report.KpiReportModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<style>
+    .legend {
+        float: left;
+        margin-left: 5px;
+    }
+    .legend ul {
+    }
+
+    .legend li {
+    }
+    .legend li span {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+</style>
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>
+                KPI报表
+            </h1>
+        </div><!-- /.page-header -->
+        <div class="screen-area">
+            @using (Html.BeginForm("Search", "KPI", FormMethod.Get)) 
+            {
+                <dl class="list-screen">
+                    <dt>选择项目：</dt>
+                    <dd>@Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList, "请选择")</dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>选择楼宇：</dt>
+                    <dd>@Html.DropDownList("BuildingId", ViewData["BuildingList"] as SelectList, "全部")</dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>选择楼层：</dt>
+                    <dd>@Html.DropDownList("FloorId", ViewData["FloorList"] as SelectList, "全部")</dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>类型：</dt>
+                    <dd>@Html.DropDownList("UnitType", ViewData["UnitTypeList"] as SelectList, "全部")</dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>业态：</dt>
+                    <dd>@Html.DropDownList("BizTypeId", ViewData["BizTypeList"] as SelectList, "全部")</dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>截止时间：</dt>
+                    <dd class="input-daterange input-group">
+                        @Html.TextBox("EndTime", Model.QueryInfo.EndTime.ToString("yyyy-MM-dd"), new { @class = "input-sm iconTime" })
+                    </dd>
+                </dl>
+                <div class="result-btn">
+                    <input class="btn btn-xs btn-success btn-font input-btn" type="submit" value="查询" />
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="lighter mt30">
+                    项目信息
+                </h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+                <dl class="list-info">
+                    <dt>总计信息</dt>
+                    <dd>项目总面积：@Model.CountInfo.TotalArea.ToString("#,##0.00") 平方米</dd>
+                    <dd>项目总铺数：@Model.CountInfo.TotalUnit 个</dd>
+                    <dd>项目已签约面积：@Model.CountInfo.SignedTotalArea.ToString("#,##0.00") 平方米</dd>
+                    <dd>项目已签约铺数：@Model.CountInfo.SignedTotalUnit 个</dd>
+                </dl>
+                <dl class="list-info">
+                    <dt>占比信息</dt>
+                    <dd>已签约铺位数占比：@Model.CountInfo.SignedUnitProportion.ToString("0.00%")</dd>
+                    <dd>已签约面积占比：@Model.CountInfo.SignedAreaProportion.ToString("0.00%")</dd>
+                    <dd>已签约租金占比：@Model.CountInfo.SignedRentProportion.ToString("0.00%")</dd>
+                </dl>
+                <table style="width:100%">
+                    <tr>
+                        <td>
+                            <canvas id="chart1" width="300" height="250" style="float:left;"></canvas>
+                            <div id="legend1" class="legend"></div>
+                        </td>
+                        <td>
+                            <canvas id="chart2" width="300" height="250" style="float:left;"></canvas>
+                            <div id="legend2" class="legend"></div>
+                        </td>
+                        <td>
+                            <canvas id="chart3" width="300" height="250" style="float:left;"></canvas>
+                            <div id="legend3" class="legend"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div><!-- /.row -->
+            <div class="col-xs-12">
+                <h4 class="lighter mt30">
+                    商铺列表
+                </h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+                <table id="sample-table-1" class="table table-striped table-bordered table-hover table-txthover">
+                    <thead>
+                        <tr>
+                            <th>楼</th>
+                            <th>楼层</th>
+                            <th>铺位号</th>
+                            <th>业态</th>
+                            <th>品牌</th>
+                            <th>类型</th>
+                            <th>签约面积</th>
+                            <th>经营品类</th>
+                            <th>租期（月）</th>
+                            <th>到期时间</th>
+                            <th>月租金</th>
+                            <th>月物业费</th>
+                            <th>收租方式</th>
+                            <th>租押方式</th>
+                            <th>质量保证金</th>
+                            <th>停车位</th>
+                            <th>广告位</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Data)
+                    {
+                            <tr>
+                                <td><a class="lnkAction" data-key="BuildingID" data-value="@item.BuildingID" href="javascript:void(0);">@item.BuildingName</a></td>
+                                <td><a class="lnkAction" data-key="FloorID" data-value="@item.FloorID" href="javascript:void(0);">@item.FloorName</a></td>
+                                <td>@item.UnitNumber</td>
+                                <td><a class="lnkAction" data-key="BizTypeID" data-value="@item.BizTypeID" href="javascript:void(0);">@item.BizTypeName</a></td>
+                                <td>@item.BrandNameList</td>
+                                <td><a class="lnkAction" data-key="UnitTypeID" data-value="@item.UnitTypeID" href="javascript:void(0);">@item.UnitTypeName</a></td>
+                                <td><a class="lnkAction" data-key="UnitArea" data-value="@item.UnitArea" href="javascript:void(0);">@item.UnitArea.Value.ToString("#,##0.00")</a></td>
+                                <td><a class="lnkAction" data-key="BizCategoryID" data-value="@item.BizCategoryID" href="javascript:void(0);">@item.BizCategoryName</a></td>
+                                <td>@item.ContractLength</td>
+                                <td>@(item.ContractEndDate.HasValue ? item.ContractEndDate.Value.ToString("yyyy-MM-dd") : "")</td>
+                                <td>@item.MonthlyRent.ToString("#,##0.00")</td>
+                                <td>@item.MonthlyMgmt.ToString("#,##0.00")</td>
+                                <td>@item.RentMode</td>
+                                <td>@item.DepositMode</td>
+                                <td>@item.QualityBond</td>
+                                <td>@item.ParkingLotNum</td>
+                                <td>@item.AdPointNum</td>
+                            </tr>
+                    }
+                    </tbody>
+                </table>
+                @{Html.RenderPartial("_PartialPaging", Model.PagingInfo);}
+            </div><!-- /.row -->
+        </div><!-- /.col -->
+    </div><!-- /.page-content-area -->
+</div>
+
+<script language="javascript" type="text/javascript" src="~/Scripts/Chart.min.js"></script>
+<script language="javascript" type="text/javascript">
+    //项目
+    $("#ProjectId").change(function () {
+        var projectId = $(this).val();
+        $.ajax({
+            url: "@Url.Action("GetBuildingList", "Project", new { area = "Ajax" })",
+            data: "projectId=" + projectId,
+            success: function (result, status) {
+                var strHtml = "<option value=''>全部</option>";
+                var length = result.length;
+                for (var n = 0; n < length;n++) {
+                    strHtml += "<option value='" + result[n].Id + "'>" + result[n].Name + "</option>";
+                }
+                $("#BuildingId").html(strHtml);
+                $("#FloorId").html("<option value=''>全部</option>");
+            }
+        });
+    });
+
+    //楼宇
+    $("#BuildingId").change(function () {
+        var projectId = $("#ProjectId").val();
+        var buildingId = $(this).val();
+        $.ajax({
+            url: "@Url.Action("GetFloorList", "Project", new { area = "Ajax" })",
+            data: "projectId=" + projectId + "&buildingId=" + buildingId,
+            success: function (result, status) {
+                var strHtml = "<option value=''>全部</option>";
+                var length = result.length;
+                for (var n = 0; n < length; n++) {
+                    strHtml += "<option value='" + result[n].FloorId + "'>" + result[n].FloorName + "</option>";
+                }
+                $("#FloorId").html(strHtml);
+            }
+        });
+    });
+
+    $(".lnkAction").click(function () {
+        var url = "@Url.Action("Search", "KPI", new { area = "Report" })";
+        url += "?projectId=" + $("#ProjectId").val();
+        url += "&startTime=" + $("#StartTime").val();
+        url += "&endTime=" + $("#EndTime").val();
+        url += "&" + $(this).attr("data-key") + "=" + $(this).attr("data-value");
+        location.href = url;
+    });
+
+    //分页
+    $(".page").click(function () {
+        var url = "@Url.Action("Search", "KPI", new { area = "Report" })";
+        url += "?projectId=" + $("#ProjectId").val();
+        url += "&buildingId=" + $("#BuildingId").val();
+        url += "&floorId=" + $("#FloorId").val();
+        url += "&unitType=" + $("#UnitType").val();
+        url += "&bizTypeId=" + $("#BizTypeId").val();
+        url += "&startTime=" + $("#StartTime").val();
+        url += "&endTime=" + $("#EndTime").val();
+        url += "&page=" + $(this).attr("data-page");
+        location.href = url;
+    });
+
+    //图表
+    $(function () {
+        var queryInfo = {};
+        queryInfo.projectId = $("#ProjectId").val();
+        queryInfo.buildingId = $("#BuildingId").val();
+        queryInfo.floorId = $("#FloorId").val();
+        queryInfo.unitType = $("#UnitType").val();
+        queryInfo.bizTypeId = $("#BizTypeId").val();
+        queryInfo.startTime = $("#StartTime").val();
+        queryInfo.endTime = $("#EndTime").val();
+        $.ajax({
+            url: "@Url.Action("GetPieList", "KpiReport", new { area = "Chart" })",
+            data: queryInfo,
+            dataType: "json",
+            success: function (result, status) {
+                //图表1
+                var ctx1 = document.getElementById("chart1").getContext("2d");
+                var pie1 = new Chart(ctx1).Pie(result.SignedTotalUnit.data);
+                $("#legend1").html(pie1.generateLegend());
+                //图表2
+                var ctx2 = document.getElementById("chart2").getContext("2d");
+                var pie2 = new Chart(ctx2).Pie(result.SignedTotalArea.data);
+                $("#legend2").html(pie2.generateLegend());
+                //图表3
+                var ctx3 = document.getElementById("chart3").getContext("2d");
+                var pie3 = new Chart(ctx3).Pie(result.SignedTotalRent.data);
+                $("#legend3").html(pie3.generateLegend());
+            }
+        });
+    });
+
+</script>

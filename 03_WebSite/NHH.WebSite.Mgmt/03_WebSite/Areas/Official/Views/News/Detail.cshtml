@@ -1,0 +1,169 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Official.NewsModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>新闻资讯详情</h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">新闻类型： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @Model.NewsTypeName
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">目标： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext" id="ProjectName">
+                            @Model.NewsTargetName
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">标题： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @Model.NewsTitle
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">简介： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @Model.NewsBrief
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">横幅图片： </label>
+                    <div class="col-sm-9">
+                        <div class="uploadimg">
+                            <ul class="ace-thumbnails clearfix">
+                                <li>
+                                    <a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(Model.NewsCover)" data-rel="colorbox" class="ImageInfo">
+                                        <img width="100" height="73" src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(Model.NewsCover)" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">所属公司： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @Model.CompanyName
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">所属项目： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @Model.ProjectName
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">是否置顶： </label>
+                    <div class="col-lg-5 input-merge">
+                        <ul>
+                            <li>
+                                <label>
+                                    @Html.RadioButton("Stick", "1", @Model.Stick == 1, new {disabled = true}) 是
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    @Html.RadioButton("Stick", "0", @Model.Stick == 0, new {disabled = true}) 否
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">发布时间： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @Model.PublishTime.ToString("yyyy-MM-dd hh:mm:ss")
+                        </span>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+                <fieldset>
+                    <legend>新闻内容</legend>
+                    <div class="form-group">
+                        <div class="form-horizontal">
+                            @Html.TextAreaFor(m => m.NewsContent)
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="col-5">
+        @{Html.RenderPartial("Approve/_PartialApprove", Model);}
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval", "~/Scripts/ueditor/ueditor.config.js", "~/Scripts/ueditor/ueditor.all.js")
+    <script type="text/javascript">
+        var editorOption = {
+            //initialFrameWidth: 1024,
+            initialFrameHeight: 600,
+            maximumWords: 9999999,
+            readonly: true
+        };
+        var editor = new baidu.editor.ui.Editor(editorOption);
+        editor.render('NewsContent');
+    </script>
+}
+
+<script type="text/javascript">
+    $(".ImageInfo").click(function () {
+        var $overflow = '';
+        var colorbox_params = {
+            rel: 'colorbox',
+            reposition: true,
+            scalePhotos: true,
+            scrolling: false,
+            previous: '<i class="ace-icon fa fa-arrow-left"></i>',
+            next: '<i class="ace-icon fa fa-arrow-right"></i>',
+            close: '&times;',
+            current: '{current} / {total}',
+            maxWidth: '100%',
+            maxHeight: '100%',
+            onOpen: function () {
+                $overflow = document.body.style.overflow;
+                document.body.style.overflow = 'auto';
+            },
+            onClosed: function () {
+                document.body.style.overflow = $overflow;
+            },
+            onComplete: function () {
+                $.colorbox.resize();
+            }
+        };
+
+        $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
+        $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange'></i>");//let's add a custom loading icon
+    });
+</script>

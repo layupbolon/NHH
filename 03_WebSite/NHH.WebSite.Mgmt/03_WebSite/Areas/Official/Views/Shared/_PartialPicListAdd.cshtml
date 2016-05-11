@@ -1,0 +1,125 @@
+﻿@model NHH.Models.Official.Common.NHHCGPicListModel
+
+<h4 class="lighter">@ViewData["Title"]</h4>
+<div class="hr hr-18 hr-double dotted"></div>
+<div class="uploadimg">
+    @foreach (var item in Model.PicList.OrderBy(a => a.Seq))
+    {
+        <dl id='img-@item.PicID'>
+            <dt><a href='###' class='close-icon bImgClose' data-id='@item.PicID'></a></dt>
+            <dd><img class='ImageItem' src='@NHH.Framework.Utility.UrlHelper.GetImageUrl(item.Path)' data-filepath='@item.Path'></dd>
+        </dl>
+    }
+</div>
+<h4 class="lighter">上传图片</h4>
+<div class="hr hr-18 hr-double dotted"></div>
+<div class="form-group">
+
+    <div class="col-sm-4 " style="padding-left: 0; width: 100%;">
+        <a class="btn btn-add btn-font upload-btn">
+            <div class="load-text">选择图片...</div>
+            <div class="input-wrap">
+                <span>
+                    <input type="button" class="webuploader-invisible btnUpload" id="btnImage-@ViewData["Type"]">
+                </span>
+            </div>
+        </a>
+        <p class="muted">图片大小不能超过2M，图片类型为jpg、png</p>
+    </div>
+    
+    <div class="uploadimg" id="Div_Image-@ViewData["Type"]" style="width:120px; float: left;"></div>
+    <div class="btn-group" style="float:left; margin-top: 38px;">
+        <a class="btn btn-success btn-font" id="lbtnAddInfo-@ViewData["Type"]">确认上传</a>
+        <p id="ErrorMessage-@ViewData["Type"]" style="color:red;" class="muted"></p>
+    </div>
+    <div class="clear"></div>
+    
+    
+</div>
+@Html.Hidden("refId-" + ViewData["Type"], ViewData["RefID"])
+@Html.Hidden("type-" + ViewData["Type"], ViewData["Type"])
+@Html.Hidden("Path-" + ViewData["Type"])
+
+<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;"></div>
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#lbtnAddInfo-@ViewData["Type"]").hide();
+        $("#Path-@ViewData["Type"]").val("");
+        $("#ErrorMessage-@ViewData["Type"]").html("");
+        var refId = $("#refId-@ViewData["Type"]").val();
+        var type = $("#type-@ViewData["Type"]").val();
+        $(".bImgClose").unbind().click(function () {
+            var btn = $(this);
+            nhhui.confirm("是否删除该图片？", function () {
+                var id = btn.attr("data-id");
+                $("#img-" + id).remove();
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("DeletePic", "NHHCG", new { area = "Official" })",
+                    data: "picId=" + id,
+                    dataType: "JSON",
+                    success: function (data, status) {
+                        location.reload();
+                    }
+                });
+            });
+        });
+        $("#lbtnAddInfo-@ViewData["Type"]").click(function () {
+            var data = {};
+            if ($("#Path-@ViewData["Type"]").val() === "") {
+                $("#ErrorMessage-@ViewData["Type"]").html("请选择图片！");
+                return false;
+            }
+            data.RefID = refId;
+            data.Type = type;
+            data.Path = $("#Path-@ViewData["Type"]").val();
+            data.Seq = 1;
+            $.post("@Url.Action("InsertPic", "NHHCG", new { area = "Official" })", data, function (result) {
+                location.reload();
+            });
+            return true;
+        });
+        //location.reload();
+        $("#btnImage-@ViewData["Type"]").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.UrlHelper.GetImageUrl("NHHCG/Upload")",
+            "buttonText": "",
+            "fileTypeExts": "*.jpg;*.png",
+            "multi": false,
+            "onUploadStart": function (file) {
+                var formData = {};
+                formData.RefID = refId;
+                formData.type = type;
+                $("#btnImage-@ViewData["Type"]").uploadify("settings", "formData", formData);
+            },
+            "onUploadSuccess": function (file, data, response) {
+                var result = JSON.parse(data);
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+
+                var innerHtml = "<dl id='img-" + result.FileId + "'>" +
+                                    "<dt><a href='###' class='close-icon bImgClose' data-id='" + result.FileId + "'></a></dt>" +
+                                     "<dd><img class='ImageItem' src='" + result.FileUrl + "' data-filePath='" + result.FilePath + "'></dd>" +
+                                 "</dl>";
+
+                $("#Div_Image-@ViewData["Type"]").html(innerHtml);
+                //删除事件
+                $(".bImgClose").unbind().click(function () {
+                    var id = $(this).attr("data-id");
+                    $("#img-" + id).remove();
+                    $("#lbtnAddInfo-@ViewData["Type"]").hide();
+                });
+
+                $("#Path-@ViewData["Type"]").val(result.FilePath);
+                $("#ErrorMessage-@ViewData["Type"]").html("");
+                $("#lbtnAddInfo-@ViewData["Type"]").show();
+                return true;
+            }
+        });
+    });
+
+</script>

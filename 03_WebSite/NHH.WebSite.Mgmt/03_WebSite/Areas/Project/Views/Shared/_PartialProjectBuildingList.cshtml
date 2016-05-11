@@ -1,0 +1,142 @@
+﻿@model NHH.Models.Project.BuildingListModel
+
+<h4 class="lighter">楼宇列表</h4>
+<div class="hr hr-18 hr-double dotted"></div>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>楼宇名称</th>
+            <th>地面建筑面积</th>
+            <th>地下建筑面积</th>
+            <th>总建筑面积</th>
+            <th>总出租商铺</th>
+            <th>地上楼层</th>
+            <th>地下楼层</th>
+            <th>效果图</th>
+            <th class="col-lg-1">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.BuildingList)
+        {
+            <tr>
+                <td>@item.BuildingName</td>
+                <td>@item.BuildingGroundArea.ToString("#,##0.00")</td>
+                <td>@item.BuildingUndergroundArea.ToString("#,##0.00")</td>
+                <td>@item.TotalConstructionArea.ToString("#,##0.00")</td>
+                <td>@item.TotalRentUnit</td>
+                <td>
+                    <ul>
+                        @foreach (var floor in item.GroundFloorList)
+                        {
+                            <li>
+                                <a href="javascript:void(0)" class="editFloor btn btn-link btn-font" data-floorId="@floor.FloorID">@floor.FloorName</a>
+                            </li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var floor in item.UndergroundFloorList)
+                        {
+                            <li>
+                                <a href="javascript:void(0)" class="editFloor btn btn-link btn-font" data-floorid="@floor.FloorID">@floor.FloorName</a>
+                            </li>
+                        }
+                    </ul>
+                </td>
+                <td class="tdimg">
+                    <ul class="">
+                        @foreach (var file in item.RenderingFileList)
+                        {
+                            <li style="float:left; margin-left:5px;">
+                                <a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(file)" data-rel="^@item.BuildingID" class="buildingImage" data-src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(file)">
+                                    <img src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(file, 100)" width="100" height="73" title="@file" />
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <div class="hidden-sm hidden-xs btn-group">
+                        <a href="javascript:void(0);" class="btn btn-xs btn-success btn-font editBuilding" data-buildingId="@item.BuildingID">编辑</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="btn-group">
+    <a class="btn btn-success btn-font" id="lbtnAddBuilding">继续添加楼宇</a>
+</div>
+<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;"></div>
+<script type="text/javascript">
+    $(function () {
+       
+        //编辑楼宇
+        $(".editBuilding").click(function () {
+            var url = "@Url.Action("EditBuilding", "ProjectMgmt", new { area = "Project" })";
+            url += "?projectId=" + $("#ProjectId").val();
+            url += "&buildingId=" + $(this).attr("data-buildingId");
+            $("#modal").load(url).modal();
+            setTimeout("scrollControll()", 170);
+        });
+
+        //编辑楼层
+        $(".editFloor").click(function () {
+            var url = "@Url.Action("EditFloor", "ProjectMgmt", new { area = "Project" })";
+            url += "?floorId=" + $(this).attr("data-floorId");
+            $("#modal").load(url).modal();
+            
+            setTimeout("scrollControll()", 170);
+        });
+
+        //添加楼宇
+        $("#lbtnAddBuilding").click(function () {
+            var url = "@Url.Action("AddBuilding", "ProjectMgmt", new { area = "Project" })";
+            url += "?projectId=" + $("#ProjectId").val();
+            $("#modal").load(url).modal();
+            setTimeout("scrollControll()", 170);
+        });
+        //
+        $(".buildingImage").click(function () {
+           
+            var id = $(this).attr('data-rel');
+
+            //再次加载
+            var $overflow = '';
+            var colorbox_params = {
+                //rel: 'colorboxTD',
+                rel: id,
+                reposition: true,
+                scalePhotos: true,
+                scrolling: false,
+                previous: '<i class="ace-icon fa fa-arrow-left"></i>',
+                next: '<i class="ace-icon fa fa-arrow-right"></i>',
+                close: '&times;',
+                current: '{current} / {total}',
+                maxWidth: '100%',
+                maxHeight: '100%',
+                onOpen: function () {
+                    $overflow = document.body.style.overflow;
+                    //document.body.style.overflow = 'hidden';
+                    document.body.style.overflow = 'auto';
+                },
+                onClosed: function () {
+                    document.body.style.overflow = $overflow;
+                },
+                onComplete: function () {
+                    $.colorbox.resize();
+                }
+            };
+
+            //$('.ace-thumbnails [data-rel="colorboxTD"]').colorbox(colorbox_params);
+            $('[data-rel="'+id+'"]').colorbox(colorbox_params);
+            $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange'></i>");//let's add a custom loading icon
+        });
+    });
+    function scrollControll()
+    {
+        document.getElementById("modal").scrollTop = document.getElementById("modal").scrollHeight;
+    }
+</script>

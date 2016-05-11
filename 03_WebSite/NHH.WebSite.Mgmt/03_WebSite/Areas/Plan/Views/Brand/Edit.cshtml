@@ -1,0 +1,172 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.MerchantBrandDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<style>
+    .uploadify-queue {
+        display: none;
+    }
+</style>
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>编辑商户品牌</h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                @using (Html.BeginForm("Edit", "Brand", new { area = "Plan" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"><span class="req">*</span> 品牌名称： </label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("BrandID", ViewData["BrandList"] as SelectList, new { style = "width:160px" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessageFor(m => m.BrandID)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 品牌级次： </label>
+                        <div class="col-lg-9">
+                            <span class="defauletext" id="brandLevel">@Model.BrandLevel</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 年平均营业额： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("Revenue", Model.Revenue, new { @class = "col-xs-10 col-lg-2" })
+                            <span class="help-inline col-xs-12 col-lg-7">
+                                <span class="middle">单位：万元</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"><span class="req">*</span> 经营方式： </label>
+                        <div class="col-lg-9 input-merge">
+                            @Html.DropDownList("BrandTypeId", ViewData["BrandTypeList"] as SelectList, new { style = "width:160px" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessageFor(m => m.BrandTypeId)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group Authorized">
+                        <label class="col-lg-3 control-label"><span class="req">*</span> 授权文件： </label>
+                        <div class="col-lg-9 ">
+                            <a class="btn btn-add btn-font upload-btn">
+                                <div class="load-text">上传文件</div>
+                                <div class="input-wrap">
+                                    <input type="button" id="btnUpload" class="load-text" />
+                                    @Html.Hidden("AuthorizedFile", Model.AuthorizedFile)
+                                    @Html.Hidden("AuthorizedFilePath", Model.AuthorizedFileName)
+                                    @Html.Hidden("AuthorizedFileName", Model.AuthorizedFilePath)
+                                </div>
+                            </a>
+                            <p id="fileName">
+                                <a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(Model.AuthorizedFilePath)" target="_blank">
+                                    @Model.AuthorizedFileName
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group Authorized">
+                        <label class="col-lg-3 control-label"><span class="req">*</span> 授权期限： </label>
+                        <div class="col-lg-9 input-daterange">
+                            @Html.TextBox("AuthorizedSince", Model.AuthorizedSince.HasValue ? Model.AuthorizedSince.Value.ToString("yyyy-MM-dd") : "", new { @class = "iconTime" })
+                            <b>-</b>
+                            @Html.TextBox("AuthorizedTo", Model.AuthorizedTo.HasValue ? Model.AuthorizedTo.Value.ToString("yyyy-MM-dd") : "", new { @class = "iconTime" })
+                            <span class="middle red  " style="display:block;line-height:50px;">
+                                @Html.ValidationMessageFor(m => m.AuthorizedSince)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 经营年限： </label>
+                        <div class="col-lg-9 input-daterange">
+                            @Html.TextBox("OperationSince", Model.OperationSince.HasValue ? Model.OperationSince.Value.ToString("yyyy-MM-dd") : "", new { @class = "iconTime" })
+                            <b>-</b>
+                            @Html.TextBox("OperationTo", Model.OperationTo.HasValue ? Model.OperationTo.Value.ToString("yyyy-MM-dd") : "", new { @class = "iconTime" })
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-lg-offset-3 col-lg-9">
+                            @Html.Hidden("MerchantId", Model.MerchantID)
+                            @Html.Hidden("MerchantBrandID", Model.MerchantBrandID)
+                            <input class="btn btn-xs btn-success btn-font input-btn" type="submit" value="提交信息" />
+                            <input class="btn btn-xs btn-font btn-cancel" type="reset" value="重置" />
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.Authorized)
+                }
+            </div>
+            <!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>
+
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //品牌信息
+        $("#BrandID").change(function () {
+            var brandId = $(this).val();
+            if (brandId == 0) {
+                $("#brandLevel").text("");
+                return false;
+            }
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetInfo", "Brand", new { area = "Ajax" })",
+                data: "brandId=" + brandId,
+                success: function (result, status) {
+                    $("#brandLevel").text(result.BrandLevelInfo.Name);
+                }
+            });
+        });
+        $(".Authorized").hide();
+        var brandType = $("#BrandTypeId").val();
+        if (brandType == 2 || brandType == 3) {
+            $(".Authorized").show();
+        }
+        else {
+            $(".Authorized").hide();
+        }
+        //经营方式
+        $("#BrandTypeId").change(function () {
+            var brandType = $(this).val();
+            if (brandType == 2 || brandType == 3) {
+                $(".Authorized").show();
+            }
+            else {
+                $(".Authorized").hide();
+            }
+        });
+        //授权文件
+        var formData = {};
+        formData.merchantId = $("#MerchantId").val();
+        $("#btnUpload").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.ParamManager.GetStringValue("ImageSite")" + "Merchant/Upload",
+            "formData": formData,
+            "buttonText": "",
+            "multi": false,
+            "onUploadSuccess": function (file, data, response) {
+                var result = JSON.parse(data);
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+                $("#fileName").text(result.FileName);
+                $("#AuthorizedFile").val(-1);
+                $("#AuthorizedFileName").val(result.FileName);
+                $("#AuthorizedFilePath").val(result.FilePath);
+            },
+            "onUploadProgress": function () { }
+        });
+    });
+</script>

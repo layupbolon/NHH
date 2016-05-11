@@ -1,0 +1,66 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Contract.GetOutDetaiInfo
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="rowA">
+    <div class="col-5">
+        <h4 class="lighter">申请者资料</h4>
+        <div class="hr hr-18 hr-double dotted"></div>
+        <dl class="form-content">
+            <dd>
+                <label>用户姓名：</label>
+                @Model.RequestUserName
+            </dd>
+            <dd>
+                <label>联系电话：</label>
+                @Model.ContactPhone
+            </dd>
+            <dd>
+                <label>商铺名称：</label>
+                @Model.MerchantStoreName
+            </dd>
+            <dd>
+                <label>项目：</label>
+                @Model.ProjectUnitInfo.ProjectName
+            </dd>
+            <dd>
+                <label>楼宇：</label>
+                @Model.ProjectUnitInfo.BuildingName
+            </dd>
+            <dd>
+                <label>楼层：</label>
+                @Model.ProjectUnitInfo.FloorName
+            </dd>
+            <dd>
+                <label>商铺编号：</label>
+                @Model.ProjectUnitInfo.UnitNumber
+            </dd>
+        </dl>
+        <div class="clear"></div>
+        <div class="hr hr-18 hr-double dotted"></div>
+        <h4 class="lighter">申请内容</h4>
+        <dl class="form-content">
+            <dd>
+                <label>出门时间：</label>
+                @Model.GetOutTime.ToString("yyyy-MM-dd HH:mm")
+            </dd>
+            <dd>
+                <label>物品数量：</label>
+                @Model.Qty
+            </dd>
+            <dd>
+                <label>出门原因：</label>
+                @Model.Reason
+            </dd>
+            <dd>
+                <label>物品概述：</label>
+                @Model.Remark
+            </dd>
+        </dl>
+        <div class="clear"></div>
+    </div>
+    <div class="col-5">
+        @{Html.RenderPartial("Approve/_PartialApprove", Model);}
+    </div>
+</div>
+@Html.Hidden("DocumentID", Model.DocumentID)

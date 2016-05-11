@@ -1,0 +1,74 @@
+﻿@model NHH.Models.Project.ProjectBasicInfoModel
+<h4 class="lighter">基本信息</h4>
+<a class="edit-btn" href="javascript:void(0);" id="lbtnEditBasicInfo">编辑信息</a>
+<div class="hr hr-18 hr-double dotted"></div>
+<dl class="form-content">
+    <dd>
+        <label>项目名称：</label>
+        @Model.ProjectName
+    </dd>
+</dl>
+<div class="clear"></div>
+<dl class="form-content">
+    <dt><i>位置信息</i></dt>
+    <dd>
+        <label>区域：</label>
+        @Model.RegionName
+    </dd>
+    <dd>
+        <label>地址：</label>
+        @Model.ProvinceAndcity
+    </dd>
+    <dd>
+        <label> 详细地址：</label>
+        @Model.AddressLine
+    </dd>
+    <dd>
+        <label>邮政编码：</label>
+        @Model.ZipCode
+    </dd>
+    <dd>
+        <label>位置：</label>
+        @Model.AddressInfo
+    </dd>
+    <dd>
+        <label>经纬度:</label>
+        @string.Format("{0},{1}", Model.Longitude, @Model.Latitude)
+    </dd>
+</dl>
+<div class="clear"></div>
+<dl class="form-content">
+    <dt><i>管理信息</i></dt>
+    <dd>
+        <label>管理公司：</label>
+        @Model.ManageCompanyName
+    </dd>
+    <dd>
+        <label>业主公司：</label>
+        <ul class="list-inline" style="float:right;">
+            @foreach (var owner in Model.OwnerList)
+            {
+                <li>
+                    @owner.CompanyName
+                </li>
+            }
+        </ul>
+    </dd>
+    @*<dd>
+        <label>投资公司：</label>
+        @Model.InvestCompanyName
+    </dd>*@
+</dl>    
+<div class="clear"></div>
+<dl class="form-content textstyle">
+    <dt><i>项目介绍</i></dt>
+    <dd>@Html.Raw(Model.ProjectSummary)</dd>
+</dl>
+<div class="clear"></div>
+<script type="text/javascript">
+    $("#lbtnEditBasicInfo").click(function () {
+        var url = "@Url.Action("EditBasicInfo", "ProjectMgmt", new { area = "Project" })"
+        url += "?projectId=" + $("#ProjectId").val();
+        $("#basicInfo").load(url);
+    });
+</script>

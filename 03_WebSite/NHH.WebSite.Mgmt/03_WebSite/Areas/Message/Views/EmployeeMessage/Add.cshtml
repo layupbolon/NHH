@@ -1,0 +1,116 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Message.EmployeeMessageDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>员工消息</h1>
+        </div><!-- /.page-header -->
+        <div class="row">
+            <div class="col-xs-12">
+                @using (Html.BeginForm("Add", "EmployeeMessage", new { area = "Message" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", name = "EmployeeIssuancesForm", id = "EmployeeIssuancesForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>收件人： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            <div class="col-xs-10 col-sm-5" style="position:relative; padding-left:0; padding-right:0">
+                                <div id="ObjChose" class="chosen-container chosen-container-multi" style="overflow-y:auto; width:100%; height:80px; border:1px solid #d5d5d5;">
+                                    <ul id="employeeList" class="chosen-choices" style="border-width:0;"></ul>
+                                </div>
+                                <div id="employeeContainer" style="position:absolute; z-index:999; width:100%; height:auto; max-height:500px; overflow-x:auto; display:none; background:#fff; border:1px solid #b5b5b5;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>标题： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            @Html.TextBox("Subject", Model.Subject, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red" id="SubjectVai">
+                                    @Html.ValidationMessage("Subject")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>内容： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            @Html.TextArea("Content", Model.Content, new { @class = "col-xs-10 col-sm-5", style = "height:300px;" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red" id="ContentVai">
+                                    @Html.ValidationMessage("Content")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 发布部门： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            <span class="defauletext">@Model.DepartmentName</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">发布人： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            <span class="defauletext">@Model.EmployeeName</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 发布时间： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            <span class="defauletext">@Html.Raw(DateTime.Now.ToString("yyyy-MM-dd HH:mm"))</span>                            
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input class="btn btn-xs btn-success btn-font input-btn formsubmit" type="button" value="提交" id="submitMNotice" style="border-radius: 7px;" />
+                        </div>
+                    </div>
+                    <div style="visibility:collapse;">
+                        @Html.Hidden("UserIdList", Model.UserIdList)
+                    </div>
+                    @Html.HiddenFor(m => m.EmployeeId);
+                }
+            </div>
+        </div>
+    </div>
+</div><!-- /.page-content-area -->
+<script type="text/javascript">
+    $(function () {
+        beforeUnload.config.enable = true;
+        $.ajax({
+            url: "@Url.Action("GetEmployeeList", "EmployeeMessage", new { area = "Message" })",
+            dataType: "HTML",
+            success: function (result, status) {
+                $("#employeeContainer").html(result).hide();
+            }
+        });
+        $("#ObjChose").click(function () {
+            $("#employeeContainer").show();
+        });
+
+        $("#submitMNotice").click(function () {
+            var employeeList = new Array();
+            $(".lnkEmployeeItem").each(function () {
+                employeeList.push($(this).attr("data-userId"));
+            });
+            if (employeeList.length == 0) {
+                alert("请选择收件人");
+                return false;
+            }
+            //开始执行序列化
+            $("#UserIdList").val(employeeList.join(","));
+            $("#EmployeeIssuancesForm").submit();
+        });
+    });
+</script>
+

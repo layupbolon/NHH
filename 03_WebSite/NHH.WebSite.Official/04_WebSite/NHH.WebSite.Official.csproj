@@ -1,0 +1,903 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{927968B3-1A57-411D-9456-7951FF85EC36}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NHH.WebSite.Official</RootNamespace>
+    <AssemblyName>NHH.WebSite.Official</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="ADPositionDetail.aspx" />
+    <Content Include="ADPositionList.aspx" />
+    <Content Include="Business.aspx" />
+    <Content Include="CampaignDetail.aspx" />
+    <Content Include="CampaignList.aspx" />
+    <Content Include="Complain.aspx" />
+    <Content Include="Contacts.aspx" />
+    <Content Include="css\about.css" />
+    <Content Include="css\activity.css" />
+    <Content Include="css\animate.css" />
+    <Content Include="css\business.css" />
+    <Content Include="css\ele_jScrollPane.css" />
+    <Content Include="css\ele_pagenav.css" />
+    <Content Include="css\ele_popWin.css" />
+    <Content Include="css\global.css" />
+    <Content Include="css\home.css" />
+    <Content Include="css\ie-css3.htc" />
+    <Content Include="css\intention.css" />
+    <Content Include="css\select2.css" />
+    <Content Include="css\shop_detail.css" />
+    <Content Include="css\TXR.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="img\2701.jpg" />
+    <Content Include="img\2702.jpg" />
+    <Content Include="img\2703.jpg" />
+    <Content Include="img\2704.jpg" />
+    <Content Include="img\2705.jpg" />
+    <Content Include="img\2706.jpg" />
+    <Content Include="img\2707.jpg" />
+    <Content Include="img\2708.jpg" />
+    <Content Include="img\36251418625788635.gif" />
+    <Content Include="img\aboutM.jpg" />
+    <Content Include="img\about_txt.png" />
+    <Content Include="img\abtn_arrows.png" />
+    <Content Include="img\abtn_dots.png" />
+    <Content Include="img\abtn_dots_black.png" />
+    <Content Include="img\abtn_dots_blue.png" />
+    <Content Include="img\abtn_small.png" />
+    <Content Include="img\activ.png" />
+    <Content Include="img\ad-about.jpg" />
+    <Content Include="img\ad-about.png" />
+    <Content Include="img\ad03.jpg" />
+    <Content Include="img\ad11.jpg" />
+    <Content Include="img\ad_bg_opacity_80.png" />
+    <Content Include="img\ad_bg_opacity_80_201.png" />
+    <Content Include="img\arrows_more.png" />
+    <Content Include="img\avt_01.jpg" />
+    <Content Include="img\avt_02.jpg" />
+    <Content Include="img\banner3.jpg" />
+    <Content Include="img\banner_about.jpg" />
+    <Content Include="img\bg_opacity_50.png" />
+    <Content Include="img\bg_opacity_60.png" />
+    <Content Include="img\bg_opacity_75.png" />
+    <Content Include="img\bg_white_opacity_60.png" />
+    <Content Include="img\blank.gif" />
+    <Content Include="img\btn_search.gif" />
+    <Content Include="img\circus01.jpg" />
+    <Content Include="img\circus02.jpg" />
+    <Content Include="img\circus03.jpg" />
+    <Content Include="img\circus04.jpg" />
+    <Content Include="img\codenhh.jpg" />
+    <Content Include="img\code_big.gif" />
+    <Content Include="img\contact_topban.jpg" />
+    <Content Include="img\content_bg.png" />
+    <Content Include="img\cont_bg_opacity_80.png" />
+    <Content Include="img\dp01.jpg" />
+    <Content Include="img\DZ.jpg" />
+    <Content Include="img\f01.jpg" />
+    <Content Include="img\f02.jpg" />
+    <Content Include="img\f03.jpg" />
+    <Content Include="img\f04.jpg" />
+    <Content Include="img\f05.jpg" />
+    <Content Include="img\f06.jpg" />
+    <Content Include="img\grab.png" />
+    <Content Include="img\grabbing.png" />
+    <Content Include="img\h05.jpg" />
+    <Content Include="img\hd11.jpg" />
+    <Content Include="img\home_ban3.jpg" />
+    <Content Include="img\hot03.jpg" />
+    <Content Include="img\line_bot.gif" />
+    <Content Include="img\line_pj.gif" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\map.png" />
+    <Content Include="img\mouse-down.gif" />
+    <Content Include="img\mouse-down.jpg" />
+    <Content Include="img\mouse-on-down.png" />
+    <Content Include="img\news01.jpg" />
+    <Content Include="img\news01.png" />
+    <Content Include="img\news02.jpg" />
+    <Content Include="img\news03.jpg" />
+    <Content Include="img\news04.jpg" />
+    <Content Include="img\news05.jpg" />
+    <Content Include="img\news06.jpg" />
+    <Content Include="img\news07.jpg" />
+    <Content Include="img\newsA001.jpg" />
+    <Content Include="img\newsA01.jpg" />
+    <Content Include="img\newsA02.jpg" />
+    <Content Include="img\newsA03.jpg" />
+    <Content Include="img\newsA04.jpg" />
+    <Content Include="img\newsA051.jpg" />
+    <Content Include="img\newsA061.jpg" />
+    <Content Include="img\newsB1.jpg" />
+    <Content Include="img\newsB17.jpg" />
+    <Content Include="img\newsB2.jpg" />
+    <Content Include="img\newsB20.jpg" />
+    <Content Include="img\newsB23.jpg" />
+    <Content Include="img\newsB24.jpg" />
+    <Content Include="img\newsB25.jpg" />
+    <Content Include="img\newsB26.jpg" />
+    <Content Include="img\newsB27.jpg" />
+    <Content Include="img\newsB3.jpg" />
+    <Content Include="img\newsB4.jpg" />
+    <Content Include="img\newsB5.JPG" />
+    <Content Include="img\newsB6.JPG" />
+    <Content Include="img\newsB7.jpg" />
+    <Content Include="img\newsB8.jpg" />
+    <Content Include="img\newsB9.jpg" />
+    <Content Include="img\newsmodel.png" />
+    <Content Include="img\panel-arrow.png" />
+    <Content Include="img\phone01.png" />
+    <Content Include="img\phone02.png" />
+    <Content Include="img\phone03.png" />
+    <Content Include="img\phonelogin.png" />
+    <Content Include="img\phone_content_placeholder.png" />
+    <Content Include="img\phone_frame_activity.png" />
+    <Content Include="img\phone_frame_bg.png" />
+    <Content Include="img\pj_line.gif" />
+    <Content Include="img\select2_arrows.gif" />
+    <Content Include="img\select_arrow.gif" />
+    <Content Include="img\share_icon_footer.png" />
+    <Content Include="img\slogan.gif" />
+    <Content Include="img\slogan.png" />
+    <Content Include="img\sprite_icons.png" />
+    <Content Include="img\temp\601.jpg" />
+    <Content Include="img\temp\602.jpg" />
+    <Content Include="img\temp\603.jpg" />
+    <Content Include="img\temp\604.jpg" />
+    <Content Include="img\temp\605.jpg" />
+    <Content Include="img\temp\606.jpg" />
+    <Content Include="img\temp\802A.jpg" />
+    <Content Include="img\temp\802B.jpg" />
+    <Content Include="img\temp\a02.jpg" />
+    <Content Include="img\temp\ac01_1.jpg" />
+    <Content Include="img\temp\ac01_2.jpg" />
+    <Content Include="img\temp\ac01_3.jpg" />
+    <Content Include="img\temp\ac01_4.jpg" />
+    <Content Include="img\temp\ac02_1.jpg" />
+    <Content Include="img\temp\ac02_2.jpg" />
+    <Content Include="img\temp\ac02_3.jpg" />
+    <Content Include="img\temp\ac02_4.jpg" />
+    <Content Include="img\temp\ac02_5.jpg" />
+    <Content Include="img\temp\ac03_1.jpg" />
+    <Content Include="img\temp\ac03_2.jpg" />
+    <Content Include="img\temp\ac03_3.jpg" />
+    <Content Include="img\temp\ac03_4.jpg" />
+    <Content Include="img\temp\ac04_1.jpg" />
+    <Content Include="img\temp\ac04_2.jpg" />
+    <Content Include="img\temp\ac04_3.jpg" />
+    <Content Include="img\temp\ac04_4.jpg" />
+    <Content Include="img\temp\ac04_5.jpg" />
+    <Content Include="img\temp\ac05_1.jpg" />
+    <Content Include="img\temp\ac05_2.jpg" />
+    <Content Include="img\temp\ac05_3.jpg" />
+    <Content Include="img\temp\ac05_4.jpg" />
+    <Content Include="img\temp\ac05_5.jpg" />
+    <Content Include="img\temp\ac05_6.jpg" />
+    <Content Include="img\temp\ac06_1.jpg" />
+    <Content Include="img\temp\ac06_2.jpg" />
+    <Content Include="img\temp\ac06_3.jpg" />
+    <Content Include="img\temp\ac06_4.jpg" />
+    <Content Include="img\temp\ac06_5.jpg" />
+    <Content Include="img\temp\ac06_6.jpg" />
+    <Content Include="img\temp\ac07_1.jpg" />
+    <Content Include="img\temp\ac07_2.jpg" />
+    <Content Include="img\temp\ac07_3.jpg" />
+    <Content Include="img\temp\ac07_4.jpg" />
+    <Content Include="img\temp\ac08_1.jpg" />
+    <Content Include="img\temp\ac08_2.jpg" />
+    <Content Include="img\temp\ac08_3.jpg" />
+    <Content Include="img\temp\ac08_4.jpg" />
+    <Content Include="img\temp\ac08_5.jpg" />
+    <Content Include="img\temp\ac09_1.jpg" />
+    <Content Include="img\temp\ac09_2.jpg" />
+    <Content Include="img\temp\ac09_3.jpg" />
+    <Content Include="img\temp\ac09_4.jpg" />
+    <Content Include="img\temp\ac09_5.jpg" />
+    <Content Include="img\temp\ac10_1.jpg" />
+    <Content Include="img\temp\ac10_2.jpg" />
+    <Content Include="img\temp\ac10_3.jpg" />
+    <Content Include="img\temp\ac10_4.jpg" />
+    <Content Include="img\temp\ac10_5.jpg" />
+    <Content Include="img\temp\ac11_1.jpg" />
+    <Content Include="img\temp\ac11_2.jpg" />
+    <Content Include="img\temp\ac11_3.jpg" />
+    <Content Include="img\temp\ac11_4.jpg" />
+    <Content Include="img\temp\ac11_5.jpg" />
+    <Content Include="img\temp\ac12_1.jpg" />
+    <Content Include="img\temp\ac12_2.jpg" />
+    <Content Include="img\temp\ac12_3.jpg" />
+    <Content Include="img\temp\ac12_4.jpg" />
+    <Content Include="img\temp\ac12_5.jpg" />
+    <Content Include="img\temp\ac12_6.jpg" />
+    <Content Include="img\temp\ac13_1.jpg" />
+    <Content Include="img\temp\ac13_2.jpg" />
+    <Content Include="img\temp\ac13_3.jpg" />
+    <Content Include="img\temp\ac13_4.jpg" />
+    <Content Include="img\temp\ac13_5.jpg" />
+    <Content Include="img\temp\ac14_1.jpg" />
+    <Content Include="img\temp\ac14_2.jpg" />
+    <Content Include="img\temp\ac14_3.jpg" />
+    <Content Include="img\temp\ac14_4.jpg" />
+    <Content Include="img\temp\ac14_5.jpg" />
+    <Content Include="img\temp\ac15_1.jpg" />
+    <Content Include="img\temp\ac15_2.jpg" />
+    <Content Include="img\temp\ac15_3.jpg" />
+    <Content Include="img\temp\ac15_4.jpg" />
+    <Content Include="img\temp\ac15_5.jpg" />
+    <Content Include="img\temp\ac15_6.jpg" />
+    <Content Include="img\temp\ac16_1.jpg" />
+    <Content Include="img\temp\ac16_2.jpg" />
+    <Content Include="img\temp\ac16_3.jpg" />
+    <Content Include="img\temp\ac17_1.jpg" />
+    <Content Include="img\temp\ac17_2.jpg" />
+    <Content Include="img\temp\ac17_3.jpg" />
+    <Content Include="img\temp\ac18_1.jpg" />
+    <Content Include="img\temp\ac18_2.1.jpg" />
+    <Content Include="img\temp\ac18_2.jpg" />
+    <Content Include="img\temp\ac18_3.jpg" />
+    <Content Include="img\temp\ac18_4.jpg" />
+    <Content Include="img\temp\ac18_5.jpg" />
+    <Content Include="img\temp\ac18_6.jpg" />
+    <Content Include="img\temp\ac18_7.jpg" />
+    <Content Include="img\temp\ac19_1.jpg" />
+    <Content Include="img\temp\ac19_2.jpg" />
+    <Content Include="img\temp\ac19_3.jpg" />
+    <Content Include="img\temp\ac20_1.jpg" />
+    <Content Include="img\temp\ac20_2.jpg" />
+    <Content Include="img\temp\ac20_3.jpg" />
+    <Content Include="img\temp\ac20_4.jpg" />
+    <Content Include="img\temp\ac20_5.jpg" />
+    <Content Include="img\temp\act_bg.jpg" />
+    <Content Include="img\temp\ad01.gif" />
+    <Content Include="img\temp\ad01.jpg" />
+    <Content Include="img\temp\ad02.jpg" />
+    <Content Include="img\temp\ad03.jpg" />
+    <Content Include="img\temp\ad04.jpg" />
+    <Content Include="img\temp\ad05.jpg" />
+    <Content Include="img\temp\ad06.jpg" />
+    <Content Include="img\temp\ad07.jpg" />
+    <Content Include="img\temp\ad08.jpg" />
+    <Content Include="img\temp\ad09.jpg" />
+    <Content Include="img\temp\ad10.jpg" />
+    <Content Include="img\temp\ad11.jpg" />
+    <Content Include="img\temp\adposition_pic.jpg" />
+    <Content Include="img\temp\al01.jpg" />
+    <Content Include="img\temp\al02.jpg" />
+    <Content Include="img\temp\al03.jpg" />
+    <Content Include="img\temp\banner1.jpg" />
+    <Content Include="img\temp\banner1_initial.jpg" />
+    <Content Include="img\temp\banner2.jpg" />
+    <Content Include="img\temp\banner2_initial.jpg" />
+    <Content Include="img\temp\banner4.jpg" />
+    <Content Include="img\temp\blank.gif" />
+    <Content Include="img\temp\bus_01.jpg" />
+    <Content Include="img\temp\code.png" />
+    <Content Include="img\temp\con_topban.jpg" />
+    <Content Include="img\temp\d01.jpg" />
+    <Content Include="img\temp\d02.jpg" />
+    <Content Include="img\temp\d03.jpg" />
+    <Content Include="img\temp\d04.jpg" />
+    <Content Include="img\temp\d051a.jpg" />
+    <Content Include="img\temp\d051b.jpg" />
+    <Content Include="img\temp\d051c.jpg" />
+    <Content Include="img\temp\d051d.jpg" />
+    <Content Include="img\temp\d051e.jpg" />
+    <Content Include="img\temp\d061a.jpg" />
+    <Content Include="img\temp\d061b.jpg" />
+    <Content Include="img\temp\d061c.jpg" />
+    <Content Include="img\temp\d061d.jpg" />
+    <Content Include="img\temp\d061e.jpg" />
+    <Content Include="img\temp\d061f.jpg" />
+    <Content Include="img\temp\d061g.jpg" />
+    <Content Include="img\temp\default_img.jpg" />
+    <Content Include="img\temp\dp01.jpg" />
+    <Content Include="img\temp\dp02.jpg" />
+    <Content Include="img\temp\dp03.jpg" />
+    <Content Include="img\temp\h01.jpg" />
+    <Content Include="img\temp\h02.jpg" />
+    <Content Include="img\temp\h04.jpg" />
+    <Content Include="img\temp\h05.jpg" />
+    <Content Include="img\temp\h06.jpg" />
+    <Content Include="img\temp\h07.jpg" />
+    <Content Include="img\temp\h08.jpg" />
+    <Content Include="img\temp\h081.jpg" />
+    <Content Include="img\temp\h09.jpg" />
+    <Content Include="img\temp\h10.jpg" />
+    <Content Include="img\temp\h13.jpg" />
+    <Content Include="img\temp\home_ban1.jpg" />
+    <Content Include="img\temp\home_ban2.jpg" />
+    <Content Include="img\temp\home_ban4.jpg" />
+    <Content Include="img\temp\hot01.jpg" />
+    <Content Include="img\temp\hot02.jpg" />
+    <Content Include="img\temp\hot03.jpg" />
+    <Content Include="img\temp\hot04.jpg" />
+    <Content Include="img\temp\hot05.jpg" />
+    <Content Include="img\temp\hot07.jpg" />
+    <Content Include="img\temp\hot08.jpg" />
+    <Content Include="img\temp\hot09.jpg" />
+    <Content Include="img\temp\join_pic.jpg" />
+    <Content Include="img\temp\k01.jpg" />
+    <Content Include="img\temp\k02.jpg" />
+    <Content Include="img\temp\k03.jpg" />
+    <Content Include="img\temp\k04.jpg" />
+    <Content Include="img\temp\kpposition_pic.jpg" />
+    <Content Include="img\temp\ky.jpg" />
+    <Content Include="img\temp\ky01.jpg" />
+    <Content Include="img\temp\ky02.jpg" />
+    <Content Include="img\temp\ky03.jpg" />
+    <Content Include="img\temp\ky04.jpg" />
+    <Content Include="img\temp\ky05.jpg" />
+    <Content Include="img\temp\ky06.jpg" />
+    <Content Include="img\temp\ky07.jpg" />
+    <Content Include="img\temp\Multi_pic.jpg" />
+    <Content Include="img\temp\n01.jpg" />
+    <Content Include="img\temp\n02.jpg" />
+    <Content Include="img\temp\n03.jpg" />
+    <Content Include="img\temp\n04.jpg" />
+    <Content Include="img\temp\n05.jpg" />
+    <Content Include="img\temp\n06.jpg" />
+    <Content Include="img\temp\n07.jpg" />
+    <Content Include="img\temp\n08.jpg" />
+    <Content Include="img\temp\n09.jpg" />
+    <Content Include="img\temp\n10.jpg" />
+    <Content Include="img\temp\n11-01.jpg" />
+    <Content Include="img\temp\n11-02.jpg" />
+    <Content Include="img\temp\n11-03.jpg" />
+    <Content Include="img\temp\n11-04.jpg" />
+    <Content Include="img\temp\n11.jpg" />
+    <Content Include="img\temp\n12-01.jpg" />
+    <Content Include="img\temp\n12-02.jpg" />
+    <Content Include="img\temp\n12-1.jpg" />
+    <Content Include="img\temp\n12-2.jpg" />
+    <Content Include="img\temp\n12-3.jpg" />
+    <Content Include="img\temp\n13-01.jpg" />
+    <Content Include="img\temp\n13-02.jpg" />
+    <Content Include="img\temp\n13-03.jpg" />
+    <Content Include="img\temp\n13-04.jpg" />
+    <Content Include="img\temp\n13-05.jpg" />
+    <Content Include="img\temp\n13.jpg" />
+    <Content Include="img\temp\n14-02.jpg" />
+    <Content Include="img\temp\n14-03.jpg" />
+    <Content Include="img\temp\n14-04.jpg" />
+    <Content Include="img\temp\n14-05.jpg" />
+    <Content Include="img\temp\n14-06.jpg" />
+    <Content Include="img\temp\n14-07.jpg" />
+    <Content Include="img\temp\n14-08.jpg" />
+    <Content Include="img\temp\n14-09.jpg" />
+    <Content Include="img\temp\n14.jpg" />
+    <Content Include="img\temp\n15-01.jpg" />
+    <Content Include="img\temp\n16-01.jpg" />
+    <Content Include="img\temp\n16-02.jpg" />
+    <Content Include="img\temp\n16-03.jpg" />
+    <Content Include="img\temp\n16-B01.jpg" />
+    <Content Include="img\temp\n16-B02.jpg" />
+    <Content Include="img\temp\n16-B03.jpg" />
+    <Content Include="img\temp\n17-01.jpg" />
+    <Content Include="img\temp\n17-02.jpg" />
+    <Content Include="img\temp\n18-01.jpg" />
+    <Content Include="img\temp\n18-02.jpg" />
+    <Content Include="img\temp\n18-03.jpg" />
+    <Content Include="img\temp\n18-04.jpg" />
+    <Content Include="img\temp\n19-01.jpg" />
+    <Content Include="img\temp\n19-02.jpg" />
+    <Content Include="img\temp\n19-03.jpg" />
+    <Content Include="img\temp\n20-01.jpg" />
+    <Content Include="img\temp\n20-02.jpg" />
+    <Content Include="img\temp\n20-03.jpg" />
+    <Content Include="img\temp\n20-04.jpg" />
+    <Content Include="img\temp\n21-01.jpg" />
+    <Content Include="img\temp\n21-02.jpg" />
+    <Content Include="img\temp\n21-03.jpg" />
+    <Content Include="img\temp\n21-04.jpg" />
+    <Content Include="img\temp\n22-01.jpg" />
+    <Content Include="img\temp\n22-02.jpg" />
+    <Content Include="img\temp\n22-03.jpg" />
+    <Content Include="img\temp\n22-04.jpg" />
+    <Content Include="img\temp\n22-05.jpg" />
+    <Content Include="img\temp\n22-06.jpg" />
+    <Content Include="img\temp\n22-07.jpg" />
+    <Content Include="img\temp\n23-01.jpg" />
+    <Content Include="img\temp\n23-02.jpg" />
+    <Content Include="img\temp\n23-03.jpg" />
+    <Content Include="img\temp\n23-04.jpg" />
+    <Content Include="img\temp\n23-05.jpg" />
+    <Content Include="img\temp\n24-01.jpg" />
+    <Content Include="img\temp\n24-02.jpg" />
+    <Content Include="img\temp\n24-03.jpg" />
+    <Content Include="img\temp\n24-04.jpg" />
+    <Content Include="img\temp\n25-01.jpg" />
+    <Content Include="img\temp\n25-02.jpg" />
+    <Content Include="img\temp\n25-021.jpg" />
+    <Content Include="img\temp\n25-03.jpg" />
+    <Content Include="img\temp\n26-01.jpg" />
+    <Content Include="img\temp\n26-02.jpg" />
+    <Content Include="img\temp\n26-03.jpg" />
+    <Content Include="img\temp\n27-01.jpg" />
+    <Content Include="img\temp\n27-02.jpg" />
+    <Content Include="img\temp\news01.jpg" />
+    <Content Include="img\temp\newsB21.jpg" />
+    <Content Include="img\temp\newsB22.jpg" />
+    <Content Include="img\temp\pj_banner001.jpg" />
+    <Content Include="img\temp\pj_banner002.jpg" />
+    <Content Include="img\temp\pj_banner003.jpg" />
+    <Content Include="img\temp\pj_banner004.jpg" />
+    <Content Include="img\temp\pj_banner01.jpg" />
+    <Content Include="img\temp\pj_banner02.jpg" />
+    <Content Include="img\temp\pj_banner03.jpg" />
+    <Content Include="img\temp\pj_banner04.jpg" />
+    <Content Include="img\temp\pj_banner05.jpg" />
+    <Content Include="img\temp\pj_banner06.jpg" />
+    <Content Include="img\temp\pj_banner07.jpg" />
+    <Content Include="img\temp\pj_banner08.jpg" />
+    <Content Include="img\temp\pj_banner09.jpg" />
+    <Content Include="img\temp\pj_banner10.jpg" />
+    <Content Include="img\temp\pj_banner11.jpg" />
+    <Content Include="img\temp\pj_banner12.jpg" />
+    <Content Include="img\temp\pj_banner13.jpg" />
+    <Content Include="img\temp\pj_banner14.jpg" />
+    <Content Include="img\temp\pj_banner15.jpg" />
+    <Content Include="img\temp\pj_banner16.jpg" />
+    <Content Include="img\temp\pj_banner17.jpg" />
+    <Content Include="img\temp\pj_top001.jpg" />
+    <Content Include="img\temp\pj_top002.jpg" />
+    <Content Include="img\temp\pj_top003.jpg" />
+    <Content Include="img\temp\pj_top004.jpg" />
+    <Content Include="img\temp\pj_top01.jpg" />
+    <Content Include="img\temp\pj_top02.jpg" />
+    <Content Include="img\temp\pj_top03.jpg" />
+    <Content Include="img\temp\pj_top04.jpg" />
+    <Content Include="img\temp\pj_top05.jpg" />
+    <Content Include="img\temp\pj_top06.jpg" />
+    <Content Include="img\temp\pj_top07.jpg" />
+    <Content Include="img\temp\pj_top08.jpg" />
+    <Content Include="img\temp\pj_top09.jpg" />
+    <Content Include="img\temp\pj_top10.jpg" />
+    <Content Include="img\temp\pj_top11.jpg" />
+    <Content Include="img\temp\pj_top12.jpg" />
+    <Content Include="img\temp\pj_top13.jpg" />
+    <Content Include="img\temp\pj_top14.jpg" />
+    <Content Include="img\temp\pj_top15.jpg" />
+    <Content Include="img\temp\pj_top16.jpg" />
+    <Content Include="img\temp\pj_top17.jpg" />
+    <Content Include="img\temp\proj_topban.jpg" />
+    <Content Include="img\temp\property_service.gif" />
+    <Content Include="img\temp\pr_01.jpg" />
+    <Content Include="img\temp\pr_02.jpg" />
+    <Content Include="img\temp\pr_03.jpg" />
+    <Content Include="img\temp\pr_04.jpg" />
+    <Content Include="img\temp\pr_05.jpg" />
+    <Content Include="img\temp\pr_06.jpg" />
+    <Content Include="img\temp\s01.jpg" />
+    <Content Include="img\temp\ss.jpg" />
+    <Content Include="img\temp\temp_gallery_1.jpg" />
+    <Content Include="img\temp\temp_gallery_2.jpg" />
+    <Content Include="img\temp\temp_mall_activity_1.jpg" />
+    <Content Include="img\temp\temp_mall_activity_2.jpg" />
+    <Content Include="img\temp\temp_mall_activity_3.jpg" />
+    <Content Include="img\temp\temp_shoplist_1.jpg" />
+    <Content Include="img\temp\temp_shop_1_big.jpg" />
+    <Content Include="img\temp\temp_shop_1_mid.jpg" />
+    <Content Include="img\temp\temp_shop_1_small.jpg" />
+    <Content Include="img\temp\temp_shop_2_big.jpg" />
+    <Content Include="img\temp\temp_shop_2_mid.jpg" />
+    <Content Include="img\temp\temp_shop_2_small.jpg" />
+    <Content Include="img\temp\tf01.jpg" />
+    <Content Include="img\temp\tf02.jpg" />
+    <Content Include="img\temp\tf03.jpg" />
+    <Content Include="img\temp\txe_pic.png" />
+    <Content Include="img\temp\txr_one.jpg" />
+    <Content Include="img\temp\xd.jpg" />
+    <Content Include="img\temp\xd01.jpg" />
+    <Content Include="img\temp\xd02.jpg" />
+    <Content Include="img\temp\xd03.jpg" />
+    <Content Include="img\temp\xd04.jpg" />
+    <Content Include="img\temp\xd05.jpg" />
+    <Content Include="img\temp\xd051.jpg" />
+    <Content Include="img\temp\xd06.jpg" />
+    <Content Include="img\temp\xd07.jpg" />
+    <Content Include="img\temp\xd08.jpg" />
+    <Content Include="img\temp\y01.jpg" />
+    <Content Include="img\temp\y02.jpg" />
+    <Content Include="img\temp\y03.jpg" />
+    <Content Include="img\temp\zb.jpg" />
+    <Content Include="img\temp\zb01.jpg" />
+    <Content Include="img\temp\zb02.jpg" />
+    <Content Include="img\temp\zb03.jpg" />
+    <Content Include="img\temp\zb04.jpg" />
+    <Content Include="img\temp\zb05.jpg" />
+    <Content Include="img\temp\zb06.jpg" />
+    <Content Include="img\temp\zb07.jpg" />
+    <Content Include="img\temp\未标题-1.jpg" />
+    <Content Include="img\tip-qrcode.png" />
+    <Content Include="img\tool_box_icon.png" />
+    <Content Include="img\top_about.jpg" />
+    <Content Include="img\txebg_top.png" />
+    <Content Include="img\txe_activity_1.jpg" />
+    <Content Include="img\txe_activity_2.jpg" />
+    <Content Include="img\txe_activity_3.jpg" />
+    <Content Include="img\txe_activity_4.jpg" />
+    <Content Include="img\txe_activity_5.jpg" />
+    <Content Include="img\txe_page1_item_1.jpg" />
+    <Content Include="img\txe_page2_item_1.jpg" />
+    <Content Include="img\txe_page3_item_1.jpg" />
+    <Content Include="img\u01.png" />
+    <Content Include="img\u01_white.png" />
+    <Content Include="img\u02.png" />
+    <Content Include="img\u02_white.png" />
+    <Content Include="img\u03.png" />
+    <Content Include="img\u03_white.png" />
+    <Content Include="img\u04.png" />
+    <Content Include="img\u04_white.png" />
+    <Content Include="img\u05.png" />
+    <Content Include="img\u05_white.png" />
+    <Content Include="img\u06.png" />
+    <Content Include="img\u06_white.png" />
+    <Content Include="img\u07.png" />
+    <Content Include="img\u07_white.png" />
+    <Content Include="img\u08.png" />
+    <Content Include="img\u08_white.png" />
+    <Content Include="img\u09.png" />
+    <Content Include="img\u09_white.png" />
+    <Content Include="img\zq.jpg" />
+    <Content Include="Index.aspx" />
+    <Content Include="Intention.aspx" />
+    <Content Include="js\activity.js" />
+    <Content Include="js\business.js" />
+    <Content Include="js\DD_belatedPNG_0.0.8a-min.js" />
+    <Content Include="js\fancybox\blank.gif" />
+    <Content Include="js\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="js\fancybox\fancybox_loading.gif" />
+    <Content Include="js\fancybox\fancybox_overlay.png" />
+    <Content Include="js\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="js\fancybox\fancybox_sprite.png" />
+    <Content Include="js\fancybox\jquery.fancybox.css" />
+    <Content Include="js\fancybox\jquery.fancybox.pack.js" />
+    <Content Include="js\global.js" />
+    <Content Include="js\home.js" />
+    <Content Include="js\html5shiv.js" />
+    <Content Include="js\jquery-1.6.2.min.js" />
+    <Content Include="js\jquery-1.8.3.min.js" />
+    <Content Include="js\jquery.easing.1.3.js" />
+    <Content Include="js\jquery.scrollify.min.js" />
+    <Content Include="js\jquery.scrollTo.min.js" />
+    <Content Include="js\jquery.Xslider.js" />
+    <Content Include="js\jqzoom.js" />
+    <Content Include="js\killercarousel\background.gif" />
+    <Content Include="js\killercarousel\killercarousel.css" />
+    <Content Include="js\killercarousel\killercarousel.patched.js" />
+    <Content Include="js\killercarousel\killercarousel.unpatched.js" />
+    <Content Include="js\killercarousel\shadow-bottom.png" />
+    <Content Include="js\killercarousel\shadow-left.png" />
+    <Content Include="js\killercarousel\shadow-right.png" />
+    <Content Include="js\news.js" />
+    <Content Include="js\select2.js" />
+    <Content Include="js\select2.min.js" />
+    <Content Include="js\shop_detail.js" />
+    <Content Include="js\swiper\swiper-3.0.4.min.js" />
+    <Content Include="js\swiper\swiper.css" />
+    <Content Include="js\test\jquery.scrollspy.js" />
+    <Content Include="js\test\ScrollToPlugin.min.js" />
+    <Content Include="js\test\test.js" />
+    <Content Include="js\test\triangle.js" />
+    <Content Include="js\test\TweenMax.min.js" />
+    <Content Include="js\txe.js" />
+    <Content Include="js\ui.base.js" />
+    <Content Include="js\ui.Xslider.js" />
+    <Content Include="KioskDetail.aspx" />
+    <Content Include="KioskList.aspx" />
+    <Content Include="News.aspx" />
+    <Content Include="NewsList.aspx" />
+    <Content Include="Project.aspx" />
+    <Content Include="ProjectList.aspx" />
+    <Content Include="Tang.aspx" />
+    <Content Include="UnitDetail.aspx" />
+    <Content Include="UnitList.aspx" />
+    <Content Include="UserControl\foot.ascx" />
+    <Content Include="UserControl\head.ascx" />
+    <Content Include="UserControl\script.ascx" />
+    <Content Include="UserControl\toolbox.ascx" />
+    <Content Include="Services.config" />
+    <Content Include="Params.config" />
+    <Content Include="img\temp\Thumbs.db" />
+    <Content Include="img\Thumbs.db" />
+    <Content Include="js\jquery.Xslider.jsbak" />
+    <Content Include="video\Thumbs.db" />
+    <Content Include="packages.config" />
+    <Content Include="Handler\NHHCGHandler.ashx" />
+    <None Include="Properties\PublishProfiles\1.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="video\NHHCOMMERCIAL.mp4" />
+    <Content Include="video\NHHCOMMERCIAL_0.mp4" />
+    <Content Include="video\Simon_Holiday_2015_-_720.mp4" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ADPositionDetail.aspx.cs">
+      <DependentUpon>ADPositionDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ADPositionDetail.aspx.designer.cs">
+      <DependentUpon>ADPositionDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ADPositionList.aspx.cs">
+      <DependentUpon>ADPositionList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ADPositionList.aspx.designer.cs">
+      <DependentUpon>ADPositionList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Business.aspx.cs">
+      <DependentUpon>Business.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business.aspx.designer.cs">
+      <DependentUpon>Business.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CampaignDetail.aspx.cs">
+      <DependentUpon>CampaignDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CampaignDetail.aspx.designer.cs">
+      <DependentUpon>CampaignDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CampaignList.aspx.cs">
+      <DependentUpon>CampaignList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CampaignList.aspx.designer.cs">
+      <DependentUpon>CampaignList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Complain.aspx.cs">
+      <DependentUpon>Complain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Complain.aspx.designer.cs">
+      <DependentUpon>Complain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contacts.aspx.cs">
+      <DependentUpon>Contacts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contacts.aspx.designer.cs">
+      <DependentUpon>Contacts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\NHHCGHandler.ashx.cs">
+      <DependentUpon>NHHCGHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Intention.aspx.cs">
+      <DependentUpon>Intention.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Intention.aspx.designer.cs">
+      <DependentUpon>Intention.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KioskDetail.aspx.cs">
+      <DependentUpon>KioskDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KioskDetail.aspx.designer.cs">
+      <DependentUpon>KioskDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="KioskList.aspx.cs">
+      <DependentUpon>KioskList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="KioskList.aspx.designer.cs">
+      <DependentUpon>KioskList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="News.aspx.cs">
+      <DependentUpon>News.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="News.aspx.designer.cs">
+      <DependentUpon>News.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewsList.aspx.cs">
+      <DependentUpon>NewsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NewsList.aspx.designer.cs">
+      <DependentUpon>NewsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Project.aspx.cs">
+      <DependentUpon>Project.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Project.aspx.designer.cs">
+      <DependentUpon>Project.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectList.aspx.cs">
+      <DependentUpon>ProjectList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProjectList.aspx.designer.cs">
+      <DependentUpon>ProjectList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tang.aspx.cs">
+      <DependentUpon>Tang.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tang.aspx.designer.cs">
+      <DependentUpon>Tang.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UnitDetail.aspx.cs">
+      <DependentUpon>UnitDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UnitDetail.aspx.designer.cs">
+      <DependentUpon>UnitDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UnitList.aspx.cs">
+      <DependentUpon>UnitList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UnitList.aspx.designer.cs">
+      <DependentUpon>UnitList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\foot.ascx.cs">
+      <DependentUpon>foot.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\foot.ascx.designer.cs">
+      <DependentUpon>foot.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\head.ascx.cs">
+      <DependentUpon>head.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\head.ascx.designer.cs">
+      <DependentUpon>head.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\script.ascx.cs">
+      <DependentUpon>script.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\script.ascx.designer.cs">
+      <DependentUpon>script.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\toolbox.ascx.cs">
+      <DependentUpon>toolbox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\toolbox.ascx.designer.cs">
+      <DependentUpon>toolbox.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\01_Framework\Core\NHH.Framework.Core.csproj">
+      <Project>{954f55d4-1de6-4ad8-b4e7-4d3a52c3a3eb}</Project>
+      <Name>NHH.Framework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\03_Service\Official\NHH.Service.Official.csproj">
+      <Project>{a65c4d1a-0ad0-4d0f-b27e-5a7e380025a4}</Project>
+      <Name>NHH.Service.Official</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\05_Models\Common\NHH.Models.Common.csproj">
+      <Project>{c1f81f13-9f5d-4673-91a3-c9b564e8dbce}</Project>
+      <Name>NHH.Models.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\05_Models\Official\NHH.Models.Official.csproj">
+      <Project>{fbea2566-8116-45b7-9ff7-eb9e50d20a11}</Project>
+      <Name>NHH.Models.Official</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64377</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64377/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

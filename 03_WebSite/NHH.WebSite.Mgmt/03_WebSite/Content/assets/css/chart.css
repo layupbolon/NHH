@@ -1,0 +1,15 @@
+﻿@charset "utf-8";
+/* Chart CSS Document */
+
+.chart h4 {
+	font-size: 18px;
+	color: #ff8b62;
+}
+.chartT3 h6, .chartT1 h6 {
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 105px;
+}
+.chartT1 h6 {
+	margin-left: 380px;
+}

@@ -1,0 +1,16 @@
+﻿@model NHH.Models.Project.FloorMapUnitInfo
+<table>
+    <tr><td class='infoarea-title'>平面图编号：</td><td>  @Model.FloorMapUnitID  </td></tr>
+    <tr><td class='infoarea-title'>商铺编号：</td><td> @Model.UnitNumber </td></tr>
+    <tr><td class='infoarea-title'>商铺面积：</td><td> @Model.UnitAera.ToString(".00") </td></tr>
+    <tr><td class='infoarea-title'>商铺状态：</td><td> @Model.UnitStatusName </td></tr>
+    <tr><td class='infoarea-title'>商铺类型：</td><td> @Model.UnitTypeName </td></tr>
+    <tr><td class='infoarea-title'>合同状态：</td><td> @Model.ContractStatusName </td></tr>
+    <tr><td class='infoarea-title'>商户名称：</td><td> @Model.BrandName </td></tr>
+    <tr><td class='infoarea-title'>合同开始时间：</td><td> @Model.ContractStartDate </td></tr>
+    <tr><td class='infoarea-title'>合同结束时间：</td><td> @Model.ContractEndDate </td></tr>
+    <tr><td class='infoarea-title'>合同期：</td><td> @Model.ContractLength </td></tr>
+    <tr><td class='infoarea-title'>计租面积：</td><td> @Model.ContractArea </td></tr>
+    <tr><td class='infoarea-title'>月租金：</td><td>  @Model.ContractUnitRent 每日每平方</td></tr>
+    <tr><td class='infoarea-title'>月物业费：</td><td> @Model.ContractMgmtFee </td></tr>   
+</table>

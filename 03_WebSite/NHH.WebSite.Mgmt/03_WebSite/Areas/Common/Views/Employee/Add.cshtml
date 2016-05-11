@@ -1,0 +1,198 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Common.Employee.EmployeeDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>新增员工</h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                @using (Html.BeginForm("Add", "Employee", new { area = "Common" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+                {
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>员工编号： </label>
+                        <div class="col-sm-9">
+                            @Html.TextBox("EmployeeCode", null, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("EmployeeCode")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>员工姓名： </label>
+                        <div class="col-sm-9">
+                            @Html.TextBox("EmployeeName", null, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("EmployeeName")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Success Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>身份证号： </label>
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(m => m.IDNumber, null, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("IDNumber")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Success Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>职务： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBox("Title", null, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("Title")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>标签： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBox("Tag", null, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("Tag")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- double input Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>邮箱地址： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBox("Email", null, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("Email")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                     <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>手机： </label>
+
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBox("Moblie", null, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("Moblie")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 座机： </label>
+
+                        <div class="col-sm-9 input-merge">@Html.TextBox("Phone", null, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 分机： </label>
+
+                        <div class="col-sm-9 input-merge">@Html.TextBox("Ext", null, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <!-- unit Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span> 性别： </label>
+
+                        <div class="col-sm-9 input-merge">
+                            <ul>
+                                <li>
+                                    <label>
+                                        @Html.RadioButton("GenderId", "1", true, new { @id = "GenderId1", @name = "GenderId" }) 男
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        @Html.RadioButton("GenderId", "2", false, new { @id = "GenderId2", @name = "GenderId" }) 女
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- unit Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 生日： </label>
+                        <div class="col-sm-9 input-merge input-daterange input-group">
+                            <span class="date-icon chosen-icon">
+                                @Html.TextBox("Birthday", Model.Birthday, new { @class = "input-sm form-control col-xs-10 col-sm-2", name = "start" })
+                                <i class="date-exchange"></i>
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+
+                        <div class="col-sm-9 input-merge">
+                            <ul>
+                                <li>
+                                    <label>
+                                        @Html.CheckBox("SysUserOrNot", true)分配系统帐号
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Typeahead Form -->
+
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input class="btn btn-xs btn-success btn-font input-btn formsubmit" type="submit" value="提交信息" />
+                            &nbsp; &nbsp; &nbsp;
+                            <input class="btn btn-xs btn-font btn-cancel" type="reset" value="重置" />
+                        </div>
+                    </div>
+                    @Html.Hidden("DepartmentId", Model.DepartmentId);
+
+                }
+                <!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content-area -->
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        beforeUnload.config.enable = true;
+    });
+</script>

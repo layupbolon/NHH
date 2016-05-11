@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6c060c51338d48c4b131804d85fd62c9" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="NHH.Entities.Approve_Config" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Approve_Process" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Banner" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Banner_Location" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="NHH.Entities.BannerInfo" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NHH.Entities.BizCategory" Width="1.5" PointX="15.75" PointY="114.5" />
+        <EntityTypeShape EntityType="NHH.Entities.BizType" Width="1.5" PointX="13.5" PointY="114.875" />
+        <EntityTypeShape EntityType="NHH.Entities.Brand" Width="1.5" PointX="10.5" PointY="61.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Campaign" Width="1.5" PointX="29.25" PointY="68.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Campaign_Attachment" Width="1.5" PointX="31.5" PointY="67.625" />
+        <EntityTypeShape EntityType="NHH.Entities.Campaign_Comment" Width="1.5" PointX="31.5" PointY="63.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Campaign_Page" Width="1.5" PointX="31.5" PointY="71.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Campaign_Result" Width="1.5" PointX="31.5" PointY="76.125" />
+        <EntityTypeShape EntityType="NHH.Entities.City" Width="1.5" PointX="5.25" PointY="93.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Company" Width="1.5" PointX="5.25" PointY="84.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Company_Finance" Width="1.5" PointX="7.5" PointY="97.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Complaint" Width="1.5" PointX="9.75" PointY="78.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Complaint_Attachment" Width="1.5" PointX="12" PointY="77.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Complaint_Comment" Width="1.5" PointX="12" PointY="72.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Complaint_Log" Width="1.5" PointX="12" PointY="95.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Contract" Width="1.5" PointX="12.75" PointY="83.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Contract_Appendix" Width="1.5" PointX="15" PointY="132.625" />
+        <EntityTypeShape EntityType="NHH.Entities.Contract_Brand" Width="1.5" PointX="15" PointY="93" />
+        <EntityTypeShape EntityType="NHH.Entities.Contract_PaymentTerms" Width="1.5" PointX="18" PointY="86.375" />
+        <EntityTypeShape EntityType="NHH.Entities.Contract_RemindRecord" Width="1.5" PointX="6.75" PointY="5.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Contract_Supplementary" Width="1.5" PointX="15" PointY="85.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Contract_Template" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Contract_Unit" Width="1.5" PointX="15" PointY="129" />
+        <EntityTypeShape EntityType="NHH.Entities.Contract_UnitSpec" Width="1.5" PointX="18" PointY="79.25" />
+        <EntityTypeShape EntityType="NHH.Entities.Department" Width="1.5" PointX="10.5" PointY="90.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Dictionary" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="NHH.Entities.District" Width="1.5" PointX="7.5" PointY="94.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Employee" Width="1.5" PointX="24.75" PointY="74.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Finance_Accrual" Width="1.5" PointX="21" PointY="85.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Finance_Item" Width="1.5" PointX="15.75" PointY="96.875" />
+        <EntityTypeShape EntityType="NHH.Entities.Finance_Settlement" Width="1.5" PointX="15" PointY="76.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Finance_SettlementDetail" Width="1.5" PointX="23.25" PointY="81.875" />
+        <EntityTypeShape EntityType="NHH.Entities.FloorMap_Unit" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Intention" Width="1.5" PointX="8.75" PointY="5.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Material" Width="1.5" PointX="28.5" PointY="97" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant" Width="1.5" PointX="7.5" PointY="74.25" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_Attachment" Width="1.5" PointX="10.5" PointY="67.625" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_Brand" Width="1.5" PointX="12.75" PointY="64" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_Documents" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_Documents_DecorateRequest" Width="1.5" PointX="6.75" PointY="9.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_Documents_DelayOperateRequest" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_Documents_GetOutRequest" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_Finance" Width="1.5" PointX="9.75" PointY="95" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_Message" Width="1.5" PointX="20.25" PointY="97.375" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_Request" Width="1.5" PointX="10.75" PointY="4.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_Revenue" Width="1.5" PointX="25.25" PointY="93.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_Role" Width="1.5" PointX="9.75" PointY="74.625" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_Store" Width="1.5" PointX="18" PointY="91.375" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_StoreImage" Width="1.5" PointX="23.25" PointY="88.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_StoreMeter" Width="1.5" PointX="20.25" PointY="92.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_User" Width="1.5" PointX="26.25" PointY="84.625" />
+        <EntityTypeShape EntityType="NHH.Entities.Merchant_UserPaper" Width="1.5" PointX="28.5" PointY="86.625" />
+        <EntityTypeShape EntityType="NHH.Entities.Message" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Message_Template" Width="1.5" PointX="10.75" PointY="11.75" />
+        <EntityTypeShape EntityType="NHH.Entities.News" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NHH.Entities.NHHCG_ADPosition" Width="1.5" PointX="12.75" PointY="6.75" />
+        <EntityTypeShape EntityType="NHH.Entities.NHHCG_Complaint" Width="1.5" PointX="12.75" PointY="12.75" />
+        <EntityTypeShape EntityType="NHH.Entities.NHHCG_Feedback" Width="1.5" PointX="2.75" PointY="13.75" />
+        <EntityTypeShape EntityType="NHH.Entities.NHHCG_Kiosk" Width="1.5" PointX="4.75" PointY="13.75" />
+        <EntityTypeShape EntityType="NHH.Entities.NHHCG_Pic" Width="1.5" PointX="6.75" PointY="13.75" />
+        <EntityTypeShape EntityType="NHH.Entities.NHHCG_Project" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NHH.Entities.NHHCG_Unit" Width="1.5" PointX="14.75" PointY="6.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Project" Width="1.5" PointX="7.5" PointY="83.625" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_AdPoint" Width="1.5" PointX="15" PointY="102.625" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_Batch" Width="1.5" PointX="9.75" PointY="127.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_BatchUnit" Width="1.5" PointX="12" PointY="127.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_BizConfig" Width="1.5" PointX="12" PointY="103" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_Building" Width="1.5" PointX="9.75" PointY="120.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_Floor" Width="1.5" PointX="12" PointY="108.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_Kiosk" Width="1.5" PointX="17.25" PointY="104.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_Owner" Width="1.5" PointX="9.75" PointY="86.875" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_Unit" Width="1.5" PointX="20.25" PointY="103.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_UnitAdjust" Width="1.5" PointX="22.5" PointY="93.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_UnitLeasing" Width="1.5" PointX="22.5" PointY="116.625" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_UnitPlan" Width="1.5" PointX="22.5" PointY="97.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_UnitRequest" Width="1.5" PointX="22.5" PointY="112" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_UnitSpec" Width="1.5" PointX="22.5" PointY="105.375" />
+        <EntityTypeShape EntityType="NHH.Entities.Project_UnitSpec_Template" Width="1.5" PointX="8.75" PointY="14.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Province" Width="1.5" PointX="3" PointY="93.75" />
+        <EntityTypeShape EntityType="NHH.Entities.Region" Width="1.5" PointX="0.75" PointY="83.875" />
+        <EntityTypeShape EntityType="NHH.Entities.Repair" Width="1.5" PointX="25.5" PointY="98.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Repair_Attachment" Width="1.5" PointX="27.75" PointY="104.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Repair_Comment" Width="1.5" PointX="27.75" PointY="108.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Repair_Log" Width="1.5" PointX="27.75" PointY="101.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Repair_Material" Width="1.5" PointX="30.75" PointY="101.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Report" Width="1.5" PointX="27" PointY="77" />
+        <EntityTypeShape EntityType="NHH.Entities.Report_Config" Width="1.5" PointX="29.25" PointY="75.875" />
+        <EntityTypeShape EntityType="NHH.Entities.Report_Field" Width="1.5" PointX="29.25" PointY="63.5" />
+        <EntityTypeShape EntityType="NHH.Entities.Sys_Function" Width="1.5" PointX="32" PointY="85" />
+        <EntityTypeShape EntityType="NHH.Entities.Sys_Menu" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="NHH.Entities.Sys_Role" Width="1.5" PointX="32" PointY="81" />
+        <EntityTypeShape EntityType="NHH.Entities.Sys_Role_Function" Width="1.5" PointX="34.25" PointY="81.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Sys_Role_Menu" Width="1.5" PointX="34.25" PointY="41.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Sys_User" Width="1.5" PointX="27" PointY="71.25" />
+        <EntityTypeShape EntityType="NHH.Entities.Sys_User_Message" Width="1.5" PointX="29.25" PointY="80.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Sys_User_Role" Width="1.5" PointX="34.25" PointY="72.125" />
+        <EntityTypeShape EntityType="NHH.Entities.Utility_Bill" Width="1.5" PointX="22.5" PointY="76.25" />
+        <EntityTypeShape EntityType="NHH.Entities.View_CompanyType" Width="1.5" PointX="14.75" PointY="11.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_Condition" Width="1.5" PointX="14.75" PointY="14.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_ContractStatus" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_FloorMap_Unit" Width="1.5" PointX="16.75" PointY="3.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_GenderType" Width="1.5" PointX="16.75" PointY="9.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_Project_AdPoint" Width="1.5" PointX="10.75" PointY="16.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_Project_Kiosk" Width="1.5" PointX="16.75" PointY="12.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_Project_Unit" Width="1.5" PointX="0.75" PointY="17.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_Project_Unit_Contract" Width="1.5" PointX="12.75" PointY="17.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_Project_UnitExt" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_Project_UnitRequest" Width="1.5" PointX="2.75" PointY="18.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_ProjectInfoShow" Width="1.5" PointX="18.75" PointY="4.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_Repair_Complaint_Supervisor" Width="1.5" PointX="4.75" PointY="18.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_Report_Contract" Width="1.5" PointX="18.75" PointY="9.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_Report_Project_Count" Width="1.5" PointX="18.75" PointY="15.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_Report_Project_Unit" Width="1.5" PointX="18.75" PointY="18.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_Role_Function" Width="1.5" PointX="14.75" PointY="19.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_Role_Menu" Width="1.5" PointX="20.75" PointY="0.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_UnitStatus" Width="1.5" PointX="20.75" PointY="4.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_UnitType" Width="1.5" PointX="20.75" PointY="7.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_User_Function" Width="1.5" PointX="20.75" PointY="10.75" />
+        <EntityTypeShape EntityType="NHH.Entities.View_User_Menu" Width="1.5" PointX="20.75" PointY="13.75" />
+        <AssociationConnector Association="NHH.Entities.FK_BizCategory_BizCategory" />
+        <AssociationConnector Association="NHH.Entities.FK_BizCategory_BizType" />
+        <AssociationConnector Association="NHH.Entities.FK_Brand_BizCategory" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Store_BizCategory" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Unit_BizCategory" />
+        <AssociationConnector Association="NHH.Entities.FK_Brand_BizType" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Store_BizType" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Unit_BizType" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Brand_Brand" />
+        <AssociationConnector Association="NHH.Entities.FK_Campaign_Attachment_Campaign" />
+        <AssociationConnector Association="NHH.Entities.FK_Campaign_Comment_Campaign" />
+        <AssociationConnector Association="NHH.Entities.FK_Campaign_Page_Campaign" />
+        <AssociationConnector Association="NHH.Entities.FK_Campaign_PlanUser" />
+        <AssociationConnector Association="NHH.Entities.FK_Campaign_Result_Campaign" />
+        <AssociationConnector Association="NHH.Entities.FK_Campaign_RunUser" />
+        <AssociationConnector Association="NHH.Entities.FK_City_Province" />
+        <AssociationConnector Association="NHH.Entities.FK_District_City" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_City" />
+        <AssociationConnector Association="NHH.Entities.FK_Company_Department" />
+        <AssociationConnector Association="NHH.Entities.FK_Company_Finance_Company" />
+        <AssociationConnector Association="NHH.Entities.FK_Company_Owner" />
+        <AssociationConnector Association="NHH.Entities.FK_Contract_ManageCompany" />
+        <AssociationConnector Association="NHH.Entities.FK_Contract_Supplementary_ManageCompany" />
+        <AssociationConnector Association="NHH.Entities.FK_Employee_Company" />
+        <AssociationConnector Association="NHH.Entities.FK_Finance_Accrual_Company" />
+        <AssociationConnector Association="NHH.Entities.FK_Finance_Settlement_Company" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_ManageCompany" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Owner_Company" />
+        <AssociationConnector Association="NHH.Entities.FK_Complaint_Attachment_Complaint" />
+        <AssociationConnector Association="NHH.Entities.FK_Complaint_Comment_Complaint" />
+        <AssociationConnector Association="NHH.Entities.FK_Complaint_Log_Complaint" />
+        <AssociationConnector Association="NHH.Entities.FK_Complaint_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Complaint_Project" />
+        <AssociationConnector Association="NHH.Entities.FK_Complaint_Store" />
+        <AssociationConnector Association="NHH.Entities.FK_Contract_Appendix_Contract" />
+        <AssociationConnector Association="NHH.Entities.FK_Contract_Brand_Contract" />
+        <AssociationConnector Association="NHH.Entities.FK_Contract_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Contract_PaymentTerms_Contract" />
+        <AssociationConnector Association="NHH.Entities.FK_Contract_Project" />
+        <AssociationConnector Association="NHH.Entities.FK_Contract_Supplementary_Contract" />
+        <AssociationConnector Association="NHH.Entities.FK_Contract_Unit_Contract" />
+        <AssociationConnector Association="NHH.Entities.FK_Contract_UnitSpec_Contract" />
+        <AssociationConnector Association="NHH.Entities.FK_Finance_Accrual_Contract" />
+        <AssociationConnector Association="NHH.Entities.FK_Finance_Settlement_Contract" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Store_RentContract" />
+        <AssociationConnector Association="NHH.Entities.FK_Contract_Brand_MerchantBrand" />
+        <AssociationConnector Association="NHH.Entities.FK_Contract_PaymentTerms_PaymentItem" />
+        <AssociationConnector Association="NHH.Entities.FK_Contract_UnitSpec_Unit" />
+        <AssociationConnector Association="NHH.Entities.FK_Department_Manager" />
+        <AssociationConnector Association="NHH.Entities.FK_Employee_Department" />
+        <AssociationConnector Association="NHH.Entities.FK_Employee_Supervisor" />
+        <AssociationConnector Association="NHH.Entities.FK_Sys_User_Employee" />
+        <AssociationConnector Association="NHH.Entities.FK_Finance_Accrual_Item" />
+        <AssociationConnector Association="NHH.Entities.FK_Finance_Accrual_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Finance_Accrual_Store" />
+        <AssociationConnector Association="NHH.Entities.FK_Finance_SettlementDetail_Accrual" />
+        <AssociationConnector Association="NHH.Entities.FK_Finance_SettlementDetail_Item" />
+        <AssociationConnector Association="NHH.Entities.FK_Finance_Settlement_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Finance_SettlementDetail_Settlement" />
+        <AssociationConnector Association="NHH.Entities.FK_Repair_Material_Material" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Attachment_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Brand_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Finance_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Message_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Revenue_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Role_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Store_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_StoreImage_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_StoreMeter_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_User_Merchant" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Brand_AuthorizedFile" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Message_Store" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Message_User" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_Revenue_Store" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_StoreImage_Store" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_StoreMeter_Merchant_Store" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_User_Store" />
+        <AssociationConnector Association="NHH.Entities.FK_Repair_Store" />
+        <AssociationConnector Association="NHH.Entities.FK_Utility_Bill_Merchant_StoreMeter" />
+        <AssociationConnector Association="NHH.Entities.FK_Merchant_UserPaper_User" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_AdPoint_Project" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Batch_Project" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_BizConfig_Project" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Building_Project" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Floor_Project" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Kiosk_Project" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Owner_Project" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Provice" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Region" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Unit_Project" />
+        <AssociationConnector Association="NHH.Entities.FK_Repair_Project" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_AdPoint_Building" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_AdPoint_Floor" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_BatchUnit_Project_Batch" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_BatchUnit_Project_Unit" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_BizConfig_Building" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Floor_Building" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Kiosk_Building" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Unit_Building" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Kiosk_Floor" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_Unit_Floor" />
+        <AssociationConnector Association="NHH.Entities.FK_Repair_Floor" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_UnitAdjust_Project_Unit" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_UnitAdjust_Project_Unit1" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_UnitLeasing_Unit" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_UnitPlan_Unit" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_UnitRequest_Project_Unit" />
+        <AssociationConnector Association="NHH.Entities.FK_Project_UnitSpec_Unit" />
+        <AssociationConnector Association="NHH.Entities.FK_Repair_Unit" />
+        <AssociationConnector Association="NHH.Entities.FK_Province_Region" />
+        <AssociationConnector Association="NHH.Entities.FK_Repair_Attachment_Repair" />
+        <AssociationConnector Association="NHH.Entities.FK_Repair_Comment_Repair" />
+        <AssociationConnector Association="NHH.Entities.FK_Repair_Log_Repair" />
+        <AssociationConnector Association="NHH.Entities.FK_Repair_Material_Repair" />
+        <AssociationConnector Association="NHH.Entities.FK_Report_Config_Report" />
+        <AssociationConnector Association="NHH.Entities.FK_Report_Field_Report" />
+        <AssociationConnector Association="NHH.Entities.FK_Report_Config_Sys_User" />
+        <AssociationConnector Association="NHH.Entities.FK_Sys_Role_Function_Function" />
+        <AssociationConnector Association="NHH.Entities.FK_Sys_Menu_Parent" />
+        <AssociationConnector Association="NHH.Entities.FK_Sys_Role_Menu_Menu" />
+        <AssociationConnector Association="NHH.Entities.FK_Sys_Role_Function_Role" />
+        <AssociationConnector Association="NHH.Entities.FK_Sys_Role_Menu_Role" />
+        <AssociationConnector Association="NHH.Entities.FK_Sys_User_Role_Role" />
+        <AssociationConnector Association="NHH.Entities.FK_Sys_User_Message_User" />
+        <AssociationConnector Association="NHH.Entities.FK_Sys_User_Role_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

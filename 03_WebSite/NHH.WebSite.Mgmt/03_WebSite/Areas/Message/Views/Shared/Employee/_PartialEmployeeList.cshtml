@@ -1,0 +1,114 @@
+﻿<div class="form-group" style="margin-top:10px;">
+    <div class="col-sm-12 input-group">
+        @Html.DropDownList("CompanyId", ViewData["CompanyList"] as SelectList, "请选择公司", new { style = "width:140px" })
+        <select id="DepartmentId" style="width:140px;"><option value="0">请选择部门</option></select>
+    </div>
+</div>
+<div class="form-group" style="margin-top:10px;">
+    <div class="col-sm-12 input-group">
+        <table class="table table-striped table-bordered table-hover table-txthover">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="AllEmployeeChose" /></th>
+                    <th>部门名称</th>
+                    <th>员工姓名</th>
+                </tr>
+            </thead>
+            <tbody id="EmployeeListBody"></tbody>
+        </table>
+    </div>
+</div>
+<div class="form-group" style="margin-top:10px;">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10 input-group">
+        <div class="btn-group">
+            <button type="button" id="lbtnSure" class="btn btn-xs btn-success btn-font">确定</button>
+            <button type="button" id="lbtnClose" class="btn btn-xs btn-success btn-font">取消</button>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#CompanyId").change(function () {
+            $("#EmployeeListBody").html("");
+            var companyId = $(this).val();
+            if (companyId == null || companyId == undefined || companyId == "") {
+                return true;
+            }
+            $.ajax({
+                url: "@Url.Action("GetDepartmentList", "Company", new { area = "Ajax" })",
+                data: { companyId: companyId },
+                type: "GET",
+                dataType: "JSON",
+                success: function (result, status) {
+                    var innerHtml = "<option value='0'>请选择部门</option>";
+                    result.forEach(function (item) {
+                        innerHtml += "<option value='" + item.DepartmentID + "'>" + item.DepartmentName + "</option>";
+                    });
+                    $("#DepartmentId").html(innerHtml);
+                }
+            });
+            bindEmployeeList();
+        });
+
+        $("#DepartmentId").change(function () {
+            bindEmployeeList();
+        });
+
+        var bindEmployeeList = function ()
+        {
+            var requestUrl = "@Url.Action("GetEmployeeList", "Employee", new { area = "Ajax" })";
+            var requestData = {};
+            requestData.companyId = $("#CompanyId").val();
+            requestData.departmentId = $("#DepartmentId").val();
+            $.get(requestUrl, requestData, function (result) {
+                var innerHtml = "";
+                result.forEach(function (item) {
+                    innerHtml += "<tr><td style='text-align: center;'>";
+                    innerHtml += "<input type='checkbox' class='EmployeeItem' data-Id=" + item.Id + " data-Name='" + item.Name + "' data-userId=" + item.UserId + " /></td>";
+                    innerHtml += "<td>" + item.Department + "</td>";
+                    innerHtml += "<td>" + item.Name + "</td>";
+                    innerHtml += "</tr>";
+                });
+                $("#EmployeeListBody").html(innerHtml);
+                $("#AllEmployeeChose").prop("checked", false);
+            });
+        }
+
+        //全选
+        $("#AllEmployeeChose").click(function () {
+            var checked = $(this).prop("checked");
+            $(".EmployeeItem").each(function () {
+                $(this).prop("checked", checked);
+                //console.log(this);
+            });
+        });
+
+        //提交保存选中用户
+        $("#lbtnSure").click(function () {
+            var strHtml = "";
+            $(".EmployeeItem").each(function () {
+                var item = $(this);
+                if (item.prop("checked")) {
+                    strHtml += "<li class='search-choice'>";
+                    strHtml += "<span>" + item.attr("data-Name") + "</span><a ";
+                    strHtml += "data-Id='" + item.attr("data-Id") + "' ";
+                    strHtml += "data-userId='" + item.attr("data-userId") + "' ";
+                    strHtml += "data-Name='" + item.attr("data-Name") + "' href='javascript:void(0)' class='lnkEmployeeItem search-choice-close'></a></li>"
+                }
+            });
+            $("#employeeList").append(strHtml);
+            $(".lnkEmployeeItem").click(function () {
+                $(this).parent().remove();
+                return false;
+            });
+            $("#employeeContainer").hide();
+            //提交
+        });
+        $("#lbtnClose").click(function () {
+            $("#employeeContainer").hide();
+        });
+    });
+</script>

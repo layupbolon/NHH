@@ -1,0 +1,187 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Message.MerchantMessageDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>发布商户消息</h1>
+        </div><!-- /.page-header -->
+        <div class="row">
+            <div class="col-lg-12">
+                @using (Html.BeginForm("Add", "MerchantMessage", new { area = "Message" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", name = "MerchantMessage", id = "MerchantMessage" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 楼宇楼层： </label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList)
+                            @Html.DropDownList("BuildingId", ViewData["BuildingList"] as SelectList, "全部")
+                            @Html.DropDownList("FloorId", ViewData["FloorList"] as SelectList, "全部")
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 业态类型： </label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("BizType", ViewData["BizTypeList"] as SelectList, "全部业态", new { title = "业态" })
+                            @Html.DropDownList("UnitType", ViewData["UnitTypeList"] as SelectList, "全部铺位", new { title = "铺位类型" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 铺位编号： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("UnitNumber", "", new { placeholder = "铺位编号" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 商户用户： </label>
+                        <div class="col-lg-9">
+                            @Html.Hidden("UserIdList")
+                            <div class="col-lg-7" style="max-height:300px; overflow-x:auto; margin-left:-14px;">
+                                <table class="table table-striped table-hover col-lg-12" id="tabStoreList">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>用户ID</th>
+                                            <th>用户名</th>
+                                            <th>真实姓名</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>重要级别： </label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("MessageLevel", ViewData["MessageLevelList"] as SelectList)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>标题： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("Subject", "", new { @class = "col-lg-7", placeholder = "消息标题" })
+                            <span class="help-inline red ml10" id="SubjectVai">
+                                    @Html.ValidationMessage("Subject")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>主要内容： </label>
+                        <div class="col-lg-9">
+                            @Html.TextArea("Content", "", new { @class = "col-lg-7", rows = "10", placeholder = "消息内容" })
+                            <span class="help-inline red ml10" id="ContentVai">
+                                    @Html.ValidationMessage("Content")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-lg-offset-3 col-lg-9">
+                            <input class="btn btn-xs btn-success btn-font input-btn formsubmit" type="submit" value="提交" style="border-radius: 7px;" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        beforeUnload.config.enable = true;
+        $("#ProjectId").change(function () {
+            $.ajax({
+                url: "@Url.Action("GetBuildingList", "Project", new { area = "Ajax" })",
+                data: "projectId=" + $(this).val(),
+                dataType: "json",
+                success: function (result, status) {
+                    var strHtml = "<option value=''>全部</option>";
+                    result.forEach(function (item) {
+                        strHtml += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                    });
+                    $("#BuildingId").html(strHtml);
+                }
+            });
+            bindStoreUserList();
+        });
+        $("#BuildingId").change(function () {
+            $.ajax({
+                url: "@Url.Action("GetFloorList", "Project", new { area = "Ajax" })",
+                data: "projectId=" + $("#ProjectId").val() + "&buildingId=" + $(this).val(),
+                dataType: "json",
+                success: function (result, status) {
+                    result.forEach(function (item) {
+                        var strHtml = "<option value=''>全部</option>";
+                        result.forEach(function (item) {
+                            strHtml += "<option value='" + item.FloorId + "'>" + item.FloorName + "</option>";
+                        });
+                        $("#FloorId").html(strHtml);
+                    });
+                }
+            });
+            bindStoreUserList();
+        });
+        $("#FloorId").change(function () { bindStoreUserList(); });
+
+        $("#UnitType").change(function () { bindStoreUserList(); });
+        $("#BizType").change(function () { bindStoreUserList(); });
+
+        $("#UnitNumber").change(function () { bindStoreUserList(); });
+
+        $(".btn-success").click(function () {
+            var userList = new Array();
+            $(".userItem").each(function () {
+                var oCheckbox = $(this);
+                if (oCheckbox.prop("checked")) {
+                    userList.push(oCheckbox.attr("data-uid"));
+                }
+            });
+            $("#UserIdList").val(userList.join(","));
+
+            if (userList.length == 0) {
+                alert("请选择商户用户");
+                return false;
+            }
+
+            return true;
+        });
+
+        var bindStoreUserList = function () {
+            var queryData = {};
+            queryData.ProjectId = $("#ProjectId").val();
+            queryData.BuildingId = $("#BuildingId").val();
+            queryData.FloorId = $("#FloorId").val();
+            queryData.UnitType = $("#UnitType").val();
+            queryData.BizType = $("#BizType").val();
+            queryData.UnitNumber = $("#UnitNumber").val();
+
+            $.ajax({
+                url: "@Url.Action("GetUserGroupList", "MerchantUser", new { area = "Ajax" })",
+                dataType: "json",
+                data: queryData,
+                success: function (result, status) {
+                    var strHtml = "";
+                    result.forEach(function (item) {
+                        strHtml += "<tr>";
+                        strHtml += "<th></th>";
+                        strHtml += "<th colspan='3'>商铺名称：" + item.StoreName + "（" + item.UnitNumberList + "）</th>";
+                        strHtml += "</tr>";
+                        if (item.UserList != undefined) {
+                            item.UserList.forEach(function (user) {
+                                strHtml += "<tr>";
+                                strHtml += "<td><label><input type='checkbox' checked='checked' class='userItem' data-sid='" + item.StoreId + "' data-uid='" + user.UserId + "' /></label></td>";
+                                strHtml += "<td>" + user.UserId + "</td>";
+                                strHtml += "<td>" + user.UserName + "</td>";
+                                strHtml += "<td>" + user.NickName + "</td>";
+                                strHtml += "</tr>";
+                            });
+                        }
+                    });
+                    $("#tabStoreList tbody").html(strHtml);
+                }
+            });
+        };
+    });
+</script>

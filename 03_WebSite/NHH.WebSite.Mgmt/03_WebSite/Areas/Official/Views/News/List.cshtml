@@ -1,0 +1,267 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@using System.Web.UI.WebControls
+@model NHH.Models.Official.NewsListModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>新闻查询</h1>
+        </div>
+        <div class="page-header">
+            @Html.ActionLink("添加新闻", "Add", "News", new { area = "Official" }, new { @class = "btn btn-success btn-font" })
+        </div>
+        <div class="screen-area">
+            <dl class="list-screen">
+                <dt style="color: red">目标：</dt>
+                <dd>@Html.DropDownList("NewsTarget", ViewData["NewsTargetList"] as SelectList)</dd>
+            </dl>
+            <dl class="list-screen">
+                <dt>项目：</dt>
+                @if (Model.QueryInfo.NewsTarget.Value == 1)
+                {
+                    <dd>
+                        @Html.DropDownList("ProjectID", ViewData["ProjectList"] as SelectList, "全部")
+                    </dd>
+                }
+                else if (Model.QueryInfo.NewsTarget.Value == 2)
+                {
+                    <dd>
+                        @Html.DropDownList("ProjectID", ViewData["NhhProjectList"] as SelectList, "全部")
+                    </dd>
+                }
+            </dl>
+            <dl class="list-screen">
+                <dt>新闻类型：</dt>
+                <dd>@Html.DropDownList("NewsType", ViewData["NewsTypeList"] as SelectList, "请选择新闻类型")</dd>
+            </dl>
+            <dl class="list-screen">
+                <dt>新闻标题：</dt>
+                <dd>
+                    @Html.TextBox("NewsTitle", Model.QueryInfo.NewsTitle)
+                </dd>
+            </dl>
+            <dl class="list-screen">
+                <dt>新闻状态：</dt>
+                <dd>@Html.DropDownList("NewsStatus", ViewData["NewsStatusList"] as SelectList, "请选择新闻状态")</dd>
+            </dl>
+            <dl class="list-screen">
+                <dt>发布时间：</dt>
+                <dd class="input-daterange">
+                    @Html.TextBox("PubStartTime", Model.QueryInfo.PubStartTime.HasValue ? Model.QueryInfo.PubStartTime.Value.ToString("yyyy-MM-dd") : "")
+                    至
+                    @Html.TextBox("PubEndTime", Model.QueryInfo.PubEndTime.HasValue ? Model.QueryInfo.PubEndTime.Value.ToString("yyyy-MM-dd") : "")
+                </dd>
+            </dl>
+            <dl class="list-screen">
+                <dt>提交时间：</dt>
+                <dd class="input-daterange">
+                    @Html.TextBox("InStartTime", Model.QueryInfo.InStartTime.HasValue ? Model.QueryInfo.InStartTime.Value.ToString("yyyy-MM-dd") : "")
+                    至
+                    @Html.TextBox("InEndTime", Model.QueryInfo.InEndTime.HasValue ? Model.QueryInfo.InEndTime.Value.ToString("yyyy-MM-dd") : "")
+                </dd>
+            </dl>
+            <div class="result-btn">
+                <a class="btn btn-xs btn-success btn-font" id="lnkSearch" href="javascript:void(0);">查询</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4 class="lighter mt30">
+                            新闻列表
+                        </h4>
+                        <div class="hr hr-18 hr-double dotted"></div>
+                        <table id="sample-table-1" class="table table-striped table-bordered table-hover table-txthover">
+                            <thead>
+                                <tr>
+                                    <th>新闻ID</th>
+                                    <th>项目名称</th>
+                                    <th>新闻类型</th>
+                                    <th>目标</th>
+                                    <th>新闻标题</th>
+                                    <th>所属公司名称</th>
+                                    <th>新闻状态</th>
+                                    <th>发布时间</th>
+                                    <th class="col-lg-3">操作</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model.NewsModelList)
+                                {
+                                    <tr>
+                                        <td>@Html.ActionLink(item.NewsID.ToString(), "Detail", "News", new { area = "Official", newsID = item.NewsID }, new { @class = "btn btn-link btn-font" })</td>
+                                        <td>@item.ProjectName</td>
+                                        <td>@item.NewsTypeName</td>
+                                        <td>@item.NewsTargetName</td>
+                                        @if (item.Stick == 1)
+                                        {
+                                            <td style="color: red">@item.NewsTitle</td>
+                                        }
+                                        else
+                                        {
+                                            <td>@item.NewsTitle</td>
+                                        }
+
+                                        <td>@item.CompanyName</td>
+                                        <td>@item.NewsStatus</td>
+                                        <td>@item.PublishTime</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                @if (item.Status > -1)
+                                                {
+                                                    if (item.Stick == 0)
+                                                    {
+                                                        <input type="button" class="btn btn-xs btn-add btn-font btnStick" dataid="@item.NewsID" value="置顶" />
+                                                    }
+                                                    else if (item.Stick == 1)
+                                                    {
+                                                        <input type="button" class="btn btn-xs btn-success btn-font btnUnStick" dataid="@item.NewsID" value="取消置顶" />
+                                                    }
+                                                    if (item.PublishTime > DateTime.Now)
+                                                    {
+                                                        <input type="button" class="btn btn-xs btn-success btn-font btnPublish" dataid="@item.NewsID" value="立即发布" />
+                                                    }
+                                                    <input type="button" class="btn btn-xs btn-success btn-font btnCancel" dataid="@item.NewsID" value="作废" />
+                                                    @Html.ActionLink("编辑", "Edit", "News", new { area = "Official", newsID = item.NewsID }, new { @class = "btn btn-xs btn-success btn-font" })
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        @{Html.RenderPartial("_PartialPaging", Model.PagingInfo);}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script language="javascript" type="text/javascript">
+    $(function () {
+
+        $("#lnkSearch").click(GetData);
+
+        $(".page").click(function () {
+            var url = "@Url.Action("List", "News", new {area = "Official"})";
+            url += "?newsType=" + $("#NewsType").val();
+            url += "&newsTarget=" + $("#NewsTarget").val();
+            url += "&newsTitle=" + $("#NewsTitle").val();
+            url += "&projectID=" + $("#ProjectID").val();
+            url += "&newsStatus=" + $("#NewsStatus").val();
+            url += "&pubStartTime=" + $("#PubStartTime").val();
+            url += "&pubEndTime=" + $("#PubEndTime").val();
+            url += "&inStartTime=" + $("#InStartTime").val();
+            url += "&inEndTime=" + $("#InEndTime").val();
+            url += "&page=" + $(this).attr("data-page");
+            location.href = url;
+            return true;
+        });
+
+        $(".btnStick").click(function () {
+            PostData("确定要置顶？", "@Url.Action("Stick", "News", new { area = "Official" })", $(this).attr("dataid"));
+        });
+        $(".btnUnStick").click(function () {
+            PostData("确定要取消置顶？", "@Url.Action("UnStick", "News", new { area = "Official" })", $(this).attr("dataid"));
+        });
+
+        $(".btnPublish").click(function () {
+            PostData("确定要发布？", "@Url.Action("Publish", "News", new { area = "Official" })", $(this).attr("dataid"));
+        });
+
+        $(".btnCancel").click(function () {
+            PostData("确定要作废？", "@Url.Action("Cancel", "News", new { area = "Official" })", $(this).attr("dataid"));
+        });
+
+        $("#NewsTarget").change(function () {
+            var target = $("#NewsTarget").val();
+            var ProjectId = $("#ProjectID");
+
+            if (target === "2") {
+                $.ajax({
+                    url: "@Url.Action("GetProjectList", "NHHCG", new {area = "Official"})",
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    cache: false,
+                    async: true,
+                    success: function (data) {
+                        ProjectId.empty();
+                        var optionValue = "<option>全部</option>";
+                        data.forEach(function (item) {
+                            optionValue += "<option value='" + item.ProjectID + "'>" + item.ProjectName + "</option>";
+                        });
+                        ProjectId.append(optionValue);
+                    },
+                    complete: function () {
+                    },
+                    error: function (xh) {
+                        alert(xh.message);
+                    }
+                });
+            } else if (target === "1") {
+                $.ajax({
+                    url: "@Url.Action("GetAllProject", "Project", new { area = "Ajax" })",
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    cache: false,
+                    async: true,
+                    success: function (data) {
+                        ProjectId.empty();
+                        var optionValue = "<option>全部</option>";
+                        data.forEach(function (item) {
+                            optionValue += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                        });
+                        ProjectId.append(optionValue);
+                    },
+                    complete: function () {
+                    },
+                    error: function (xh) {
+                        alert(xh.message);
+                    }
+                });
+            }
+        });
+    });
+
+    function GetData() {
+        var url = "@Url.Action("List", "News", new {area = "Official"})";
+        url += "?newsType=" + $("#NewsType").val();
+        url += "&newsTarget=" + $("#NewsTarget").val();
+        url += "&newsTitle=" + $("#NewsTitle").val();
+        url += "&projectID=" + $("#ProjectID").val();
+        url += "&newsStatus=" + $("#NewsStatus").val();
+        url += "&pubStartTime=" + $("#PubStartTime").val();
+        url += "&pubEndTime=" + $("#PubEndTime").val();
+        url += "&inStartTime=" + $("#InStartTime").val();
+        url += "&inEndTime=" + $("#InEndTime").val();
+        location.href = url;
+    }
+
+    function PostData(confirmMessage, url, newsId) {
+        nhhui.confirm(confirmMessage, function () {
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: "json",
+                data: { newsID: newsId },
+                success: function (data) {
+                    if (data) {
+                        GetData();
+                    } else
+                        alert("操作失败！");
+                },
+                error: function (result) {
+                    alert("操作失败！");
+                }
+            });
+        });
+    }
+</script>

@@ -1,0 +1,176 @@
+﻿@model NHH.Models.Contract.ContractInfo
+
+<h4 class="lighter">租约信息</h4>
+<a class="edit-btn-canl" href="javascript:void(0);" id="lbtnContractInfo">取消编辑</a>
+<dl class="form-content form-content-edit form-row-comb">
+    <dt><i>租期条款</i></dt>
+    <dd>
+        <label>合同天数：</label>
+        <span>@Model.ContractLength 天</span>
+    </dd>
+    <dd>
+        <label>合同开始日期：</label>
+        <span>@Html.TextBox("ContractStartDate", Model.ContractStartDate.ToString("yyyy-MM-dd"))</span>
+    </dd>
+    <dd>
+        <label>合同结束日期：</label>
+        <span>@Html.TextBox("ContractEndDate", Model.ContractEndDate.ToString("yyyy-MM-dd"))</span>
+    </dd>
+    <dd>
+        <label>免租期：</label>
+        <span>@Model.RentFreeLength 月</span>
+    </dd>
+    <dd>
+        <label>免租开始日期：</label>
+        <span>@Html.TextBox("RentFreeStartDate", Model.RentFreeStartDate.ToString("yyyy-MM-dd"))</span>
+    </dd>
+    <dd>
+        <label>免费结束日期：</label>
+        <span>@Html.TextBox("RentFreeEndDate", Model.RentFreeEndDate.ToString("yyyy-MM-dd"))</span>
+    </dd>
+    <dd>
+        <label>进场日期：</label>
+        <span>@Html.TextBox("AccessDate", Model.AccessDate.ToString("yyyy-MM-dd"))</span>
+    </dd>
+</dl>
+<div class="clear"></div>
+<dl class="form-content form-content-edit form-row-comb">
+    <dt><i>租约单价</i></dt>
+    <dd>
+        <label>租金单价：</label>
+        @Model.ContractUnitRent.ToString("0.00")
+        <span>元/天/平米</span>
+    </dd>
+    <dd>
+        <label>物业费单价：</label>
+        @Model.ContractMgmtFee.ToString("0.00")
+        <span>元/天/平米</span>
+    </dd>
+    <dd>
+        <label>履约保证金：</label>
+        <span>@Html.TextBox("BidBond", Model.BidBond.ToString("0.00")) 元</span>
+    </dd>
+    <dd>
+        <label>物业保证金：</label>
+        <span>@Html.TextBox("ManageBond", Model.ManageBond.ToString("0.00")) 元</span>
+    </dd>
+</dl>
+<div class="clear"></div>
+<dl class="form-content form-content-edit form-row-comb">
+    <dt><i>装修条款</i></dt>
+    <dd>
+        <label>装修期限：</label>
+        <span>@Html.TextBox("DecorationLength", Model.DecorationLength) 月</span>
+    </dd>
+    <dd>
+        <label>装修开始日期：</label>
+        <span>@Html.TextBox("DecorationStartDate", Model.DecorationStartDate.ToString("yyyy-MM-dd"))</span>
+    </dd>
+    <dd>
+        <label>装修结束日期：</label>
+        <span>@Html.TextBox("DecorationEndDate", Model.DecorationEndDate.ToString("yyyy-MM-dd"))</span>
+    </dd>
+    <dd>
+        <label>场地管理费：</label>
+        <span>@Html.TextBox("DecorationMgmtFee", Model.DecorationMgmtFee.ToString("0.00")) 元</span>
+    </dd>
+    <dd>
+        <label>质量保证金：</label>
+        <span>@Html.TextBox("QualityBond", Model.QualityBond.ToString("0.00")) 元</span>
+    </dd>
+    <dd>
+        <label>装修保证金：</label>
+        <span>@Html.TextBox("DecorationBond", Model.DecorationBond.ToString("0.00")) 元</span>
+    </dd>
+</dl>
+<div class="clear"></div>
+<dl class="form-content form-content-edit form-row-comb">
+    <dt><i>其它条款</i></dt>
+    <dd>
+        <label>免费停车位：</label>
+        <span>@Html.TextBox("ParkingLotNum", Model.ParkingLotNum) @Html.TextBox("ParkingLotMemo", Model.ParkingLotMemo)</span>
+    </dd>
+    <dd>
+        <label>免费广告位：</label>
+        <span>@Html.TextBox("AdPointNum", Model.AdPointNum) @Html.TextBox("AdPointMemo", Model.AdPointMemo)</span>
+    </dd>
+    <dd>
+        <label>交付标准：</label>
+        <span>@Html.TextBox("ConditionText", Model.ConditionText)</span>
+    </dd>
+</dl>
+<div class="clear"></div>
+<dl class="form-content form-content-edit form-row-comb">
+    <dt><i>签约信息</i></dt>
+    <dd>
+        <label>签约人姓名：</label>
+        <span>@Html.TextBox("SignerName", Model.SignerName)</span>
+    </dd>
+    <dd>
+        <label>签约人身份证号：</label>
+        <span>@Html.TextBox("SignerIDNumber", Model.SignerIDNumber)</span>
+    </dd>
+    <dd>
+        <label>签约人联系电话：</label>
+        <span>@Html.TextBox("SignerPhone", Model.SignerPhone)</span>
+    </dd>
+    <dd>
+        <label>经办人姓名：</label>
+        <span>@Html.TextBox("OperatorName", Model.OperatorName)</span>
+    </dd>
+    <dd>
+        <label>经办人联系电话：</label>
+        <span>@Html.TextBox("OperatorPhone", Model.OperatorPhone)</span>
+    </dd>
+</dl>
+<div class="btn-edit">
+    <a href="###" class="btn btn-info mr20" id="btnContractInfo">保存信息</a>
+    <a href="###" class="btn cancelEditContractInfo">取消编辑</a>
+</div>
+<script type="text/javascript">
+    $("#lbtnContractInfo").click(function () {
+        var url = "@Url.Action("ContractInfo", "ContractInfo", new { area = "Contract" })";
+        url += "?contractId=" + $("#ContractID").val();
+        $("#contractInfo").load(url);
+    });
+    $(".cancelEditContractInfo").click(function () {
+        var url = "@Url.Action("ContractInfo", "ContractInfo", new { area = "Contract" })";
+        url += "?contractId=" + $("#ContractID").val();
+        $("#contractInfo").load(url);
+    });
+    $("#btnContractInfo").click(function () {
+        var contractInfo = {};
+        contractInfo.ContractID = $("#ContractID").val();
+        contractInfo.ContractLength = $("#ContractLength").val();
+        contractInfo.ContractStartDate = $("#ContractStartDate").val();
+        contractInfo.ContractEndDate = $("#ContractEndDate").val();
+        contractInfo.RentFreeLength = $("#RentFreeLength").val();
+        contractInfo.RentFreeStartDate = $("#RentFreeStartDate").val();
+        contractInfo.RentFreeEndDate = $("#RentFreeEndDate").val();
+        contractInfo.AccessDate = $("#AccessDate").val();
+        contractInfo.BidBond = $("#BidBond").val();
+        contractInfo.ManageBond = $("#ManageBond").val();
+        contractInfo.DecorationLength = $("#DecorationLength").val();
+        contractInfo.DecorationStartDate = $("#DecorationStartDate").val();
+        contractInfo.DecorationEndDate = $("#DecorationEndDate").val();
+        contractInfo.DecorationMgmtFee = $("#DecorationMgmtFee").val();
+        contractInfo.QualityBond = $("#QualityBond").val();
+        contractInfo.DecorationBond = $("#DecorationBond").val();
+        contractInfo.ParkingLotNum = $("#ParkingLotNum").val();
+        contractInfo.ParkingLotMemo = $("#ParkingLotMemo").val();
+        contractInfo.AdPointNum = $("#AdPointNum").val();
+        contractInfo.AdPointMemo = $("#AdPointMemo").val();
+        contractInfo.Condition = $("#Condition").val();
+        contractInfo.SignerName = $("#SignerName").val();
+        contractInfo.SignerIDNumber = $("#SignerIDNumber").val();
+        contractInfo.SignerPhone = $("#SignerPhone").val();
+        contractInfo.OperatorName = $("#OperatorName").val();
+        contractInfo.OperatorPhone = $("#OperatorPhone").val();
+
+        var url = "@Url.Action("UpdateContractInfo", "ContractMgmt", new { area = "Contract" })";
+        $("#contractInfo").load(url, contractInfo, function (response, status, xhs) {
+            $(this).html(response);
+        });
+    });
+</script>
+<div class="clear"></div>

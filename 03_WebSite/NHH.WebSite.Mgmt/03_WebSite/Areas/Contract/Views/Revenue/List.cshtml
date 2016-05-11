@@ -1,0 +1,148 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.MerchantRevenueReportModel
+<style>
+    .RevenueNum {
+        height: 41px;
+    }
+    .RevenueNum div {
+        display: none;
+    }
+    .RevenueNum input {
+        width: 150px;
+        padding: 1px;
+    }
+</style>
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+@{Html.RenderPartial("Revenue/_PartialRevenueMgmt", Model.QueryInfo);}
+
+<div class="rowA">
+    <div class="col-5">
+        <h4>
+            日销售额管理
+        </h4>
+        <div class="hr hr-18 hr-double dotted"></div>
+        <div class="row">
+            @using (Html.BeginForm("List", "Revenue", new { area = "Contract" }, FormMethod.Get, new { @class = "queryInfo", role = "form", novalidate = "novalidate" }))
+            {
+                <div class="screen-area" style="height:40px;">
+                    <dl class="list-screen">
+                        <dt>选择项目：</dt>
+                        <dd>
+                            @Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList)
+                        </dd>
+                    </dl>
+                    <dl class="list-screen">
+                        <dt>选择楼宇：</dt>
+                        <dd>
+                            @Html.DropDownList("BuildingId", ViewData["BuildingList"] as SelectList)
+                        </dd>
+                    </dl>
+                    <dl class="list-screen">
+                        <dt>时间：</dt>
+                        <dd class="input-merge input-group input-daterange" style="width:399px">
+                            @Html.TextBox("FromDate", Model.QueryInfo.FromDate.HasValue ? Model.QueryInfo.FromDate.Value.ToString("yyyy-MM-dd") : "", new { @class = "input-sm iconTime" })
+                            <b>-</b>
+                            @Html.TextBox("ToDate", Model.QueryInfo.ToDate.HasValue ? Model.QueryInfo.ToDate.Value.ToString("yyyy-MM-dd") : "", new { @class = "input-sm iconTime" })
+                        </dd>
+                    </dl>
+                    <div class="result-btn">
+                        <input type="submit" class="btn btn-xs btn-success btn-font input-btn" id="btnSearch" value="查询" />
+                    </div>
+                </div>
+            }
+            <div class="col-lg-12">
+                <h4 class="lighter mt30">
+                    商铺日销售额列表<small class="alert-warning" style="float:right;">注：目前最大支持查询一个月的数据！</small>
+                </h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+                <div style="width:100%; overflow-y:auto;">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <span style="width:80px; display:inline-block;">楼层</span>
+                                </th>
+                                <th><span style="width:80px; display:inline-block;">业态</span></th>
+                                <th>铺位编号</th>
+                                <th>
+                                    <span style="width:100px; display:inline-block">商铺名称</span>
+                                </th>
+                                @foreach (var day in Model.QueryInfo.DayList)
+                                {
+                                    <th>
+                                        <span style="width:80px; display:inline-block;">@day</span>
+                                    </th>
+                                }
+                                <th>合计</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach (var floor in Model.FloorList)
+                                {
+                                    foreach (var bizType in floor.BizTypeList)
+                                    { 
+                                        foreach (var store in bizType.StoreList)
+                                        {
+                                            <tr>
+                                                <td>@floor.FloorName</td>
+                                                <td>@bizType.BizTypeName</td>
+                                                <td>@store.ProjectUnitList</td>
+                                                <td>@store.StoreName</td>
+                                                @foreach (var revenue in store.RevenueList)
+                                                {
+                                                    <td>@revenue.Revenue.ToString("#,##0.00")</td>
+                                                }
+                                                <td>@store.Revenue.ToString("#,##0.00")</td>
+                                            </tr> 
+                                        }
+                                        <tr>
+                                            <td colspan="4" style="font-weight:800; text-align:center;">@string.Format("{0} {1}小计",floor.FloorName, bizType.BizTypeName)</td>
+                                            @foreach (var bizTypeDateCountItem in bizType.BizTypeCount.DateList)
+                                            {
+                                                <td>@bizTypeDateCountItem.TotalRevenue.ToString("#,##0.00")</td> 
+                                            }
+                                            <td>@bizType.BizTypeCount.TotalRevenue.ToString("#,##0.00")</td>
+                                        </tr>       
+                                    }
+                                    <tr>
+                                        <td colspan="4" style="font-weight:800; text-align:center;">@string.Format("{0} 小计", floor.FloorName)</td>
+                                        @foreach (var floorDateCountItem in floor.FloorCount.DateList)
+                                        {
+                                            <td>@floorDateCountItem.TotalRevenue.ToString("#,##0.00")</td> 
+                                        }
+                                        <td>@floor.FloorCount.TotalRevenue.ToString("#,##0.00")</td>
+                                    </tr>
+                                }
+                            <tr>
+                                <td colspan="4" style="font-weight:800; text-align:center;">合计</td>
+                                @foreach (var dateItem in Model.CountInfo.DateList)
+                                {
+                                    <td>@dateItem.TotalRevenue.ToString("#,##0.00")</td> 
+                                }
+                                <td>@Model.CountInfo.TotalRevenue.ToString("#,##0.00")</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>                 
+                </div><!-- /.col -->
+            </div>
+        </div>
+    </div>
+<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;"></div>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSearch").click(function () {
+            var startDate = $("#FromDate").val();
+            var endDate = $("#ToDate").val();
+            if (startDate.length > 0 && endDate.length > 0) {
+                var days = Math.abs(new Date(endDate) - new Date(startDate)) / 1000 / 60 / 60 / 24;
+                if (days > 30) {
+                    alert("目前最大支持一个月内的数据查询，请重新选择时间段。");
+                    return false;
+                }
+            }
+            return true;
+        });
+    });
+</script>

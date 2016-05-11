@@ -1,0 +1,58 @@
+﻿@model NHH.Models.Plan.ProjectUnitLeasingModel
+
+<h4 class="lighter">招商信息</h4>
+<a class="edit-btn" href="javascript:void(0);" id="lbtnUnitLeasing" data-unitid="@Model.UnitId">编辑信息</a>
+<div class="hr hr-18 hr-double dotted"></div>
+<dl class="form-content">
+    <dd>
+        <label>招商责任部门：</label>
+        <span>@Model.LeasingDepartment</span>
+    </dd>
+    <dd>
+        <label>招商责任人：</label>
+        @Model.LeasingPerson
+    </dd>
+    <dd>
+        <label>消防报审：</label>
+        @Model.FireProtectionAuthString
+    </dd>
+</dl>
+<div class="clear"></div>
+
+<dl class="form-content">
+    <dt><i>各个时间点</i></dt>
+    <dd>
+        <label>招商完成：</label>
+        <span>@Model.LeasingFinishDate.ToString("yyyy-MM-dd")</span>
+    </dd>
+    <dd>
+        <label>复尺出图完成：</label>
+        <span>@Model.MeasureReviewDate.ToString("yyyy-MM-dd")</span>
+    </dd>
+    @if (Model.FireProtectionAuth != 0)
+    {
+        <dd>
+            <label>消防报审完成：</label>
+            <span>@Model.FireProtectionAuthDate.ToString("yyyy-MM-dd")</span>
+        </dd>
+    }
+    <dd>
+        <label>进场时间：</label>
+        <span>@Model.AccessDate.ToString("yyyy-MM-dd")</span>
+    </dd>
+    <dd>
+        <label>装修完成：</label>
+        <span>@Model.DecorationEndDate.ToString("yyyy-MM-dd")</span>
+    </dd>
+</dl>
+
+<div class="clear"></div>
+<!-- 招商信息-显示效果 -->
+
+<script type="text/javascript">
+    $("#lbtnUnitLeasing").click(function () {
+        var url = "@Url.Action("EditUnitLeasing", "ProjectUnit", new { area = "Plan" })";
+        url += "?unitId=" + $(this).attr("data-unitId");
+        $("#unitLeasing").load(url);
+    });
+</script>

@@ -1,0 +1,153 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Common.BaseModel
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>拆分铺位</h1>
+        </div><!-- /.page-header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-warning">注：有租决或租决意向的铺位不允许拆分</div>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 选择项目：</label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("ProjectID", ViewData["ProjectList"] as SelectList)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 原铺位编号： </label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                @Html.TextBox("UnitCode", "", new { placeholder = "需拆分的铺后编号" })
+                                <span class="input-group-btn" style="display:inline-block">
+                                    <button class="btn btn-font btn-default" type="button" id="btnCheck">检查是否有效</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 原铺位面积：</label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("UnitArea", "", new { placeholder = "原铺位的面积", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 拆分数量：</label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                <input type="text" id="UnitNumber" placeholder="新铺位数量" />
+                                <span class="input-group-btn" style="display:inline-block">
+                                    <button class="btn btn-font btn-default hide" type="button" id="btnPreSplit">拆分</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 新铺位列表：</label>
+                        <div class="col-lg-9">
+                                <div class="input-group">
+                                    <ul id="unitList">
+                                        <li>
+                                            <input type="text" class="col-lg-5" placeholder="铺位编号" />
+                                            <input type="text" class="col-lg-3 ml10" placeholder="铺位面积" />
+                                        </li>
+                                    </ul>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 拆铺原因：</label>
+                        <div class="col-lg-9">
+                            @Html.TextArea("Remark", "", new { placeholder = "请输入拆铺原因", rows = "5", @class = "col-lg-5" })
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-lg-offset-3 col-lg-9">
+                            <button class="btn btn-success btn-font" type="button" id="btnSplit">确认拆分</button>
+                        </div>
+                    </div>
+                    <div class="alert" style="display:none" id="message"></div>
+                </form>
+            </div>
+            <!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#btnCheck").click(function () {
+            var requestData = {};
+            requestData.projectId = $("#ProjectID").val();
+            requestData.unitNumber = $("#UnitCode").val();
+
+            $.ajax({
+                url: "@Url.Action("GetUnitInfo", "ProjectUnitSplit", new { area = "Ajax" })",
+                type: "GET",
+                data: requestData,
+                dataType: "JSON",
+                success: function (result, status) {
+                    window.nhhui.alertbox.show("message", result);
+                    if (result.Code == 0) {
+                        var unitInfo = result.Data;
+                        $("#UnitArea").val(unitInfo.UnitArea);
+
+                        $("#btnPreSplit").removeClass("hide");
+                    }
+                }
+            });
+        });
+
+        $("#btnPreSplit").click(function () {
+            var unitCode = $("#UnitCode").val();
+            var unitNumber = $("#UnitNumber").val();
+            if (unitNumber == "") {
+                window.nhhui.alertbox.alert("message", "请输入拆分数量");
+                return;
+            }
+
+            var strHtml = "";
+            var num = parseInt(unitNumber) + 1;
+
+            var unitArea = parseFloat($("#UnitArea").val());
+            var newUnitArea = unitArea / (num - 1);
+            for (var n = 1; n < num; n++) {
+                strHtml += "<li>";
+                strHtml += "<input type='text' class='col-lg-5 unitCode' title='铺位编号' value='" + unitCode + "-" + n + "' />";
+                strHtml += "<input type='text' class='col-lg-3 ml10 unitArea' title='铺位面积' value='" + newUnitArea.toFixed(2) + "' />";
+                strHtml += "</li>";
+            }
+            strHtml += "<li class='inline text-info'>注：可手动调整铺位编号或铺位面积</li>";
+            $("#unitList").html(strHtml);
+        });
+
+        $("#btnSplit").click(function () {
+            var requestData = {};
+            requestData.projectId = $("#ProjectID").val();
+            requestData.unitNumber = $("#UnitCode").val();
+            requestData.remark = $("#Remark").val();
+            requestData.newUnitList = new Array();
+
+            $("#unitList li").each(function (index, item) {
+                var li = $(this);
+                var newUnitItem = {};
+                newUnitItem.unitCode = li.find(".unitCode").val();
+                newUnitItem.unitArea = li.find(".unitArea").val();
+                requestData.newUnitList.push(newUnitItem);
+            });
+
+            $.ajax({
+                url: "@Url.Action("Split", "ProjectUnitSplit", new { area = "Ajax" })",
+                type: "POST",
+                data: requestData,
+                dataType: "JSON",
+                success: function (result, status) {
+                    window.nhhui.alertbox.show("message", result);
+                }
+            });
+        });
+    });
+</script>

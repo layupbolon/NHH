@@ -1,0 +1,73 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+
+<h2>创建意向</h2>
+<div>
+    <p>商户信息</p>
+    <hr />
+    <span>商户名称：</span>@Html.TextBox("CompanyId")
+</div>
+<div>
+    <p>品牌信息</p>
+    <hr />
+    <span>品牌名称：</span>@Html.TextBox("BrandId")
+</div>
+<div>
+    <p>租约意向</p>
+    <hr />
+    <p>
+        <span>*项目名称：</span>
+        @Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList)
+    </p>
+    <p>
+        <span>*商铺编号：</span>
+    </p>
+    <p>
+        <span>*租凭方式：</span>
+    </p>
+    <p>
+        <span>*付款方式：</span>
+    </p>
+    <div>
+        <p>租金</p>
+        <p>
+            <span>*月租金：@Html.TextBox("k") 月/平方米 日租金：5.00 天/平方米 2346.00元/年</span>
+        </p>
+        <p>
+            <span>*物业管理费：@Html.TextBox("j") 月/平方米 日管理费： 5.00 天/平方米 588.00元/年</span>
+        </p>
+    </div>
+    <p>
+        <span>*租押方式：</span>
+    </p>
+    <p>
+        <span>*租金递增方式：</span>
+    </p>
+    <div>
+        <label>
+            @Html.RadioButton("a", false) 物业管理费是否需要递增
+        </label>
+        <p>
+            <span>*物业管理费增递方式：</span>
+        </p>
+    </div>
+    <div>
+        <p>扣点</p>
+        <p>
+            <span>*销售额：</span>
+            <label>@Html.RadioButton("b", false) 税前</label>
+            <label>@Html.RadioButton("c", false) 税后</label>
+        </p>
+        <p>
+            @Html.TextBox("d") 至 @Html.TextBox("e") 扣点 @Html.TextBox("f") % <input value="添加" type="button" id="btnAdd" />
+        </p>
+    </div>
+    <p>
+        <span>*意向租金：@Html.TextBox("g")</span>
+    </p>
+    <p>
+        <span>*面积要求：@Html.TextBox("h") 平方米</span>
+    </p>
+</div>
+<p>
+    <input type="submit" value="提交" />
+</p>

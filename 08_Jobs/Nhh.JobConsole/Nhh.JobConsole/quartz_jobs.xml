@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains job definitions in schema version 2.0 format -->
+
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+
+  <schedule>
+
+    <!--邮件JOB任务配置-->
+    <job>
+      <name>MailJob</name>
+      <group>CommonGroup</group>
+      <description>邮件JOB，每5分钟执行一次</description>
+      <job-type>Nhh.Jobs.Common.MailJob,Nhh.Jobs.Common</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>MailJobTrigger</name>
+        <group>CommonGroup</group>
+        <job-name>MailJob</job-name>
+        <job-group>CommonGroup</job-group>
+        <start-time>2015-01-22T00:00:00+08:00</start-time>
+        <cron-expression>0 0/5 * * * ?</cron-expression>
+      </cron>
+    </trigger>
+    <!--短信JOB任务配置-->
+    <job>
+      <name>SmsJob</name>
+      <group>CommonGroup</group>
+      <description>短信JOB，每15秒钟执行一次</description>
+      <job-type>Nhh.Jobs.Common.SmsJob,Nhh.Jobs.Common</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>SmsJobTrigger</name>
+        <group>CommonGroup</group>
+        <job-name>SmsJob</job-name>
+        <job-group>CommonGroup</job-group>
+        <start-time>2015-01-22T00:00:00+08:00</start-time>
+        <cron-expression>0/15 * * * * ?</cron-expression>
+      </cron>
+    </trigger>
+
+    <!--微信JOB任务配置-->
+    <job>
+      <name>WechatJob</name>
+      <group>CommonGroup</group>
+      <description>微信JOB，每15秒执行一次</description>
+      <job-type>Nhh.Jobs.Common.WechatJob,Nhh.Jobs.Common</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>WechatJobJobTrigger</name>
+        <group>CommonGroup</group>
+        <job-name>WechatJob</job-name>
+        <job-group>CommonGroup</job-group>
+        <start-time>2015-01-22T00:00:00+08:00</start-time>
+        <cron-expression>0/15 * * * * ?</cron-expression>
+      </cron>
+    </trigger>
+
+    <!--物业JOB配置-->
+    <job>
+      <name>RepairRemindJob</name>
+      <group>EstateGroup</group>
+      <description>维修提醒JOB，每5分钟执行一次</description>
+      <job-type>Nhh.Jobs.Estate.RepairRemindJob,Nhh.Jobs.Estate</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>RepairJobTrigger</name>
+        <group>EstateGroup</group>
+        <job-name>RepairRemindJob</job-name>
+        <job-group>EstateGroup</job-group>
+        <start-time>2015-01-22T00:00:00+08:00</start-time>
+        <cron-expression>0 0/5 * * * ?</cron-expression>
+      </cron>
+    </trigger>
+    <job>
+      <name>ComplaintRemindJob</name>
+      <group>EstateGroup</group>
+      <description>投诉提醒JOB，每5分钟执行一次</description>
+      <job-type>Nhh.Jobs.Estate.ComplaintRemindJob,Nhh.Jobs.Estate</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>ComplaintJobTrigger</name>
+        <group>EstateGroup</group>
+        <job-name>ComplaintRemindJob</job-name>
+        <job-group>EstateGroup</job-group>
+        <start-time>2015-01-22T00:00:00+08:00</start-time>
+        <cron-expression>0 0/5 * * * ?</cron-expression>
+      </cron>
+    </trigger>
+
+    <!--企划JOB任务配置-->
+    <job>
+      <name>CampaignJob</name>
+      <group>CampaignGroup</group>
+      <description>企划JOB，每30分钟执行一次</description>
+      <job-type>Nhh.Jobs.Campaign.CampaignJob,Nhh.Jobs.Campaign</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>CampaignJobTrigger</name>
+        <group>CampaignGroup</group>
+        <job-name>CampaignJob</job-name>
+        <job-group>CampaignGroup</job-group>
+        <start-time>2015-01-22T00:00:00+08:00</start-time>
+        <cron-expression>0 0/30 * * * ?</cron-expression>
+      </cron>
+    </trigger>
+    
+    <!--商户JOB配置-->
+    <job>
+      <name>RevenueRemindJob</name>
+      <group>MerchantGroup</group>
+      <description>商铺每日营业额提醒，每天晚上6，7，8点执行</description>
+      <job-type>Nhh.Jobs.Merchant.RevenueRemindJob,Nhh.Jobs.Merchant</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>RevenueRemindJobTrigger</name>
+        <group>MerchantGroup</group>
+        <job-name>RevenueRemindJob</job-name>
+        <job-group>MerchantGroup</job-group>
+        <start-time>2015-01-22T00:00:00+08:00</start-time>
+        <cron-expression>1 1 18,19,20 * * ? *</cron-expression>
+      </cron>
+    </trigger>
+    <!--商户证照过期提醒-->
+    <job>
+      <name>AttachRemindJob</name>
+      <group>MerchantGroup</group>
+      <description>商户证照有效期提醒，每月1、16号，上午10点执行</description>
+      <job-type>Nhh.Jobs.Merchant.AttachRemindJob,Nhh.Jobs.Merchant</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>AttachRemindJobTrigger</name>
+        <group>MerchantGroup</group>
+        <job-name>AttachRemindJob</job-name>
+        <job-group>MerchantGroup</job-group>
+        <cron-expression>0 0 10 1,16 * ?</cron-expression>
+      </cron>
+    </trigger>
+    <job>
+      <name>PaymentRemindJob</name>
+      <group>MerchantGroup</group>
+      <description>缴费提醒，每月15日10点执行</description>
+      <job-type>Nhh.Jobs.Merchant.PaymentRemindJob,Nhh.Jobs.Merchant</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>PaymentRemindJobTrigger</name>
+        <group>MerchantGroup</group>
+        <job-name>PaymentRemindJob</job-name>
+        <job-group>MerchantGroup</job-group>
+        <cron-expression>0 0 10 15 * ?</cron-expression>
+      </cron>
+    </trigger>
+    <!--商户合同到期提醒-->
+    <job>
+      <name>ContractRemindJob</name>
+      <group>MerchantGroup</group>
+      <description>商户合同到期提醒，每天中午12点执行</description>
+      <job-type>Nhh.Jobs.Merchant.ContractRemindJob,Nhh.Jobs.Merchant</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>ContractRemindJobTrigger</name>
+        <group>MerchantGroup</group>
+        <job-name>ContractRemindJob</job-name>
+        <job-group>MerchantGroup</job-group>
+        <cron-expression>1 1 12 * * ? *</cron-expression>
+      </cron>
+    </trigger>
+  </schedule>
+</job-scheduling-data>

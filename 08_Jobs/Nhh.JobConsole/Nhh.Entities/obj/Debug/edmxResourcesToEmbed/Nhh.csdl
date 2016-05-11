@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NHHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MessageType" Type="Int32" Nullable="false" />
+    <Property Name="Priority" Type="Int32" Nullable="false" />
+    <Property Name="Recipient" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Subject" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="InUser" Type="Int32" Nullable="false" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <Property Name="EditUser" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="NHHEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Message" EntityType="Self.Message" />
+    <EntitySet Name="Sys_User_Message" EntityType="NHHModel.Sys_User_Message" />
+    <EntitySet Name="Contract_RemindRecord" EntityType="NHHModel.Contract_RemindRecord" />
+  </EntityContainer>
+  <EntityType Name="Sys_User_Message">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Subject" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SourceType" Type="Int32" Nullable="false" />
+    <Property Name="SourceRefID" Type="Int32" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="InUser" Type="Int32" Nullable="false" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <Property Name="EditUser" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Contract_RemindRecord">
+    <Key>
+      <PropertyRef Name="RemindID" />
+    </Key>
+    <Property Name="RemindID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContractID" Type="Int32" Nullable="false" />
+    <Property Name="ContractEndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="InUser" Type="Int32" Nullable="false" />
+    <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EditDate" Type="DateTime" Precision="3" />
+    <Property Name="EditUser" Type="Int32" />
+  </EntityType>
+</Schema>

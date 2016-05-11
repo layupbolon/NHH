@@ -1,0 +1,32 @@
+﻿@model NHH.Models.Plan.ProjectUnitPlanModel
+
+    <h4 class="lighter">租决规划</h4>
+    <a class="edit-btn" href="javascript:void(0);" id="lbtnUnitPlan" data-unitid="@Model.UnitId">编辑信息</a>
+    <div class="hr hr-18 hr-double dotted"></div>
+    <dl class="form-content">
+        <dd>
+            <label>租决租金：</label>
+            @Model.StandardRent.ToString("#,##0.00") 元/天/平方米
+        </dd>
+        <dd>
+            <label>铺位类型：</label>
+            @Model.UnitTypeName
+        </dd>
+        <dd>
+            <label>业态规划：</label>
+            @Model.BizTypeName
+        </dd>
+        <dd>
+            <label>招商责任部门：</label>
+            <span class="mr10">@Model.CompanyName</span>
+            <span>@Model.DepartmentName</span>
+        </dd>
+    </dl>
+    <div class="clear"></div>
+<script type="text/javascript">
+    $("#lbtnUnitPlan").click(function () {
+        var url = "@Url.Action("EditUnitPlan", "ProjectUnit", new { area="Plan"})";
+        url += "?unitId=" + $(this).attr("data-unitId");
+        $("#unitPlan").load(url);
+    });
+</script>

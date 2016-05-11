@@ -1,0 +1,156 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@model NHH.Models.Configure.SysRoleDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<style>
+    .lnkRemoveFunction {
+        margin-left:6px;
+        color:tomato;
+    }
+    .lnkAddFunction {
+        margin-left:6px;
+        color:tomato;
+    }
+</style>
+<div class="page-content">
+    <div class="page-header">
+        <h1>编辑角色</h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("Edit", "Role", new { area = "System" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span> 角色名称： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.RoleName, null, new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.RoleName)
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1">角色功能： </label>
+                    <div class="col-sm-3">
+                        <ul style="height:700px; overflow-y:scroll;" id="roleFunction" class="list-group"></ul>
+                    </div>
+                    <label class="col-sm-2 control-label no-padding-right" for="form-field-1">系统功能： </label>
+                    <div class="col-sm-4">
+                        <input type="text" id="keyword" />
+                        <a class="btn btn-xs btn-success btn-font btnSearch" href="javascript:void(0)">查询</a>
+                        <ul id="systemFunction" style="height:700px; overflow-y:scroll;" class="list-group"></ul>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"></label>
+                    <div class="col-sm-9">
+                        <input class="btn btn-xs btn-success btn-font" type="submit" id="btnSave" value="保存">
+                        &nbsp; &nbsp; &nbsp;
+                        <input class="btn btn-xs btn-success btn-font" type="reset" value="取消">
+                    </div>
+                </div>
+                @Html.HiddenFor(m => m.RoleId)
+            }
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        var loadRoleFunction = function () {
+            var obj = {};
+            obj.roleId = $("#RoleId").val();
+            $.ajax({
+                url: "@Url.Action("GetRoleFunctionList", "RoleFunction", new { area = "Ajax" }, null)",
+                data: obj,
+                dataType: "JSON",
+                type: "GET",
+                success: function (result, status) {
+                    var strHtml = "";
+                    $.each(result, function (index, item) {
+                        strHtml += "<li class='list-group-item'>";
+                        strHtml += "<a href='###' class='lnkRemoveFunction pull-right' data-id='" + item.FunctionId + "'>删除</a>";
+                        strHtml += "<label>" + item.FunctionName + "</label>";
+                        strHtml += "</li>";
+                    });
+                    $("#roleFunction").html(strHtml);
+                    $(".lnkRemoveFunction").click(function () {
+                        var id = $(this).attr("data-id");
+                        var requestData = {};
+                        requestData.roleId = $("#RoleId").val();
+                        requestData.functionId = id;
+
+                        var url = "@Url.Action("RemoveFunction", "RoleFunction", new { area = "Ajax" })";
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            data: requestData,
+                            dataType: "JSON",
+                            success: function (result, status) {
+                                loadRoleFunction();
+                                loadSystemFunction();
+                            }
+                        });
+                    });
+                }
+            });
+        }
+
+        var loadSystemFunction = function () {
+            var obj = {};
+            obj.keyword = $("#keyword").val();
+            obj.roleId = $("#RoleId").val();
+            $.ajax({
+                url: "@Url.Action("GetSystemFunctionList", "RoleFunction", new { area = "Ajax" }, null)",
+                data: obj,
+                dataType: "JSON",
+                type: "GET",
+                success: function (result, status) {
+                    var strHtml = "";
+                    $.each(result, function (index, item) {
+                        strHtml += "<li class='list-group-item'>";
+                        strHtml += "<a href='###' class='lnkAddFunction pull-right' data-id='" + item.FunctionId + "'>添加</a>";
+                        strHtml += "<label>" + item.FunctionName + "</label>";
+                        strHtml += "</li>";
+                    });
+                    $("#systemFunction").html(strHtml);
+                    $(".lnkAddFunction").click(function () {
+                        var id = $(this).attr("data-id");
+                        var requestData = {};
+                        requestData.roleId = $("#RoleId").val();
+                        requestData.functionId = id;
+
+                        var url = "@Url.Action("AddFunction", "RoleFunction", new { area = "Ajax" })";
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            data: requestData,
+                            dataType: "JSON",
+                            success: function (result, status) {
+                                loadRoleFunction();
+                                loadSystemFunction();
+                            }
+                        });
+                    });
+                }
+            });
+        }
+
+        loadRoleFunction();
+        loadSystemFunction();
+
+
+        ///查询功能模块
+        $(".btnSearch").click(function () {
+            loadSystemFunction();
+        });
+    })
+</script>

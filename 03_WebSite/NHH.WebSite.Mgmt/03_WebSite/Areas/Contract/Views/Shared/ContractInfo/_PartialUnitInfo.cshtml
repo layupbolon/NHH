@@ -1,0 +1,34 @@
+﻿@model NHH.Models.Contract.ContractUnitInfo
+
+<h4 class="lighter">铺位信息</h4>
+@if(Model.ContractStatus == 2)
+{ 
+    <a class="edit-btn" href="javascript:void(0);" id="lbtnUnitInfo" data-contractId="@Model.ContractID">编辑信息</a>
+    <script type="text/javascript">
+        $("#lbtnUnitInfo").click(function () {
+            var url = "@Url.Action("UnitInfo", "ContractMgmt", new { area = "Contract" })";
+            url += "?contractId=" + $("#ContractID").val();
+            $("#unitInfo").load(url);
+        });
+    </script>
+}
+<dl class="form-content form-content-edit form-row-comb">
+    <dd>
+        <label>项目名称：</label>
+        @Model.ProjectName
+    </dd>
+    <dd>
+        <label>商铺：</label>
+        @foreach (var unit in Model.UnitList)
+        {
+            <span>@unit.FloorName</span>
+            <span>@unit.UnitNumber</span>
+            <br />
+        }
+    </dd>
+    <dd>
+        <label>计租面积：</label>
+        @Model.ContractArea.ToString("#,##0.00") <span>平方米</span>
+    </dd>
+</dl>
+<div class="clear"></div>

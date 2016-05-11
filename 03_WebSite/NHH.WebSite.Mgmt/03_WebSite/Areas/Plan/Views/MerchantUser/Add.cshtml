@@ -1,0 +1,250 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.MerchantUserDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>新增员工</h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                @using (Html.BeginForm("Add", "MerchantUser", new { area = "Plan" }, FormMethod.Post, new { @class = "form-horizontal", id = "AddMerchantUserForm", role = "form", novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <p class="titleA">账号信息</p>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>用户名称： </label>
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(m => m.UserName, null, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessageFor(m => m.UserName)
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>密码： </label>
+                        <div class="col-sm-9">
+                            @Html.PasswordFor(m => m.PasswordMerchant, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessageFor(m => m.PasswordMerchant)
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>角色类型： </label>
+                        <div class="col-sm-9 input-merge">
+                            <ul>
+                                <li>
+                                    <label>
+                                        @Html.RadioButton("RoleId", "1", true, new { @id = "RoleId1", @name = "RoleId" }) 管理员
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        @Html.RadioButton("RoleId", "2", false, new { @id = "RoleId2", @name = "RoleId" }) 操作员
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> 所属商铺：</label>
+                        <div class="col-sm-9">
+                            @Html.DropDownList("StoreId", ViewData["StoreList"] as SelectList, "请选择")
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <p class="titleA">基本信息</p>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>姓名： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBoxFor(m => m.NickName, null, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessageFor(m => m.NickName)
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>性别： </label>
+                        <div class="col-sm-9 input-merge">
+                            <ul>
+                                <li>
+                                    <label>
+                                        @Html.RadioButton("Gender", "1", true, new { @id = "Gender1", @name = "Gender" }) 男
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        @Html.RadioButton("Gender", "2", false, new { @id = "Gender2", @name = "Gender" }) 女
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> 邮箱： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBoxFor(m => m.Email, null, new { @class = "col-xs-10 col-sm-5" })
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>手机： </label>
+
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBoxFor(m => m.Mobile, null, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessageFor(m => m.Mobile)
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">出生年月： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            <span class="input-daterange">
+                                @Html.TextBox("Birthday", Model.Birthday, new { style = "width:195px", @class = "form-control mr10" })
+                            </span>
+                            <label class="control-label no-padding-right">政治面貌： </label>
+                            <span>
+                                @Html.DropDownList("PoliticalStatus", ViewData["PoliticalStatuslist"] as SelectList, "请选择政治面貌", new { style = "width:195px" })
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">身高CM： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            <span>@Html.TextBoxFor(m => m.Height, null, new { style = "width:195px", @class = "form-control mr10" })</span>
+                            <label class="control-label no-padding-right"><span class="req">&nbsp;</span>体重KG： </label>
+                            <span>
+                                @Html.TextBox("Weight", Model.Weight, new { style = "width:195px" })
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">民族： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            <span>
+                                @Html.DropDownList("Nation", ViewData["NationList"] as SelectList, "请选择民族", new { style = "width:195px" })
+                            </span>
+                          <label class="control-label no-padding-right" style="margin-left:23px;"><span class="req">&nbsp;</span>学历：</label>
+                          <span >
+                            @Html.DropDownList("Education", ViewData["EducationList"] as SelectList, "请选择学历", new { style = "width:195px" })
+                          </span>
+                    </div>
+                  </div>
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> <span class="req"></span>婚姻状况： </label>
+                        <div class="col-sm-9 input-merge">
+                            <ul>
+                                <li>
+                                    <label>
+                                        @Html.RadioButton("MaritalStatus", "1", true, new { @id = "MaritalStatus1", @name = "MaritalStatus" }) 已婚
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        @Html.RadioButton("MaritalStatus", "2", false, new { @id = "MaritalStatus2", @name = "MaritalStatus" }) 未婚
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> 身份证号码： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBoxFor(m => m.IDNumber, null, new { @class = "col-xs-10 col-sm-5" })
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <p class="titleA">详细信息</p>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">紧急联系人： </label>
+                            <div class="col-sm-9 input-merge">
+                                @Html.TextBoxFor(m => m.EmergencyContact, null, new { @class = "col-xs-10 col-sm-5" })
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">紧急联系人电话： </label>
+
+                            <div class="col-sm-9 input-merge">
+                                @Html.TextBoxFor(m => m.EmergencyPhone, null, new { @class = "col-xs-10 col-sm-5" })
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">邮编： </label>
+                            <div class="col-sm-9 input-merge">
+                                @Html.TextBoxFor(m => m.ZipCode, null, new { @class = "col-xs-10 col-sm-5" })
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right">通信地址： </label>
+                            <div class="col-sm-9 input-merge">
+                                @Html.TextBoxFor(m => m.Address, null, new { @class = "col-xs-10 col-sm-5" })
+                            </div>
+                        </div>
+                        <div class="space-4"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label no-padding-right"> 教育经历： </label>
+                            <div class="col-sm-9 input-merge">
+                                @Html.TextArea("EducationExperience", Model.EducationExperience, new { @class = "col-xs-10 col-sm-5" })
+
+                            </div>
+                        </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> 工作经历： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextArea("WorkExperience", Model.WorkExperience, new { @class = "col-xs-10 col-sm-5" })
+
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right"> 家庭成员： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextArea("FamilyMembers", Model.FamilyMembers, new { @class = "col-xs-10 col-sm-5" })
+
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input class="btn btn-xs btn-success btn-font input-btn" type="submit" value="提交信息" />
+                            &nbsp; &nbsp; &nbsp;
+                            <input class="btn btn-xs btn-font btn-cancel" type="reset" value="重置" />
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.MerchantId)
+                }
+            </div><!-- /.row -->
+        </div><!-- /.page-content-area -->
+    </div>
+</div>

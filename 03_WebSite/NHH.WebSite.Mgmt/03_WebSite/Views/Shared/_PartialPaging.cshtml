@@ -1,0 +1,44 @@
+﻿@model NHH.Models.Common.PagingInfo
+<ul class="pagination pull-right no-margin">
+    <li style="float:left; margin-right:10px; line-height:30px;">查询到 @Model.TotalCount 条记录，共 @Model.PageCount 页</li>
+    @if (Model.PageIndex != 1)
+    {
+        <li class="next">
+            <a href="javascript:void(0);" class="page" data-page="1">
+                第一页
+            </a>
+        </li>
+    }
+    @if(Model.PageIndex > 1)
+    { 
+    <li class="prev">
+        <a href="javascript:void(0);" class="page" data-page="@(Model.PageIndex-1)">
+            上一页
+        </a>
+    </li>
+    }
+    
+    @for (int page = Model.StartPage; page <= Model.EndPage; page++)
+    {
+        <li class="@(Model.PageIndex == page ? "active" : "")">
+            <a href="javascript:void(0);" class="page" data-page="@page">@page</a>
+        </li>
+    }
+    
+    @if(Model.PageIndex< Model.PageCount)
+    { 
+    <li class="next">
+        <a href="javascript:void(0);" class="page" data-page="@(Model.PageIndex+1)">
+            下一页
+        </a>
+    </li>
+    }
+    @if (Model.PageIndex != Model.PageCount)
+    {
+        <li class="next">
+            <a href="javascript:void(0);" class="page" data-page="@(Model.PageCount)">
+                最后一页
+            </a>
+        </li>
+    }
+</ul>

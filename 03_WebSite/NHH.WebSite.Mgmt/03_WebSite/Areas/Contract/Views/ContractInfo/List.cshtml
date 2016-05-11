@@ -1,0 +1,157 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Contract.ContractListModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>租约查询</h1>
+        </div><!-- /.page-header -->
+        <div class="screen-area">
+                <dl class="list-screen">
+                    <dt>项目名称：</dt>
+                    <dd>@Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList)</dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>楼层：</dt>
+                    <dd>
+                        <select id="FloorId" name="FloorId"></select>
+                    </dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>店铺编号：</dt>
+                    <dd>
+                        @Html.TextBox("UnitNumber", Model.QueryInfo.UnitNumber)
+                    </dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>状态：</dt>
+                    <dd>@Html.DropDownList("Status", ViewData["ContractStatusList"] as SelectList, "请选择状态")</dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>提交时间：</dt>
+                    <dd class="input-daterange">
+                        @Html.TextBox("StartTime", Model.QueryInfo.StartTime.HasValue ? Model.QueryInfo.StartTime.Value.ToString("yyyy-MM-dd") : "", new { @class = "iconTime" })
+                        至
+                        @Html.TextBox("EndTime", Model.QueryInfo.EndTime.HasValue ? Model.QueryInfo.EndTime.Value.ToString("yyyy-MM-dd") : "", new { @class = "iconTime" })
+                    </dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>商户名称：</dt>
+                    <dd>
+                        @Html.TextBox("StoreName", Model.QueryInfo.StoreName)
+                    </dd>
+                </dl>
+                <div class="result-btn">
+                    <a class="btn btn-xs btn-success btn-font" id="lnkSearch" href="javascript:void(0);">查询</a>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="lighter mt30">
+                    合同列表
+                </h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>@Html.SortLink("合同编号", "ContractCode")</th>
+                            <th>店铺</th>
+                            <th>@Html.SortLink("计租面积", "ContractArea")</th>
+                            <th>@Html.SortLink("月租金", "MonthlyRent")</th>
+                            <th>合同到期天数</th>
+                            <th>@Html.SortLink("商户名称", "MerchantID")</th>
+                            <th>提交时间</th>
+                            <th>生效时间</th>
+                            <th>@Html.SortLink("进场日期", "DecorationStartDate")</th>
+                            <th>@Html.SortLink("状态", "ContractStatus")</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ContractList)
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(item.ContractCode, "Detail", "ContractInfo", new { area = "Contract", contractId = item.ContractID }, new { @class = "btn btn-link btn-font" })</td>
+                                <td>
+                                    <ul>
+                                        @foreach (var unit in item.UnitInfo.UnitList)
+                                        {
+                                            <li>@Html.ActionLink(string.Format("{0} {1}", unit.FloorName, unit.UnitNumber), "Info", "ProjectUnit", new { area = "Project", unitId = unit.UnitId }, new { @class = "btn btn-link btn-font" })</li>
+                                        }
+                                    </ul>
+                                </td>
+                                <td align="right">@item.UnitInfo.ContractArea.ToString("#,##0.00")</td>
+                                <td align="right">@item.MonthlyRent.ToString("#,##0.00")</td>
+                                <td align="right">@item.ExpireDays</td>
+                                <td>@Html.ActionLink(item.MerchantName, "Detail", "Merchant", new { area = "Plan", merchantId = item.MerchantID }, new { target = "_blank", @class = "btn btn-link btn-font" })</td>
+                                <td>@item.InDate.ToString("yyyy-MM-dd")</td>
+                                <td>@item.ContractStartDate.ToString("yyyy-MM-dd")</td>
+                                <td>@item.DecorationStartDate.ToString("yyyy-MM-dd")</td>
+                                <td>@item.ContractStatusName</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @{Html.RenderPartial("_PartialPaging",Model.PagingInfo);}
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>
+
+<script language="javascript" type="text/javascript">
+    $(function () {
+        var floorList = new window.nhhui.floorSelect({
+            controlId: "FloorId",
+            url: "@Url.Action("GetBuildingGroup", "Project", new { area = "Ajax" })",
+            projectId: $("#ProjectId").val(),
+            buildingId: "@Model.QueryInfo.BuildingId",
+            floorId: "@Model.QueryInfo.FloorId",
+        });
+        floorList.init();
+
+        $("#ProjectId").change(function () {
+            var projectId = $("#ProjectId").val();
+            floorList.bindSelect(projectId);
+        });
+        $("#StoreName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("GetList", "Merchant", new { area = "Ajax" })",
+                    dataType: "json",
+                    data: { name: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.MerchantName, value: item.MerchantName }
+                        }));
+                    },
+                    minLength: 1,
+                    autoFocus: false,
+                    delay: 500
+                });
+            }
+        });
+
+        new nhhui.nhhtable({
+            searchBtn: "lnkSearch",
+            sortBy: "@Model.QueryInfo.OrderBy",
+            sortMode: "@Model.QueryInfo.OrderMode",
+            url: "@Url.Action("List", "ContractInfo", new { area = "Contract" })",
+            onInit: function () {
+                return getRequestData();
+            },
+        }).init();
+        var getRequestData = function () {
+            var requestData = {};
+            requestData.ProjectId = $("#ProjectId").val();
+            requestData.BuildingId = floorList.getBuildingId();
+            requestData.FloorId = floorList.getFloorId();
+            requestData.UnitNumber = $("#UnitNumber").val();
+            requestData.Status = $("#Status").val();
+            requestData.StartTime = $("#StartTime").val();
+            requestData.EndTime = $("#EndTime").val();
+            requestData.StoreName = $("#StoreName").val();
+            return requestData;
+        };
+    });    
+</script>

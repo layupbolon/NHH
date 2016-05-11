@@ -1,0 +1,176 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.MerchantBrandDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<style>
+    .uploadify-queue {
+        display: none;
+    }
+</style>
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>新增商户品牌</h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- PAGE CONTENT BEGINS -->
+                @using (Html.BeginForm("Add", "Brand", new { area = "Plan" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"><span class="req">*</span> 品牌名称： </label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("BrandID", ViewData["BrandList"] as SelectList, "请选择品牌", new { style = "width:160px" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessageFor(m => m.BrandID)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 品牌级次： </label>
+                        <div class="col-lg-9">
+                            <span class="defauletext" id="brandLevel"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 年平均营业额： </label>
+                        <div class="col-lg-9">
+                            <div class="input-group col-lg-2">
+                                @Html.TextBox("Revenue", "")
+                                <div class="input-group-addon">万元</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"><span class="req">*</span> 经营方式： </label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("BrandTypeId", ViewData["BrandTypeList"] as SelectList, new { style = "width:160px" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessageFor(m => m.BrandTypeId)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group Authorized">
+                        <label class="col-lg-3 control-label"><span class="req">*</span> 授权文件： </label>
+                        <div class="col-lg-9 ">
+                            <a class="btn btn-add btn-font upload-btn">
+                                <div class="load-text">上传文件</div>
+                                <div class="input-wrap">
+                                    <input type="button" id="btnUpload" class="load-text" />
+                                    @Html.Hidden("AuthorizedFilePath")
+                                    @Html.Hidden("AuthorizedFileName")
+                                </div>
+                            </a>
+                            <p id="fileName"></p>
+                        </div>
+                    </div>
+                    <div class="space-4 Authorized"></div>
+                    <div class="form-group Authorized">
+                        <label class="col-lg-3 control-label"><span class="req">*</span> 授权期限： </label>
+                        <div class="col-lg-9 input-daterange">
+                            @Html.TextBox("AuthorizedSince", "", new { @class = "iconTime" })                            
+                            <b>-</b>
+                            @Html.TextBox("AuthorizedTo", "", new { @class = "iconTime" })
+                            <span class="middle red" style="display:block;line-height:50px;">
+                                @Html.ValidationMessageFor(m => m.AuthorizedSince)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 经营年限： </label>
+                        <div class="col-lg-9 input-daterange">
+                            @Html.TextBox("OperationSince", "", new { @class = "iconTime" })
+                            <b>-</b>
+                            @Html.TextBox("OperationTo", "", new { @class = "iconTime" })                            
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-lg-offset-3 col-lg-9">
+                            @Html.Hidden("MerchantId", Model.MerchantID)
+                            <input class="btn btn-xs btn-success btn-font input-btn" type="submit" value="提交信息" />
+                            &nbsp; &nbsp; &nbsp;
+                            <input class="btn btn-xs btn-font btn-cancel" type="reset" value="重置" />
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //品牌信息
+        $("#BrandID").change(function () {
+            var brandId = $(this).val();
+            if (brandId == 0) {
+                $("#brandLevel").text("");
+                return false;
+            }
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetInfo", "Brand", new { area = "Ajax" })",
+                data: "brandId=" + brandId,
+                success: function (result, status) {
+                    $("#brandLevel").text(result.BrandLevelInfo.Name);
+                }
+            });
+        });
+        $(".Authorized").hide();
+        //经营方式
+        $("#BrandTypeId").change(function () {
+            var brandType = $(this).val();
+            if (brandType == 2 || brandType == 3) {
+                $(".Authorized").show();
+            }
+            else {
+                $(".Authorized").hide();
+            }
+        });
+        //授权文件
+        var formData = {};
+        formData.merchantId = $("#MerchantId").val();
+        $("#btnUpload").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.ParamManager.GetStringValue("ImageSite")" + "Merchant/Upload",
+            "formData": formData,
+            "buttonText": "",
+            "multi": false,
+            "onUploadSuccess": function (file, data, response) {
+                var result = JSON.parse(data);
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+                $("#fileName").text(result.FileName);
+                $("#AuthorizedFileName").val(result.FileName);
+                $("#AuthorizedFilePath").val(result.FilePath);
+            },
+            "onUploadProgress": function () { }
+        });
+
+        //时间控件bug修复
+        $("#OperationSince,#OperationTo").change(function () {
+            var fromDate = $("#OperationSince").val().trim();
+            var toDate = $("#OperationTo").val().trim();
+            if (fromDate > toDate && fromDate != "" && toDate != "") {
+                $("#OperationSince,#OperationTo").val($(this).val());
+            }
+        });
+
+        //时间控件bug修复
+        $("#AuthorizedSince,#AuthorizedTo").change(function () {
+            var fromDate = $("#AuthorizedSince").val().trim();
+            var toDate = $("#AuthorizedTo").val().trim();
+            if (fromDate > toDate && fromDate != "" && toDate != "") {
+                $("#AuthorizedSince,#AuthorizedTo").val($(this).val());
+            }
+        });
+    });
+</script>

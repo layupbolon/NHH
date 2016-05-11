@@ -1,0 +1,120 @@
+﻿<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header no-padding">
+            <div class="table-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="white">×</span>
+                </button>
+                上传用户证件
+            </div>
+        </div>
+        <div class="modal-body no-padding nothing">
+            <div class="popWinStyle">
+               @using (Html.BeginForm("SavePaper", "MerchantUser", new { area = "Plan" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+               {
+                <div class="form-group">
+                    <label class="col-lg-3 control-label"> 证照类型： </label>
+                    <div class="col-lg-9">
+                        @Html.DropDownList("PaperType", ViewData["UserPaperTypeList"] as SelectList, "请选择证件类型", new { @class = "col-lg-8" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">证件编号： </label>
+                    <div class="col-lg-9">
+                        <input type="text" id="PaperNumber" name="PaperNumber" class="col-lg-8" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label"> 选择附件： </label>
+                    <div class="col-lg-9">
+                        <a class="btn btn-add btn-font upload-btn">
+                            <div class="load-text">选择文件</div>
+                            <div class="input-wrap">
+                                <input type="button" class="webuploader-invisible" id="btnUpload" />
+                            </div>
+                        </a>
+                        <p class="muted">附件大小不能超过2M</p>
+                        <input type="hidden" id="PaperPath" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">证件名称： </label>
+                    <div class="col-lg-9">
+                        <input type="text" id="PaperName" name="PaperName" placeholder="附件名称" class="col-lg-8" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label"> 有效期： </label>
+                    <div class="col-lg-9">
+                        <span class="input-daterange">
+                            <input type="text" id="ExpiredDate" name="ExpiredDate" class="col-lg-8 iconTime" />
+                        </span>
+                    </div>
+                </div>
+                <div class="clearfix form-actions" style="clear:both;">
+                    <div class="col-lg-offset-3 col-lg-9">
+                        <a class="btn btn-xs btn-success btn-font btnSave" id="savePaper" href="javascript:void(0)">保存附件</a>
+                    </div>
+                </div>
+               }
+            </div>
+        </div>
+    </div><!-- /.modal-content -->
+</div>
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".input-daterange").datepicker({ keyboardNavigation: false, forcParse: false, autoclose: true, format: "yyyy-mm-dd" });
+        //文件上传
+        $("#btnUpload").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.ParamManager.GetStringValue("ImageSite")" + "MerchantUser/Upload",
+            "buttonText": "",
+            "fileTypeExts": "*.jpg;*.png",
+            "multi": false,
+            "onUploadStart": function (file) {
+                //获取项目ID
+                var formData = {};
+                formData.merchantId = $("#MerchantId").val();
+                formData.merchantUserId = $("#UserId").val();
+                $("#btnUpload").uploadify("settings", "formData", formData);
+            },
+            "onUploadSuccess": function (file, data, response) {
+                var result = JSON.parse(data);
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+                $("#PaperName").val(result.FileName);
+                $("#PaperPath").val(result.FilePath);
+            }
+        });
+
+        //提交图片到局部页面
+        $("#savePaper").click(function () {
+            //判断是否填写证件号
+            var paperData = new Object();
+            paperData.PaperPath = $("#PaperPath").val();
+            paperData.PaperType = $("#PaperType").val();
+            paperData.PaperNumber = $("#PaperNumber").val();
+            paperData.PaperName = $("#PaperName").val();
+            paperData.UserId = $("#UserId").val();
+            paperData.ExpiredDate = $("#ExpiredDate").val();
+
+            //插入数据库
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("SavePaper", "MerchantUser", new { area = "Plan" })",
+                data: paperData,
+                cache: false,
+                dataType: "json",
+                success: function (result, status) {
+                    var url = "@Url.Action("PaperList", "MerchantUser", new { area = "Plan" })";
+                    url += "?userId=" + $("#UserId").val();
+                    location.href = url;
+                }
+            });
+        });
+    });
+</script>

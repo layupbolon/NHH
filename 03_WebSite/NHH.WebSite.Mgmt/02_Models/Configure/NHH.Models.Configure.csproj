@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{949C68DA-94CD-4C50-B65E-9131A1118C28}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NHH.Models.Configure</RootNamespace>
+    <AssemblyName>NHH.Models.Configure</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DictionaryDetailModel.cs" />
+    <Compile Include="DictionaryInfo.cs" />
+    <Compile Include="DictionaryListModel.cs" />
+    <Compile Include="DictionaryListQueryInfo.cs" />
+    <Compile Include="ProjectBizConfigListModel.cs" />
+    <Compile Include="ProjectBizConfigListQueryInfo.cs" />
+    <Compile Include="SysFunctionDetailModel.cs" />
+    <Compile Include="SysFunctionInfo.cs" />
+    <Compile Include="SysFunctionListModel.cs" />
+    <Compile Include="SysFunctionListQueryInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SysMenuDeatilModel.cs" />
+    <Compile Include="SysMenuInfo.cs" />
+    <Compile Include="SysMenuListModel.cs" />
+    <Compile Include="SysMenuListQueryInfo.cs" />
+    <Compile Include="SysRoleDetailModel.cs" />
+    <Compile Include="SysRoleFunctionListModel.cs" />
+    <Compile Include="SysRoleInfo.cs" />
+    <Compile Include="SysRoleListModel.cs" />
+    <Compile Include="SysRoleMenuListModel.cs" />
+    <Compile Include="SysUserDetailModel.cs" />
+    <Compile Include="SysUserInfo.cs" />
+    <Compile Include="SysUserListModel.cs" />
+    <Compile Include="SysUserListQueryInfo.cs" />
+    <Compile Include="SysUserPasswordModel.cs" />
+    <Compile Include="SysUserRoleListModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\NHH.Models.Common.csproj">
+      <Project>{c1f81f13-9f5d-4673-91a3-c9b564e8dbce}</Project>
+      <Name>NHH.Models.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

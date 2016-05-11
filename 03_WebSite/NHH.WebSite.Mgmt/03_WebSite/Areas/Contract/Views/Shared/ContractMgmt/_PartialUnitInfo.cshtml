@@ -1,0 +1,50 @@
+﻿@model NHH.Models.Contract.ContractUnitInfo
+
+<h4 class="lighter">铺位信息</h4>
+<a class="edit-btn-canl" href="javascript:void(0);" id="lbtnUnitInfo">取消编辑</a>
+<dl class="form-content form-content-edit form-row-comb">
+    <dd>
+        <label>项目名称：</label>
+        @Model.ProjectName
+    </dd>
+    <dd>
+        <label>商铺：</label>
+        @foreach (var unit in Model.UnitList)
+        {
+            <span>@unit.FloorName</span>
+            <span>@unit.UnitNumber</span>
+            <br />
+        }
+    </dd>
+    <dd>
+        <label>计租面积：</label>
+        @Html.TextBox("ContractArea", Model.ContractArea.ToString(".00"))
+        <span>平方米</span>
+    </dd>
+</dl>
+<div class="btn-edit">
+    <a href="###" class="btn btn-info mr20" id="btnUnitInfo">保存信息</a>
+    <a href="###" class="btn cancelEditUnitInfo">取消编辑</a>
+</div>
+<script type="text/javascript">
+    $("#lbtnUnitInfo").click(function () {
+        var url = "@Url.Action("UnitInfo", "ContractInfo", new { area = "Contract" })";
+        url += "?contractId=" + $("#ContractID").val();
+        $("#unitInfo").load(url);
+    });
+    $("#btnUnitInfo").click(function () {
+        var unitInfo = {};
+        unitInfo.ContractID = $("#ContractID").val();
+        unitInfo.ContractArea = $("#ContractArea").val();
+        var url = "@Url.Action("UpdateUnitInfo", "ContractMgmt", new { area = "Contract" })";
+        $("#unitInfo").load(url, unitInfo, function (response, status, xhs) {
+            $(this).html(response);
+        });
+    });
+    $(".cancelEditUnitInfo").click(function () {
+        var url = "@Url.Action("UnitInfo", "ContractInfo", new { area = "Contract" })";
+        url += "?contractId=" + $("#ContractID").val();
+        $("#unitInfo").load(url);
+    });
+</script>
+<div class="clear"></div>

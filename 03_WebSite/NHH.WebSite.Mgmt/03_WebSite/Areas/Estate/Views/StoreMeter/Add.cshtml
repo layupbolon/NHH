@@ -1,0 +1,67 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.StoreMeterDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>新增计量表</h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("Add", "StoreMeter", new { area = "Estate" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"> 商铺名称： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.StoreName</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="MeterType"><span class="req">*</span> 计量表类型： </label>
+                    <div class="col-sm-9">
+                    @Html.DropDownList("MeterType", ViewData["MeterTypeList"] as SelectList)
+                    <span class="help-inline col-xs-12">
+                        <span class="middle red">
+                            @Html.ValidationMessageFor(m => m.MeterType)
+                        </span>
+                    </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="MeterCode"> <span class="req">*</span> 计量表编号： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBox("MeterCode")
+                        <span class="help-inline col-xs-12">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.MeterCode)
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="form-field-1"> <span class="req">*</span> 计量表属性： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBox("MeterAttr")
+                        <span class="help-inline col-xs-12">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.MeterAttr)
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"></label>
+                    <div class="col-sm-9">
+                        <button class="btn btn-xs btn-success btn-font" type="submit" id="btnSubmit">确认提交</button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn btn-xs btn-success btn-font" type="reset">取消</button>
+                    </div>
+                </div>
+                @Html.Hidden("StoreId", Model.StoreID)
+            }
+        </div>
+    </div>
+</div>

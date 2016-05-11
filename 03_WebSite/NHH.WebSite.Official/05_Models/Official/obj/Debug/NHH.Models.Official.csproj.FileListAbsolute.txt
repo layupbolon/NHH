@@ -1,0 +1,4 @@
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Official\05_Models\Official\bin\Debug\NHH.Models.Official.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Official\05_Models\Official\bin\Debug\NHH.Models.Official.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Official\05_Models\Official\obj\Debug\NHH.Models.Official.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Official\05_Models\Official\obj\Debug\NHH.Models.Official.pdb

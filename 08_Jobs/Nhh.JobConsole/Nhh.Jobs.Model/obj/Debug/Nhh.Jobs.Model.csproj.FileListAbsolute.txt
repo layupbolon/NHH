@@ -1,0 +1,4 @@
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Model\bin\Debug\Nhh.Jobs.Model.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Model\bin\Debug\Nhh.Jobs.Model.pdb
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Model\obj\Debug\Nhh.Jobs.Model.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Jobs.Model\obj\Debug\Nhh.Jobs.Model.pdb

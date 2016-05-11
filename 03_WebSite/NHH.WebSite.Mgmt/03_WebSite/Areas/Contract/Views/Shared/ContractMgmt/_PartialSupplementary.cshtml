@@ -1,0 +1,17 @@
+﻿@model NHH.Models.Contract.ContractDetailModel
+
+<h4 class="lighter">补充协议</h4>
+<dl class="form-content textstyle">
+    @foreach (var supplement in Model.SupplementaryList)
+    {
+        <dd>
+            <label>签订时间：</label>
+            <span>@supplement.SupplementaryStartDate.ToString("yyyy-MM-dd") 至 @supplement.SupplementaryEndDate.ToString("yyyy-MM-dd")</span>
+        </dd>
+        <dd>
+            <label>协议内容：</label>
+            <span>@supplement.SupplementaryContent </span>
+        </dd>
+    }
+</dl>
+<div class="clear"></div>

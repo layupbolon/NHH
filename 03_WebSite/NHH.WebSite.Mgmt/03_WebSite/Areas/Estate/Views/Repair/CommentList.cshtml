@@ -1,0 +1,106 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Estate.RepairCommentListModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>
+                维修评价查询
+            </h1>
+        </div><!-- /.page-header -->
+        <div class="screen-area">
+            @using (Html.BeginForm("CommentList", "Repair", new { area = "Estate" }, FormMethod.Get, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+            {
+                <dl class="list-screen">
+                    <dt>报修编号：</dt>
+                    <dd>@Html.TextBox("RepairId", Model.QueryInfo.RepairId)</dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>维修人：</dt>
+                    <dd>
+                        @Html.DropDownList("RepairUserId", ViewData["RepairUserList"] as SelectList, "请选择")
+                    </dd>
+                </dl>
+                <div class="result-btn">
+                    <a class="btn btn-xs btn-success btn-font" id="btnSearch" href="javascript:void(0);">搜索</a>
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="lighter mt30">
+                    评价列表
+                </h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>@Html.SortLink("评价编号", "CommentId")</th>
+                            <th>@Html.SortLink("报修编号", "RepairId")</th>
+                            <th>维修人</th>
+                            <th>响应速度</th>
+                            <th>维修结果</th>
+                            <th>服务态度</th>
+                            <th>平均分</th>
+                            <th>评价</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.CommentList)
+                        {
+                            <tr>
+                                <td>
+                                    <a href="javascript:void(0);" class="btn btn-link btn-font comment" data-id="@item.CommentId">@item.CommentId</a>
+                                </td>
+                                <td>@Html.ActionLink(item.RepairId.ToString(), "Detail", "Repair", new { area = "Estate", repairId = item.RepairId }, new { @class = "btn btn-link btn-font" })</td>
+                                <td>@item.RepairUserName</td>
+                                <td>@item.Speed</td>
+                                <td>@item.Quality</td>
+                                <td>@item.Attitude</td>
+                                <td>@item.Overall</td>
+                                <td>@item.Comment</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @Html.Partial("_PartialPaging", Model.PagingInfo)
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div>
+</div>
+<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;"></div>
+
+<script type="text/javascript">
+    $(function () {
+        new nhhui.nhhtable({
+            searchBtn: "btnSearch",
+            sortBy: "@Model.QueryInfo.OrderBy",
+            sortMode: "@Model.QueryInfo.OrderMode",
+            url: "@Url.Action("CommentList", "Repair", new { area = "Estate" })",
+            onInit: function () {
+                return getRequestData();
+            },
+            }).init();
+
+        //评论详情
+        $(".comment").click(function () {
+            var commentId = $(this).attr("data-id");
+            $.ajax({
+                url: "@Url.Action("PopComment", "Repair", new { area = "Estate" })",
+                data: "commentId=" + commentId,
+                dataType: "HTML",
+                success: function (result, status) {
+                    $("#modal").html(result).modal();
+                }
+            });
+        });
+    });
+    var getRequestData = function () {
+        var requestData = {};
+        requestData.RepairId = $("#RepairId").val();
+        requestData.RepairUserId = $("#RepairUserId").val();
+        return requestData;
+    };
+</script>

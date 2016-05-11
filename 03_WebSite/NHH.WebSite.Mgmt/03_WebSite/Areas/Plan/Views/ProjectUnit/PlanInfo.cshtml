@@ -1,0 +1,54 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Plan.ProjectPlanInfoModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="rowA">
+    <div class="col-5">
+        <h4 class="lighter">铺位信息</h4>
+        <div class="hr hr-18 hr-double dotted"></div>
+        <dl class="form-content">
+            <dd>
+                <i>项目名称：</i>
+                @Model.UnitInfo.ProjectName
+            </dd>
+            <dd>
+                <i>铺位编号：</i>
+                @Model.UnitInfo.UnitNumber
+            </dd>
+            <dd>
+                <i>铺位类型：</i>
+                @Model.UnitInfo.UnitType.Name
+            </dd>
+            <dd>
+                <i>所属楼层：</i>
+                @Model.UnitInfo.BuildingName
+                @Model.UnitInfo.FloorName
+            </dd>
+            <dd>
+                <i>业态规划：</i>
+                @Model.UnitInfo.BizType.Name
+            </dd>
+            <dd>
+                <i>计租面积：</i>
+                @Model.UnitInfo.UnitArea.ToString("#,##0.00") 平方米
+            </dd>
+        </dl>
+        <div class="clear"></div>
+    </div>
+    @Html.Hidden("UnitId", Model.UnitId)
+    <div class="col-5" id="unitPlan">
+        @{Html.RenderAction("UnitPlan", "ProjectUnit", new { area = "Plan", unitId = Model.UnitId });}
+    </div>
+    <div class="col-5" id="rentInfo">
+        @{Html.RenderAction("RentInfo", "ProjectUnit", new { area = "Plan", unitId = Model.UnitId });}
+    </div>
+    <div class="col-5" id="unitLeasing">
+        @{Html.RenderAction("UnitLeasing", "ProjectUnit", new { area = "Plan", unitId = Model.UnitId });}
+    </div>
+    <div class="col-5" id="unitSpec">
+        @{Html.RenderAction("UnitSpec", "ProjectUnit", new { area = "Plan", unitId = Model.UnitId });}
+    </div>
+    <div class="col-5" id="storeSpec">
+        @{Html.RenderAction("StoreSpec", "ProjectUnit", new { area = "Plan", unitId = Model.UnitId });}
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.MerchantStoreDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="rowA">
+    <div class="col-5">
+        <h4 class="lighter mb20">
+            @Model.StoreName
+            <small>@Model.MerchantName</small>
+        </h4>
+        <div class="hr hr-18 hr-double dotted"></div>
+        <h4 class="lighter">商户信息</h4>
+        <dl class="form-content form-content-edit form-row-comb">
+            <dd>
+                <label>业态：</label>
+                @Model.BizTypeName
+            </dd>
+            <dd>
+                <label>品类：</label>
+                @Model.BizCategoryName
+            </dd>
+            <dd>
+                <label>公司类型：</label>
+                @Model.MerchantInfo.MerchantTypeInfo.Name
+            </dd>
+            <dd>
+                <label>公司简称：</label>
+                @Model.MerchantInfo.BriefName
+            </dd>
+            <dd>
+                <label>联系人：</label>
+                @Model.MerchantInfo.ContactName
+            </dd>
+            <dd>
+                <label>联系方式：</label>
+                @Model.MerchantInfo.ContactPhone
+            </dd>
+            <dd>
+                <label>公司地址：</label>
+                @Model.MerchantInfo.MerchantAddress
+            </dd>
+        </dl>
+        <div class="clear"></div>
+    </div>
+    <div class="col-5" id="unitInfo">
+        @{Html.RenderAction("UnitInfo", "Store", new { area = "Contract", contractId = Model.RentContractID });}
+    </div>
+    <div class="col-5" id="contractInfo">
+        @{Html.RenderAction("ContractInfo", "Store", new { area = "Contract", contractId = Model.RentContractID });}
+    </div>
+</div>

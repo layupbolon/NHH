@@ -1,0 +1,19 @@
+﻿@model NHH.Models.Common.CrumbInfo
+<div class="breadcrumbs" data-target="#step-container" id="breadcrumbs">
+    <script type="text/javascript">try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }</script>
+    <ul class="breadcrumb">
+        <li>当前位置：</li>
+        <li><a href="@Url.Action("Index", "Home", new {Area=""})">首页</a></li>
+        @foreach (var item in Model.CrumbList)
+        {
+            if (string.IsNullOrEmpty(item.Url))
+            {
+                <li class="active"><b></b>@item.Text</li>
+            }
+            else
+            {
+                <li><b></b><a href="@item.Url">@item.Text</a></li>
+            }
+        }
+    </ul>
+</div>

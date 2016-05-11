@@ -1,0 +1,196 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Project.ProjectInfoModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>新增项目</h1>
+        </div><!-- /.page-header -->
+        <div class="row">
+            <div class="col-xs-12">
+                @using (Html.BeginForm("Create", "ProjectMgmt", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>项目名称： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("ProjectName", "", new { @class = "col-lg-5" })
+                            <span class="help-inline ml10 red" id="ProjectNameVai">
+                                @Html.ValidationMessage("ProjectName")
+                            </span>
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>区域： </label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("RegionID", ViewData["RegionList"] as SelectList, "请选择地域", new { @class = "col-lg-5" })
+                            <span class="help-inline ml10 red" id="RegionIDVai">
+                                @Html.ValidationMessage("RegionID")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>省市： </label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("ProvinceID", ViewData["ProvinceList"] as SelectList, "请选择省", new { @class = "col-lg-2 mr10" })
+                            @Html.DropDownList("CityID", ViewData["CityList"] as SelectList, "请选择城市", new { @class = "col-lg-2 mr10" })
+                            <span class="help-inline red" id="ProvinceIDVai">
+                                @Html.ValidationMessage("ProvinceID")
+                                @Html.ValidationMessage("CityID")
+                            </span>
+                        </div>
+                    </div>                    
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>详细地址： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("AddressLine", "", new { @class = "col-lg-5" })
+                            <span class="help-inline ml10 red" id="AddressLineVai">
+                                @Html.ValidationMessage("AddressLine")
+                            </span>
+                        </div>
+                    </div>
+   
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>邮编： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("ZipCode", "", new { @class = "col-lg-5" })
+                            <span class="help-inline ml10 red" id="ZipCodeVai">
+                                @Html.ValidationMessage("ZipCode")
+                            </span>
+                        </div>
+                    </div>      
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>位置： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("AddressInfo", "", new { @class = "col-lg-5" })
+                            <span class="help-inline ml10 red" id="AddressInfoVai">
+                                @Html.ValidationMessage("AddressInfo")
+                            </span>
+                        </div>
+                    </div>         
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>经纬度： </label>
+                        <div class="col-lg-9 form-inline">
+                            <div class="input-group col-lg-1" style="margin-left:-10px;">
+                                <div class="input-group-addon">经度</div>
+                                @Html.TextBox("Longitude", "", new { placeholder = "经度" })
+                            </div>
+                            <div class="input-group col-lg-1">
+                                <div class="input-group-addon">纬度</div>
+                                @Html.TextBox("Latitude", "", new { placeholder = "纬度" })
+                            </div>
+                            <span class="help-inline ml10 red" id="LongitudeVai">
+                                @Html.ValidationMessage("Longitude")
+                            </span>
+                            <span class="help-inline ml10 red" id="LatitudeVai">
+                                @Html.ValidationMessage("Latitude")
+                            </span>
+                        </div>
+                    </div>        
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">业主公司： </label>
+                        <div class="col-lg-9">
+                            @Html.Hidden("OwnerCompanyId")
+                            @Html.DropDownList("OwnerCompany", ViewData["OwnerCompanyList"] as SelectList, new { style = "width:350px;", multiple = "multiple", data_placeholder="请选择业主公司" })
+                        </div>
+                    </div>        
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>管理公司： </label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("ManageCompanyId", ViewData["ManageCompanyList"] as SelectList, "请选择管理公司", new { @class = "col-lg-5" })
+                            <span class="help-inline ml10 red" id="ManageCompanyIdVai">
+                                @Html.ValidationMessage("ManageCompanyId")
+                            </span>
+                        </div>
+                    </div>
+    
+                    @*<div class="form-group">
+                        <label class="col-lg-3 control-label"> 投资公司：</label>
+                        <div class="col-lg-9 input-group">
+                            @Html.DropDownList("InvestCompanyId", ViewData["InvestCompanyList"] as SelectList, "请选择投资公司", new { style = "width:300px", @class = "form-control mr10" })                           
+                        </div>
+                    </div>*@
+            
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">项目介绍： </label>
+                        <div class="col-lg-9">
+                            @Html.TextArea("PlanSummary", "", new { @class = "col-lg-5", rows = "6" })
+                        </div>
+                    </div>
+           
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-lg-offset-3 col-lg-9">
+                            <input class="btn btn-xs btn-success btn-font input-btn formsubmit" type="submit" value="创建" id="submitCreat" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#OwnerCompany").chosen({
+            "chosen-select-width": "width:95%",
+        }).change(function () {
+            var owner = $(this).val();
+            if (owner == null || owner == undefined) {
+                $("#OwnerCompanyId").val("");
+                return true;
+            }
+            $("#OwnerCompanyId").val(owner.join(","));
+        });
+        $("#RegionID").change(function () {
+            bindProvinceList();
+            bindCityList();
+        });
+        $("#ProvinceID").change(function () {
+            bindCityList();
+        });
+        beforeUnload.config.enable = true;
+    });
+    var bindProvinceList = function () {
+        var regionId = $("#RegionID").val();
+        $.ajax({
+            url: "@Url.Action("GetProvinceList", "Common", new { area = "Ajax" })",
+            data: "regionId=" + regionId,
+            type: "GET",
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            async: true,
+            success: function (data, status) {
+                $("#ProvinceID").html("");
+                var strHrml = "";
+                data.forEach(function (item) {
+                    strHrml += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                });
+                $("#ProvinceID").html(strHrml);
+                setTimeout(bindCityList(), 500);
+            }
+        });
+    };
+    var bindCityList = function () {
+        var provinceId = $("#ProvinceID").val();
+        $.ajax({
+            url: "@Url.Action("GetCityList", "Common", new { area = "Ajax" })",
+            data: "provinceId=" + provinceId,
+            type: "GET",
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            async: true,
+            success: function (data, status) {
+                $("#CityID").html("");
+                var strHtml = "";
+                data.forEach(function (item) {
+                    strHtml += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                });
+                $("#CityID").html(strHtml);
+            }
+        });
+    };
+</script>

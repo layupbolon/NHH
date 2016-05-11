@@ -1,0 +1,2481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+  <EntityContainerMapping StorageEntityContainer="DemoStoreContainer" CdmEntityContainer="NorthwindContext">
+    <EntitySetMapping Name="Approve_Config" StoreEntitySet="Approve_Config" TypeName="Demo.Approve_Config">
+      <ScalarProperty Name="ConfigID" ColumnName="ConfigID" />
+      <ScalarProperty Name="ConfigType" ColumnName="ConfigType" />
+      <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+      <ScalarProperty Name="Step" ColumnName="Step" />
+      <ScalarProperty Name="ShowDepartmentName" ColumnName="ShowDepartmentName" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Approve_Process" StoreEntitySet="Approve_Process" TypeName="Demo.Approve_Process">
+      <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
+      <ScalarProperty Name="ConfigID" ColumnName="ConfigID" />
+      <ScalarProperty Name="GroupNum" ColumnName="GroupNum" />
+      <ScalarProperty Name="RefID" ColumnName="RefID" />
+      <ScalarProperty Name="Approver" ColumnName="Approver" />
+      <ScalarProperty Name="ApproveTime" ColumnName="ApproveTime" />
+      <ScalarProperty Name="Reason" ColumnName="Reason" />
+      <ScalarProperty Name="Result" ColumnName="Result" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="BizCategory" StoreEntitySet="BizCategory" TypeName="Demo.BizCategory">
+      <ScalarProperty Name="BizCategoryID" ColumnName="BizCategoryID" />
+      <ScalarProperty Name="BizCategoryName" ColumnName="BizCategoryName" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="BizType" StoreEntitySet="BizType" TypeName="Demo.BizType">
+      <ScalarProperty Name="BizTypeID" ColumnName="BizTypeID" />
+      <ScalarProperty Name="BizTypeName" ColumnName="BizTypeName" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Brand" StoreEntitySet="Brand" TypeName="Demo.Brand">
+      <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+      <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+      <ScalarProperty Name="BrandLevel" ColumnName="BrandLevel" />
+      <ScalarProperty Name="BrandIcon" ColumnName="BrandIcon" />
+      <ScalarProperty Name="ExistingProject" ColumnName="ExistingProject" />
+      <ScalarProperty Name="Revenue" ColumnName="Revenue" />
+      <ScalarProperty Name="AreaUsage" ColumnName="AreaUsage" />
+      <ScalarProperty Name="FloorBearing" ColumnName="FloorBearing" />
+      <ScalarProperty Name="FloorHeight" ColumnName="FloorHeight" />
+      <ScalarProperty Name="ElectricityUsage" ColumnName="ElectricityUsage" />
+      <ScalarProperty Name="WaterUsage" ColumnName="WaterUsage" />
+      <ScalarProperty Name="DrainUsage" ColumnName="DrainUsage" />
+      <ScalarProperty Name="GasUsage" ColumnName="GasUsage" />
+      <ScalarProperty Name="SmokeUsage" ColumnName="SmokeUsage" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Campaign" StoreEntitySet="Campaign" TypeName="Demo.Campaign">
+      <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+      <ScalarProperty Name="CampaignCode" ColumnName="CampaignCode" />
+      <ScalarProperty Name="CampaignName" ColumnName="CampaignName" />
+      <ScalarProperty Name="CampaignType" ColumnName="CampaignType" />
+      <ScalarProperty Name="CampaignBrief" ColumnName="CampaignBrief" />
+      <ScalarProperty Name="CampaignStatus" ColumnName="CampaignStatus" />
+      <ScalarProperty Name="Location" ColumnName="Location" />
+      <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+      <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+      <ScalarProperty Name="Budget" ColumnName="Budget" />
+      <ScalarProperty Name="PlanUserName" ColumnName="PlanUserName" />
+      <ScalarProperty Name="PlanTime" ColumnName="PlanTime" />
+      <ScalarProperty Name="RunUserName" ColumnName="RunUserName" />
+      <ScalarProperty Name="RunTime" ColumnName="RunTime" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Campaign_Attachment" StoreEntitySet="Campaign_Attachment" TypeName="Demo.Campaign_Attachment">
+      <ScalarProperty Name="AttachmentID" ColumnName="AttachmentID" />
+      <ScalarProperty Name="AttachmentType" ColumnName="AttachmentType" />
+      <ScalarProperty Name="AttachmentName" ColumnName="AttachmentName" />
+      <ScalarProperty Name="AttachmentPath" ColumnName="AttachmentPath" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Campaign_Comment" StoreEntitySet="Campaign_Comment" TypeName="Demo.Campaign_Comment">
+      <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+      <ScalarProperty Name="Overall" ColumnName="Overall" />
+      <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
+      <ScalarProperty Name="CommentAdditional" ColumnName="CommentAdditional" />
+      <ScalarProperty Name="CommentUserID" ColumnName="CommentUserID" />
+      <ScalarProperty Name="CommentUserName" ColumnName="CommentUserName" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Campaign_Page" StoreEntitySet="Campaign_Page" TypeName="Demo.Campaign_Page">
+      <ScalarProperty Name="PageID" ColumnName="PageID" />
+      <ScalarProperty Name="PageType" ColumnName="PageType" />
+      <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+      <ScalarProperty Name="PageCover" ColumnName="PageCover" />
+      <ScalarProperty Name="PageContent" ColumnName="PageContent" />
+      <ScalarProperty Name="PublishStatus" ColumnName="PublishStatus" />
+      <ScalarProperty Name="PublishTime" ColumnName="PublishTime" />
+      <ScalarProperty Name="PublishUser" ColumnName="PublishUser" />
+      <ScalarProperty Name="Remark" ColumnName="Remark" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Campaign_Result" StoreEntitySet="Campaign_Result" TypeName="Demo.Campaign_Result">
+      <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+      <ScalarProperty Name="Outlay" ColumnName="Outlay" />
+      <ScalarProperty Name="Sales" ColumnName="Sales" />
+      <ScalarProperty Name="Visitors" ColumnName="Visitors" />
+      <ScalarProperty Name="Summary" ColumnName="Summary" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="City" StoreEntitySet="City" TypeName="Demo.City">
+      <ScalarProperty Name="CityID" ColumnName="CityID" />
+      <ScalarProperty Name="CityName" ColumnName="CityName" />
+      <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Company" StoreEntitySet="Company" TypeName="Demo.Company">
+      <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+      <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+      <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+      <ScalarProperty Name="BriefName" ColumnName="BriefName" />
+      <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+      <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+      <ScalarProperty Name="CityID" ColumnName="CityID" />
+      <ScalarProperty Name="AddressLine" ColumnName="AddressLine" />
+      <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+      <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
+      <ScalarProperty Name="RegisterProvinceID" ColumnName="RegisterProvinceID" />
+      <ScalarProperty Name="RegisterCityID" ColumnName="RegisterCityID" />
+      <ScalarProperty Name="RegisterAddressLine" ColumnName="RegisterAddressLine" />
+      <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+      <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+      <ScalarProperty Name="ContactIDNumber" ColumnName="ContactIDNumber" />
+      <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+      <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Company_Finance" StoreEntitySet="Company_Finance" TypeName="Demo.Company_Finance">
+      <ScalarProperty Name="CompanyFinanceID" ColumnName="CompanyFinanceID" />
+      <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+      <ScalarProperty Name="BankName" ColumnName="BankName" />
+      <ScalarProperty Name="SubBranch" ColumnName="SubBranch" />
+      <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+      <ScalarProperty Name="AlipayAccount" ColumnName="AlipayAccount" />
+      <ScalarProperty Name="WechatAccount" ColumnName="WechatAccount" />
+      <ScalarProperty Name="FinanceContact" ColumnName="FinanceContact" />
+      <ScalarProperty Name="FinancePhone" ColumnName="FinancePhone" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Complaint" StoreEntitySet="Complaint" TypeName="Demo.Complaint">
+      <ScalarProperty Name="ComplaintID" ColumnName="ComplaintID" />
+      <ScalarProperty Name="ComplaintType" ColumnName="ComplaintType" />
+      <ScalarProperty Name="RequestSrcType" ColumnName="RequestSrcType" />
+      <ScalarProperty Name="RequestUserID" ColumnName="RequestUserID" />
+      <ScalarProperty Name="RequestUserName" ColumnName="RequestUserName" />
+      <ScalarProperty Name="RequestTarget" ColumnName="RequestTarget" />
+      <ScalarProperty Name="RequestDesc" ColumnName="RequestDesc" />
+      <ScalarProperty Name="RequestTime" ColumnName="RequestTime" />
+      <ScalarProperty Name="AcceptUserID" ColumnName="AcceptUserID" />
+      <ScalarProperty Name="AcceptUserName" ColumnName="AcceptUserName" />
+      <ScalarProperty Name="AcceptTime" ColumnName="AcceptTime" />
+      <ScalarProperty Name="Important" ColumnName="Important" />
+      <ScalarProperty Name="EstimatedFinishTime" ColumnName="EstimatedFinishTime" />
+      <ScalarProperty Name="InvestigationDesc" ColumnName="InvestigationDesc" />
+      <ScalarProperty Name="ServiceUserID" ColumnName="ServiceUserID" />
+      <ScalarProperty Name="ServiceUserName" ColumnName="ServiceUserName" />
+      <ScalarProperty Name="ServiceStartTime" ColumnName="ServiceStartTime" />
+      <ScalarProperty Name="ServiceFinishTime" ColumnName="ServiceFinishTime" />
+      <ScalarProperty Name="ServiceResult" ColumnName="ServiceResult" />
+      <ScalarProperty Name="ServiceDesc" ColumnName="ServiceDesc" />
+      <ScalarProperty Name="ComplaintStatus" ColumnName="ComplaintStatus" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Complaint_Attachment" StoreEntitySet="Complaint_Attachment" TypeName="Demo.Complaint_Attachment">
+      <ScalarProperty Name="AttachmentID" ColumnName="AttachmentID" />
+      <ScalarProperty Name="AttachmentName" ColumnName="AttachmentName" />
+      <ScalarProperty Name="AttachmentPath" ColumnName="AttachmentPath" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Complaint_Comment" StoreEntitySet="Complaint_Comment" TypeName="Demo.Complaint_Comment">
+      <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+      <ScalarProperty Name="Speed" ColumnName="Speed" />
+      <ScalarProperty Name="Quality" ColumnName="Quality" />
+      <ScalarProperty Name="Attitude" ColumnName="Attitude" />
+      <ScalarProperty Name="Overall" ColumnName="Overall" />
+      <ScalarProperty Name="Comment" ColumnName="Comment" />
+      <ScalarProperty Name="Additional" ColumnName="Additional" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Complaint_Log" StoreEntitySet="Complaint_Log" TypeName="Demo.Complaint_Log">
+      <ScalarProperty Name="LogID" ColumnName="LogID" />
+      <ScalarProperty Name="LogText" ColumnName="LogText" />
+      <ScalarProperty Name="LogUserID" ColumnName="LogUserID" />
+      <ScalarProperty Name="LogUserName" ColumnName="LogUserName" />
+      <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contract" StoreEntitySet="Contract" TypeName="Demo.Contract">
+      <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+      <ScalarProperty Name="ContractCode" ColumnName="ContractCode" />
+      <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+      <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+      <ScalarProperty Name="ContractArea" ColumnName="ContractArea" />
+      <ScalarProperty Name="ContractUnitRent" ColumnName="ContractUnitRent" />
+      <ScalarProperty Name="ContractMgmtFee" ColumnName="ContractMgmtFee" />
+      <ScalarProperty Name="SignerName" ColumnName="SignerName" />
+      <ScalarProperty Name="SignerIDNumber" ColumnName="SignerIDNumber" />
+      <ScalarProperty Name="SignerPhone" ColumnName="SignerPhone" />
+      <ScalarProperty Name="OperatorName" ColumnName="OperatorName" />
+      <ScalarProperty Name="OperatorPhone" ColumnName="OperatorPhone" />
+      <ScalarProperty Name="ContractLength" ColumnName="ContractLength" />
+      <ScalarProperty Name="ContractStartDate" ColumnName="ContractStartDate" />
+      <ScalarProperty Name="ContractEndDate" ColumnName="ContractEndDate" />
+      <ScalarProperty Name="RentFreeLength" ColumnName="RentFreeLength" />
+      <ScalarProperty Name="RentFreeStartDate" ColumnName="RentFreeStartDate" />
+      <ScalarProperty Name="RentFreeEndDate" ColumnName="RentFreeEndDate" />
+      <ScalarProperty Name="AccessDate" ColumnName="AccessDate" />
+      <ScalarProperty Name="DecorationLength" ColumnName="DecorationLength" />
+      <ScalarProperty Name="DecorationStartDate" ColumnName="DecorationStartDate" />
+      <ScalarProperty Name="DecorationEndDate" ColumnName="DecorationEndDate" />
+      <ScalarProperty Name="DecorationMgmtFee" ColumnName="DecorationMgmtFee" />
+      <ScalarProperty Name="DecorationBond" ColumnName="DecorationBond" />
+      <ScalarProperty Name="Condition" ColumnName="Condition" />
+      <ScalarProperty Name="BidBond" ColumnName="BidBond" />
+      <ScalarProperty Name="ManageBond" ColumnName="ManageBond" />
+      <ScalarProperty Name="QualityBond" ColumnName="QualityBond" />
+      <ScalarProperty Name="ParkingLotNum" ColumnName="ParkingLotNum" />
+      <ScalarProperty Name="ParkingLotMemo" ColumnName="ParkingLotMemo" />
+      <ScalarProperty Name="AdPointNum" ColumnName="AdPointNum" />
+      <ScalarProperty Name="AdPointMemo" ColumnName="AdPointMemo" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contract_Appendix" StoreEntitySet="Contract_Appendix" TypeName="Demo.Contract_Appendix">
+      <ScalarProperty Name="AppendixID" ColumnName="AppendixID" />
+      <ScalarProperty Name="AppendixType" ColumnName="AppendixType" />
+      <ScalarProperty Name="AppendixTemplate" ColumnName="AppendixTemplate" />
+      <ScalarProperty Name="AppendixName" ColumnName="AppendixName" />
+      <ScalarProperty Name="AppendixPath" ColumnName="AppendixPath" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contract_Brand" StoreEntitySet="Contract_Brand" TypeName="Demo.Contract_Brand">
+      <ScalarProperty Name="ContractBrandID" ColumnName="ContractBrandID" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contract_PaymentTerms" StoreEntitySet="Contract_PaymentTerms" TypeName="Demo.Contract_PaymentTerms">
+      <ScalarProperty Name="PaymentTermsID" ColumnName="PaymentTermsID" />
+      <ScalarProperty Name="PaymentTermsType" ColumnName="PaymentTermsType" />
+      <ScalarProperty Name="PaymentPeriod" ColumnName="PaymentPeriod" />
+      <ScalarProperty Name="DepositMonthly" ColumnName="DepositMonthly" />
+      <ScalarProperty Name="PaymentDailyAmount" ColumnName="PaymentDailyAmount" />
+      <ScalarProperty Name="PaymentMonthlyAmount" ColumnName="PaymentMonthlyAmount" />
+      <ScalarProperty Name="IncreaseExpression" ColumnName="IncreaseExpression" />
+      <ScalarProperty Name="CommissionExpression" ColumnName="CommissionExpression" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contract_Supplementary" StoreEntitySet="Contract_Supplementary" TypeName="Demo.Contract_Supplementary">
+      <ScalarProperty Name="SupplementaryID" ColumnName="SupplementaryID" />
+      <ScalarProperty Name="SupplementaryType" ColumnName="SupplementaryType" />
+      <ScalarProperty Name="SignerName" ColumnName="SignerName" />
+      <ScalarProperty Name="SignerIDNumber" ColumnName="SignerIDNumber" />
+      <ScalarProperty Name="SignerPhone" ColumnName="SignerPhone" />
+      <ScalarProperty Name="ContractArea" ColumnName="ContractArea" />
+      <ScalarProperty Name="ContractUnitRent" ColumnName="ContractUnitRent" />
+      <ScalarProperty Name="ContractMgmtFee" ColumnName="ContractMgmtFee" />
+      <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      <ScalarProperty Name="ContractLength" ColumnName="ContractLength" />
+      <ScalarProperty Name="ContractStartDate" ColumnName="ContractStartDate" />
+      <ScalarProperty Name="ContractEndDate" ColumnName="ContractEndDate" />
+      <ScalarProperty Name="OperatorName" ColumnName="OperatorName" />
+      <ScalarProperty Name="OperatorPhone" ColumnName="OperatorPhone" />
+      <ScalarProperty Name="SupplementaryContent" ColumnName="SupplementaryContent" />
+      <ScalarProperty Name="SupplementaryStartDate" ColumnName="SupplementaryStartDate" />
+      <ScalarProperty Name="SupplementaryEndDate" ColumnName="SupplementaryEndDate" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contract_Template" StoreEntitySet="Contract_Template" TypeName="Demo.Contract_Template">
+      <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+      <ScalarProperty Name="TemplateType" ColumnName="TemplateType" />
+      <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+      <ScalarProperty Name="TemplateContent" ColumnName="TemplateContent" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contract_Unit" StoreEntitySet="Contract_Unit" TypeName="Demo.Contract_Unit">
+      <ScalarProperty Name="ContractUnitID" ColumnName="ContractUnitID" />
+      <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      <ScalarProperty Name="UnitAvgAera" ColumnName="UnitAvgAera" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contract_UnitSpec" StoreEntitySet="Contract_UnitSpec" TypeName="Demo.Contract_UnitSpec">
+      <ScalarProperty Name="UnitSpecID" ColumnName="UnitSpecID" />
+      <ScalarProperty Name="SpecType" ColumnName="SpecType" />
+      <ScalarProperty Name="Floor" ColumnName="Floor" />
+      <ScalarProperty Name="Ceiling" ColumnName="Ceiling" />
+      <ScalarProperty Name="Wall" ColumnName="Wall" />
+      <ScalarProperty Name="Pillar" ColumnName="Pillar" />
+      <ScalarProperty Name="FloorBearing" ColumnName="FloorBearing" />
+      <ScalarProperty Name="WaterSupply" ColumnName="WaterSupply" />
+      <ScalarProperty Name="WaterDrain" ColumnName="WaterDrain" />
+      <ScalarProperty Name="Door" ColumnName="Door" />
+      <ScalarProperty Name="Logo" ColumnName="Logo" />
+      <ScalarProperty Name="ElectricityUsage" ColumnName="ElectricityUsage" />
+      <ScalarProperty Name="FireProtection" ColumnName="FireProtection" />
+      <ScalarProperty Name="Broadcasting" ColumnName="Broadcasting" />
+      <ScalarProperty Name="AirCondition" ColumnName="AirCondition" />
+      <ScalarProperty Name="Smoke" ColumnName="Smoke" />
+      <ScalarProperty Name="Security" ColumnName="Security" />
+      <ScalarProperty Name="Wiring" ColumnName="Wiring" />
+      <ScalarProperty Name="Water" ColumnName="Water" />
+      <ScalarProperty Name="Gas" ColumnName="Gas" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Department" StoreEntitySet="Department" TypeName="Demo.Department">
+      <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+      <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+      <ScalarProperty Name="Phone" ColumnName="Phone" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dictionary" StoreEntitySet="Dictionary" TypeName="Demo.Dictionary">
+      <ScalarProperty Name="FieldID" ColumnName="FieldID" />
+      <ScalarProperty Name="FieldType" ColumnName="FieldType" />
+      <ScalarProperty Name="FieldValue" ColumnName="FieldValue" />
+      <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+      <ScalarProperty Name="FieldDesc" ColumnName="FieldDesc" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="District" StoreEntitySet="District" TypeName="Demo.District">
+      <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+      <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee" StoreEntitySet="Employee" TypeName="Demo.Employee">
+      <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+      <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+      <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+      <ScalarProperty Name="Title" ColumnName="Title" />
+      <ScalarProperty Name="Email" ColumnName="Email" />
+      <ScalarProperty Name="Moblie" ColumnName="Moblie" />
+      <ScalarProperty Name="Phone" ColumnName="Phone" />
+      <ScalarProperty Name="Ext" ColumnName="Ext" />
+      <ScalarProperty Name="Gender" ColumnName="Gender" />
+      <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+      <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+      <ScalarProperty Name="Tag" ColumnName="Tag" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Finance_Accrual" StoreEntitySet="Finance_Accrual" TypeName="Demo.Finance_Accrual">
+      <ScalarProperty Name="AccrualID" ColumnName="AccrualID" />
+      <ScalarProperty Name="RPFlag" ColumnName="RPFlag" />
+      <ScalarProperty Name="PCFlag" ColumnName="PCFlag" />
+      <ScalarProperty Name="FWFlag" ColumnName="FWFlag" />
+      <ScalarProperty Name="Price" ColumnName="Price" />
+      <ScalarProperty Name="Unit" ColumnName="Unit" />
+      <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+      <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+      <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+      <ScalarProperty Name="Amount" ColumnName="Amount" />
+      <ScalarProperty Name="Remark" ColumnName="Remark" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Finance_Item" StoreEntitySet="Finance_Item" TypeName="Demo.Finance_Item">
+      <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+      <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+      <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Finance_Settlement" StoreEntitySet="Finance_Settlement" TypeName="Demo.Finance_Settlement">
+      <ScalarProperty Name="SettlementID" ColumnName="SettlementID" />
+      <ScalarProperty Name="SettlementCode" ColumnName="SettlementCode" />
+      <ScalarProperty Name="SettlementType" ColumnName="SettlementType" />
+      <ScalarProperty Name="MerchantTitle" ColumnName="MerchantTitle" />
+      <ScalarProperty Name="CompanyTitle" ColumnName="CompanyTitle" />
+      <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+      <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+      <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+      <ScalarProperty Name="EstimatedDate" ColumnName="EstimatedDate" />
+      <ScalarProperty Name="SettlementNote" ColumnName="SettlementNote" />
+      <ScalarProperty Name="ReceivableAmount" ColumnName="ReceivableAmount" />
+      <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+      <ScalarProperty Name="ConfirmAmount" ColumnName="ConfirmAmount" />
+      <ScalarProperty Name="ConfirmTime" ColumnName="ConfirmTime" />
+      <ScalarProperty Name="ConfirmStatus" ColumnName="ConfirmStatus" />
+      <ScalarProperty Name="SettlementAmount" ColumnName="SettlementAmount" />
+      <ScalarProperty Name="SettlementTime" ColumnName="SettlementTime" />
+      <ScalarProperty Name="SettlementStatus" ColumnName="SettlementStatus" />
+      <ScalarProperty Name="InvoiceAmount" ColumnName="InvoiceAmount" />
+      <ScalarProperty Name="InvoiceTime" ColumnName="InvoiceTime" />
+      <ScalarProperty Name="InvoiceStatus" ColumnName="InvoiceStatus" />
+      <ScalarProperty Name="OperatorID" ColumnName="OperatorID" />
+      <ScalarProperty Name="OperatorName" ColumnName="OperatorName" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Finance_SettlementDetail" StoreEntitySet="Finance_SettlementDetail" TypeName="Demo.Finance_SettlementDetail">
+      <ScalarProperty Name="DetailID" ColumnName="DetailID" />
+      <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+      <ScalarProperty Name="Price" ColumnName="Price" />
+      <ScalarProperty Name="Unit" ColumnName="Unit" />
+      <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+      <ScalarProperty Name="Amount" ColumnName="Amount" />
+      <ScalarProperty Name="Remark" ColumnName="Remark" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="FloorMap_Unit" StoreEntitySet="FloorMap_Unit" TypeName="Demo.FloorMap_Unit">
+      <ScalarProperty Name="FloorMapUnitID" ColumnName="FloorMapUnitID" />
+      <ScalarProperty Name="FloorID" ColumnName="FloorID" />
+      <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      <ScalarProperty Name="TextPosition" ColumnName="TextPosition" />
+      <ScalarProperty Name="PathLine" ColumnName="PathLine" />
+      <ScalarProperty Name="PathQuad1" ColumnName="PathQuad1" />
+      <ScalarProperty Name="PathQuad2" ColumnName="PathQuad2" />
+      <ScalarProperty Name="PathQuad3" ColumnName="PathQuad3" />
+      <ScalarProperty Name="PathQuad4" ColumnName="PathQuad4" />
+      <ScalarProperty Name="Type" ColumnName="Type" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="Comments" ColumnName="Comments" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Intention" StoreEntitySet="Intention" TypeName="Demo.Intention">
+      <ScalarProperty Name="IntentionID" ColumnName="IntentionID" />
+      <ScalarProperty Name="IntentionType" ColumnName="IntentionType" />
+      <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+      <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+      <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+      <ScalarProperty Name="Remark" ColumnName="Remark" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="Source" ColumnName="Source" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="ProcessUserID" ColumnName="ProcessUserID" />
+      <ScalarProperty Name="ProcessTime" ColumnName="ProcessTime" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Material" StoreEntitySet="Material" TypeName="Demo.Material">
+      <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+      <ScalarProperty Name="MaterialType" ColumnName="MaterialType" />
+      <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+      <ScalarProperty Name="MaterialSpec" ColumnName="MaterialSpec" />
+      <ScalarProperty Name="MaterialPrice" ColumnName="MaterialPrice" />
+      <ScalarProperty Name="MaterialUnit" ColumnName="MaterialUnit" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant" StoreEntitySet="Merchant" TypeName="Demo.Merchant">
+      <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      <ScalarProperty Name="MerchantType" ColumnName="MerchantType" />
+      <ScalarProperty Name="MerchantCode" ColumnName="MerchantCode" />
+      <ScalarProperty Name="BriefName" ColumnName="BriefName" />
+      <ScalarProperty Name="MerchantName" ColumnName="MerchantName" />
+      <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+      <ScalarProperty Name="CityID" ColumnName="CityID" />
+      <ScalarProperty Name="AddressLine" ColumnName="AddressLine" />
+      <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+      <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
+      <ScalarProperty Name="RegisterProvinceID" ColumnName="RegisterProvinceID" />
+      <ScalarProperty Name="RegisterCityID" ColumnName="RegisterCityID" />
+      <ScalarProperty Name="RegisterAddressLine" ColumnName="RegisterAddressLine" />
+      <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+      <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+      <ScalarProperty Name="ContactIDNumber" ColumnName="ContactIDNumber" />
+      <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+      <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_Attachment" StoreEntitySet="Merchant_Attachment" TypeName="Demo.Merchant_Attachment">
+      <ScalarProperty Name="AttachmentID" ColumnName="AttachmentID" />
+      <ScalarProperty Name="AttachmentType" ColumnName="AttachmentType" />
+      <ScalarProperty Name="AttachmentName" ColumnName="AttachmentName" />
+      <ScalarProperty Name="AttachmentPath" ColumnName="AttachmentPath" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+      <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+      <ScalarProperty Name="AttachmentCode" ColumnName="AttachmentCode" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_Brand" StoreEntitySet="Merchant_Brand" TypeName="Demo.Merchant_Brand">
+      <ScalarProperty Name="MerchantBrandID" ColumnName="MerchantBrandID" />
+      <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+      <ScalarProperty Name="BrandType" ColumnName="BrandType" />
+      <ScalarProperty Name="Authorized" ColumnName="Authorized" />
+      <ScalarProperty Name="AuthorizedSince" ColumnName="AuthorizedSince" />
+      <ScalarProperty Name="AuthorizedTo" ColumnName="AuthorizedTo" />
+      <ScalarProperty Name="OperationSince" ColumnName="OperationSince" />
+      <ScalarProperty Name="OperationTo" ColumnName="OperationTo" />
+      <ScalarProperty Name="Revenue" ColumnName="Revenue" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_Documents" StoreEntitySet="Merchant_Documents" TypeName="Demo.Merchant_Documents">
+      <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+      <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+      <ScalarProperty Name="MerchantStoreID" ColumnName="MerchantStoreID" />
+      <ScalarProperty Name="RequestUserName" ColumnName="RequestUserName" />
+      <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_Documents_DecorateRequest" StoreEntitySet="Merchant_Documents_DecorateRequest" TypeName="Demo.Merchant_Documents_DecorateRequest">
+      <ScalarProperty Name="ID" ColumnName="ID" />
+      <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+      <ScalarProperty Name="DecorationCompanyName" ColumnName="DecorationCompanyName" />
+      <ScalarProperty Name="DecorationCompanyAddress" ColumnName="DecorationCompanyAddress" />
+      <ScalarProperty Name="PersonInCharge" ColumnName="PersonInCharge" />
+      <ScalarProperty Name="Phone" ColumnName="Phone" />
+      <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+      <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+      <ScalarProperty Name="Remark" ColumnName="Remark" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_Documents_GetOutRequest" StoreEntitySet="Merchant_Documents_GetOutRequest" TypeName="Demo.Merchant_Documents_GetOutRequest">
+      <ScalarProperty Name="ID" ColumnName="ID" />
+      <ScalarProperty Name="DocumentID" ColumnName="DocumentID" />
+      <ScalarProperty Name="GetOutTime" ColumnName="GetOutTime" />
+      <ScalarProperty Name="Qty" ColumnName="Qty" />
+      <ScalarProperty Name="Reason" ColumnName="Reason" />
+      <ScalarProperty Name="Remark" ColumnName="Remark" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_Finance" StoreEntitySet="Merchant_Finance" TypeName="Demo.Merchant_Finance">
+      <ScalarProperty Name="MerchantFinanceID" ColumnName="MerchantFinanceID" />
+      <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+      <ScalarProperty Name="BankName" ColumnName="BankName" />
+      <ScalarProperty Name="SubBranch" ColumnName="SubBranch" />
+      <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+      <ScalarProperty Name="AlipayAccount" ColumnName="AlipayAccount" />
+      <ScalarProperty Name="WechatAccount" ColumnName="WechatAccount" />
+      <ScalarProperty Name="FinanceContact" ColumnName="FinanceContact" />
+      <ScalarProperty Name="FinancePhone" ColumnName="FinancePhone" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_Message" StoreEntitySet="Merchant_Message" TypeName="Demo.Merchant_Message">
+      <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+      <ScalarProperty Name="Subject" ColumnName="Subject" />
+      <ScalarProperty Name="Content" ColumnName="Content" />
+      <ScalarProperty Name="SourceType" ColumnName="SourceType" />
+      <ScalarProperty Name="SourceRefID" ColumnName="SourceRefID" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_Request" StoreEntitySet="Merchant_Request" TypeName="Demo.Merchant_Request">
+      <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+      <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+      <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      <ScalarProperty Name="BuildingIDs" ColumnName="BuildingIDs" />
+      <ScalarProperty Name="FloorIDs" ColumnName="FloorIDs" />
+      <ScalarProperty Name="UnitIDs" ColumnName="UnitIDs" />
+      <ScalarProperty Name="SpecialRequest" ColumnName="SpecialRequest" />
+      <ScalarProperty Name="AreaRequest" ColumnName="AreaRequest" />
+      <ScalarProperty Name="FloorBearing" ColumnName="FloorBearing" />
+      <ScalarProperty Name="FloorHeight" ColumnName="FloorHeight" />
+      <ScalarProperty Name="RentLength" ColumnName="RentLength" />
+      <ScalarProperty Name="RentMethod" ColumnName="RentMethod" />
+      <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+      <ScalarProperty Name="Condition" ColumnName="Condition" />
+      <ScalarProperty Name="DecorationLength" ColumnName="DecorationLength" />
+      <ScalarProperty Name="ElectricityUsage" ColumnName="ElectricityUsage" />
+      <ScalarProperty Name="WaterUsage" ColumnName="WaterUsage" />
+      <ScalarProperty Name="DrainUsage" ColumnName="DrainUsage" />
+      <ScalarProperty Name="GasUsage" ColumnName="GasUsage" />
+      <ScalarProperty Name="SmokeUsage" ColumnName="SmokeUsage" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_Revenue" StoreEntitySet="Merchant_Revenue" TypeName="Demo.Merchant_Revenue">
+      <ScalarProperty Name="RevenueID" ColumnName="RevenueID" />
+      <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+      <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+      <ScalarProperty Name="Revenue" ColumnName="Revenue" />
+      <ScalarProperty Name="AfterTax" ColumnName="AfterTax" />
+      <ScalarProperty Name="TaxRate" ColumnName="TaxRate" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_Role" StoreEntitySet="Merchant_Role" TypeName="Demo.Merchant_Role">
+      <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+      <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_Store" StoreEntitySet="Merchant_Store" TypeName="Demo.Merchant_Store">
+      <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+      <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+      <ScalarProperty Name="RentArea" ColumnName="RentArea" />
+      <ScalarProperty Name="RentStartDate" ColumnName="RentStartDate" />
+      <ScalarProperty Name="RentEndDate" ColumnName="RentEndDate" />
+      <ScalarProperty Name="RentLength" ColumnName="RentLength" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_StoreImage" StoreEntitySet="Merchant_StoreImage" TypeName="Demo.Merchant_StoreImage">
+      <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+      <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+      <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+      <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_StoreMeter" StoreEntitySet="Merchant_StoreMeter" TypeName="Demo.Merchant_StoreMeter">
+      <ScalarProperty Name="MeterID" ColumnName="MeterID" />
+      <ScalarProperty Name="MeterType" ColumnName="MeterType" />
+      <ScalarProperty Name="MeterCode" ColumnName="MeterCode" />
+      <ScalarProperty Name="MeterAttr" ColumnName="MeterAttr" />
+      <ScalarProperty Name="LastReading" ColumnName="LastReading" />
+      <ScalarProperty Name="LastNumber" ColumnName="LastNumber" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_User" StoreEntitySet="Merchant_User" TypeName="Demo.Merchant_User">
+      <ScalarProperty Name="UserID" ColumnName="UserID" />
+      <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+      <ScalarProperty Name="WechatOpenID" ColumnName="WechatOpenID" />
+      <ScalarProperty Name="UserName" ColumnName="UserName" />
+      <ScalarProperty Name="Password" ColumnName="Password" />
+      <ScalarProperty Name="Email" ColumnName="Email" />
+      <ScalarProperty Name="Moblie" ColumnName="Moblie" />
+      <ScalarProperty Name="NickName" ColumnName="NickName" />
+      <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+      <ScalarProperty Name="PhotoFile" ColumnName="PhotoFile" />
+      <ScalarProperty Name="Gender" ColumnName="Gender" />
+      <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+      <ScalarProperty Name="Nation" ColumnName="Nation" />
+      <ScalarProperty Name="Education" ColumnName="Education" />
+      <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+      <ScalarProperty Name="PoliticalStatus" ColumnName="PoliticalStatus" />
+      <ScalarProperty Name="Height" ColumnName="Height" />
+      <ScalarProperty Name="Weight" ColumnName="Weight" />
+      <ScalarProperty Name="Address" ColumnName="Address" />
+      <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+      <ScalarProperty Name="EmergencyContact" ColumnName="EmergencyContact" />
+      <ScalarProperty Name="EmergencyPhone" ColumnName="EmergencyPhone" />
+      <ScalarProperty Name="EducationExperience" ColumnName="EducationExperience" />
+      <ScalarProperty Name="WorkExperience" ColumnName="WorkExperience" />
+      <ScalarProperty Name="FamilyMembers" ColumnName="FamilyMembers" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchant_UserPaper" StoreEntitySet="Merchant_UserPaper" TypeName="Demo.Merchant_UserPaper">
+      <ScalarProperty Name="PaperID" ColumnName="PaperID" />
+      <ScalarProperty Name="PaperType" ColumnName="PaperType" />
+      <ScalarProperty Name="PaperNumber" ColumnName="PaperNumber" />
+      <ScalarProperty Name="PaperPath" ColumnName="PaperPath" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Message" StoreEntitySet="Message" TypeName="Demo.Message">
+      <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+      <ScalarProperty Name="MessageType" ColumnName="MessageType" />
+      <ScalarProperty Name="Priority" ColumnName="Priority" />
+      <ScalarProperty Name="Recipient" ColumnName="Recipient" />
+      <ScalarProperty Name="Subject" ColumnName="Subject" />
+      <ScalarProperty Name="Content" ColumnName="Content" />
+      <ScalarProperty Name="Link" ColumnName="Link" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project" StoreEntitySet="Project" TypeName="Demo.Project">
+      <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+      <ScalarProperty Name="BriefName" ColumnName="BriefName" />
+      <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+      <ScalarProperty Name="ProjectSummary" ColumnName="ProjectSummary" />
+      <ScalarProperty Name="AddressLine" ColumnName="AddressLine" />
+      <ScalarProperty Name="AddressInfo" ColumnName="AddressInfo" />
+      <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+      <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+      <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+      <ScalarProperty Name="GroundArea" ColumnName="GroundArea" />
+      <ScalarProperty Name="UndergroundArea" ColumnName="UndergroundArea" />
+      <ScalarProperty Name="TotalArea" ColumnName="TotalArea" />
+      <ScalarProperty Name="RenderingFileName" ColumnName="RenderingFileName" />
+      <ScalarProperty Name="PlanSummary" ColumnName="PlanSummary" />
+      <ScalarProperty Name="PlanHighlight" ColumnName="PlanHighlight" />
+      <ScalarProperty Name="ParkingLotNum" ColumnName="ParkingLotNum" />
+      <ScalarProperty Name="AdPointNum" ColumnName="AdPointNum" />
+      <ScalarProperty Name="MultiBizPositionNum" ColumnName="MultiBizPositionNum" />
+      <ScalarProperty Name="GrandOpeningDate" ColumnName="GrandOpeningDate" />
+      <ScalarProperty Name="Stage" ColumnName="Stage" />
+      <ScalarProperty Name="BuildingNum" ColumnName="BuildingNum" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_AdPoint" StoreEntitySet="Project_AdPoint" TypeName="Demo.Project_AdPoint">
+      <ScalarProperty Name="AdPointID" ColumnName="AdPointID" />
+      <ScalarProperty Name="AdPointNumber" ColumnName="AdPointNumber" />
+      <ScalarProperty Name="AdPointType" ColumnName="AdPointType" />
+      <ScalarProperty Name="AdPointMedia" ColumnName="AdPointMedia" />
+      <ScalarProperty Name="Location" ColumnName="Location" />
+      <ScalarProperty Name="FloorMapLocation" ColumnName="FloorMapLocation" />
+      <ScalarProperty Name="Rent" ColumnName="Rent" />
+      <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+      <ScalarProperty Name="ContractEnd" ColumnName="ContractEnd" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_BizConfig" StoreEntitySet="Project_BizConfig" TypeName="Demo.Project_BizConfig">
+      <ScalarProperty Name="BizConfigID" ColumnName="BizConfigID" />
+      <ScalarProperty Name="BizConfigType" ColumnName="BizConfigType" />
+      <ScalarProperty Name="Param1" ColumnName="Param1" />
+      <ScalarProperty Name="Param2" ColumnName="Param2" />
+      <ScalarProperty Name="Param3" ColumnName="Param3" />
+      <ScalarProperty Name="Param4" ColumnName="Param4" />
+      <ScalarProperty Name="Param5" ColumnName="Param5" />
+      <ScalarProperty Name="Remark" ColumnName="Remark" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_Building" StoreEntitySet="Project_Building" TypeName="Demo.Project_Building">
+      <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+      <ScalarProperty Name="BuildingCode" ColumnName="BuildingCode" />
+      <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
+      <ScalarProperty Name="GroundFloorNum" ColumnName="GroundFloorNum" />
+      <ScalarProperty Name="UndergroundFloorNum" ColumnName="UndergroundFloorNum" />
+      <ScalarProperty Name="BuildingGroundArea" ColumnName="BuildingGroundArea" />
+      <ScalarProperty Name="BuildingUndergroundArea" ColumnName="BuildingUndergroundArea" />
+      <ScalarProperty Name="TotalConstructionArea" ColumnName="TotalConstructionArea" />
+      <ScalarProperty Name="TotalRentArea" ColumnName="TotalRentArea" />
+      <ScalarProperty Name="TotalRentUnit" ColumnName="TotalRentUnit" />
+      <ScalarProperty Name="PlanSummary" ColumnName="PlanSummary" />
+      <ScalarProperty Name="PlanHighlight" ColumnName="PlanHighlight" />
+      <ScalarProperty Name="RenderingFileName" ColumnName="RenderingFileName" />
+      <ScalarProperty Name="ContractStore" ColumnName="ContractStore" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_Floor" StoreEntitySet="Project_Floor" TypeName="Demo.Project_Floor">
+      <ScalarProperty Name="FloorID" ColumnName="FloorID" />
+      <ScalarProperty Name="FloorMapFileName" ColumnName="FloorMapFileName" />
+      <ScalarProperty Name="FloorNumber" ColumnName="FloorNumber" />
+      <ScalarProperty Name="FloorName" ColumnName="FloorName" />
+      <ScalarProperty Name="FloorDescription" ColumnName="FloorDescription" />
+      <ScalarProperty Name="TotalRentArea" ColumnName="TotalRentArea" />
+      <ScalarProperty Name="TotalRentUnit" ColumnName="TotalRentUnit" />
+      <ScalarProperty Name="ContractRentArea" ColumnName="ContractRentArea" />
+      <ScalarProperty Name="ContractRentUnit" ColumnName="ContractRentUnit" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_Kiosk" StoreEntitySet="Project_Kiosk" TypeName="Demo.Project_Kiosk">
+      <ScalarProperty Name="KioskID" ColumnName="KioskID" />
+      <ScalarProperty Name="KioskNumber" ColumnName="KioskNumber" />
+      <ScalarProperty Name="KioskType" ColumnName="KioskType" />
+      <ScalarProperty Name="Location" ColumnName="Location" />
+      <ScalarProperty Name="FloorMapLocation" ColumnName="FloorMapLocation" />
+      <ScalarProperty Name="Area" ColumnName="Area" />
+      <ScalarProperty Name="BizTypeID" ColumnName="BizTypeID" />
+      <ScalarProperty Name="OccupyRate" ColumnName="OccupyRate" />
+      <ScalarProperty Name="Rent" ColumnName="Rent" />
+      <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+      <ScalarProperty Name="ContractEnd" ColumnName="ContractEnd" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_Owner" StoreEntitySet="Project_Owner" TypeName="Demo.Project_Owner">
+      <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+      <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_Unit" StoreEntitySet="Project_Unit" TypeName="Demo.Project_Unit">
+      <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+      <ScalarProperty Name="UnitAera" ColumnName="UnitAera" />
+      <ScalarProperty Name="UnitStatus" ColumnName="UnitStatus" />
+      <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+      <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+      <ScalarProperty Name="ContractEndDate" ColumnName="ContractEndDate" />
+      <ScalarProperty Name="UnitMapFileName" ColumnName="UnitMapFileName" />
+      <ScalarProperty Name="FloorMapLocation" ColumnName="FloorMapLocation" />
+      <ScalarProperty Name="FloorMapDimension" ColumnName="FloorMapDimension" />
+      <ScalarProperty Name="Tag" ColumnName="Tag" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_UnitLeasing" StoreEntitySet="Project_UnitLeasing" TypeName="Demo.Project_UnitLeasing">
+      <ScalarProperty Name="UnitLeasingID" ColumnName="UnitLeasingID" />
+      <ScalarProperty Name="LeasingDepartmentID" ColumnName="LeasingDepartmentID" />
+      <ScalarProperty Name="LeasingPersonID" ColumnName="LeasingPersonID" />
+      <ScalarProperty Name="LeasingFinishDate" ColumnName="LeasingFinishDate" />
+      <ScalarProperty Name="FireProtectionAuth" ColumnName="FireProtectionAuth" />
+      <ScalarProperty Name="MeasureReviewDate" ColumnName="MeasureReviewDate" />
+      <ScalarProperty Name="DesignDate" ColumnName="DesignDate" />
+      <ScalarProperty Name="FireProtectionAuthDate" ColumnName="FireProtectionAuthDate" />
+      <ScalarProperty Name="AccessDate" ColumnName="AccessDate" />
+      <ScalarProperty Name="DecorationStartDate" ColumnName="DecorationStartDate" />
+      <ScalarProperty Name="DecorationEndDate" ColumnName="DecorationEndDate" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_UnitPlan" StoreEntitySet="Project_UnitPlan" TypeName="Demo.Project_UnitPlan">
+      <ScalarProperty Name="UnitPlanID" ColumnName="UnitPlanID" />
+      <ScalarProperty Name="BizTypeID" ColumnName="BizTypeID" />
+      <ScalarProperty Name="BizCategoryID" ColumnName="BizCategoryID" />
+      <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+      <ScalarProperty Name="IsBenchmarking" ColumnName="IsBenchmarking" />
+      <ScalarProperty Name="StandardRent" ColumnName="StandardRent" />
+      <ScalarProperty Name="RecommendedRent" ColumnName="RecommendedRent" />
+      <ScalarProperty Name="QuotationRent" ColumnName="QuotationRent" />
+      <ScalarProperty Name="StandardMgmtFee" ColumnName="StandardMgmtFee" />
+      <ScalarProperty Name="RentLengthUpper" ColumnName="RentLengthUpper" />
+      <ScalarProperty Name="RentLengthBottom" ColumnName="RentLengthBottom" />
+      <ScalarProperty Name="IncreaseType" ColumnName="IncreaseType" />
+      <ScalarProperty Name="IncreaseAmountType" ColumnName="IncreaseAmountType" />
+      <ScalarProperty Name="IncreaseAmount" ColumnName="IncreaseAmount" />
+      <ScalarProperty Name="IncreaseStartYears" ColumnName="IncreaseStartYears" />
+      <ScalarProperty Name="IncreaseStepYears" ColumnName="IncreaseStepYears" />
+      <ScalarProperty Name="DepositMonthly" ColumnName="DepositMonthly" />
+      <ScalarProperty Name="PaymentPeriod" ColumnName="PaymentPeriod" />
+      <ScalarProperty Name="BidBond" ColumnName="BidBond" />
+      <ScalarProperty Name="ManageBond" ColumnName="ManageBond" />
+      <ScalarProperty Name="RentFreeLength" ColumnName="RentFreeLength" />
+      <ScalarProperty Name="DecorationLength" ColumnName="DecorationLength" />
+      <ScalarProperty Name="DecorationMgmtFee" ColumnName="DecorationMgmtFee" />
+      <ScalarProperty Name="DecorationBond" ColumnName="DecorationBond" />
+      <ScalarProperty Name="QualityBond" ColumnName="QualityBond" />
+      <ScalarProperty Name="ParkingLotNum" ColumnName="ParkingLotNum" />
+      <ScalarProperty Name="AdPointNum" ColumnName="AdPointNum" />
+      <ScalarProperty Name="Condition" ColumnName="Condition" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_UnitSpec" StoreEntitySet="Project_UnitSpec" TypeName="Demo.Project_UnitSpec">
+      <ScalarProperty Name="UnitSpecID" ColumnName="UnitSpecID" />
+      <ScalarProperty Name="SpecType" ColumnName="SpecType" />
+      <ScalarProperty Name="Floor" ColumnName="Floor" />
+      <ScalarProperty Name="Ceiling" ColumnName="Ceiling" />
+      <ScalarProperty Name="Wall" ColumnName="Wall" />
+      <ScalarProperty Name="Pillar" ColumnName="Pillar" />
+      <ScalarProperty Name="FloorBearing" ColumnName="FloorBearing" />
+      <ScalarProperty Name="WaterSupply" ColumnName="WaterSupply" />
+      <ScalarProperty Name="WaterDrain" ColumnName="WaterDrain" />
+      <ScalarProperty Name="Door" ColumnName="Door" />
+      <ScalarProperty Name="Logo" ColumnName="Logo" />
+      <ScalarProperty Name="ElectricityUsage" ColumnName="ElectricityUsage" />
+      <ScalarProperty Name="FireProtection" ColumnName="FireProtection" />
+      <ScalarProperty Name="Broadcasting" ColumnName="Broadcasting" />
+      <ScalarProperty Name="AirCondition" ColumnName="AirCondition" />
+      <ScalarProperty Name="Smoke" ColumnName="Smoke" />
+      <ScalarProperty Name="Security" ColumnName="Security" />
+      <ScalarProperty Name="Wiring" ColumnName="Wiring" />
+      <ScalarProperty Name="Water" ColumnName="Water" />
+      <ScalarProperty Name="Gas" ColumnName="Gas" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_UnitSpec_Template" StoreEntitySet="Project_UnitSpec_Template" TypeName="Demo.Project_UnitSpec_Template">
+      <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+      <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+      <ScalarProperty Name="SpecType" ColumnName="SpecType" />
+      <ScalarProperty Name="Floor" ColumnName="Floor" />
+      <ScalarProperty Name="Ceiling" ColumnName="Ceiling" />
+      <ScalarProperty Name="Wall" ColumnName="Wall" />
+      <ScalarProperty Name="Pillar" ColumnName="Pillar" />
+      <ScalarProperty Name="FloorBearing" ColumnName="FloorBearing" />
+      <ScalarProperty Name="WaterSupply" ColumnName="WaterSupply" />
+      <ScalarProperty Name="WaterDrain" ColumnName="WaterDrain" />
+      <ScalarProperty Name="Door" ColumnName="Door" />
+      <ScalarProperty Name="Logo" ColumnName="Logo" />
+      <ScalarProperty Name="ElectricityUsage" ColumnName="ElectricityUsage" />
+      <ScalarProperty Name="FireProtection" ColumnName="FireProtection" />
+      <ScalarProperty Name="Broadcasting" ColumnName="Broadcasting" />
+      <ScalarProperty Name="AirCondition" ColumnName="AirCondition" />
+      <ScalarProperty Name="Smoke" ColumnName="Smoke" />
+      <ScalarProperty Name="Security" ColumnName="Security" />
+      <ScalarProperty Name="Wiring" ColumnName="Wiring" />
+      <ScalarProperty Name="Water" ColumnName="Water" />
+      <ScalarProperty Name="Gas" ColumnName="Gas" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Province" StoreEntitySet="Province" TypeName="Demo.Province">
+      <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+      <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+      <ScalarProperty Name="ProvinceType" ColumnName="ProvinceType" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Region" StoreEntitySet="Region" TypeName="Demo.Region">
+      <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+      <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Repair" StoreEntitySet="Repair" TypeName="Demo.Repair">
+      <ScalarProperty Name="RepairID" ColumnName="RepairID" />
+      <ScalarProperty Name="RepairType" ColumnName="RepairType" />
+      <ScalarProperty Name="IsCommon" ColumnName="IsCommon" />
+      <ScalarProperty Name="Location" ColumnName="Location" />
+      <ScalarProperty Name="RequestSrcType" ColumnName="RequestSrcType" />
+      <ScalarProperty Name="RequestDesc" ColumnName="RequestDesc" />
+      <ScalarProperty Name="RequestUserID" ColumnName="RequestUserID" />
+      <ScalarProperty Name="RequestUserName" ColumnName="RequestUserName" />
+      <ScalarProperty Name="RequestTime" ColumnName="RequestTime" />
+      <ScalarProperty Name="AcceptUserID" ColumnName="AcceptUserID" />
+      <ScalarProperty Name="AcceptUserName" ColumnName="AcceptUserName" />
+      <ScalarProperty Name="AcceptTime" ColumnName="AcceptTime" />
+      <ScalarProperty Name="Important" ColumnName="Important" />
+      <ScalarProperty Name="QuoteAmount" ColumnName="QuoteAmount" />
+      <ScalarProperty Name="EstimatedFinishTime" ColumnName="EstimatedFinishTime" />
+      <ScalarProperty Name="RepairUserID" ColumnName="RepairUserID" />
+      <ScalarProperty Name="RepairUserName" ColumnName="RepairUserName" />
+      <ScalarProperty Name="RepairStartTime" ColumnName="RepairStartTime" />
+      <ScalarProperty Name="RepairFinishTime" ColumnName="RepairFinishTime" />
+      <ScalarProperty Name="RepairResult" ColumnName="RepairResult" />
+      <ScalarProperty Name="RepairDesc" ColumnName="RepairDesc" />
+      <ScalarProperty Name="RepairStatus" ColumnName="RepairStatus" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Repair_Attachment" StoreEntitySet="Repair_Attachment" TypeName="Demo.Repair_Attachment">
+      <ScalarProperty Name="AttachmentID" ColumnName="AttachmentID" />
+      <ScalarProperty Name="AttachmentName" ColumnName="AttachmentName" />
+      <ScalarProperty Name="AttachmentPath" ColumnName="AttachmentPath" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Repair_Comment" StoreEntitySet="Repair_Comment" TypeName="Demo.Repair_Comment">
+      <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+      <ScalarProperty Name="Speed" ColumnName="Speed" />
+      <ScalarProperty Name="Quality" ColumnName="Quality" />
+      <ScalarProperty Name="Attitude" ColumnName="Attitude" />
+      <ScalarProperty Name="Overall" ColumnName="Overall" />
+      <ScalarProperty Name="Comment" ColumnName="Comment" />
+      <ScalarProperty Name="Additional" ColumnName="Additional" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Repair_Log" StoreEntitySet="Repair_Log" TypeName="Demo.Repair_Log">
+      <ScalarProperty Name="LogID" ColumnName="LogID" />
+      <ScalarProperty Name="LogText" ColumnName="LogText" />
+      <ScalarProperty Name="LogUserID" ColumnName="LogUserID" />
+      <ScalarProperty Name="LogUserName" ColumnName="LogUserName" />
+      <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Repair_Material" StoreEntitySet="Repair_Material" TypeName="Demo.Repair_Material">
+      <ScalarProperty Name="RepairMaterialID" ColumnName="RepairMaterialID" />
+      <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Function" StoreEntitySet="Sys_Function" TypeName="Demo.Sys_Function">
+      <ScalarProperty Name="FunctionID" ColumnName="FunctionID" />
+      <ScalarProperty Name="FunctionKey" ColumnName="FunctionKey" />
+      <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+      <ScalarProperty Name="FunctionDescription" ColumnName="FunctionDescription" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Menu" StoreEntitySet="Sys_Menu" TypeName="Demo.Sys_Menu">
+      <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+      <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+      <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
+      <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+      <ScalarProperty Name="MenuUrl" ColumnName="MenuUrl" />
+      <ScalarProperty Name="MenuDescription" ColumnName="MenuDescription" />
+      <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Role" StoreEntitySet="Sys_Role" TypeName="Demo.Sys_Role">
+      <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+      <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Role_Function" StoreEntitySet="Sys_Role_Function" TypeName="Demo.Sys_Role_Function">
+      <ScalarProperty Name="RoleFunctionID" ColumnName="RoleFunctionID" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_Role_Menu" StoreEntitySet="Sys_Role_Menu" TypeName="Demo.Sys_Role_Menu">
+      <ScalarProperty Name="RoleMenuID" ColumnName="RoleMenuID" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_User" StoreEntitySet="Sys_User" TypeName="Demo.Sys_User">
+      <ScalarProperty Name="UserID" ColumnName="UserID" />
+      <ScalarProperty Name="UserType" ColumnName="UserType" />
+      <ScalarProperty Name="UserName" ColumnName="UserName" />
+      <ScalarProperty Name="Password" ColumnName="Password" />
+      <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
+      <ScalarProperty Name="LastLoginIP" ColumnName="LastLoginIP" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_User_Message" StoreEntitySet="Sys_User_Message" TypeName="Demo.Sys_User_Message">
+      <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+      <ScalarProperty Name="Subject" ColumnName="Subject" />
+      <ScalarProperty Name="Content" ColumnName="Content" />
+      <ScalarProperty Name="SourceType" ColumnName="SourceType" />
+      <ScalarProperty Name="SourceRefID" ColumnName="SourceRefID" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sys_User_Role" StoreEntitySet="Sys_User_Role" TypeName="Demo.Sys_User_Role">
+      <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="Utility_Bill" StoreEntitySet="Utility_Bill" TypeName="Demo.Utility_Bill">
+      <ScalarProperty Name="BillID" ColumnName="BillID" />
+      <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+      <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+      <ScalarProperty Name="PrevNumber" ColumnName="PrevNumber" />
+      <ScalarProperty Name="CurNumber" ColumnName="CurNumber" />
+      <ScalarProperty Name="UseNumber" ColumnName="UseNumber" />
+      <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+      <ScalarProperty Name="BillAmount" ColumnName="BillAmount" />
+      <ScalarProperty Name="OperatorID" ColumnName="OperatorID" />
+      <ScalarProperty Name="OperatorName" ColumnName="OperatorName" />
+      <ScalarProperty Name="Remark" ColumnName="Remark" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_CompanyType" StoreEntitySet="View_CompanyType" TypeName="Demo.View_CompanyType">
+      <ScalarProperty Name="CompanyTypeID" ColumnName="CompanyTypeID" />
+      <ScalarProperty Name="CompanyTypeName" ColumnName="CompanyTypeName" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Condition" StoreEntitySet="View_Condition" TypeName="Demo.View_Condition">
+      <ScalarProperty Name="ConditionID" ColumnName="ConditionID" />
+      <ScalarProperty Name="ConditionName" ColumnName="ConditionName" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_ContractStatus" StoreEntitySet="View_ContractStatus" TypeName="Demo.View_ContractStatus">
+      <ScalarProperty Name="ContractStatusID" ColumnName="ContractStatusID" />
+      <ScalarProperty Name="ContractStatusName" ColumnName="ContractStatusName" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_FloorMap_Unit" StoreEntitySet="View_FloorMap_Unit" TypeName="Demo.View_FloorMap_Unit">
+      <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      <ScalarProperty Name="FloorID" ColumnName="FloorID" />
+      <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+      <ScalarProperty Name="UnitAera" ColumnName="UnitAera" />
+      <ScalarProperty Name="BizTypeID" ColumnName="BizTypeID" />
+      <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+      <ScalarProperty Name="ContractStatusName" ColumnName="ContractStatusName" />
+      <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+      <ScalarProperty Name="UnitTypeName" ColumnName="UnitTypeName" />
+      <ScalarProperty Name="ProjectUnitStatus" ColumnName="ProjectUnitStatus" />
+      <ScalarProperty Name="UnitStatusName" ColumnName="UnitStatusName" />
+      <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+      <ScalarProperty Name="ContractStartDate" ColumnName="ContractStartDate" />
+      <ScalarProperty Name="ContractEndDate" ColumnName="ContractEndDate" />
+      <ScalarProperty Name="ContractArea" ColumnName="ContractArea" />
+      <ScalarProperty Name="ContractUnitRent" ColumnName="ContractUnitRent" />
+      <ScalarProperty Name="ContractMgmtFee" ColumnName="ContractMgmtFee" />
+      <ScalarProperty Name="DecorationLength" ColumnName="DecorationLength" />
+      <ScalarProperty Name="DecorationEndDate" ColumnName="DecorationEndDate" />
+      <ScalarProperty Name="ContractLength" ColumnName="ContractLength" />
+      <ScalarProperty Name="QualityBond" ColumnName="QualityBond" />
+      <ScalarProperty Name="AdPointNum" ColumnName="AdPointNum" />
+      <ScalarProperty Name="ParkingLotNum" ColumnName="ParkingLotNum" />
+      <ScalarProperty Name="FloorMapUnitID" ColumnName="FloorMapUnitID" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_GenderType" StoreEntitySet="View_GenderType" TypeName="Demo.View_GenderType">
+      <ScalarProperty Name="GenderTypeID" ColumnName="GenderTypeID" />
+      <ScalarProperty Name="GenderTypeName" ColumnName="GenderTypeName" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Project_AdPoint" StoreEntitySet="View_Project_AdPoint" TypeName="Demo.View_Project_AdPoint">
+      <ScalarProperty Name="AdPointID" ColumnName="AdPointID" />
+      <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+      <ScalarProperty Name="FloorID" ColumnName="FloorID" />
+      <ScalarProperty Name="AdPointNumber" ColumnName="AdPointNumber" />
+      <ScalarProperty Name="Location" ColumnName="Location" />
+      <ScalarProperty Name="FloorMapLocation" ColumnName="FloorMapLocation" />
+      <ScalarProperty Name="AdPointType" ColumnName="AdPointType" />
+      <ScalarProperty Name="Rent" ColumnName="Rent" />
+      <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+      <ScalarProperty Name="ContractEnd" ColumnName="ContractEnd" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+      <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+      <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
+      <ScalarProperty Name="FloorNumber" ColumnName="FloorNumber" />
+      <ScalarProperty Name="FloorMapFileName" ColumnName="FloorMapFileName" />
+      <ScalarProperty Name="FloorName" ColumnName="FloorName" />
+      <ScalarProperty Name="AdPointMedia" ColumnName="AdPointMedia" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Project_Kiosk" StoreEntitySet="View_Project_Kiosk" TypeName="Demo.View_Project_Kiosk">
+      <ScalarProperty Name="KioskID" ColumnName="KioskID" />
+      <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+      <ScalarProperty Name="FloorID" ColumnName="FloorID" />
+      <ScalarProperty Name="KioskNumber" ColumnName="KioskNumber" />
+      <ScalarProperty Name="Location" ColumnName="Location" />
+      <ScalarProperty Name="FloorMapLocation" ColumnName="FloorMapLocation" />
+      <ScalarProperty Name="Area" ColumnName="Area" />
+      <ScalarProperty Name="BizTypeID" ColumnName="BizTypeID" />
+      <ScalarProperty Name="OccupyRate" ColumnName="OccupyRate" />
+      <ScalarProperty Name="Rent" ColumnName="Rent" />
+      <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+      <ScalarProperty Name="ContractEnd" ColumnName="ContractEnd" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+      <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+      <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
+      <ScalarProperty Name="FloorNumber" ColumnName="FloorNumber" />
+      <ScalarProperty Name="FloorMapFileName" ColumnName="FloorMapFileName" />
+      <ScalarProperty Name="FloorName" ColumnName="FloorName" />
+      <ScalarProperty Name="KioskType" ColumnName="KioskType" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Project_Unit" StoreEntitySet="View_Project_Unit" TypeName="Demo.View_Project_Unit">
+      <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+      <ScalarProperty Name="FloorID" ColumnName="FloorID" />
+      <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+      <ScalarProperty Name="UnitAera" ColumnName="UnitAera" />
+      <ScalarProperty Name="UnitStatus" ColumnName="UnitStatus" />
+      <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+      <ScalarProperty Name="BizTypeID" ColumnName="BizTypeID" />
+      <ScalarProperty Name="BizCategoryID" ColumnName="BizCategoryID" />
+      <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+      <ScalarProperty Name="ContractEndDate" ColumnName="ContractEndDate" />
+      <ScalarProperty Name="UnitMapFileName" ColumnName="UnitMapFileName" />
+      <ScalarProperty Name="FloorMapLocation" ColumnName="FloorMapLocation" />
+      <ScalarProperty Name="FloorMapDimension" ColumnName="FloorMapDimension" />
+      <ScalarProperty Name="Tag" ColumnName="Tag" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+      <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+      <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
+      <ScalarProperty Name="FloorNumber" ColumnName="FloorNumber" />
+      <ScalarProperty Name="FloorName" ColumnName="FloorName" />
+      <ScalarProperty Name="FloorMapFileName" ColumnName="FloorMapFileName" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Project_Unit_Contract" StoreEntitySet="View_Project_Unit_Contract" TypeName="Demo.View_Project_Unit_Contract">
+      <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+      <ScalarProperty Name="UnitAera" ColumnName="UnitAera" />
+      <ScalarProperty Name="BizTypeID" ColumnName="BizTypeID" />
+      <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+      <ScalarProperty Name="ContractStatusName" ColumnName="ContractStatusName" />
+      <ScalarProperty Name="UnitTypeName" ColumnName="UnitTypeName" />
+      <ScalarProperty Name="UnitStatusName" ColumnName="UnitStatusName" />
+      <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+      <ScalarProperty Name="ContractStartDate" ColumnName="ContractStartDate" />
+      <ScalarProperty Name="ContractEndDate" ColumnName="ContractEndDate" />
+      <ScalarProperty Name="ContractArea" ColumnName="ContractArea" />
+      <ScalarProperty Name="ContractUnitRent" ColumnName="ContractUnitRent" />
+      <ScalarProperty Name="ContractMgmtFee" ColumnName="ContractMgmtFee" />
+      <ScalarProperty Name="DecorationLength" ColumnName="DecorationLength" />
+      <ScalarProperty Name="DecorationEndDate" ColumnName="DecorationEndDate" />
+      <ScalarProperty Name="ContractLength" ColumnName="ContractLength" />
+      <ScalarProperty Name="QualityBond" ColumnName="QualityBond" />
+      <ScalarProperty Name="AdPointNum" ColumnName="AdPointNum" />
+      <ScalarProperty Name="ParkingLotNum" ColumnName="ParkingLotNum" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_ProjectInfoShow" StoreEntitySet="View_ProjectInfoShow" TypeName="Demo.View_ProjectInfoShow">
+      <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+      <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+      <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+      <ScalarProperty Name="CityID" ColumnName="CityID" />
+      <ScalarProperty Name="Stage" ColumnName="Stage" />
+      <ScalarProperty Name="GrandOpeningDate" ColumnName="GrandOpeningDate" />
+      <ScalarProperty Name="ParkingLotNum" ColumnName="ParkingLotNum" />
+      <ScalarProperty Name="SumTotalConstructionArea" ColumnName="SumTotalConstructionArea" />
+      <ScalarProperty Name="TotalRentArea" ColumnName="TotalRentArea" />
+      <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+      <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+      <ScalarProperty Name="CityName" ColumnName="CityName" />
+      <ScalarProperty Name="AdPointNum" ColumnName="AdPointNum" />
+      <ScalarProperty Name="RegionName" ColumnName="RegionName" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Repair_Complaint_Supervisor" StoreEntitySet="View_Repair_Complaint_Supervisor" TypeName="Demo.View_Repair_Complaint_Supervisor">
+      <ScalarProperty Name="BizConfigID" ColumnName="BizConfigID" />
+      <ScalarProperty Name="BizConfigType" ColumnName="BizConfigType" />
+      <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+      <ScalarProperty Name="Param1" ColumnName="Param1" />
+      <ScalarProperty Name="Param2" ColumnName="Param2" />
+      <ScalarProperty Name="Param3" ColumnName="Param3" />
+      <ScalarProperty Name="Param4" ColumnName="Param4" />
+      <ScalarProperty Name="Param5" ColumnName="Param5" />
+      <ScalarProperty Name="Remark" ColumnName="Remark" />
+      <ScalarProperty Name="Status" ColumnName="Status" />
+      <ScalarProperty Name="InDate" ColumnName="InDate" />
+      <ScalarProperty Name="InUser" ColumnName="InUser" />
+      <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+      <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+      <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
+      <ScalarProperty Name="GovernorUserId" ColumnName="GovernorUserId" />
+      <ScalarProperty Name="GovernorUserName" ColumnName="GovernorUserName" />
+      <ScalarProperty Name="ManagerUserId" ColumnName="ManagerUserId" />
+      <ScalarProperty Name="ManagerUserName" ColumnName="ManagerUserName" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Report_Contract" StoreEntitySet="View_Report_Contract" TypeName="Demo.View_Report_Contract">
+      <ScalarProperty Name="ContractStatusName" ColumnName="ContractStatusName" />
+      <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+      <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+      <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+      <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+      <ScalarProperty Name="DecorationLength" ColumnName="DecorationLength" />
+      <ScalarProperty Name="DecorationEndDate" ColumnName="DecorationEndDate" />
+      <ScalarProperty Name="ContractEndDate" ColumnName="ContractEndDate" />
+      <ScalarProperty Name="ContractLength" ColumnName="ContractLength" />
+      <ScalarProperty Name="QualityBond" ColumnName="QualityBond" />
+      <ScalarProperty Name="AdPointNum" ColumnName="AdPointNum" />
+      <ScalarProperty Name="ParkingLotNum" ColumnName="ParkingLotNum" />
+      <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      <ScalarProperty Name="UnitAvgAera" ColumnName="UnitAvgAera" />
+      <ScalarProperty Name="ContractStartDate" ColumnName="ContractStartDate" />
+      <ScalarProperty Name="BrandLevel" ColumnName="BrandLevel" />
+      <ScalarProperty Name="ContractArea" ColumnName="ContractArea" />
+      <ScalarProperty Name="ContractUnitRent" ColumnName="ContractUnitRent" />
+      <ScalarProperty Name="ContractMgmtFee" ColumnName="ContractMgmtFee" />
+      <ScalarProperty Name="MerchantBrandID" ColumnName="MerchantBrandID" />
+      <ScalarProperty Name="ContractCode" ColumnName="ContractCode" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Report_Project_Count" StoreEntitySet="View_Report_Project_Count" TypeName="Demo.View_Report_Project_Count">
+      <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+      <ScalarProperty Name="TotalArea" ColumnName="TotalArea" />
+      <ScalarProperty Name="TotalUnit" ColumnName="TotalUnit" />
+      <ScalarProperty Name="SignedTotalArea" ColumnName="SignedTotalArea" />
+      <ScalarProperty Name="SignedTotalUnit" ColumnName="SignedTotalUnit" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Report_Project_Unit" StoreEntitySet="View_Report_Project_Unit" TypeName="Demo.View_Report_Project_Unit">
+      <ScalarProperty Name="BizTypeID" ColumnName="BizTypeID" />
+      <ScalarProperty Name="BizCategoryID" ColumnName="BizCategoryID" />
+      <ScalarProperty Name="StandardRent" ColumnName="StandardRent" />
+      <ScalarProperty Name="IsBenchmarking" ColumnName="IsBenchmarking" />
+      <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+      <ScalarProperty Name="BizTypeName" ColumnName="BizTypeName" />
+      <ScalarProperty Name="UnitTypeName" ColumnName="UnitTypeName" />
+      <ScalarProperty Name="BizCategoryName" ColumnName="BizCategoryName" />
+      <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
+      <ScalarProperty Name="FloorNumber" ColumnName="FloorNumber" />
+      <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+      <ScalarProperty Name="FloorID" ColumnName="FloorID" />
+      <ScalarProperty Name="UnitNumber" ColumnName="UnitNumber" />
+      <ScalarProperty Name="UnitAera" ColumnName="UnitAera" />
+      <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      <ScalarProperty Name="ContractStatus" ColumnName="ContractStatus" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Role_Function" StoreEntitySet="View_Role_Function" TypeName="Demo.View_Role_Function">
+      <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+      <ScalarProperty Name="FunctionID" ColumnName="FunctionID" />
+      <ScalarProperty Name="FunctionKey" ColumnName="FunctionKey" />
+      <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+      <ScalarProperty Name="FunctionDescription" ColumnName="FunctionDescription" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Role_Menu" StoreEntitySet="View_Role_Menu" TypeName="Demo.View_Role_Menu">
+      <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+      <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+      <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+      <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+      <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
+      <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+      <ScalarProperty Name="MenuUrl" ColumnName="MenuUrl" />
+      <ScalarProperty Name="MenuDescription" ColumnName="MenuDescription" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_UnitStatus" StoreEntitySet="View_UnitStatus" TypeName="Demo.View_UnitStatus">
+      <ScalarProperty Name="UnitStatusID" ColumnName="UnitStatusID" />
+      <ScalarProperty Name="UnitStatusName" ColumnName="UnitStatusName" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_UnitType" StoreEntitySet="View_UnitType" TypeName="Demo.View_UnitType">
+      <ScalarProperty Name="UnitTypeID" ColumnName="UnitTypeID" />
+      <ScalarProperty Name="UnitTypeName" ColumnName="UnitTypeName" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_User_Function" StoreEntitySet="View_User_Function" TypeName="Demo.View_User_Function">
+      <ScalarProperty Name="UserID" ColumnName="UserID" />
+      <ScalarProperty Name="FunctionKey" ColumnName="FunctionKey" />
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_User_Menu" StoreEntitySet="View_User_Menu" TypeName="Demo.View_User_Menu">
+      <ScalarProperty Name="UserID" ColumnName="UserID" />
+      <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+      <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+      <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+      <ScalarProperty Name="MenuIcon" ColumnName="MenuIcon" />
+      <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+      <ScalarProperty Name="MenuUrl" ColumnName="MenuUrl" />
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_BizCategory_BizCategory" TypeName="Demo.FK_BizCategory_BizCategory" StoreEntitySet="BizCategory">
+      <EndProperty Name="BizCategory">
+        <ScalarProperty Name="BizCategoryID" ColumnName="ParentID" />
+      </EndProperty>
+      <EndProperty Name="BizCategory1">
+        <ScalarProperty Name="BizCategoryID" ColumnName="BizCategoryID" />
+      </EndProperty>
+      <Condition ColumnName="ParentID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_BizCategory_BizType" TypeName="Demo.FK_BizCategory_BizType" StoreEntitySet="BizCategory">
+      <EndProperty Name="BizType">
+        <ScalarProperty Name="BizTypeID" ColumnName="BizTypeID" />
+      </EndProperty>
+      <EndProperty Name="BizCategory">
+        <ScalarProperty Name="BizCategoryID" ColumnName="BizCategoryID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Brand_BizCategory" TypeName="Demo.FK_Brand_BizCategory" StoreEntitySet="Brand">
+      <EndProperty Name="BizCategory">
+        <ScalarProperty Name="BizCategoryID" ColumnName="BizCategoryID" />
+      </EndProperty>
+      <EndProperty Name="Brand">
+        <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+      </EndProperty>
+      <Condition ColumnName="BizCategoryID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Store_BizCategory" TypeName="Demo.FK_Merchant_Store_BizCategory" StoreEntitySet="Merchant_Store">
+      <EndProperty Name="BizCategory">
+        <ScalarProperty Name="BizCategoryID" ColumnName="BizCategoryID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Store">
+        <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Unit_BizCategory" TypeName="Demo.FK_Project_Unit_BizCategory" StoreEntitySet="Project_Unit">
+      <EndProperty Name="BizCategory">
+        <ScalarProperty Name="BizCategoryID" ColumnName="BizCategoryID" />
+      </EndProperty>
+      <EndProperty Name="Project_Unit">
+        <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      </EndProperty>
+      <Condition ColumnName="BizCategoryID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Brand_BizType" TypeName="Demo.FK_Brand_BizType" StoreEntitySet="Brand">
+      <EndProperty Name="BizType">
+        <ScalarProperty Name="BizTypeID" ColumnName="BizTypeID" />
+      </EndProperty>
+      <EndProperty Name="Brand">
+        <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+      </EndProperty>
+      <Condition ColumnName="BizTypeID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Store_BizType" TypeName="Demo.FK_Merchant_Store_BizType" StoreEntitySet="Merchant_Store">
+      <EndProperty Name="BizType">
+        <ScalarProperty Name="BizTypeID" ColumnName="BizTypeID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Store">
+        <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Unit_BizType" TypeName="Demo.FK_Project_Unit_BizType" StoreEntitySet="Project_Unit">
+      <EndProperty Name="BizType">
+        <ScalarProperty Name="BizTypeID" ColumnName="BizTypeID" />
+      </EndProperty>
+      <EndProperty Name="Project_Unit">
+        <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      </EndProperty>
+      <Condition ColumnName="BizTypeID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Brand_Brand" TypeName="Demo.FK_Merchant_Brand_Brand" StoreEntitySet="Merchant_Brand">
+      <EndProperty Name="Brand">
+        <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Brand">
+        <ScalarProperty Name="MerchantBrandID" ColumnName="MerchantBrandID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Campaign_Attachment_Campaign" TypeName="Demo.FK_Campaign_Attachment_Campaign" StoreEntitySet="Campaign_Attachment">
+      <EndProperty Name="Campaign">
+        <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+      </EndProperty>
+      <EndProperty Name="Campaign_Attachment">
+        <ScalarProperty Name="AttachmentID" ColumnName="AttachmentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Campaign_Comment_Campaign" TypeName="Demo.FK_Campaign_Comment_Campaign" StoreEntitySet="Campaign_Comment">
+      <EndProperty Name="Campaign">
+        <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+      </EndProperty>
+      <EndProperty Name="Campaign_Comment">
+        <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Campaign_Page_Campaign" TypeName="Demo.FK_Campaign_Page_Campaign" StoreEntitySet="Campaign_Page">
+      <EndProperty Name="Campaign">
+        <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+      </EndProperty>
+      <EndProperty Name="Campaign_Page">
+        <ScalarProperty Name="PageID" ColumnName="PageID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Campaign_PlanUser" TypeName="Demo.FK_Campaign_PlanUser" StoreEntitySet="Campaign">
+      <EndProperty Name="Sys_User">
+        <ScalarProperty Name="UserID" ColumnName="PlanUserID" />
+      </EndProperty>
+      <EndProperty Name="Campaign">
+        <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+      </EndProperty>
+      <Condition ColumnName="PlanUserID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Campaign_Project" TypeName="Demo.FK_Campaign_Project" StoreEntitySet="Campaign">
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+      <EndProperty Name="Campaign">
+        <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Campaign_Result_Campaign" TypeName="Demo.FK_Campaign_Result_Campaign" StoreEntitySet="Campaign_Result">
+      <EndProperty Name="Campaign">
+        <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+      </EndProperty>
+      <EndProperty Name="Campaign_Result">
+        <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Campaign_RunUser" TypeName="Demo.FK_Campaign_RunUser" StoreEntitySet="Campaign">
+      <EndProperty Name="Sys_User">
+        <ScalarProperty Name="UserID" ColumnName="RunUserID" />
+      </EndProperty>
+      <EndProperty Name="Campaign">
+        <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+      </EndProperty>
+      <Condition ColumnName="RunUserID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_City_Province" TypeName="Demo.FK_City_Province" StoreEntitySet="City">
+      <EndProperty Name="Province">
+        <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+      </EndProperty>
+      <EndProperty Name="City">
+        <ScalarProperty Name="CityID" ColumnName="CityID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_District_City" TypeName="Demo.FK_District_City" StoreEntitySet="District">
+      <EndProperty Name="City">
+        <ScalarProperty Name="CityID" ColumnName="CityID" />
+      </EndProperty>
+      <EndProperty Name="District">
+        <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_City" TypeName="Demo.FK_Project_City" StoreEntitySet="Project">
+      <EndProperty Name="City">
+        <ScalarProperty Name="CityID" ColumnName="CityID" />
+      </EndProperty>
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Company_Department" TypeName="Demo.FK_Company_Department" StoreEntitySet="Department">
+      <EndProperty Name="Company">
+        <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+      </EndProperty>
+      <EndProperty Name="Department">
+        <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Company_Finance_Company" TypeName="Demo.FK_Company_Finance_Company" StoreEntitySet="Company_Finance">
+      <EndProperty Name="Company">
+        <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+      </EndProperty>
+      <EndProperty Name="Company_Finance">
+        <ScalarProperty Name="CompanyFinanceID" ColumnName="CompanyFinanceID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Company_Owner" TypeName="Demo.FK_Company_Owner" StoreEntitySet="Company">
+      <EndProperty Name="Company">
+        <ScalarProperty Name="CompanyID" ColumnName="OwnerCompanyID" />
+      </EndProperty>
+      <EndProperty Name="Company1">
+        <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+      </EndProperty>
+      <Condition ColumnName="OwnerCompanyID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Contract_ManageCompany" TypeName="Demo.FK_Contract_ManageCompany" StoreEntitySet="Contract">
+      <EndProperty Name="Company">
+        <ScalarProperty Name="CompanyID" ColumnName="ManageCompanyID" />
+      </EndProperty>
+      <EndProperty Name="Contract">
+        <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Contract_Supplementary_ManageCompany" TypeName="Demo.FK_Contract_Supplementary_ManageCompany" StoreEntitySet="Contract_Supplementary">
+      <EndProperty Name="Company">
+        <ScalarProperty Name="CompanyID" ColumnName="ManageCompanyID" />
+      </EndProperty>
+      <EndProperty Name="Contract_Supplementary">
+        <ScalarProperty Name="SupplementaryID" ColumnName="SupplementaryID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Employee_Company" TypeName="Demo.FK_Employee_Company" StoreEntitySet="Employee">
+      <EndProperty Name="Company">
+        <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+      </EndProperty>
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Finance_Accrual_Company" TypeName="Demo.FK_Finance_Accrual_Company" StoreEntitySet="Finance_Accrual">
+      <EndProperty Name="Company">
+        <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+      </EndProperty>
+      <EndProperty Name="Finance_Accrual">
+        <ScalarProperty Name="AccrualID" ColumnName="AccrualID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Finance_Settlement_Company" TypeName="Demo.FK_Finance_Settlement_Company" StoreEntitySet="Finance_Settlement">
+      <EndProperty Name="Company">
+        <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+      </EndProperty>
+      <EndProperty Name="Finance_Settlement">
+        <ScalarProperty Name="SettlementID" ColumnName="SettlementID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_ManageCompany" TypeName="Demo.FK_Project_ManageCompany" StoreEntitySet="Project">
+      <EndProperty Name="Company">
+        <ScalarProperty Name="CompanyID" ColumnName="ManageCompanyID" />
+      </EndProperty>
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Owner_Company" TypeName="Demo.FK_Project_Owner_Company" StoreEntitySet="Project_Owner">
+      <EndProperty Name="Company">
+        <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+      </EndProperty>
+      <EndProperty Name="Project_Owner">
+        <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Complaint_Attachment_Complaint" TypeName="Demo.FK_Complaint_Attachment_Complaint" StoreEntitySet="Complaint_Attachment">
+      <EndProperty Name="Complaint">
+        <ScalarProperty Name="ComplaintID" ColumnName="ComplaintID" />
+      </EndProperty>
+      <EndProperty Name="Complaint_Attachment">
+        <ScalarProperty Name="AttachmentID" ColumnName="AttachmentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Complaint_Comment_Complaint" TypeName="Demo.FK_Complaint_Comment_Complaint" StoreEntitySet="Complaint_Comment">
+      <EndProperty Name="Complaint">
+        <ScalarProperty Name="ComplaintID" ColumnName="ComplaintID" />
+      </EndProperty>
+      <EndProperty Name="Complaint_Comment">
+        <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Complaint_Log_Complaint" TypeName="Demo.FK_Complaint_Log_Complaint" StoreEntitySet="Complaint_Log">
+      <EndProperty Name="Complaint">
+        <ScalarProperty Name="ComplaintID" ColumnName="ComplaintID" />
+      </EndProperty>
+      <EndProperty Name="Complaint_Log">
+        <ScalarProperty Name="LogID" ColumnName="LogID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Complaint_Merchant" TypeName="Demo.FK_Complaint_Merchant" StoreEntitySet="Complaint">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Complaint">
+        <ScalarProperty Name="ComplaintID" ColumnName="ComplaintID" />
+      </EndProperty>
+      <Condition ColumnName="MerchantID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Complaint_Project" TypeName="Demo.FK_Complaint_Project" StoreEntitySet="Complaint">
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+      <EndProperty Name="Complaint">
+        <ScalarProperty Name="ComplaintID" ColumnName="ComplaintID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Complaint_Store" TypeName="Demo.FK_Complaint_Store" StoreEntitySet="Complaint">
+      <EndProperty Name="Merchant_Store">
+        <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      </EndProperty>
+      <EndProperty Name="Complaint">
+        <ScalarProperty Name="ComplaintID" ColumnName="ComplaintID" />
+      </EndProperty>
+      <Condition ColumnName="StoreID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Contract_Appendix_Contract" TypeName="Demo.FK_Contract_Appendix_Contract" StoreEntitySet="Contract_Appendix">
+      <EndProperty Name="Contract">
+        <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+      </EndProperty>
+      <EndProperty Name="Contract_Appendix">
+        <ScalarProperty Name="AppendixID" ColumnName="AppendixID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Contract_Brand_Contract" TypeName="Demo.FK_Contract_Brand_Contract" StoreEntitySet="Contract_Brand">
+      <EndProperty Name="Contract">
+        <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+      </EndProperty>
+      <EndProperty Name="Contract_Brand">
+        <ScalarProperty Name="ContractBrandID" ColumnName="ContractBrandID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Contract_Merchant" TypeName="Demo.FK_Contract_Merchant" StoreEntitySet="Contract">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Contract">
+        <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Contract_PaymentTerms_Contract" TypeName="Demo.FK_Contract_PaymentTerms_Contract" StoreEntitySet="Contract_PaymentTerms">
+      <EndProperty Name="Contract">
+        <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+      </EndProperty>
+      <EndProperty Name="Contract_PaymentTerms">
+        <ScalarProperty Name="PaymentTermsID" ColumnName="PaymentTermsID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Contract_Project" TypeName="Demo.FK_Contract_Project" StoreEntitySet="Contract">
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+      <EndProperty Name="Contract">
+        <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Contract_Supplementary_Contract" TypeName="Demo.FK_Contract_Supplementary_Contract" StoreEntitySet="Contract_Supplementary">
+      <EndProperty Name="Contract">
+        <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+      </EndProperty>
+      <EndProperty Name="Contract_Supplementary">
+        <ScalarProperty Name="SupplementaryID" ColumnName="SupplementaryID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Contract_Unit_Contract" TypeName="Demo.FK_Contract_Unit_Contract" StoreEntitySet="Contract_Unit">
+      <EndProperty Name="Contract">
+        <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+      </EndProperty>
+      <EndProperty Name="Contract_Unit">
+        <ScalarProperty Name="ContractUnitID" ColumnName="ContractUnitID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Contract_UnitSpec_Contract" TypeName="Demo.FK_Contract_UnitSpec_Contract" StoreEntitySet="Contract_UnitSpec">
+      <EndProperty Name="Contract">
+        <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+      </EndProperty>
+      <EndProperty Name="Contract_UnitSpec">
+        <ScalarProperty Name="UnitSpecID" ColumnName="UnitSpecID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Finance_Accrual_Contract" TypeName="Demo.FK_Finance_Accrual_Contract" StoreEntitySet="Finance_Accrual">
+      <EndProperty Name="Contract">
+        <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+      </EndProperty>
+      <EndProperty Name="Finance_Accrual">
+        <ScalarProperty Name="AccrualID" ColumnName="AccrualID" />
+      </EndProperty>
+      <Condition ColumnName="ContractID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Finance_Settlement_Contract" TypeName="Demo.FK_Finance_Settlement_Contract" StoreEntitySet="Finance_Settlement">
+      <EndProperty Name="Contract">
+        <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+      </EndProperty>
+      <EndProperty Name="Finance_Settlement">
+        <ScalarProperty Name="SettlementID" ColumnName="SettlementID" />
+      </EndProperty>
+      <Condition ColumnName="ContractID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Store_RentContract" TypeName="Demo.FK_Merchant_Store_RentContract" StoreEntitySet="Merchant_Store">
+      <EndProperty Name="Contract">
+        <ScalarProperty Name="ContractID" ColumnName="RentContractID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Store">
+        <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Contract_Brand_MerchantBrand" TypeName="Demo.FK_Contract_Brand_MerchantBrand" StoreEntitySet="Contract_Brand">
+      <EndProperty Name="Merchant_Brand">
+        <ScalarProperty Name="MerchantBrandID" ColumnName="MerchantBrandID" />
+      </EndProperty>
+      <EndProperty Name="Contract_Brand">
+        <ScalarProperty Name="ContractBrandID" ColumnName="ContractBrandID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Contract_PaymentTerms_PaymentItem" TypeName="Demo.FK_Contract_PaymentTerms_PaymentItem" StoreEntitySet="Contract_PaymentTerms">
+      <EndProperty Name="Finance_Item">
+        <ScalarProperty Name="ItemID" ColumnName="PaymentItemID" />
+      </EndProperty>
+      <EndProperty Name="Contract_PaymentTerms">
+        <ScalarProperty Name="PaymentTermsID" ColumnName="PaymentTermsID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Contract_UnitSpec_Unit" TypeName="Demo.FK_Contract_UnitSpec_Unit" StoreEntitySet="Contract_UnitSpec">
+      <EndProperty Name="Project_Unit">
+        <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      </EndProperty>
+      <EndProperty Name="Contract_UnitSpec">
+        <ScalarProperty Name="UnitSpecID" ColumnName="UnitSpecID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Department_Manager" TypeName="Demo.FK_Department_Manager" StoreEntitySet="Department">
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="EmployeeID" ColumnName="ManagerID" />
+      </EndProperty>
+      <EndProperty Name="Department">
+        <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+      </EndProperty>
+      <Condition ColumnName="ManagerID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Employee_Department" TypeName="Demo.FK_Employee_Department" StoreEntitySet="Employee">
+      <EndProperty Name="Department">
+        <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+      </EndProperty>
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Employee_Supervisor" TypeName="Demo.FK_Employee_Supervisor" StoreEntitySet="Employee">
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="EmployeeID" ColumnName="SupervisorID" />
+      </EndProperty>
+      <EndProperty Name="Employee1">
+        <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+      </EndProperty>
+      <Condition ColumnName="SupervisorID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Sys_User_Employee" TypeName="Demo.FK_Sys_User_Employee" StoreEntitySet="Sys_User">
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+      </EndProperty>
+      <EndProperty Name="Sys_User">
+        <ScalarProperty Name="UserID" ColumnName="UserID" />
+      </EndProperty>
+      <Condition ColumnName="EmployeeID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Finance_Accrual_Item" TypeName="Demo.FK_Finance_Accrual_Item" StoreEntitySet="Finance_Accrual">
+      <EndProperty Name="Finance_Item">
+        <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+      </EndProperty>
+      <EndProperty Name="Finance_Accrual">
+        <ScalarProperty Name="AccrualID" ColumnName="AccrualID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Finance_Accrual_Merchant" TypeName="Demo.FK_Finance_Accrual_Merchant" StoreEntitySet="Finance_Accrual">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Finance_Accrual">
+        <ScalarProperty Name="AccrualID" ColumnName="AccrualID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Finance_Accrual_Store" TypeName="Demo.FK_Finance_Accrual_Store" StoreEntitySet="Finance_Accrual">
+      <EndProperty Name="Merchant_Store">
+        <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      </EndProperty>
+      <EndProperty Name="Finance_Accrual">
+        <ScalarProperty Name="AccrualID" ColumnName="AccrualID" />
+      </EndProperty>
+      <Condition ColumnName="StoreID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Finance_SettlementDetail_Accrual" TypeName="Demo.FK_Finance_SettlementDetail_Accrual" StoreEntitySet="Finance_SettlementDetail">
+      <EndProperty Name="Finance_Accrual">
+        <ScalarProperty Name="AccrualID" ColumnName="AccrualID" />
+      </EndProperty>
+      <EndProperty Name="Finance_SettlementDetail">
+        <ScalarProperty Name="DetailID" ColumnName="DetailID" />
+      </EndProperty>
+      <Condition ColumnName="AccrualID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Finance_SettlementDetail_Item" TypeName="Demo.FK_Finance_SettlementDetail_Item" StoreEntitySet="Finance_SettlementDetail">
+      <EndProperty Name="Finance_Item">
+        <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+      </EndProperty>
+      <EndProperty Name="Finance_SettlementDetail">
+        <ScalarProperty Name="DetailID" ColumnName="DetailID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Finance_Settlement_Merchant" TypeName="Demo.FK_Finance_Settlement_Merchant" StoreEntitySet="Finance_Settlement">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Finance_Settlement">
+        <ScalarProperty Name="SettlementID" ColumnName="SettlementID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Finance_SettlementDetail_Settlement" TypeName="Demo.FK_Finance_SettlementDetail_Settlement" StoreEntitySet="Finance_SettlementDetail">
+      <EndProperty Name="Finance_Settlement">
+        <ScalarProperty Name="SettlementID" ColumnName="SettlementID" />
+      </EndProperty>
+      <EndProperty Name="Finance_SettlementDetail">
+        <ScalarProperty Name="DetailID" ColumnName="DetailID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Repair_Material_Material" TypeName="Demo.FK_Repair_Material_Material" StoreEntitySet="Repair_Material">
+      <EndProperty Name="Material">
+        <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+      </EndProperty>
+      <EndProperty Name="Repair_Material">
+        <ScalarProperty Name="RepairMaterialID" ColumnName="RepairMaterialID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Attachment_Merchant" TypeName="Demo.FK_Merchant_Attachment_Merchant" StoreEntitySet="Merchant_Attachment">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Attachment">
+        <ScalarProperty Name="AttachmentID" ColumnName="AttachmentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Brand_Merchant" TypeName="Demo.FK_Merchant_Brand_Merchant" StoreEntitySet="Merchant_Brand">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Brand">
+        <ScalarProperty Name="MerchantBrandID" ColumnName="MerchantBrandID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Finance_Merchant" TypeName="Demo.FK_Merchant_Finance_Merchant" StoreEntitySet="Merchant_Finance">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Finance">
+        <ScalarProperty Name="MerchantFinanceID" ColumnName="MerchantFinanceID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Message_Merchant" TypeName="Demo.FK_Merchant_Message_Merchant" StoreEntitySet="Merchant_Message">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Message">
+        <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Revenue_Merchant" TypeName="Demo.FK_Merchant_Revenue_Merchant" StoreEntitySet="Merchant_Revenue">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Revenue">
+        <ScalarProperty Name="RevenueID" ColumnName="RevenueID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Role_Merchant" TypeName="Demo.FK_Merchant_Role_Merchant" StoreEntitySet="Merchant_Role">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Role">
+        <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Store_Merchant" TypeName="Demo.FK_Merchant_Store_Merchant" StoreEntitySet="Merchant_Store">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Store">
+        <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_StoreImage_Merchant" TypeName="Demo.FK_Merchant_StoreImage_Merchant" StoreEntitySet="Merchant_StoreImage">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_StoreImage">
+        <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_StoreMeter_Merchant" TypeName="Demo.FK_Merchant_StoreMeter_Merchant" StoreEntitySet="Merchant_StoreMeter">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_StoreMeter">
+        <ScalarProperty Name="MeterID" ColumnName="MeterID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_User_Merchant" TypeName="Demo.FK_Merchant_User_Merchant" StoreEntitySet="Merchant_User">
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_User">
+        <ScalarProperty Name="UserID" ColumnName="UserID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Brand_AuthorizedFile" TypeName="Demo.FK_Merchant_Brand_AuthorizedFile" StoreEntitySet="Merchant_Brand">
+      <EndProperty Name="Merchant_Attachment">
+        <ScalarProperty Name="AttachmentID" ColumnName="AuthorizedFile" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Brand">
+        <ScalarProperty Name="MerchantBrandID" ColumnName="MerchantBrandID" />
+      </EndProperty>
+      <Condition ColumnName="AuthorizedFile" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Message_Store" TypeName="Demo.FK_Merchant_Message_Store" StoreEntitySet="Merchant_Message">
+      <EndProperty Name="Merchant_Store">
+        <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Message">
+        <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+      </EndProperty>
+      <Condition ColumnName="StoreID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Message_User" TypeName="Demo.FK_Merchant_Message_User" StoreEntitySet="Merchant_Message">
+      <EndProperty Name="Merchant_User">
+        <ScalarProperty Name="UserID" ColumnName="UserID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Message">
+        <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_Revenue_Store" TypeName="Demo.FK_Merchant_Revenue_Store" StoreEntitySet="Merchant_Revenue">
+      <EndProperty Name="Merchant_Store">
+        <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_Revenue">
+        <ScalarProperty Name="RevenueID" ColumnName="RevenueID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_StoreImage_Store" TypeName="Demo.FK_Merchant_StoreImage_Store" StoreEntitySet="Merchant_StoreImage">
+      <EndProperty Name="Merchant_Store">
+        <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_StoreImage">
+        <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_StoreMeter_Merchant_Store" TypeName="Demo.FK_Merchant_StoreMeter_Merchant_Store" StoreEntitySet="Merchant_StoreMeter">
+      <EndProperty Name="Merchant_Store">
+        <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_StoreMeter">
+        <ScalarProperty Name="MeterID" ColumnName="MeterID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_User_Store" TypeName="Demo.FK_Merchant_User_Store" StoreEntitySet="Merchant_User">
+      <EndProperty Name="Merchant_Store">
+        <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_User">
+        <ScalarProperty Name="UserID" ColumnName="UserID" />
+      </EndProperty>
+      <Condition ColumnName="StoreID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Repair_Store" TypeName="Demo.FK_Repair_Store" StoreEntitySet="Repair">
+      <EndProperty Name="Merchant_Store">
+        <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+      </EndProperty>
+      <EndProperty Name="Repair">
+        <ScalarProperty Name="RepairID" ColumnName="RepairID" />
+      </EndProperty>
+      <Condition ColumnName="StoreID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Utility_Bill_Merchant_StoreMeter" TypeName="Demo.FK_Utility_Bill_Merchant_StoreMeter" StoreEntitySet="Utility_Bill">
+      <EndProperty Name="Merchant_StoreMeter">
+        <ScalarProperty Name="MeterID" ColumnName="MeterID" />
+      </EndProperty>
+      <EndProperty Name="Utility_Bill">
+        <ScalarProperty Name="BillID" ColumnName="BillID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Merchant_UserPaper_User" TypeName="Demo.FK_Merchant_UserPaper_User" StoreEntitySet="Merchant_UserPaper">
+      <EndProperty Name="Merchant_User">
+        <ScalarProperty Name="UserID" ColumnName="UserID" />
+      </EndProperty>
+      <EndProperty Name="Merchant_UserPaper">
+        <ScalarProperty Name="PaperID" ColumnName="PaperID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_AdPoint_Project" TypeName="Demo.FK_Project_AdPoint_Project" StoreEntitySet="Project_AdPoint">
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+      <EndProperty Name="Project_AdPoint">
+        <ScalarProperty Name="AdPointID" ColumnName="AdPointID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_BizConfig_Project" TypeName="Demo.FK_Project_BizConfig_Project" StoreEntitySet="Project_BizConfig">
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+      <EndProperty Name="Project_BizConfig">
+        <ScalarProperty Name="BizConfigID" ColumnName="BizConfigID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Building_Project" TypeName="Demo.FK_Project_Building_Project" StoreEntitySet="Project_Building">
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+      <EndProperty Name="Project_Building">
+        <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Floor_Project" TypeName="Demo.FK_Project_Floor_Project" StoreEntitySet="Project_Floor">
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+      <EndProperty Name="Project_Floor">
+        <ScalarProperty Name="FloorID" ColumnName="FloorID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Kiosk_Project" TypeName="Demo.FK_Project_Kiosk_Project" StoreEntitySet="Project_Kiosk">
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+      <EndProperty Name="Project_Kiosk">
+        <ScalarProperty Name="KioskID" ColumnName="KioskID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Owner_Project" TypeName="Demo.FK_Project_Owner_Project" StoreEntitySet="Project_Owner">
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+      <EndProperty Name="Project_Owner">
+        <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Provice" TypeName="Demo.FK_Project_Provice" StoreEntitySet="Project">
+      <EndProperty Name="Province">
+        <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+      </EndProperty>
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Region" TypeName="Demo.FK_Project_Region" StoreEntitySet="Project">
+      <EndProperty Name="Region">
+        <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+      </EndProperty>
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Unit_Project" TypeName="Demo.FK_Project_Unit_Project" StoreEntitySet="Project_Unit">
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+      <EndProperty Name="Project_Unit">
+        <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Repair_Project" TypeName="Demo.FK_Repair_Project" StoreEntitySet="Repair">
+      <EndProperty Name="Project">
+        <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+      </EndProperty>
+      <EndProperty Name="Repair">
+        <ScalarProperty Name="RepairID" ColumnName="RepairID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_AdPoint_Building" TypeName="Demo.FK_Project_AdPoint_Building" StoreEntitySet="Project_AdPoint">
+      <EndProperty Name="Project_Building">
+        <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+      </EndProperty>
+      <EndProperty Name="Project_AdPoint">
+        <ScalarProperty Name="AdPointID" ColumnName="AdPointID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_AdPoint_Floor" TypeName="Demo.FK_Project_AdPoint_Floor" StoreEntitySet="Project_AdPoint">
+      <EndProperty Name="Project_Floor">
+        <ScalarProperty Name="FloorID" ColumnName="FloorID" />
+      </EndProperty>
+      <EndProperty Name="Project_AdPoint">
+        <ScalarProperty Name="AdPointID" ColumnName="AdPointID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_BizConfig_Building" TypeName="Demo.FK_Project_BizConfig_Building" StoreEntitySet="Project_BizConfig">
+      <EndProperty Name="Project_Building">
+        <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+      </EndProperty>
+      <EndProperty Name="Project_BizConfig">
+        <ScalarProperty Name="BizConfigID" ColumnName="BizConfigID" />
+      </EndProperty>
+      <Condition ColumnName="BuildingID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Floor_Building" TypeName="Demo.FK_Project_Floor_Building" StoreEntitySet="Project_Floor">
+      <EndProperty Name="Project_Building">
+        <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+      </EndProperty>
+      <EndProperty Name="Project_Floor">
+        <ScalarProperty Name="FloorID" ColumnName="FloorID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Kiosk_Building" TypeName="Demo.FK_Project_Kiosk_Building" StoreEntitySet="Project_Kiosk">
+      <EndProperty Name="Project_Building">
+        <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+      </EndProperty>
+      <EndProperty Name="Project_Kiosk">
+        <ScalarProperty Name="KioskID" ColumnName="KioskID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Unit_Building" TypeName="Demo.FK_Project_Unit_Building" StoreEntitySet="Project_Unit">
+      <EndProperty Name="Project_Building">
+        <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+      </EndProperty>
+      <EndProperty Name="Project_Unit">
+        <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Kiosk_Floor" TypeName="Demo.FK_Project_Kiosk_Floor" StoreEntitySet="Project_Kiosk">
+      <EndProperty Name="Project_Floor">
+        <ScalarProperty Name="FloorID" ColumnName="FloorID" />
+      </EndProperty>
+      <EndProperty Name="Project_Kiosk">
+        <ScalarProperty Name="KioskID" ColumnName="KioskID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_Unit_Floor" TypeName="Demo.FK_Project_Unit_Floor" StoreEntitySet="Project_Unit">
+      <EndProperty Name="Project_Floor">
+        <ScalarProperty Name="FloorID" ColumnName="FloorID" />
+      </EndProperty>
+      <EndProperty Name="Project_Unit">
+        <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Repair_Floor" TypeName="Demo.FK_Repair_Floor" StoreEntitySet="Repair">
+      <EndProperty Name="Project_Floor">
+        <ScalarProperty Name="FloorID" ColumnName="FloorID" />
+      </EndProperty>
+      <EndProperty Name="Repair">
+        <ScalarProperty Name="RepairID" ColumnName="RepairID" />
+      </EndProperty>
+      <Condition ColumnName="FloorID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_UnitLeasing_Unit" TypeName="Demo.FK_Project_UnitLeasing_Unit" StoreEntitySet="Project_UnitLeasing">
+      <EndProperty Name="Project_Unit">
+        <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      </EndProperty>
+      <EndProperty Name="Project_UnitLeasing">
+        <ScalarProperty Name="UnitLeasingID" ColumnName="UnitLeasingID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_UnitPlan_Unit" TypeName="Demo.FK_Project_UnitPlan_Unit" StoreEntitySet="Project_UnitPlan">
+      <EndProperty Name="Project_Unit">
+        <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      </EndProperty>
+      <EndProperty Name="Project_UnitPlan">
+        <ScalarProperty Name="UnitPlanID" ColumnName="UnitPlanID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Project_UnitSpec_Unit" TypeName="Demo.FK_Project_UnitSpec_Unit" StoreEntitySet="Project_UnitSpec">
+      <EndProperty Name="Project_Unit">
+        <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      </EndProperty>
+      <EndProperty Name="Project_UnitSpec">
+        <ScalarProperty Name="UnitSpecID" ColumnName="UnitSpecID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Repair_Unit" TypeName="Demo.FK_Repair_Unit" StoreEntitySet="Repair">
+      <EndProperty Name="Project_Unit">
+        <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+      </EndProperty>
+      <EndProperty Name="Repair">
+        <ScalarProperty Name="RepairID" ColumnName="RepairID" />
+      </EndProperty>
+      <Condition ColumnName="UnitID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Province_Region" TypeName="Demo.FK_Province_Region" StoreEntitySet="Province">
+      <EndProperty Name="Region">
+        <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+      </EndProperty>
+      <EndProperty Name="Province">
+        <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+      </EndProperty>
+      <Condition ColumnName="RegionID" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Repair_Attachment_Repair" TypeName="Demo.FK_Repair_Attachment_Repair" StoreEntitySet="Repair_Attachment">
+      <EndProperty Name="Repair">
+        <ScalarProperty Name="RepairID" ColumnName="RepairID" />
+      </EndProperty>
+      <EndProperty Name="Repair_Attachment">
+        <ScalarProperty Name="AttachmentID" ColumnName="AttachmentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Repair_Comment_Repair" TypeName="Demo.FK_Repair_Comment_Repair" StoreEntitySet="Repair_Comment">
+      <EndProperty Name="Repair">
+        <ScalarProperty Name="RepairID" ColumnName="RepairID" />
+      </EndProperty>
+      <EndProperty Name="Repair_Comment">
+        <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Repair_Log_Repair" TypeName="Demo.FK_Repair_Log_Repair" StoreEntitySet="Repair_Log">
+      <EndProperty Name="Repair">
+        <ScalarProperty Name="RepairID" ColumnName="RepairID" />
+      </EndProperty>
+      <EndProperty Name="Repair_Log">
+        <ScalarProperty Name="LogID" ColumnName="LogID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Repair_Material_Repair" TypeName="Demo.FK_Repair_Material_Repair" StoreEntitySet="Repair_Material">
+      <EndProperty Name="Repair">
+        <ScalarProperty Name="RepairID" ColumnName="RepairID" />
+      </EndProperty>
+      <EndProperty Name="Repair_Material">
+        <ScalarProperty Name="RepairMaterialID" ColumnName="RepairMaterialID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Sys_Role_Function_Function" TypeName="Demo.FK_Sys_Role_Function_Function" StoreEntitySet="Sys_Role_Function">
+      <EndProperty Name="Sys_Function">
+        <ScalarProperty Name="FunctionID" ColumnName="FunctionID" />
+      </EndProperty>
+      <EndProperty Name="Sys_Role_Function">
+        <ScalarProperty Name="RoleFunctionID" ColumnName="RoleFunctionID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Sys_Menu_Parent" TypeName="Demo.FK_Sys_Menu_Parent" StoreEntitySet="Sys_Menu">
+      <EndProperty Name="Sys_Menu">
+        <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+      </EndProperty>
+      <EndProperty Name="Sys_Menu1">
+        <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Sys_Role_Menu_Menu" TypeName="Demo.FK_Sys_Role_Menu_Menu" StoreEntitySet="Sys_Role_Menu">
+      <EndProperty Name="Sys_Menu">
+        <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+      </EndProperty>
+      <EndProperty Name="Sys_Role_Menu">
+        <ScalarProperty Name="RoleMenuID" ColumnName="RoleMenuID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Sys_Role_Function_Role" TypeName="Demo.FK_Sys_Role_Function_Role" StoreEntitySet="Sys_Role_Function">
+      <EndProperty Name="Sys_Role">
+        <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+      </EndProperty>
+      <EndProperty Name="Sys_Role_Function">
+        <ScalarProperty Name="RoleFunctionID" ColumnName="RoleFunctionID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Sys_Role_Menu_Role" TypeName="Demo.FK_Sys_Role_Menu_Role" StoreEntitySet="Sys_Role_Menu">
+      <EndProperty Name="Sys_Role">
+        <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+      </EndProperty>
+      <EndProperty Name="Sys_Role_Menu">
+        <ScalarProperty Name="RoleMenuID" ColumnName="RoleMenuID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Sys_User_Role_Role" TypeName="Demo.FK_Sys_User_Role_Role" StoreEntitySet="Sys_User_Role">
+      <EndProperty Name="Sys_Role">
+        <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+      </EndProperty>
+      <EndProperty Name="Sys_User_Role">
+        <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Sys_User_Message_User" TypeName="Demo.FK_Sys_User_Message_User" StoreEntitySet="Sys_User_Message">
+      <EndProperty Name="Sys_User">
+        <ScalarProperty Name="UserID" ColumnName="UserID" />
+      </EndProperty>
+      <EndProperty Name="Sys_User_Message">
+        <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Sys_User_Role_User" TypeName="Demo.FK_Sys_User_Role_User" StoreEntitySet="Sys_User_Role">
+      <EndProperty Name="Sys_User">
+        <ScalarProperty Name="UserID" ColumnName="UserID" />
+      </EndProperty>
+      <EndProperty Name="Sys_User_Role">
+        <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,16 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Project.ProjectDetailModel
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="rowA">
+    <div class="col-5" id="basicInfo">
+        @{Html.RenderAction("BasicInfo", new { area = "Project", projectId = Model.ProjectId });}
+    </div>
+    <div class="col-5" id="detailInfo">
+        @{Html.RenderAction("DetailInfo", new { area = "Project", projectId = Model.ProjectId });}
+    </div>
+    <div class="col-5" id="buildingList">
+        @{Html.RenderAction("BuildingList", new { area = "Project", projectId = Model.ProjectId });}
+    </div>
+</div>
+
+ @Html.Hidden("ProjectId", Model.ProjectId)

@@ -1,0 +1,137 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Official.Banner.BannerModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>创建广告位</h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("Add", "Banner", new { area = "Official" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>广告位目标： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownList("BannerTarget", ViewData["BannerTargetList"] as SelectList, new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>所属项目： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownList("ProjectID", ViewData["ProjectList"] as SelectList, new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>广告位类型： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownList("BannerType", ViewData["BannerTypeList"] as SelectList, new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>位置： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownList("LocationID", ViewData["LocationList"] as SelectList, new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>简介： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBox("Remark", "", new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"></label>
+                    <div class="col-sm-9">
+                        <button class="btn btn-xs btn-success btn-font" type="submit" id="btnSubmit">保存</button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn btn-xs btn-success btn-font" type="reset">取消</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script language="javascript" type="text/javascript">
+    $(function () {
+        $("#BannerTarget").change(function () {
+            var target = $("#BannerTarget").val();
+            var locationID = $("#LocationID");
+
+            $.ajax({
+                url: "@Url.Action("GetLocationList", "Banner", new { area = "Official" })",
+                data: { target: target },
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: true,
+                success: function (data) {
+                    locationID.empty();
+                    var optionValue = "";
+                    data.forEach(function (item) {
+                        optionValue += "<option value='" + item.LocationID + "'>" + item.LocationName + "</option>";
+                    });
+                    locationID.append(optionValue);
+                },
+                complete: function () {
+                },
+                error: function (xh) {
+                    alert(xh.message);
+                }
+            });
+
+            var ProjectId = $("#ProjectID");
+            if (target === "2") {
+                $.ajax({
+                    url: "@Url.Action("GetProjectList", "NHHCG", new {area = "Official"})",
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    cache: false,
+                    async: true,
+                    success: function (data) {
+                        ProjectId.empty();
+                        var optionValue = "<option value='0'>全部</option>";
+                        data.forEach(function (item) {
+                            optionValue += "<option value='" + item.ProjectID + "'>" + item.ProjectName + "</option>";
+                        });
+                        ProjectId.append(optionValue);
+                    },
+                    complete: function () {
+                    },
+                    error: function (xh) {
+                        alert(xh.message);
+                    }
+                });
+            } else if (target === "1") {
+                $.ajax({
+                    url: "@Url.Action("GetAllProject", "Project", new { area = "Ajax" })",
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    cache: false,
+                    async: true,
+                    success: function (data) {
+                        ProjectId.empty();
+                        var optionValue = "";
+                        data.forEach(function (item) {
+                            optionValue += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                        });
+                        ProjectId.append(optionValue);
+                    },
+                    complete: function () {
+                    },
+                    error: function (xh) {
+                        alert(xh.message);
+                    }
+                });
+            }
+        });
+    });
+</script>

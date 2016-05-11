@@ -1,0 +1,86 @@
+﻿@model NHH.Models.Plan.ProjectUnitInfoModel
+
+    <h4 class="lighter">租赁信息</h4>
+    <a class="edit-btn" href="javascript:void(0);" id="lbtnUnitInfo" data-unitid="@Model.UnitId">编辑信息</a>
+    <div class="hr hr-18 hr-double dotted"></div>
+    <dl class="form-content">
+        <dt><i>租赁相关</i></dt>
+        <dd>
+            <label>租决租金标准：</label>
+            @Model.StandardRent.ToString("#,##0.00") 元/天/平方米
+        </dd>
+        <dd>
+            <label>指导租金价格：</label>
+            @Model.RecommendedRent.ToString("#,##0.00") 元/天/平方米
+        </dd>
+        <dd>
+            <label>门店实际租金：</label>
+            @Model.QuotationRent.ToString("#,##0.00") 元/天/平方米
+        </dd>
+        <dd>
+            <label>租决物业费标准：</label>
+            @Model.StandardMgmtFee.ToString("#,##0.00") 元
+        </dd>
+        <dd>
+            <label>租赁期限上限：</label>
+            @Model.RentLengthUpper 月
+        </dd>
+        <dd>
+            <label>免租期上限：</label>
+            @Model.RentFreeLength 月
+        </dd>
+        <dd>
+            <label>商铺质保金要求：</label>
+            @Model.QualityBond.ToString("#,##0.00") 元
+        </dd>
+        <dd>
+            <label>租押方式要求：</label>
+            @Model.RentChargeMode
+        </dd>
+        <dd>
+            <label>租金递增方式要求：</label>
+            @Model.IncreaseTypeString
+        </dd>
+
+    </dl>
+    <div class="clear"></div>
+    <!-- 租赁相关-显示效果 -->
+    <dl class="form-content">
+        <dt><i>装修相关</i></dt>
+        <dd>
+            <label>装修期上限：</label>
+            @Model.DecorationLength 月
+        </dd>
+        <dd>
+            <label>装修管理费：</label>
+            @Model.DecorationMgmtFee.ToString("#,##0.00") 元
+        </dd>
+        <dd>
+            <label>装修保证金：</label>
+            @Model.DecorationBond.ToString("#,##0.00") 元
+        </dd>
+    </dl>
+    <div class="clear"></div>
+    <!-- 装修相关-显示效果 -->
+    <dl class="form-content">
+        <dt><i>其他信息</i></dt>
+        <dd>
+            <label>免费停车位：</label>
+            @Model.ParkingLotNum 个
+        </dd>
+        <dd>
+            <label>免费广告位：</label>
+            @Model.AdPointNum 个
+        </dd>
+    </dl>
+    <!-- 其他信息-显示效果 -->
+    <div class="clear"></div>
+    <!-- 租赁信息-显示效果 -->
+
+<script type="text/javascript">
+    $("#lbtnUnitInfo").click(function () {
+        var url = "@Url.Action("EditRentInfo", "ProjectUnit", new { area="Plan"})";
+        url += "?unitId=" + $(this).attr("data-unitId");
+        $("#rentInfo").load(url);
+    });
+</script>

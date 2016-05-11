@@ -1,0 +1,351 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Campaign.CampaignPlanDetailModel
+
+<script type="text/javascript">
+    document.domain = "@NHH.Framework.Utility.ParamManager.GetStringValue("domain")";
+</script>
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<style>
+    .uploadify-queue {
+        display: none;
+    }
+</style>
+<div class="page-content">
+    <div class="page-header">
+        <h1>创建企划活动</h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("Add", "Campaign", new { area = "Campaign" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>项目选择： </label>
+                    <div class="col-sm-9 input-merge">
+                        @Html.DropDownListFor(m => m.ProjectId, ViewData["ProjectList"] as SelectList, "请选择项目", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.ProjectId)
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span>活动名称： </label>
+                    <div class="col-sm-9 input-merge">
+                        @Html.TextBoxFor(m => m.CampaignName, new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.CampaignName)
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span>活动地点： </label>
+                    <div class="col-sm-9 input-merge">
+                        @Html.TextBoxFor(m => m.Location, new { @placeholder = "例如：室内（1号中庭）", @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.Location)
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>活动时间： </label>
+                    <div class="col-sm-9 input-merge input-daterange" style="width: 399px">
+                        @Html.TextBoxFor(m => m.StartDate, Model.StartDate.HasValue ? Model.StartDate.Value.ToString("yyyy-MM-dd") : string.Empty, new { id = "FromDate", @class = "iconTime" })
+                        <i class="date-exchange">-</i>
+                        @Html.TextBoxFor(m => m.EndDate, Model.EndDate.HasValue ? Model.EndDate.Value.ToString("yyyy-MM-dd") : string.Empty, new { id = "ToDate", @class = "iconTime" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.StartDate)
+                            </span>
+                        </span>
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.EndDate)
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>活动类型： </label>
+                    <div class="col-sm-9 input-merge">
+                        @Html.DropDownListFor(m => m.CampaignType, ViewData["CampaignTypeList"] as SelectList, "请选择活动类型", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.CampaignType)
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span>活动简介： </label>
+                    <div class="col-sm-9 input-merge">
+                        @Html.TextAreaFor(m => m.CampaignBrief, 5, 5, new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.CampaignBrief)
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <fieldset>
+                    <legend>页面编辑</legend>
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#pageInfo" data-toggle="tab">
+                                <b>唐小二页面编辑</b>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#pageInfo" data-toggle="tab"><b>官网页面编辑</b></a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="pageInfo">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span>页面主题： </label>
+                                <div class="col-sm-9 input-merge">
+                                    @Html.TextBoxFor(m => m.PageTitle, new {@class = "col-xs-10 col-sm-5"})
+                                    <span class="help-inline col-xs-12 col-sm-7">
+                                        <span class="middle red mobileValid">
+                                            @Html.ValidationMessageFor(m => m.PageTitle)
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>发布时间： </label>
+                                <div class="col-sm-9 input-merge input-daterange input-group">
+                                    <span class="date-icon chosen-icon">
+                                        @Html.TextBoxFor(m => m.PublishDate, null, new {id = "PublishDate", @class = "input-sm form-control col-xs-10 col-sm-2", name = "start"})
+                                        <i class="date-exchange"></i>
+                                    </span>
+                                    <span class="date-icon chosen-icon">
+                                        @Html.DropDownListFor(m => m.PublishTime, ViewData["PublishTimeList"] as SelectList, new {@class = "input-sm form-control col-xs-10 col-sm-5"})
+                                    </span>
+
+                                    <div class="date-icon chosen-icon">
+                                        <span class="defauletext red mobileValid">@Html.ValidationMessageFor(m => m.PublishDate)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">发布状态： </label>
+                                <div class="col-sm-9">
+                                    <span class="defauletext">未发布</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 封面图片： </label>
+                                <div class="col-sm-9">
+                                    <a class="btn btn-add btn-font upload-btn">
+                                        <div class="load-text">点击上传</div>
+                                        <div class="input-wrap">
+                                            <input type="button" class="webuploader-invisible" id="btnUpload"/>
+                                        </div>
+                                    </a>
+                                    <p class="muted">
+                                        <span class="req">图片尺寸640*320</span>附件大小不能超过2M
+                                    </p>
+                                    <div class="uploadimg">
+                                        <dl>
+                                            <dd><img src="~/Content/assets/images/default-img.jpg" id="imgIdMap"></dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">SEO标题： </label>
+                                <div class="col-sm-9 input-merge">
+                                    @Html.TextBoxFor(m => m.SEO_Title, new { @class = "col-xs-10 col-sm-5" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">SEO关键字： </label>
+                                <div class="col-sm-9 input-merge">
+                                    @Html.TextBoxFor(m => m.KeyWords, new { @class = "col-xs-10 col-sm-5" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">SEO描述： </label>
+                                <div class="col-sm-9 input-merge">
+                                    @Html.TextBoxFor(m => m.Description, new { @class = "col-xs-10 col-sm-5" })
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                            @*<div class="form-group">
+                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>页面内容： </label>
+                                    <div class="col-sm-9 input-merge">
+                                        @Html.TextAreaFor(m => m.PageContent, 5, 5, new { @class = "col-xs-10 col-sm-5" })
+                                        <span class="help-inline col-xs-12 col-sm-7">
+                                            <span class="middle red mobileValid">
+                                                @Html.ValidationMessageFor(m => m.PageContent)
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>*@
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>页面内容： </label>
+                                <div class="col-sm-9 input-merge">
+                                    @Html.TextAreaFor(m => m.PageContent)
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"></label>
+                    <div class="col-sm-9">
+                        <button class="btn btn-xs btn-success btn-font formsubmit" type="submit" id="btnSubmit">保存</button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn btn-xs btn-success btn-font" type="reset">取消</button>
+                    </div>
+                </div>
+                @Html.HiddenFor(m => m.PageCover)
+                @Html.HiddenFor(m => m.PageType)
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval", "~/Scripts/ueditor/ueditor.config.js", "~/Scripts/ueditor/ueditor.all.js")
+    <script type="text/javascript">
+        var editorOption = {
+            //initialFrameWidth: 1024,
+            initialFrameHeight: 600,
+            maximumWords: 9999999
+        };
+        var editor = new baidu.editor.ui.Editor(editorOption);
+        editor.render('PageContent');
+    </script>
+}
+
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        beforeUnload.config.enable = true;
+        fileUpload();
+
+        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+            // 获取已激活的标签页的名称
+            var str = $(e.target).text().trim();
+            $("#PageType").val(getPageType(str));
+
+            var ProjectId = $("#ProjectId");
+
+            if (str === "官网页面编辑") {
+                $.ajax({
+                    url: "@Url.Action("GetProjectList", "NHHCG", new {area = "Official"})",
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    cache: false,
+                    async: true,
+                    success: function (data) {
+                        ProjectId.empty();
+                        var optionValue = "";
+                        data.forEach(function (item) {
+                            optionValue += "<option value='" + item.ProjectID + "'>" + item.ProjectName + "</option>";
+                        });
+                        ProjectId.append(optionValue);
+                    },
+                    complete: function () {
+                    },
+                    error: function (xh) {
+                        alert(xh.message);
+                    }
+                });
+            }
+            else if (str === "唐小二页面编辑") {
+                $.ajax({
+                    url: "@Url.Action("GetProjectList", "Project", new { area = "Ajax" })",
+                    type: "get",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    cache: false,
+                    async: true,
+                    success: function (data) {
+                        ProjectId.empty();
+                        var optionValue = "";
+                        data.forEach(function (item) {
+                            optionValue += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                        });
+                        ProjectId.append(optionValue);
+                    },
+                    complete: function () {
+                    },
+                    error: function (xh) {
+                        alert(xh.message);
+                    }
+                });
+            }
+        });
+
+        //时间控件bug修复
+        $("#FromDate,#ToDate").change(function () {
+            var fromDate = $("#FromDate").val().trim();
+            var toDate = $("#ToDate").val().trim();
+            if (fromDate > toDate && fromDate !== "" && toDate !== "") {
+                $("#FromDate,#ToDate").val($(this).val());
+            }
+        });
+    });
+
+    function getPageType(pageName) {
+        if (!pageName) return -1;
+        if (pageName.trim() === "唐小二页面编辑") return 1;
+        else if (pageName.trim() === "官网页面编辑") return 2;
+        else return -1;
+    }
+
+    var fileUpload = function () {
+        //图片上传
+        $("#btnUpload").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.ParamManager.GetStringValue("ImageSite")" + "Campaign/Upload",
+            "buttonText": "",
+            "fileTypeExts": "*.jpg;*.png",
+            "multi": false,
+            "onUploadStart": function (file) {
+                //获取项目ID
+                var formData = {};
+                formData.projectId = $("#ProjectId").val();
+                if (formData.projectId === "") {
+                    alert("请选择项目");
+                }
+                $("#btnUpload").uploadify("settings", "formData", formData);
+            },
+            "onUploadSuccess": function (file, data, response) {
+                var result = JSON.parse(data);
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+                $("#imgIdMap").attr("src", result.FileUrl);
+                $("#PageCover").val(result.FilePath);
+            }
+        });
+
+    }
+
+</script>

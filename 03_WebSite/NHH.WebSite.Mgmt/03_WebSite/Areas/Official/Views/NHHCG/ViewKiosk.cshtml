@@ -1,0 +1,83 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Official.Kiosk.NHHCGKioskModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+
+<div class="rowA">
+    <div class="col-5">
+        <h4 class="lighter mb20">
+            多经点位号：<span style="color:brown">@Model.KioskNumber</span>
+        </h4>
+        <h4 class="lighter mb20">
+            租赁状态：
+            @switch (Model.Status)
+            {
+                case 1:
+                    <span style="color: red">@Model.StatusStr </span>
+                    break;
+                case 2:
+                <span style="color: green">@Model.StatusStr </span>
+                    break;
+                case 3:
+                <span style="color: blue">@Model.StatusStr </span>
+                    break;
+            }
+        </h4>
+        <div class="hr hr-18 hr-double dotted"></div>
+        <h4 class="lighter">多经点位信息</h4>
+        <dl class="form-content form-content-edit form-row-comb">
+            <dd>
+                <label>经营范围：</label>
+                @Model.BusinessScopeNames
+            </dd>
+            <dd>
+                <label>所属项目：</label>
+                @Model.ProjectName
+            </dd>
+            <dd>
+                <label>楼层：</label>
+                @Model.FloorID 楼
+            </dd>
+            <dd>
+                <label>面积范围：</label>
+                @Model.AreaScopeStr
+            </dd>
+            <dd>
+                <label>租金：</label>
+                @Model.RentRemark
+            </dd>
+            <dd>
+                <label>联系人与电话：</label>
+                @Model.Contacts
+            </dd>
+        </dl>
+        <div class="clear"></div>
+    </div>
+    <div class="col-5">
+        <h4 class="lighter mb20">
+            位置描述
+        </h4>
+        @Model.Position
+    </div>
+
+</div>
+<div class="col-5">
+    <h4 class="lighter mb20">
+        图片列表
+    </h4>
+    <div class="uploadimg" id="ImageList">
+        @foreach (var item in Model.PicList.OrderBy(a => a.Seq))
+        {
+            <dl id='img-@item.PicID'>
+                <dd>
+                    <a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(item.Path)" data-rel="colorbox">
+                        <img class='ImageItem' src='@NHH.Framework.Utility.UrlHelper.GetImageUrl(item.Path,100)' data-filepath='@item.Path'>
+                    </a>
+                </dd>
+            </dl>
+        }
+    </div>
+</div>
+<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;"></div>
+<script src="~/Scripts/ImagePopUp.js"></script>

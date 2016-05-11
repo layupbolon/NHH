@@ -1,0 +1,103 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Configure.SysUserDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="page-content">
+    <div class="page-header">
+        <h1>个人信息详情</h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("Detail", "User", new { area = "System" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+            {
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">员工编号： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.EmployeeCode</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">员工姓名： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.EmployeeName</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">身份证号： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.IDNumber</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">邮箱地址： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.Email</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span>手机号： </label>
+                    <div class="col-sm-9 input-merge">
+                        @Html.TextBoxFor(m => m.Mobile, new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessageFor(m => m.Mobile)
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1">座机： </label>
+                    <div class="col-sm-9 input-merge">
+                        @Html.TextBoxFor(m => m.Phone, new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1">分机号： </label>
+                    <div class="col-sm-9 input-merge">
+                        @Html.TextBoxFor(m => m.Ext, new { @class = "col-xs-10 col-sm-5" })
+
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">性别： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@(Model.Gender == 1 ? "男" : "女")</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">生日： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@(Model.Birthday.HasValue ? Model.Birthday.Value.ToString("yyyy-MM-dd") : string.Empty)</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">所属部门： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.DeptName</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">所属公司： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.CompanyName</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"></label>
+                    <div class="col-sm-9">
+                        <input class="btn btn-xs btn-success btn-font input-btn" type="submit" value="保存" />
+                    </div>
+                </div>
+                @Html.HiddenFor(m => m.EmployeeId)
+            }
+        </div>
+    </div>
+</div>

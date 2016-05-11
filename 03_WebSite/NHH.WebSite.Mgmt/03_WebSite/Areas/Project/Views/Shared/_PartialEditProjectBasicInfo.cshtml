@@ -1,0 +1,324 @@
+﻿@model NHH.Models.Project.ProjectBasicInfoModel
+<h4 class="lighter">基本信息</h4>
+<a class="edit-btn-canl cancelEditProjectBasicInfo" href="javascript:void(0);" id="lbtnEditBasicInfo">取消编辑</a>
+<div class="hr hr-18 hr-double dotted"></div>
+@using (Html.BeginForm("Edit", "ProjectMgmt", new { area = "Project"}, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>项目名称： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.TextBox("ProjectName", Model.ProjectName, new { @class = "col-xs-10 col-sm-5" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="proNameVai">
+                    @Html.ValidationMessage("ProjectName")
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>区域： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.DropDownList("RegionId", ViewData["RegionList"] as SelectList, "请选择地域", new { style = "width:180px", @class = "form-control mr10" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="RegionIdVai">
+                    @Html.ValidationMessage("RegionID")
+                </span>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>省市： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.DropDownList("ProvinceId", ViewData["ProvinceList"] as SelectList, "请选择省", new { style = "width:180px", @class = "form-control mr10" })
+            @Html.DropDownList("CityId", ViewData["CityList"] as SelectList, "请选择城市", new { style = "width:180px", @class = "form-control mr10" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="pcVai">
+                    @Html.ValidationMessage("ProvinceID")
+                    @Html.ValidationMessage("CityID")
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>详细地址： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.TextBox("AddressLine", Model.AddressLine, new { @class = "col-xs-10 col-sm-5" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="addlineVai">
+                    @Html.ValidationMessage("AddressLine")
+                </span>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>邮编： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.TextBox("ZipCode", Model.ZipCode, new { @class = "col-xs-10 col-sm-5" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="zipVai">
+                    @Html.ValidationMessage("ZipCode")
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>位置： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.TextBox("AddressInfo", Model.AddressInfo, new { @class = "col-xs-10 col-sm-5" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="addinfoVai">
+                    @Html.ValidationMessage("AddressInfo")
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>经度： </label>
+        <div class="col-sm-9 input-merge input-group" style="margin-bottom:15px;">
+            @Html.TextBox("Longitude", Model.Longitude, new { @class = "col-xs-10 col-sm-5" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="longitVai">
+                    @Html.ValidationMessage("Longitude")
+                </span>
+            </span>
+        </div>
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>纬度： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.TextBox("Latitude", Model.Latitude, new { @class = "col-xs-10 col-sm-5" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="latiVai">
+                    @Html.ValidationMessage("Latitude")
+                </span>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">业主公司： </label>
+        <div class="col-sm-9 input-merge input-group">
+            <ul>
+                @foreach (var owner in Model.OwnerList)
+                {
+                    @Html.Raw(string.Format("<li>{0}</li>", owner.CompanyName))
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>管理公司： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.DropDownList("ManageCompanyId", ViewData["ManageCompanyList"] as SelectList, "请选择管理公司", new { style = "width:180px", @class = "form-control mr10" })
+            <span class="help-inline col-xs-12 col-sm-7">
+                <span class="middle red" id="mangVai">
+                    @Html.ValidationMessage("ManageCompanyId")
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">项目介绍： </label>
+        <div class="col-sm-9 input-merge input-group">
+            @Html.TextArea("ProjectSummary", Model.ProjectSummary, new { @class = "col-xs-10 col-sm-5", style = "height:90px" })
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+    <div class="clearfix form-actions">
+        <div class="col-md-offset-3 col-md-9">
+            @Html.Hidden("ProjectID", Model.ProjectID)
+            <input type="button" id="submitCreat" value="保存" onclick="SubmitEditProBasic()" style="border-radius: 7px;" class="btn btn-xs btn-success btn-font input-btn formsubmit" />
+        </div>
+    </div>
+
+}
+<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;"></div>
+<script language="javascript" type="text/javascript" src="~/Scripts/ajaxupload.3.9.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        beforeUnload.init();
+        $("#RegionId").change(function () {
+            bindProvinceList();
+            //bindCityList();
+        });
+
+        $("#ProvinceId").change(function () {
+            bindCityList();
+        });
+
+
+        $("#OwnerCompanyId").change(function () {
+            var val = $(document.getElementById("OwnerCompanyId")).find("option:selected").val();
+            //document.getElementById("OwnerCompanyIDValue").value = val;
+        });
+
+        $("#ManageCompanyId").change(function () {
+            var val = $(document.getElementById("ManageCompanyId")).find("option:selected").val();
+            //document.getElementById("ManageCompanyIDValue").value = val;
+        });
+
+        //$("#InvestCompanyId").change(function () {
+        //    var val = $(document.getElementById("InvestCompanyId")).find("option:selected").val();
+        //});
+    });
+
+    var bindProvinceList = function () {
+        var regionId = $("#RegionId").val();
+        $.ajax({
+            url: "@Url.Action("GetProvinceList", "Common", new { area = "Ajax" })",
+            data: "regionId=" + regionId,
+            type: "GET",
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            async: true,
+            success: function (data, status) {
+                $("#ProvinceId").html("");
+                var strHrml = "";
+                data.forEach(function (item) {
+                    strHrml += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                });
+                $("#ProvinceId").html(strHrml);
+                setTimeout(bindCityList(), 500);
+            }
+        });
+    };
+    var bindCityList = function () {
+        var provinceId = $("#ProvinceId").val();
+        $.ajax({
+            url: "@Url.Action("GetCityList", "Common", new { area = "Ajax" })",
+            data: "provinceId=" + provinceId,
+            type: "GET",
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            async: true,
+            success: function (data, status) {
+                $("#CityId").html("");
+                var strHtml = "";
+                data.forEach(function (item) {
+                    strHtml += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                });
+                $("#CityId").html(strHtml);
+            }
+        });
+    };
+    //提交表单
+    function SubmitEditProBasic() {
+        var data = {};
+        data.ProjectName = $("#ProjectName").val().replace(/^\s+|\s+$/g, "");
+        data.RegionID = $("#RegionId").val();
+        data.ProvinceID = $("#ProvinceId").val();
+        data.CityID = $("#CityId").val();
+        //data.AddressLine = $("#AddressLine").val().replace(/^\s+|\s+$/g, "");
+        data.AddressLine =jQuery.trim($("#AddressLine").val());
+        //data.ZipCode = $("#ZipCode").val().replace(/^\s+|\s+$/g, "");
+        data.ZipCode =jQuery.trim($("#ZipCode").val());
+        //data.AddressInfo = $("#AddressInfo").val().replace(/^\s+|\s+$/g, "");
+        data.AddressInfo =jQuery.trim($("#AddressInfo").val());
+        //data.Longitude = $("#Longitude").val().replace(/^\s+|\s+$/g, "");
+        data.Longitude = jQuery.trim($("#Longitude").val());
+        //data.Latitude = $("#Latitude").val().replace(/^\s+|\s+$/g, "");
+        data.Latitude =jQuery.trim($("#Latitude").val());
+        data.OwnerCompanyId = $("#OwnerCompanyId").val();
+        data.ManageCompanyId = $("#ManageCompanyId").val();
+        data.InvestCompanyId = $("#InvestCompanyId").val();
+        data.PlanSummary = $("#PlanSummary").val();
+        data.ProjectID = $("#ProjectID").val();
+        data.ProjectSummary = $("#ProjectSummary").val();
+        var reg1 = /^[0-9]{1,}$/;
+        var reg2 = /^[0-9]+([.][0-9]{1,2})$/;
+        var zipreg = /^[0-9]{6}$/;
+        var longitreg = /^[-]?(\d|([1-9]\d)|(1[0-7]\d)|(180))(\.\d*)?$/g;
+        var laitreg = /^[-]?(\d|([1-8]\d)|(90))(\.\d*)?$/g;
+
+        var flag = true;
+        if (data.ProjectName == null || data.ProjectName == "") {
+            $("#proNameVai").html("请填写项目名");
+            flag = false;
+        }
+        //var reg = /^(\d+)|\d+(\.\d{1,2})?$/;
+        if (data.RegionID == null || data.RegionID == "") {
+            $("#RegionIdVai").html("请选择区域");
+            flag = false;
+        }
+        if (data.ProvinceID == null || data.ProvinceID == "") {
+            $("#pcVai").html("请选择省或市");
+            flag = false;
+        }
+        if (data.CityID == null || data.CityID == "") {
+            $("#pcVai").html("请选择省或市");
+            flag = false;
+        }
+        if (data.AddressLine == null || data.AddressLine == "") {
+            $("#addlineVai").html("请填写地址");
+            flag = false;
+        }
+        if (data.ZipCode == null || data.ZipCode == "") {
+            $("#zipVai").html("请填写邮编");
+            flag = false;
+        }
+        if (zipreg.test(data.ZipCode) == false) {
+            $("#zipVai").html("请填写正确的邮编格式");
+            flag = false;
+        }
+        if (data.AddressInfo == null || data.AddressInfo == "") {
+            $("#addinfoVai").html("请填写位置");
+            flag = false;
+        }
+        if (data.Longitude == null || data.Longitude == "") {
+            $("#longitVai").html("请填写经度");
+            flag = false;
+        }
+        if (longitreg.test(data.Longitude) == false) {
+            $("#longitVai").html("请填写正确的经度");
+            flag = false;
+        }
+        if (data.Latitude == null || data.Latitude == "") {
+            $("#latiVai").html("请填写纬度");
+            flag = false;
+        }
+        if (laitreg.test(data.Latitude) == false) {
+            $("#latiVai").html("请填写正确的纬度");
+            flag = false;
+        }
+        if (data.ManageCompanyId == null || data.ManageCompanyId == "") {
+            $("#mangVai").html("请选择管理公司");
+            flag = false;
+        }
+        if (flag == true) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("EditBasicInfo", "ProjectMgmt", new { area = "Project" })",
+                cache: false,
+                dataType: "HTML",
+                data: data,
+                success: function (result, status) {
+                    var url = "@Url.Action("BasicInfo", "ProjectInfo", new { area = "Project" })"
+                    url += "?projectId=" + $("#ProjectID").val();
+                    $("#basicInfo").load(url);
+                    //$("#modal").html(result).modal();
+                    //$("#btnCancel").trigger("click");
+                    //$(".modal-backdrop").css('display', 'none');
+                    //alert("保存成功");Url.Action("GetCityList", "Common", new { area = "Ajax" })
+                    @*var projectid = $("#ProjectID").val();
+                window.location.href = "@Url.Action("Detail", "ProjectInfo", new { area = "Project"})" + "?projectId=" + projectid;*@
+                }
+            });
+        }
+
+    }
+    function HiddenEdit() {
+        var url = "@Url.Action("BasicInfo", "ProjectInfo", new { area = "Project" })"
+        url += "?projectId=" + $("#ProjectID").val();
+        $("#basicInfo").load(url);
+    }
+
+    $(".cancelEditProjectBasicInfo").click(function () {
+        var url = "@Url.Action("BasicInfo", "ProjectInfo", new { area = "Project" })"
+        url += "?projectId=" + $("#ProjectID").val();
+        $("#basicInfo").load(url);
+    });
+</script>

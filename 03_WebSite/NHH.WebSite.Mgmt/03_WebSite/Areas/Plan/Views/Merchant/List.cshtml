@@ -1,0 +1,93 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.MerchantListModel
+
+<style type="text/css">
+    .companyForm {
+        margin-top: 20px;
+    }
+
+    .address {
+        width: 275px !important;
+    }
+</style>
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>商户信息</h1>
+        </div><!-- /.page-header -->
+        <div class="screen-area">
+            <dl class="list-screen">
+                <dt>商户类型：</dt>
+                <dd>
+                    <select style="width:60px;" id="MerchantType">
+                        <option>请选择</option>
+                        <option value="1" @(Model.QueryInfo.MerchantType == 1 ? "selected" : "")>公司</option>
+                        <option value="2" @(Model.QueryInfo.MerchantType == 2 ? "selected" : "")>自然人</option>
+                    </select>
+                </dd>
+                <dt>商户名称：</dt>
+                <dd>
+                    @Html.TextBox("MerchantName", Model.QueryInfo.MerchantName)
+                </dd>
+            </dl>
+            <div class="result-btn">
+                <a class="btn btn-xs btn-success btn-font" id="lnkSearch" href="javascript:void(0);">查询</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="nhhtable" id="merchantList" data-reportcode="02004" data-title="商户列表">
+                    <div class="nhhtable-toolbar"></div>
+                    <table></table>
+                </div>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>
+
+<script language="javascript" type="text/javascript">
+    $(function () {
+        new nhhui.nhhtable2({
+            id: "merchantList",
+            searchBtn: "lnkSearch",
+            type: "POST",
+            url: "@Url.Action("GetMerchantList", "Merchant", new { area = "Plan" })",
+            queryParams: function (params) {
+                params.merchantType = $("#MerchantType").val();
+                params.merchantName = $("#MerchantName").val();
+                return params;
+            },
+        });
+    });
+
+    var merchantNameFormatter = function (item) {
+        var url = "@Url.Action("Detail", "Merchant", new { area = "Plan"})";
+        url += "?merchantId=" + item.MerchantId;
+        return "<a class=\"btn btn-link btn-font\" href=\"" + url + "\">" + item.MerchantName + "</a>";
+    };
+    var operateFormatter = function (item) {
+        var html = [];
+        var url = "@Url.Action("Edit", "Merchant", new { area = "Plan" })";
+        url += "?merchantId=" + item.MerchantId;
+
+        html.push("<a class='btn btn-link btn-info btn-sm' href='" + url + "'>编辑</a>");
+        html.push("<div class='btn-group'>");
+        html.push("<button type=\"button\" class=\"btn btn-sm\">商户管理</button>");
+        html.push("<button class=\"btn btn-sm dropdown-toggle\" data-toggle=\"dropdown\" type=\"button\"><span class=\"caret\"></span></button>");
+        html.push("<ul class=\"dropdown-menu\" role=\"menu\">");
+        url = "@Url.Action("List", "MerchantUser", new { area="Plan"})";
+        url += "?merchantId=" + item.MerchantId;
+        html.push("<li><a href='" + url + "'>员工管理</a></li>");
+        url = "@Url.Action("List", "Attachment", new { area = "Plan" })";
+        url += "?merchantId=" + item.MerchantId;
+        html.push("<li><a href='" + url + "'>证照管理</a></li>");
+        url = "@Url.Action("List", "Brand", new { area = "Plan" })";
+        url += "?merchantId=" + item.MerchantId;
+        html.push("<li><a href='" + url + "'>品牌管理</a></li>");
+        html.push("</ul></div>");
+        return html.join('');
+    };
+</script>

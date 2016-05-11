@@ -1,0 +1,115 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Plan.ProjectBatchUnitListModel
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>
+                铺位列表
+            </h1>
+        </div>
+        <div class="screen-area">
+            <form>
+                <dl class="list-screen">
+                    <dt>项目名称：</dt>
+                    <dd>@Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList, "请选择")</dd>
+                </dl>
+                <dl class="list-screen">
+                    <dt>招商批次：</dt>
+                    <dd>
+                        <select id="BatchId" name="BatchId">
+                            <option value="">请选择</option>
+                        </select>
+                    </dd>
+                </dl>
+                <div class="result-btn">
+                    <a class="btn btn-xs btn-success btn-font" id="btnSearch" href="javascript:void(0);">查询</a>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="lighter mt30">
+                    铺位列表
+                </h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>批次ID</th>
+                            <th>批次编号</th>
+                            <th>铺位ID</th>
+                            <th>铺位编号</th>
+                            <th>铺位面积</th>
+                            <th>铺位类型</th>
+                            <th>业态</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                            @foreach (var unit in Model.UnitList)
+                            {
+                            <tr>
+                                <td>@unit.BatchID</td>
+                                <td>@unit.BatchCode</td>
+                                <td>@unit.UnitId</td>
+                                <td>@unit.UnitNumber</td>
+                                <td>@unit.UnitArea.ToString("#,##0.00")</td>
+                                <td>@unit.UnitType</td>
+                                <td>@unit.BizType</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @{ Html.RenderPartial("_PartialPaging", Model.PagingInfo);}
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content-area -->
+    </div>
+<script type="text/javascript">
+    var batchId = "@Model.QueryInfo.BatchId";
+    $(function () {
+        new nhhui.nhhtable({
+            searchBtn: "btnSearch",
+            sortBy: "@Model.QueryInfo.OrderBy",
+            sortMode: "@Model.QueryInfo.OrderMode",
+            url: "@Url.Action("UnitList", "Batch", new { area = "Plan" })",
+            onInit: function () {
+                return getRequestData();
+            },
+        }).init();
+
+        bindBatchList($("#ProjectId").val());
+
+        $("#ProjectId").change(function () {
+            var projectId = $(this).val();
+            bindBatchList(projectId);
+        });
+
+        var getRequestData = function () {
+            var requestData = {};
+            requestData.projectId = $("#ProjectId").val();
+            requestData.BatchId = $("#BatchId").val();
+            return requestData;
+        };
+    });
+
+    var bindBatchList = function (projectId) {
+        if (projectId == undefined || projectId.length == 0)
+            return;
+        $.ajax({
+            url: "@Url.Action("GetBatchList", "ProjectBatch", new { area = "Ajax" })",
+            data: "projectId=" + projectId,
+            dataType: "JSON",
+            success: function (result, status) {
+                var strHtml = "<option value=''>请选择</option>";
+                $(result).each(function (index, item) {
+                    strHtml += "<option value='" + item.BatchID + "'>" + item.BatchCode + "</option>";
+                });
+                $("#BatchId").html(strHtml).val(batchId);
+            }
+        });
+    };
+</script>

@@ -1,0 +1,9 @@
+D:\NHH\03_Coding\01_SourceCode\00_DataBase\NHH\bin\Debug\NHH.dacpac
+D:\NHH\03_Coding\01_SourceCode\00_DataBase\NHH\bin\Debug\NHH.dll
+D:\NHH\03_Coding\01_SourceCode\00_DataBase\NHH\bin\Debug\NHH.pdb
+D:\NHH\03_Coding\01_SourceCode\00_DataBase\NHH\obj\Debug\NHH.dll
+D:\NHH\03_Coding\01_SourceCode\00_DataBase\NHH\obj\Debug\NHH.pdb
+D:\NHH\03_Coding\01_SourceCode\00_DataBase\NHH\obj\Debug\Model.xml
+D:\NHH\03_Coding\01_SourceCode\00_DataBase\NHH\obj\Debug\refactor.xml
+D:\NHH\03_Coding\01_SourceCode\00_DataBase\NHH\obj\Debug\postdeploy.sql
+D:\NHH\03_Coding\01_SourceCode\00_DataBase\NHH\obj\Debug\predeploy.sql

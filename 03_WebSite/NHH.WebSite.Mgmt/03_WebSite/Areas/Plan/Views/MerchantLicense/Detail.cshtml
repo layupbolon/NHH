@@ -1,0 +1,71 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Plan.MerchantLicense.MerchantLicenseModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>证照详情</h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">商户： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.MerchantName</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">证照类型： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext" id="RequestUserName">@Model.AttachmentTypeName</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">证照名称： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.AttachmentName</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">证照编号： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@Model.AttachmentCode</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">证照图片： </label>
+                    <div class="col-sm-9 ace-thumbnails">
+                        <a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(Model.AttachmentPath)" data-rel="colorbox">
+                            <img width="100" height="73" src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(Model.AttachmentPath)"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">证照有效期： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">@(Model.ExpireDate.HasValue ? Model.ExpireDate.ToString() : "")</span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly">状态： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext" id="Location">@Model.StatusName</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-5">
+        @{Html.RenderPartial("Approve/_PartialApprove", Model);}
+    </div>
+</div>
+
+<script src="~/Scripts/ImagePopUp.js"></script>

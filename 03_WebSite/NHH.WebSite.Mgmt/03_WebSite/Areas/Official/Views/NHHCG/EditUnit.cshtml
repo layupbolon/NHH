@@ -1,0 +1,133 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Official.Unit.NHHCGUnitModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>官网铺位编辑</h1>
+    </div>
+    <div class="rowA">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("EditUnit", "NHHCG", new { area = "Official" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 所属项目： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownListFor(m => m.ProjectID, ViewData["ProjectList"] as SelectList, new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("ProjectID")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>楼别： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.Building, new { @class = "col-xs-10 col-sm-2" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("Building")
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 楼层描述： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.FloorRemark, new { @class = "col-xs-10 col-sm-3" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("FloorRemark")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>铺位号： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m=>m.UnitNumber, "", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("UnitNumber")
+                        </span>
+                    </div>
+                </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 业态类型： </label>
+        <div class="col-sm-9">
+            <ul id="ComplaintTypeCb">
+                @foreach (SelectListItem item in ViewData["BizTypeList"] as SelectList)
+                {
+                    var ischecked = "";
+                    if (@Model.BizTypeList.Contains(Convert.ToInt32(item.Value)))
+                    {
+                        ischecked = "checked='checked'";
+                    }
+                    <li style="margin-top: 15px; width: 100px; float:left;"><input name="BizTypeList" type="checkbox" value="@item.Value" @ischecked />@item.Text</li>
+
+                }
+            </ul>
+        </div>
+    </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>面积： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.Area, "", new { @class = "col-xs-10 col-sm-2" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("Area")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 租金： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.RentRemark, "", new { @placeholder = "例：100/天/平米，不填为“暂无”", @class = "col-xs-10 col-sm-3" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("RentRemark")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>物业费（每平米）： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.PropertyCosts, "", new { @placeholder = "填0为“暂无”", @class = "col-xs-10 col-sm-2" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("PropertyCosts")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>联系人与电话： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.Contacts, "", new { @placeholder = "例：张三（13912345678）", @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("Contacts")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>位置描述： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(m => m.Position, "", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7 middle red">
+                            @Html.ValidationMessage("Position")
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 状态： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownListFor(m => m.Status, ViewData["StatusList"] as SelectList, new { @class = "col-xs-10 col-sm-2" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"></label>
+                    <div class="col-sm-9">
+                        <button class="btn btn-xs btn-success btn-font" type="submit" id="btnSubmit">保存</button>
+                    </div>
+                </div>
+                @Html.Hidden("UnitID", Model.UnitID)
+            }
+        </div>
+    </div>
+</div>
+<div class="col-5" id="infoList">
+    @{Html.RenderAction("PicInfoList", new { area = "Official", refID = Model.UnitID, Type = 1,Title = "铺位图片列表" });}
+</div>

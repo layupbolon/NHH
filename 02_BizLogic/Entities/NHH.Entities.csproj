@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{50059B48-A35C-4CCF-BDB6-E4540814C666}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NHH.Entities</RootNamespace>
+    <AssemblyName>NHH.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\03_WebSite\NHH.WebSite.Mgmt\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\03_WebSite\NHH.WebSite.Mgmt\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Approve_Config.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Approve_Process.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Banner.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BannerInfo.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Banner_Location.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BizCategory.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BizType.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Brand.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Campaign.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Campaign_Attachment.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Campaign_Comment.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Campaign_Page.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Campaign_Result.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="City.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Company_Finance.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Complaint.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Complaint_Attachment.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Complaint_Comment.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Complaint_Log.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contract.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contract_Appendix.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contract_Brand.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contract_PaymentTerms.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contract_RemindRecord.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contract_Supplementary.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contract_Template.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contract_Unit.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contract_UnitSpec.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Department.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dictionary.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="District.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Finance_Accrual.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Finance_Item.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Finance_Settlement.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Finance_SettlementDetail.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FloorMap_Unit.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Intention.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Material.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_Attachment.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_Brand.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_Documents.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_Documents_DecorateRequest.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_Documents_DelayOperateRequest.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_Documents_GetOutRequest.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_Finance.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_Message.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_Request.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_Revenue.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_Role.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_Store.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_StoreImage.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_StoreMeter.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_User.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Merchant_UserPaper.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Message.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Message_Template.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="News.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHH.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NHH.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHH.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NHH.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="NHHCG_ADPosition.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHHCG_Complaint.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHHCG_Feedback.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHHCG_Kiosk.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHHCG_Pic.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHHCG_Project.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHHCG_Unit.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_AdPoint.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Batch.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_BatchUnit.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_BizConfig.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Building.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Floor.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Kiosk.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Owner.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Unit.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_UnitAdjust.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_UnitLeasing.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_UnitPlan.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_UnitRequest.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_UnitSpec.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project_UnitSpec_Template.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Province.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Region.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repair.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repair_Attachment.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repair_Comment.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repair_Log.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repair_Material.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Report.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Report_Config.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Report_Field.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sys_Function.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sys_Menu.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sys_Role.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sys_Role_Function.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sys_Role_Menu.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sys_User.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sys_User_Message.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sys_User_Role.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utility_Bill.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_CompanyType.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Condition.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_ContractStatus.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_FloorMap_Unit.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_GenderType.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_ProjectInfoShow.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Project_AdPoint.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Project_Kiosk.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Project_Unit.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Project_UnitExt.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Project_UnitRequest.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Project_Unit_Contract.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Repair_Complaint_Supervisor.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Report_Contract.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Report_Project_Count.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Report_Project_Unit.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Role_Function.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Role_Menu.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_UnitStatus.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_UnitType.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_User_Function.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_User_Menu.cs">
+      <DependentUpon>NHH.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="NHH.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NHH.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="NHH.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NHH.edmx</DependentUpon>
+      <LastGenOutput>NHH.Context.cs</LastGenOutput>
+    </None>
+    <None Include="NHH.edmx.diagram">
+      <DependentUpon>NHH.edmx</DependentUpon>
+    </None>
+    <None Include="NHH.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NHH.edmx</DependentUpon>
+      <LastGenOutput>NHH.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\01_Framework\Core\NHH.Framework.Core.csproj">
+      <Project>{954f55d4-1de6-4ad8-b4e7-4d3a52c3a3eb}</Project>
+      <Name>NHH.Framework.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

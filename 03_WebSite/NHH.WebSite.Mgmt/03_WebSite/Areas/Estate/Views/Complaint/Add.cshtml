@@ -1,0 +1,211 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+
+@model NHH.Models.Estate.ComplaintDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<style type="text/css">
+    #ComplaintTypeCb li {
+        float: left;
+        margin-right: 10px;
+    }
+
+    .uploadify-queue {
+        display: none;
+    }
+</style>
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>投诉单</h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                @using (Html.BeginForm("Add", "Complaint", new { area = "Estate" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>项目选择： </label>
+                        <div class="col-sm-9">
+                            @Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList, "请选择项目", new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("ProjectId")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"><span class="req">*</span> 投诉类别： </label>
+
+                        <div class="col-sm-9">
+                            @Html.DropDownListFor(m => m.ComplaintType, ViewData["ComplaintTypeList"] as SelectList, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessageFor(m => m.ComplaintType)
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"><span class="req">*</span> 投诉对象： </label>
+                        <div class="col-sm-9 input-merge">
+                            <ul id="ComplaintTypeCb">
+                                <li><label><input type="checkbox" class="input-radio" value="商户" />商户</label></li>
+                                <li><label><input type="checkbox" class="input-radio" value="部门" />部门</label></li>
+                                <li><label><input type="checkbox" class="input-radio" value="人员" />人员</label></li>
+                                <li><label><input type="text" placeholder="请填写对象详细内容" data-id="TargetDetail" /></label></li>
+                                <li>
+                                    <span class="middle red input-radio">
+                                        @Html.ValidationMessageFor(m => m.RequestTarget)
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"><span class="req">*</span> 投诉内容： </label>
+
+                        <div class="col-sm-9">
+                            @Html.TextAreaFor(m => m.RequestDesc, 5, 5, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessageFor(m => m.RequestDesc)
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Disable Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 投诉证据图： </label>
+                        <div class="col-sm-9 ">
+                            <a class="btn btn-add btn-font upload-btn">
+                                <div class="load-text">上传图片</div>
+                                <div class="input-wrap">
+                                    <input type="button" id="btnUpload" class="load-text" />
+                                </div>
+                            </a>
+                            <p class="muted">图片大小不能超过2M，图片类型为jpg、png</p>
+                            <div class="uploadimg" id="fileQueue">
+                                <dl>
+                                    <dd><img src="~/Content/assets/images/default-img.jpg" id="img1"></dd>
+                                </dl>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <!-- Typeahead Form -->
+                    <div class="space-4"></div>
+
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input class="btn btn-xs btn-success btn-font input-btn formsubmit" type="submit" data-submit="submit" value="提交信息" />
+                            &nbsp; &nbsp; &nbsp;
+                            <input class="btn btn-xs btn-font btn-cancel" type="reset" value="重置" />
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m => m.AttchmentImgPathList, new { id = "AttchmentImgPathList" })
+                    @Html.HiddenFor(m => m.RequestTarget)
+                }
+                <!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content-area -->
+    </div>
+</div>
+<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;"></div>
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        fileUpload();
+        beforeUnload.config.enable = true;
+        //表单提交
+        $("input[data-submit='submit']").click(function () {
+            setRequestTarget();
+            setImgPathList();
+        });
+    });
+
+    ///拼接投诉对象内容 如 “商户,部门”
+    var setRequestTarget = function () {
+        var complaintTarget = "";
+        var index = 1;
+        $("#ComplaintTypeCb input[type='checkbox']:checked").each(function () {
+            var value = $(this).val();
+            if (value != "" && value != null) {
+                if (index != 1) {
+                    complaintTarget += ",";
+                }
+                complaintTarget += value;
+                index++;
+            }
+        });
+        var targetDetail = $("input[data-id='TargetDetail']").val();
+        if (targetDetail != null && targetDetail != "") {
+            complaintTarget += "," + targetDetail;
+        }
+        $("#RequestTarget").val(complaintTarget);
+
+    };
+
+    //循环获取图片path，然后拼接提交到后台数据库
+    var setImgPathList = function () {
+        var imgList = "";
+        $(".imgItem").each(function (item) {
+            imgList += $(this).attr("data-filePath") + ",";
+        });
+        $("#AttchmentImgPathList").val(imgList);
+
+    };
+
+    //投诉证据图上传
+    var fileUpload = function () {
+
+
+        $("#btnUpload").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.ParamManager.GetStringValue("ImageSite")" + "Complaint/Upload",
+            "buttonText": "",
+            "fileTypeExts": "*.jpg;*.png",
+            "multi": false,
+            "onUploadStart": function (file) {
+                //获取项目ID
+                var formData = {};
+                formData.projectId = $("#ProjectId").val();
+                if (formData.projectId == "") {
+                     alert("请选择项目");
+                }
+                $("#btnUpload").uploadify("settings", "formData", formData);
+            },
+            "onUploadSuccess": function (file, data, response) {
+                var result = JSON.parse(data);//eval("(" + data + ")");
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+
+                var innerHtml = "<dl id='img-" + result.FileId + "'>" +
+                                    "<dt><a href='###' class='close-icon btnClose' data-id='" + result.FileId + "'></a></dt>" +
+                                    "<dd><img class='imgItem' src='" + result.FileUrl + "' data-filePath='" + result.FilePath + "'></dd>" +
+                                 "</dl>";
+                var img1 = $("#img1");
+                if (img1.length > 0) {
+                    img1.remove();
+                }
+                $("#fileQueue").append(innerHtml);
+                //删除事件
+                $(".btnClose").unbind().click(function () {
+                    var id = $(this).attr("data-id");
+                    $("#img-" + id).remove();
+                });
+            }
+        });
+    };
+</script>

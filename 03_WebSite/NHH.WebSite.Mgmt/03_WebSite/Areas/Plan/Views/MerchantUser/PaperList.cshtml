@@ -1,0 +1,92 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.MerchantUserPaperListModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>@Model.NickName</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="lighter mt30">
+                    用户证件列表
+                </h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+                <div class="btn-group">
+                    <button class="btn btn-add btn-font">+新增证件</button>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>证件类型</th>
+                            <th>证件名称</th>
+                            <th>证件编号</th>
+                            <th>审核状态</th>
+                            <th>有效期日期</th>
+                            <th class="col-lg-1">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PaperList)
+                        {
+                            <tr>
+                                <td>@item.PaperTypeName</td>
+                                <td><a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(item.PaperPath)" class="btn btn-link btn-font" target="_blank">@item.PaperName</a></td>
+                                <td>@item.PaperNumber</td>
+                                <td>@item.AuditStatusName</td>
+                                <td>
+                                    @if(item.ExpiredDate.HasValue)
+                                    { 
+                                        @Html.Raw(item.ExpiredDate.HasValue ? item.ExpiredDate.Value.ToString("yyyy-MM-dd") : "")
+                                        <span class="badge @Html.Raw(item.ExpiredDays > 60 ? "badge-success" : "badge-danger")">@item.ExpiredDays 天</span>
+                                    }
+                                </td>
+                                <td><a href="###" class="btn btn-del btn-font" data-id="@item.PaperID">作废</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>
+<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;"></div>
+@Html.Hidden("MerchantId", Model.MerchantId)
+@Html.Hidden("UserId", Model.UserId)
+<script type="text/javascript">
+    $(".btn-add").click(function () {
+        $.ajax({
+            url: "@Url.Action("AddPaper", "MerchantUser", new { area = "Plan" })",
+            data: "userid=" + $("#UserId").val(),
+            dataType: "HTML",
+            success: function (result, status) {
+                $("#modal").html(result).modal();
+            }
+        });
+        return false;
+    });
+
+    //图片删除
+    $(".btn-del").click(function () {
+        var btn = $(this);
+        nhhui.confirm("你确定要作废此证件吗？", function () {
+            var requestData = {};
+            requestData.userId = $("#UserId").val();
+            requestData.paperId = btn.attr("data-id");
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("DelPaper", "MerchantUser", new { area = "Plan" })",
+                data: requestData,
+                cache: false,
+                dataType: "json",
+                success: function (result, status) {
+                    //重新加载页面
+                    var url = "@Url.Action("PaperList", "MerchantUser", new { area = "Merchant", userId = Model.UserId })";
+                    location.href = url;
+                }
+            });
+        });
+    });
+</script>

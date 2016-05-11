@@ -1,0 +1,39 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Message.MerchantMessageDetailModel
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="rowA">
+    <div class="col-5">
+        <h4 class="lighter">@Model.Subject</h4>
+        <div class="hr hr-18 hr-double dotted"></div>
+        <dl class="form-content">
+            <dd>
+                <label>商户Id：</label>
+                @Model.MerchantID
+            </dd>
+            <dd>
+                <label>商户名称：</label>
+                @Model.MerchantName
+            </dd>
+            <dd>
+                <label>商户用户：</label>
+                @Model.NickName
+            </dd>
+            <dd>
+                <label>重要级别：</label>
+                @Model.MessageLevelText
+            </dd>
+            <dd>
+                <label>发送时间：</label>
+                @Model.InDate.ToString("yyyy-MM-dd HH:mm")
+            </dd>
+        </dl>
+        <div class="clear"></div>
+        <dl class="form-content textstyle">
+            <dt><i>内容</i></dt>
+            <dd>@Html.Raw(Model.Content)</dd>
+        </dl>
+        <div class="clear"></div>
+    </div>
+    <!-- /.col -->
+</div><!-- /.row -->
+

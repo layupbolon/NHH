@@ -1,0 +1,158 @@
+﻿@model NHH.Models.Merchant.MerchantRevenueListQueryInfo
+
+<div class="rowA">
+    <div class="col-5">
+        <h4>日销售额维护</h4>
+        <div class="hr hr-18 hr-double dotted"></div>
+        <div class="row">
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <label>选择项目：</label>
+                    @Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList)
+                </div>
+                <div class="form-group">
+                    <label>选择楼层：</label>
+                    <select id="FloorList" name="FloorList">
+                        <option value="">全部</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>铺位类型：</label>
+                    @Html.DropDownList("UnitType", ViewData["UnitTypeList"] as SelectList, "全部")
+                </div>
+                <div class="form-group">
+                    <label>选择业态：</label>
+                    @Html.DropDownList("BizType", ViewData["BizTypeList"] as SelectList, "全部")
+                </div>
+                <div class="form-group">
+                    <label>时间：</label>
+                    <div class="input-group input-merge input-daterange">
+                        @Html.TextBox("StartDate", Model.FromDate.HasValue ? Model.FromDate.Value.ToString("yyyy-MM-dd") : string.Empty, new { @class = "input-sm iconTime" })
+                        <b>-</b>
+                        @Html.TextBox("EndDate", Model.ToDate.HasValue ? Model.ToDate.Value.ToString("yyyy-MM-dd") : string.Empty, new { @class = "input-sm iconTime" })                        
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success btn-sm" id="btnWebView">查询</button>
+                    <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="###" id="btnDownload">导出Excel文档</a></li>
+                    </ul>
+                </div>
+                <button class="btn btn-success btn-sm" id="btnRevUpload">上传商铺销售数据</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript" src="~/Scripts/ajaxupload.3.9.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var floorList = new nhhui.floorSelect({
+            controlId: "FloorList",
+            url: "@Url.Action("GetBuildingGroup", "Project", new { area = "Ajax" })",
+            projectId: $("#ProjectId").val(),
+            buildingId: "@Model.BuildingId",
+            floorId: "@Model.FloorId",
+        });
+        floorList.init();
+
+        $("#ProjectId").change(function () {
+            floorList.bindSelect($(this).val());
+        });
+
+        $("#btnDownload").click(function () {
+            var startDate = $("#StartDate").val();
+            var endDate = $("#EndDate").val();
+            if (startDate.length > 0 && endDate.length > 0) {
+                var days = Math.abs(new Date(endDate) - new Date(startDate)) / 1000 / 60 / 60 / 24;
+                if (days > 30) {
+                    alert("目前最大支持一个月内的数据查询，请重新选择时间段。");
+                    return false;
+                }
+            }
+
+            var url = "@Url.Action("Download", "Revenue", new { area = "Contract" })";
+            url += "?" + $.param(getRequestData());
+            window.open(url);
+        });
+
+        $("#btnWebView").click(function () {
+            var startDate = $("#StartDate").val();
+            var endDate = $("#EndDate").val();
+            if (startDate.length > 0 && endDate.length > 0) {
+                var days = Math.abs(new Date(endDate) - new Date(startDate)) / 1000 / 60 / 60 / 24;
+                if (days > 30) {
+                    alert("目前最大支持一个月内的数据查询，请重新选择时间段。");
+                    return false;
+                }
+            }
+            var url = "@Url.Action("StoreList", "Revenue", new { area = "Contract" })";
+            location.href = url + "?" + $.param(getRequestData());;
+        });
+
+        var getRequestData = function () {
+            var requestData = {};
+            requestData.projectId = $("#ProjectId").val();
+            requestData.buildingId = floorList.getBuildingId();
+            requestData.floorId = floorList.getFloorId();
+            requestData.unitType = $("#UnitType").val();
+            requestData.bizType = $("#BizType").val();
+            requestData.fromDate = $("#StartDate").val();
+            requestData.toDate = $("#EndDate").val();
+            if ($("#OnlyNullData").prop("checked")) {
+                requestData.OnlyNullData = 1;
+            }
+            return requestData;
+        };
+
+        //上传导入数据
+        var button = $("#btnRevUpload");
+        new AjaxUpload(button, {
+            action: "@Url.Action("GetExeclStreamUpLoad", "Revenue", new { area = "Contract" })",
+            name: "ReveExcelFile",
+            onSubmit: function (file, ext) {
+                button.text("上传中");
+                this.disable();
+            },
+            onComplete: function (file, response) {
+                this.enable();
+                button.text("导入数据上传");
+                var result = JSON.parse(response);
+                alert(result.Message);
+            }
+        });
+
+        $(".RevenueNum").hover(function () {
+            $(this).find("span").hide();
+            $(this).find("div").show();
+        }, function () {
+            $(this).find("span").show();
+            $(this).find("div").hide();
+        });
+
+        //保存销售额
+        $(".btnSave").click(function () {
+            var obj = {};
+            obj.Revenue = $(this).prev().val();
+            obj.RevenueId = $(this).attr("data-rid");
+
+            $.ajax({
+                url: "@Url.Action("Edit", "Revenue", new { area = "Contract" }, null)",
+                data: obj,
+                dataType: "JSON",
+                type: "POST",
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        var td = $("#Revenue_" + obj.RevenueId);
+                        td.find("span").text(parseFloat(obj.Revenue).toFixed(2)).show();
+                        td.find("div").hide();
+                    } else {
+                        alert("保存失败！");
+                    }
+                }
+            });
+        });
+    });
+</script>

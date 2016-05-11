@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NHHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MessageType" Type="int" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="Recipient" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="500" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Link" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="InDate" Type="datetime" Nullable="false" />
+    <Property Name="InUser" Type="int" Nullable="false" />
+    <Property Name="EditDate" Type="datetime" />
+    <Property Name="EditUser" Type="int" />
+  </EntityType>
+  <EntityType Name="Sys_User_Message">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SourceType" Type="int" Nullable="false" />
+    <Property Name="SourceRefID" Type="int" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="InDate" Type="datetime" Nullable="false" />
+    <Property Name="InUser" Type="int" Nullable="false" />
+    <Property Name="EditDate" Type="datetime" />
+    <Property Name="EditUser" Type="int" />
+  </EntityType>
+  <EntityContainer Name="NHHModelStoreContainer">
+    <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sys_User_Message" EntityType="Self.Sys_User_Message" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

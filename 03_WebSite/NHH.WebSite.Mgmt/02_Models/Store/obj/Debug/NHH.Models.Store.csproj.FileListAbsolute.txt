@@ -1,0 +1,5 @@
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Store\bin\Debug\NHH.Models.Store.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Store\bin\Debug\NHH.Models.Store.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Store\obj\Debug\NHH.Models.Store.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Store\obj\Debug\NHH.Models.Store.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Store\obj\Debug\NHH.Models.Store.csprojResolveAssemblyReference.cache

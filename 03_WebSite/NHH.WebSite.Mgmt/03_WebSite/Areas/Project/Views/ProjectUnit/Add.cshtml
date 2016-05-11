@@ -1,0 +1,168 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Project.ProjectUnit.ProjectUnitInfoModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<style>
+    .uploadify-queue {
+        display: none;
+    }
+</style>
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>新增铺位</h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                @using (Html.BeginForm("Add", "ProjectUnit", new { area = "Project" }, FormMethod.Post, new { @class = "form-horizontal", novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 楼层： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">
+                               @Model.BuildingName @Model.FloorName
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 类型： </label>
+                        <div class="col-sm-9">
+                            @Html.DropDownList("UnitTypeId", ViewData["UnitTypeList"] as SelectList)
+                        </div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span> 铺位编号： </label>
+
+                        <div class="col-sm-9">
+                            @Html.TextBox("UnitNumber", null, new { @class = "col-xs-12 col-sm-4" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("UnitNumber")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Success Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span> 计租面积： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBox("UnitArea", "", new { @class = "col-xs-12 col-sm-4", @placeHolder = "数值应为小数点后两位" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle">平方米</span>
+                                <span class="middle red">
+                                    @Html.ValidationMessage("UnitArea")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span> 铺位效果图： </label>
+                        @*<div class="col-sm-9 input-merge input-group">
+                            <a class="btn btn-add btn-font upload-btn">
+                                <input type="button" id="btnUpload" class="load-text" />
+                            </a>
+                            <p class="muted">图片大小不能超过2M，图片类型为jpg、png</p>
+                            <div class="uploadimg">
+                                <dl>
+                                    <dd><img src="~/Content/assets/images/default-img.jpg" id="img1"></dd>
+                                </dl>
+                            </div>
+                            @Html.Hidden("UnitMapFileName", null, new { @class = "col-xs-12 col-sm-4" })                            
+                            <span class="middle red">
+                                @Html.ValidationMessage("UnitMapFileName")
+                            </span><br />
+                        </div>*@
+                        <div class="col-sm-9 ">
+                            <a class="btn btn-add btn-font upload-btn">
+                                <div class="load-text">上传图片</div>
+                                <div class="input-wrap">
+                                    <input type="button" id="btnUpload" class="load-text" />
+                                </div>
+                            </a>
+                            <p class="muted">图片大小不能超过2M，图片类型为jpg、png</p>
+                            <div class="uploadimg">
+                                <dl>
+                                    <dd><img src="~/Content/assets/images/default-img.jpg" id="img1"></dd>
+                                </dl>
+                            </div>
+                            @Html.Hidden("UnitMapFileName", null, new { @class = "col-xs-12 col-sm-4" })
+                            <span class="middle red">
+                                @Html.ValidationMessage("UnitMapFileName")
+                            </span><br />
+                        </div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 平面图位置： </label>
+                        <div class="col-sm-9 input-merge">
+                            <a href="###" class="lnkMapFile">
+                                <img id="smallMap" src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(Model.FloorMapFileName, 100)" title="楼层平面图" alt="" width="100" data-src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(Model.FloorMapFileName, 800)" />
+                            </a>
+                            @Html.Hidden("FloorMapLocation", Model.FloorMapLocation)
+                            @Html.Hidden("FloorMapX", Model.FloorMapX)
+                            @Html.Hidden("FloorMapY", Model.FloorMapY)
+                        </div>
+                    </div>
+                    <!-- Typeahead Form -->
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            @Html.Hidden("ProjectId", Model.ProjectId)
+                            @Html.Hidden("BuildingId", Model.BuildingId)
+                            @Html.Hidden("FloorId", Model.FloorId)
+                            <input class="btn btn-xs btn-success btn-font input-btn" type="submit" id="submit" name="submit" value="提交保存" />
+                            &nbsp; &nbsp; &nbsp;
+                            <input class="btn btn-xs btn-font btn-cancel" type="reset" value="重置" />
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>
+
+<script type="text/javascript" src="~/Scripts/MapLocation.js"></script>
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var formData = {};
+        formData.floorId = $("#FloorId").val();
+        $("#btnUpload").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.UrlHelper.GetImageUrl("ProjectUnit/Upload")",
+            "formData": formData,
+            "buttonText": "",
+            "fileTypeExts": "*.jpg;*.png",
+            "multi": false,
+            "onUploadSuccess": function (file, data, response) {
+                var result = eval("(" + data + ")");
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+                $("#UnitMapFileName").val(result.FilePath);
+                $("#img1").attr("src", result.FileUrl);
+            },
+            "onUploadProgress": function () { }
+        });
+    });
+    $(function () {
+        MapLocation.init("smallMap");
+    });
+</script>

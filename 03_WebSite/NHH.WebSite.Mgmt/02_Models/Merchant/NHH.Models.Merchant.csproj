@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B251D3E8-C14D-4BD1-BA4F-8B7C21798EAC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NHH.Models.Merchant</RootNamespace>
+    <AssemblyName>NHH.Models.Merchant</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AttachmentInfo.cs" />
+    <Compile Include="MerChantAndBrandModel.cs" />
+    <Compile Include="MerchantAttachmentDetailModel.cs" />
+    <Compile Include="MerchantAttachmentModel.cs" />
+    <Compile Include="MerchantDetailModel.cs" />
+    <Compile Include="MerchantFinanceModel.cs" />
+    <Compile Include="MerchantInfo.cs" />
+    <Compile Include="MerchantListModel.cs" />
+    <Compile Include="MerchantBrandInfo.cs" />
+    <Compile Include="MerchantBrandDetailModel.cs" />
+    <Compile Include="MerchantBrandListModel.cs" />
+    <Compile Include="MerchantListQueryInfo.cs" />
+    <Compile Include="MerchantRevenueReportBizTypeCount.cs" />
+    <Compile Include="MerchantRevenueReportBizTypeItem.cs" />
+    <Compile Include="MerchantRevenueReportCountInfo.cs" />
+    <Compile Include="MerchantRevenueReportDateCount.cs" />
+    <Compile Include="MerchantRevenueReportFloorCount.cs" />
+    <Compile Include="MerchantRevenueReportModel.cs" />
+    <Compile Include="MerchantRevenueDetailModel.cs" />
+    <Compile Include="MerchantRevenueReportFloorItem.cs" />
+    <Compile Include="MerchantRevenueStoreInfo.cs" />
+    <Compile Include="MerchantRevenueItem.cs" />
+    <Compile Include="MerchantRevenueListModel.cs" />
+    <Compile Include="MerchantRevenueListQueryInfo.cs" />
+    <Compile Include="MerchantStoreDetailModel.cs" />
+    <Compile Include="MerchantStoreInfo.cs" />
+    <Compile Include="MerchantStoreListModel.cs" />
+    <Compile Include="MerchantStoreListQueryInfo.cs" />
+    <Compile Include="MerchantUserDetailModel.cs" />
+    <Compile Include="MerchantUserGroupInfo.cs" />
+    <Compile Include="MerchantUserInfo.cs" />
+    <Compile Include="MerchantUserListModel.cs" />
+    <Compile Include="MerchantUserListQueryInfo.cs" />
+    <Compile Include="MerchantUserPaperInfo.cs" />
+    <Compile Include="MerchantUserPaperListModel.cs" />
+    <Compile Include="MerchantUserGroupQueryInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoreMeterDetailModel.cs" />
+    <Compile Include="StoreMeterInfo.cs" />
+    <Compile Include="StoreMeterListModel.cs" />
+    <Compile Include="StoreMeterListQueryInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\NHH.Models.Common.csproj">
+      <Project>{c1f81f13-9f5d-4673-91a3-c9b564e8dbce}</Project>
+      <Name>NHH.Models.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

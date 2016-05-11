@@ -1,0 +1,206 @@
+﻿@model NHH.Models.Project.BuildingDetailInfoModel
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header no-padding">
+            <div class="table-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="white">×</span>
+                </button>
+                楼宇信息
+            </div>
+        </div>
+
+        <div class="modal-body no-padding nothing">
+            <div class="popWinStyle">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>楼宇名称： </label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextBox("BuildingName", "", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("BuildingName")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> <span>楼宇编码：</span></label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextBox("BuildingCode", "", new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>地上楼层数量： </label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextBox("GroundFloorNum", "", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("GroundFloorNum")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>地下楼层数量： </label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextBox("UndergroundFloorNum", "", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("UndergroundFloorNum")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>地上建筑面积： </label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextBox("BuildingGroundArea", "", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("BuildingGroundArea")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> <span class="req">*</span>地下建筑面积： </label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextBox("BuildingUndergroundArea", "", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("BuildingUndergroundArea")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"><span></span> 规划定位： </label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextArea("PlanSummary", "", new { @class = "col-xs-10", rows = "3" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"><span></span> 规划亮点： </label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextArea("PlanHighlight", "", new { @class = "col-xs-10", rows = "3" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"><span></span> 入驻商家： </label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextArea("ContractStore", "", new { @class = "col-xs-10", rows = "3" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"><span></span> 楼宇图片：</label>
+                    <div class="col-sm-9 ">
+                        <a class="btn btn-add btn-font upload-btn">
+                            <div class="load-text">上传图片</div>
+                            <div class="input-wrap">
+                                <span>
+                                    <input type="button" class="webuploader-invisible btnUpload" id="btnBuildingImage">
+                                </span>
+                            </div>
+                        </a>
+                        <p class="muted">图片大小不能超过2M，图片类型为jpg、png</p>
+                        <div class="uploadimg" id="buildingImageList"></div>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+            <div class="ui-btngroup" style="clear:both">
+                <a href="###" class="btn btn-xs btn-success btn-font mr20" id="lbtnAddBuilding1">确定</a>
+                <a href="###" class="btn btn-xs btn-font btn-cancel" id="lbtnBuildingClose1">取消</a>
+            </div>
+        </div>
+
+    </div><!-- /.modal-content -->
+</div>
+
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //保存楼层
+        $("#lbtnAddBuilding1").click(function () {
+            var data = {};
+            data.ProjectId = $("#ProjectId").val();
+            data.BuildingName = $("#BuildingName").val();
+            data.BuildingCode = $("#BuildingCode").val();
+            data.GroundFloorNum = $("#GroundFloorNum").val();
+            data.UndergroundFloorNum = $("#UndergroundFloorNum").val();
+            data.BuildingGroundArea = $("#BuildingGroundArea").val();
+            data.BuildingUndergroundArea = $("#BuildingUndergroundArea").val();
+            data.PlanSummary = $("#PlanSummary").val();
+            data.PlanHighlight = $("#PlanHighlight").val();
+            data.ContractStore = $("#ContractStore").val();
+            data.RenderingFileName = "";
+
+            $("#buildingImageList").find(".buildingImageItem").each(function (item) {
+                var img = $(this);
+                data.RenderingFileName += img.attr("data-filePath") + ",";
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("AddBuilding", "ProjectMgmt", new { area = "Project" })",
+                data: data,
+                success: function (result, status) {
+                    if (result.IsSuccess == false) {
+                        alert(result.Message);
+                        return false;
+                    }               
+                    //重新加载楼宇列表
+                    var buildingListUrl = "@Url.Action("BuildingList", "ProjectInfo", new { area = "Project" })";
+                    buildingListUrl += "?projectId=" + $("#ProjectId").val();
+                    $("#buildingList").load(buildingListUrl);
+                    $("#modal").modal("hide");
+                    $(".modal-backdrop").css('display', 'none');
+                }
+            });
+        });
+    });
+
+    //取消
+    $("#lbtnBuildingClose1").click(function () {
+        $("#modal").html("").modal("hide");
+    });
+
+    $(function () {
+        //新图片上传
+        $("#btnBuildingImage").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.UrlHelper.GetImageUrl("Project/UploadBuilding")",
+            "buttonText": "",
+            "fileTypeExts": "*.jpg;*.png",
+            "multi": false,
+            "onUploadStart": function (file) {
+                //获取项目ID
+                var formData = {};
+                formData.projectId = $("#ProjectId").val();
+                $("#btnBuildingImage").uploadify("settings", "formData", formData);
+            },
+            "onUploadSuccess": function (file, data, response) {
+                var result = JSON.parse(data);
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+                var innerHtml = "<dl id='imgBuilding-" + result.FileId + "'>" +
+                                    "<dt><a href='###' class='close-icon bImgClose' data-id='" + result.FileId + "'></a></dt>" +
+                                     "<dd><img class='buildingImageItem' src='" + result.FileUrl + "' data-filePath='" + result.FilePath + "'></dd>" +
+                                 "</dl>";
+
+                $("#buildingImageList").append(innerHtml);
+                //删除事件
+                $(".bImgClose").unbind().click(function () {
+                    var id = $(this).attr("data-id");
+                    $("#imgBuilding-" + id).remove();
+                });
+            }
+        });
+    });
+
+</script>

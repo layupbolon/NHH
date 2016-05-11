@@ -1,0 +1,223 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Project.ProjectListModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>
+                项目管理
+            </h1>
+        </div><!-- /.page-header -->
+        <div class="">
+            <div class="screen-area">
+                @using (Html.BeginForm("List", "ProjectInfo", FormMethod.Get, new { name = "SearchProjectResult", id = "SearchProjectResult" }))
+                {
+                    <dl class="list-screen">
+                        <dt>项目名称：</dt>
+                        <dd>@Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList, "请选择项目")</dd>
+                    </dl>
+                    <dl class="list-screen">
+                        <dt>区域：</dt>
+                        <dd>@Html.DropDownList("RegionId", ViewData["RegionList"] as SelectList, "请选择地域")</dd>
+                    </dl>
+                    <dl class="list-screen">
+                        <dt>所在省：</dt>
+                        <dd>@Html.DropDownList("ProvinceId", ViewData["ProvinceList"] as SelectList, "请选择省")</dd>
+                    </dl>
+                    <dl class="list-screen">
+                        <dt>城市：</dt>
+                        <dd>@Html.DropDownList("CityId", ViewData["CityList"] as SelectList, "请选择城市")</dd>
+                    </dl>
+                    <dl class="list-screen">
+                        <dt>阶段：</dt>
+                        <dd>@Html.DropDownList("Stage", ViewData["ProjectStageList"] as SelectList, "不限")</dd>
+                    </dl>
+                    <div class="result-btn">
+                        <input type="submit" class="btn btn-xs btn-success btn-font input-btn" id="lnkSearch" value="查询" />
+                    </div>
+
+                }
+            </div>
+        </div>
+            <div class="row">
+              <div class="col-xs-12">
+                  <h4 class="lighter mt30">
+                      项目列表
+                  </h4>
+                  <div class="hr hr-18 hr-double dotted"></div>
+                  <table class="table table-striped table-hover">
+                      <thead>
+                          <tr>
+                              <th>@Html.SortLink("项目名称", "ProjectName")</th>
+                              <th>业主公司</th>
+                              <th>城市</th>
+                              <th>@Html.SortLink("阶段", "ProjectStage")</th>
+                              <th>开业日期</th>
+                              <th>@Html.SortLink("建筑面积", "TotalArea")</th>
+                              <th>@Html.SortLink("主力店铺位数", "MainProjectCount")</th>
+                              <th>@Html.SortLink("步行街铺位数", "PedestrianStreet")</th>
+                              <th>@Html.SortLink("广告位", "AdPointNum")</th>
+                              <th>@Html.SortLink("停车位", "ParkingLotNum")</th>
+                              <th class="col-lg-1">操作</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          @foreach (var project in Model.ProjectList)
+                          {
+                              <tr>
+                                  <td>@Html.ActionLink(project.ProjectName, "Detail", "ProjectInfo", new { area = "Project", projectId = project.ProjectID }, new { @class="btn btn-link btn-font"})</td>
+                                  <td>
+                                      @foreach (var owner in project.OwnerList)
+                                      {
+                                          @Html.Raw(string.Format("{0}<br/>", owner.CompanyName))
+                                      }
+                                  </td>
+                                  <td>@project.ProvinceAndcity</td>
+                                  <td>@project.ProjectStage</td>
+                                  <td>@project.GrandOpeningDate</td>
+                                  <td>@project.TotalArea.ToString("#,##0.00")</td>
+                                  <td>@project.MainProjectCount</td>
+                                  <td>@project.PedestrianStreet</td>
+                                  <td>@project.AdPointNum</td>
+                                  <td>@project.ParkingLotNum</td>
+                                  <td>
+                                      <div class="btn-group">
+                                          <a class="btn btn-xs btn-add btn-font lnkSearch" href="javascript:void(0);" data-projcetid="@project.ProjectID">效果图</a>
+                                          <ul class="" id="projectImg_@project.ProjectID" style="display:none;width:0px;height:0px;">
+                                              @foreach (var image in project.RenderingFileList)
+                                              {
+                                                  <li style="display:none;width:0px;height:0px;">
+                                                      <a href="@NHH.Framework.Utility.UrlHelper.GetImageUrl(image)" class="projectImage" data-src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(image)" style="display:none;width:0px;height:0px;">
+                                                          <img width="0" height="0" alt="100x73" src="@NHH.Framework.Utility.UrlHelper.GetImageUrl(image, 100)" />
+                                                      </a>
+                                                  </li>
+                                              }
+                                          </ul>
+                                      </div>
+                                  </td>
+
+                              </tr>
+                          }
+                      </tbody>
+                  </table>
+                  @{Html.RenderPartial("_PartialPaging", Model.PagingInfo);}
+
+              </div>
+           </div>
+           
+        </div><!-- /.row -->
+</div>
+<script type="text/javascript">
+    $(function () {
+        new nhhui.nhhtable({
+            searchBtn: "lnkSearch",
+            sortBy: "@Model.QueryInfo.OrderBy",
+            sortMode: "@Model.QueryInfo.OrderMode",
+            url: "@Url.Action("List", "ProjectInfo", new { area = "Project" })",
+            onInit: function () {
+                return getRequestData();
+            },
+        }).init();
+
+        var $overflow = '';
+        //区域
+        $("#RegionId").change(function () {
+            bindProvinceList();
+        });
+        //省份
+        $("#ProvinceId").change(function () {
+            bindCityList();
+        });
+        //效果图
+        $(".lnkSearch").click(function () {
+            var projectId = $(this).attr('data-projcetId');
+            var dom = $("#projectImg_" + projectId);
+            var Adom = dom.find('.projectImage');
+            //再次加载
+            var $overflow = '';
+            var colorbox_params = {
+                //rel: 'colorbox',
+                rel: projectId,
+                reposition: true,
+                scalePhotos: true,
+                scrolling: false,
+                previous: '<i class="ace-icon fa fa-arrow-left"></i>',
+                next: '<i class="ace-icon fa fa-arrow-right"></i>',
+                close: '&times;',
+                current: '{current} / {total}',
+                maxWidth: '100%',
+                maxHeight: '100%',
+                onOpen: function () {
+                    $overflow = document.body.style.overflow;
+                    //document.body.style.overflow = 'hidden';
+                    document.body.style.overflow = 'atuo';
+                },
+                onClosed: function () {
+                    document.body.style.overflow = $overflow;
+                },
+                onComplete: function () {
+                    //$.colorbox.resize();
+                }
+            };
+
+            Adom.colorbox(colorbox_params);
+            $("#cboxLoadingGraphic").html("<i class='ace-icon fa fa-spinner orange'></i>");//let's add a custom loading icon
+            ////
+            //var tmpImage = jQuery(dom).find('a')[0];
+            jQuery(dom).find('a')[0].click();
+        });
+    });
+
+    var bindProvinceList = function () {
+        var regionId = $("#RegionId").val();
+        $.ajax({
+            url: "@Url.Action("GetProvinceList", "Common", new { area = "Ajax" })",
+            data: "regionId=" + regionId,
+            type: "GET",
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            async: true,
+            success: function (data, status) {
+                $("#ProvinceId").html("");
+                var strHrml = "";
+                data.forEach(function (item) {
+                    strHrml += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                });
+                $("#ProvinceId").html(strHrml);
+                setTimeout(bindCityList(), 500);
+                //bindCityList();
+            }
+        });
+    };
+    var bindCityList = function () {
+        var provinceId = $("#ProvinceId").val();
+        $.ajax({
+            url: "@Url.Action("GetCityList", "Common", new { area = "Ajax" })",
+            data: "provinceId=" + provinceId,
+            type: "GET",
+            cache: false,
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            async: true,
+            success: function (data, status) {
+                $("#CityId").html("");
+                var strHtml = "";
+                data.forEach(function (item) {
+                    strHtml += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                });
+                $("#CityId").html(strHtml);
+            }
+        });
+    };
+    var getRequestData = function () {
+        var requestData = {};
+        requestData.ProjectId = $("#ProjectId").val();
+        requestData.RegionId = $("#RegionId").val();
+        requestData.ProvinceId = $("#ProvinceId").val();
+        requestData.CityId = $("#CityId").val();
+        requestData.Stage = $("#Stage").val();
+        return requestData;
+    };
+</script>

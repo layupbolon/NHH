@@ -1,0 +1,10 @@
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Entities\bin\Release\Nhh.Entities.dll.config
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Entities\bin\Release\Nhh.Entities.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Entities\bin\Release\Nhh.Entities.pdb
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Entities\bin\Release\EntityFramework.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Entities\bin\Release\EntityFramework.SqlServer.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Entities\bin\Release\EntityFramework.xml
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Entities\bin\Release\EntityFramework.SqlServer.xml
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Entities\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Entities\obj\Release\Nhh.Entities.dll
+D:\NHH\03_Coding\01_SourceCode\08_Jobs\Nhh.JobConsole\Nhh.Entities\obj\Release\Nhh.Entities.pdb

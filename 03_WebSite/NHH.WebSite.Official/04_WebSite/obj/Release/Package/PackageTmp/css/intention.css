@@ -1,0 +1,80 @@
+.formWrap {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 30px;
+}
+.formList input, .formList select, .formList textarea {
+	border: 1px solid #e0e0e0;
+	padding: 5px 10px;
+	height: 35px;
+	font-size: 16px;
+	line-height: 35px;
+	background-color: #fff;
+	width: 330px;
+	vertical-align: middle;
+}
+.formList dd {
+	margin: 10px 0;
+	float: left;
+	position: relative;
+}
+.formList dd label {
+	min-width: 100px;
+	text-align: right;
+	font-size: 16px;
+	margin-left: 50px;
+}
+.formList dd.ml100 {
+	margin-left: 100px;
+}
+.formList textarea {
+	min-width: 915px;
+	min-height: 150px;
+	line-height: 1.8em;
+}
+.formList .tips label{
+	vertical-align: top !important;
+}
+.formList select {
+	height: 50px;
+	width: 352px;
+	line-height: 50px;
+	position: relative;
+	z-index: 10;
+}
+.formList .selectDiv {
+	position: absolute;
+	height: 48px;
+	width: 348px;
+	border: 1px solid #e0e0e0;
+	background-color: none;
+	background:url(../img/select_arrow.gif) no-repeat 320px 18px;
+	right: 0px;
+	top: 0;
+	z-index: 1;
+}
+
+.formList .aarrow_select {
+	position: absolute;
+	background:url(../img/select_arrow.gif) no-repeat 0px 0px;
+	width: 21px;
+	height: 12px;
+	right: 0;
+	margin-top: 18px;
+	margin-right: 8px;
+}
+.btnT {
+	width: 100%;
+	text-align: left;
+}
+.btnT a {
+	text-align: center;
+	max-width: 220px;
+	margin-left: 133px;
+	margin-top: 15px;
+}
+.codenhh {
+	display: block;
+	width: 110px;
+	height: 110px;
+}

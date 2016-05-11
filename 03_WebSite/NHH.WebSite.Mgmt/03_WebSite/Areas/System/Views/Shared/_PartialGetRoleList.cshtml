@@ -1,0 +1,19 @@
+﻿@model NHH.Models.Configure.SysUserRoleListModel
+
+ @foreach(var role in Model.AllRoleList)
+ {
+  <li>
+        @if (Model.UserRoleList.Exists(item => item.RoleId == role.RoleId))
+        {
+            <label>
+                <input type="checkbox" value="@role.RoleId" checked="checked" name="role" data-flag="1" /> @role.RoleName
+            </label>
+        }
+        else
+        {
+            <label>
+                <input type="checkbox" value="@role.RoleId" name="role" data-flag="0" /> @role.RoleName
+            </label>
+        }
+    </li>
+    }

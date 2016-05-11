@@ -1,0 +1,125 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.MerchantStoreListModel
+
+<style type="text/css">
+    .companyForm {
+        margin-top: 20px;
+    }
+
+    .address {
+        width: 275px !important;
+    }
+</style>
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>商铺管理</h1>
+        </div><!-- /.page-header -->
+        <div class="screen-area">
+            <dl class="list-screen">
+                <dt>选择项目：</dt>
+                <dd>@Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList, "全部")</dd>
+                <dt>商户名称：</dt>
+                <dd>@Html.TextBox("MerchantName")</dd>
+                <dt>商铺名称：</dt>
+                <dd>@Html.TextBox("StoreName")</dd>
+            </dl>
+            <div class="result-btn">
+                <a class="btn btn-xs btn-success btn-font" id="lnkSearch" href="javascript:void(0);">查询</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="lighter mt30">
+                    商铺列表
+                </h4>
+                <div class="hr hr-18 hr-double dotted"></div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>商铺名称</th>
+                            <th>@Html.SortLink("商户名称", "MerchantName")</th>
+                            <th>@Html.SortLink("商铺面积", "RentArea")</th>
+                            <th>@Html.SortLink("业态", "BizTypeName")</th>
+                            <th>品类</th>
+                            <th>租期</th>
+                            <th>合同编号</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var store in Model.StoreList)
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(store.StoreName, "Detail", "Store", new { area = "Contract", storeId = store.StoreID }, new { @class = "btn btn-link btn-font" })</td>
+                                <td>@Html.ActionLink(store.MerchantName, "Detail", "Merchant", new { area = "Plan", merchantId = store.MerchantID }, new { target = "_blank", @class = "btn btn-link btn-font" })</td>
+                                <td align="right">@store.RentArea.ToString("#,##0.00")</td>
+                                <td>@store.BizTypeName</td>
+                                <td>@store.BizCategoryName</td>
+                                <td>@store.RentStartDate.ToString("yyyy-MM-dd") 至 @store.RentEndDate.ToString("yyyy-MM-dd")</td>
+                                <td>@Html.ActionLink(store.RentContractCode, "Detail", "ContractInfo", new { area = "Contract", contractId = store.RentContractID }, new { target = "_blank", @class = "btn btn-link btn-font" })</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @{ Html.RenderPartial("_PartialPaging", Model.PagingInfo);}
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>
+
+<script language="javascript" type="text/javascript">    
+    $(function () {
+        new nhhui.nhhtable({
+            searchBtn: "lnkSearch",
+            sortBy: "@Model.QueryInfo.OrderBy",
+            sortMode: "@Model.QueryInfo.OrderMode",
+            url: "@Url.Action("List", "Store", new { area = "Contract" })",
+            onInit: function () {
+                return getRequestData();
+            },
+        }).init();
+        $("#MerchantName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("GetList", "Merchant", new { area = "Ajax" })",
+                    dataType: "json",
+                    data: { name: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.MerchantName, value: item.MerchantName }
+                        }));
+                    },
+                    minLength: 1,
+                    autoFocus: false,
+                    delay: 500
+                });
+            }
+        });
+        $("#StoreName").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "@Url.Action("GetList", "MerchantStore", new { area = "Ajax" })",
+                    dataType: "json",
+                    data: { name: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.MerchantName, value: item.MerchantName }
+                        }));
+                    },
+                    minLength: 1,
+                    autoFocus: false,
+                    delay: 500
+                });
+            }
+        });
+    });
+    var getRequestData = function () {
+        var requestData = {};
+        requestData.ProjectId = $("#ProjectId").val();
+        requestData.MerchantName = $("#MerchantName").val();
+        requestData.StoreName = $("#StoreName").val();
+        return requestData;
+    };
+</script>

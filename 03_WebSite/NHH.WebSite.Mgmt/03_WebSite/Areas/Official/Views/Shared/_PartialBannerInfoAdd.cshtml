@@ -1,0 +1,170 @@
+﻿@model NHH.Models.Official.Banner.BannerInfoModel
+
+<script type="text/javascript">
+    document.domain = "@NHH.Framework.Utility.ParamManager.GetStringValue("domain")";
+</script>
+
+<style>
+    .uploadify-queue {
+        display: none;
+    }
+</style>
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header no-padding">
+            <div class="table-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="white">×</span>
+                </button>
+                广告位详细信息新增
+            </div>
+        </div>
+
+        <div class="modal-body no-padding nothing">
+            <div class="popWinStyle">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 标题： </label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextBox("Title", "", new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 内容：</label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextAreaFor(m => m.Content)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 图片：</label>
+                    <div class="col-sm-9 ">
+                        <a class="btn btn-add btn-font upload-btn">
+                            <div class="load-text">上传图片</div>
+                            <div class="input-wrap">
+                                <span>
+                                    <input type="button" class="webuploader-invisible btnUpload" id="btnImage">
+                                </span>
+                            </div>
+                        </a>
+                        <p class="muted">图片大小不能超过2M，图片类型为jpg、png</p>
+                        <div class="uploadimg" id="ImageList"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 宽： </label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextBox("Width", "", new {@class = "col-xs-10 col-sm-5"})  px
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 高： </label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextBox("Height", "", new {@class = "col-xs-10 col-sm-5"})  px
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right"> 链接： </label>
+                    <div class="col-sm-9 input-merge input-group">
+                        @Html.TextBox("Link", "", new { @class = "col-xs-10 col-sm-5" })
+                    </div>
+                </div>
+            </div>
+            <div class="ui-btngroup" style="clear: both">
+                <a href="###" class="btn btn-xs btn-success btn-font mr20" id="lbtnAdd">确定</a>
+                <a href="###" class="btn btn-xs btn-font btn-cancel" id="lbtnCancel">取消</a>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Hidden("ResourcePath");
+
+
+@Scripts.Render("~/bundles/jqueryval", "~/Scripts/ueditor/ueditor.config.js", "~/Scripts/ueditor/ueditor.all.js")
+<script type="text/javascript">
+    var editorOption = {
+        initialFrameWidth: "auto",
+        initialFrameHeight: "auto",
+        maximumWords: 9999999
+    };
+    var editor = new baidu.editor.ui.Editor(editorOption);
+    editor.render('Content');
+</script>
+
+<link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="~/Scripts/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#lbtnAdd").click(function () {
+            var data = {};
+            data.BannerID = @Model.BannerID;
+            data.Title = $("#Title").val();
+            data.Content = editor.getContentTxt();
+            data.Width = $("#Width").val();
+            data.Height = $("#Height").val();
+            data.Link = $("#Link").val();
+            data.ResourcePath = $("#ResourcePath").val();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("AddBannerInfo", "Banner", new { area = "Official" })",
+                data: data,
+                success: function(result) {
+                    if (result === false) {
+                        alert("操作失败");
+                        return false;
+                    }
+                    //重新加载列表
+                    var listUrl = "@Url.Action("BannerInfoList", "Banner", new { area = "Official" })";
+                    listUrl += "?bannerID=" + $("#BannerID").val();
+                    $("#infoList").load(listUrl);
+                    $("#modal").modal("hide");
+                    $(".modal-backdrop").css('display', 'none');
+                    return true ;
+                }
+            });
+        });
+    });
+
+    //取消
+    $("#lbtnCancel").click(function () {
+        $("#modal").html("").modal("hide");
+    });
+
+    $(function () {
+        //新图片上传
+        $("#btnImage").uploadify({
+            "swf": "/Scripts/uploadify/uploadify.swf",
+            "uploader": "@NHH.Framework.Utility.UrlHelper.GetImageUrl("Banner/Upload")",
+            "buttonText": "",
+            "fileTypeExts": "*.jpg;*.png",
+            "multi": false,
+            "onUploadStart": function (file) {
+                var formData = {};
+                $("#btnImage").uploadify("settings", "formData", formData);
+            },
+            "onUploadSuccess": function (file, data, response) {
+                var result = JSON.parse(data);
+                if (!result.Result) {
+                    alert(result.Message);
+                    return false;
+                }
+
+                var innerHtml = "<dl id='img-" + result.FileId + "'>" +
+                                    "<dt><a href='###' class='close-icon bImgClose' data-id='" + result.FileId + "'></a></dt>" +
+                                     "<dd><img class='ImageItem' src='" + result.FileUrl + "' data-filePath='" + result.FilePath + "'></dd>" +
+                                 "</dl>";
+
+                $("#ImageList").html(innerHtml);
+                //删除事件
+                $(".bImgClose").unbind().click(function () {
+                    var id = $(this).attr("data-id");
+                    $("#img-" + id).remove();
+                });
+
+                $("#ResourcePath").val(result.FilePath);
+                return true;
+            }
+        });
+    });
+
+</script>

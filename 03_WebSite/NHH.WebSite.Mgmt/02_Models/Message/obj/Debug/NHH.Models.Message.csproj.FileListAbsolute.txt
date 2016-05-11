@@ -1,0 +1,9 @@
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Message\bin\Debug\NHH.Models.Message.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Message\bin\Debug\NHH.Models.Message.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Message\bin\Debug\NHH.Models.Common.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Message\bin\Debug\NHH.Models.Common.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Message\obj\Debug\NHH.Models.Message.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Message\obj\Debug\NHH.Models.Message.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Message\bin\Debug\Newtonsoft.Json.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Message\bin\Debug\Newtonsoft.Json.xml
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Message\obj\Debug\NHH.Models.Message.csprojResolveAssemblyReference.cache

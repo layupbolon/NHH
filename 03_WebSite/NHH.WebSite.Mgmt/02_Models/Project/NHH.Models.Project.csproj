@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EAC6AE2E-6871-4686-891D-40DBA0182F12}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NHH.Models.Project</RootNamespace>
+    <AssemblyName>NHH.Models.Project</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdPoint\AdPointDetailModel.cs" />
+    <Compile Include="AdPoint\AdPointListInfo.cs" />
+    <Compile Include="AdPoint\AdPointListModel.cs" />
+    <Compile Include="AdPoint\AdPointQueryInfo.cs" />
+    <Compile Include="BuildingDetailInfo.cs" />
+    <Compile Include="BuildingDetailInfoModel.cs" />
+    <Compile Include="BuildingInfo.cs" />
+    <Compile Include="FloorDetailModel.cs" />
+    <Compile Include="FloorMapModel.cs" />
+    <Compile Include="FloorMapQueryInfo.cs" />
+    <Compile Include="FloorMapUnitInfo.cs" />
+    <Compile Include="Kiosk\KioskDetailModel.cs" />
+    <Compile Include="Kiosk\KioskListInfo.cs" />
+    <Compile Include="Kiosk\KioskListModel.cs" />
+    <Compile Include="Kiosk\KioskQueryInfo.cs" />
+    <Compile Include="ProjectAdPointInfo.cs" />
+    <Compile Include="ProjectBasicInfoModel.cs" />
+    <Compile Include="ProjectBuilding.cs" />
+    <Compile Include="ProjectDetailInfoModel.cs" />
+    <Compile Include="ProjectDetailModel.cs" />
+    <Compile Include="BuildingListModel.cs" />
+    <Compile Include="FloorInfo.cs" />
+    <Compile Include="FloorListModel.cs" />
+    <Compile Include="ProjectFloorDto.cs" />
+    <Compile Include="ProjectInfo.cs" />
+    <Compile Include="ProjectInfoModel.cs" />
+    <Compile Include="ProjectKioskInfo.cs" />
+    <Compile Include="ProjectListModel.cs" />
+    <Compile Include="ProjectListQueryInfo.cs" />
+    <Compile Include="ProjectMgmtNavModel.cs" />
+    <Compile Include="ProjectOwnerInfo.cs" />
+    <Compile Include="ProjectUnitInfo.cs" />
+    <Compile Include="ProjectUnit\ProjectUnitAdjustModel.cs" />
+    <Compile Include="ProjectUnit\ProjectUnitMergeData.cs" />
+    <Compile Include="ProjectUnit\ProjectUnitAdjustInfo.cs" />
+    <Compile Include="ProjectUnit\ProjectUnitAdjustListModel.cs" />
+    <Compile Include="ProjectUnit\ProjectUnitAdjustListQueryInfo.cs" />
+    <Compile Include="ProjectUnit\ProjectUnitInfoModel.cs" />
+    <Compile Include="ProjectUnit\ProjectUnitInitInfo.cs" />
+    <Compile Include="ProjectUnit\ProjectUnitInitModel.cs" />
+    <Compile Include="ProjectUnit\ProjectUnitListModel.cs" />
+    <Compile Include="ProjectUnit\ProjectUnitListQueryInfo.cs" />
+    <Compile Include="ProjectUnit\ProjectUnitSplitData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\NHH.Models.Common.csproj">
+      <Project>{c1f81f13-9f5d-4673-91a3-c9b564e8dbce}</Project>
+      <Name>NHH.Models.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

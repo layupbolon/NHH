@@ -1,0 +1,155 @@
+﻿@model NHH.Models.Plan.ProjectUnitRequestScheduleModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>招商进度报表</title>
+    <link href="/Content/assets/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/Content/assets/css/chosen.css" rel="stylesheet" />
+    <link href="/Content/assets/css/datepicker.css" rel="stylesheet" />
+    <link href="/Content/assets/css/colorbox.css" rel="stylesheet" />
+    <link href="/Content/assets/css/ace.min.css" rel="stylesheet" />
+    <link href="/Content/assets/css/global.css" rel="stylesheet" />
+    <link href="/Content/assets/css/chart.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-2.1.4.js"></script>
+    <script src="/Scripts/JsonNet.js"></script>
+    <script src="/Scripts/json2.js"></script>
+    <script src="/Scripts/respond.min.js"></script>
+    <script src="/Scripts/jquery.validate.js"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+
+</head>
+<body>
+    <div class="page-content">
+        <div class="page-content-area">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>合计数据</h2>
+                    <small>招商筹划数据统计</small>
+                    <ul class="list-group mt15">
+                        <li class="list-group-item">
+                            <span style="font-weight:bold">计划租凭面积：</span>
+                            <span class="text-danger">@Model.TotalArea.ToString("#,##0.00") 平方米</span>
+                        </li>
+                        <li class="list-group-item">
+                            <span style="font-weight:bold">计租租金指标：</span>
+                            <span class="text-danger">@Model.TotalRent.ToString("#,##0.00") 万元</span>
+                        </li>
+                        <li class="list-group-item">
+                            <span style="font-weight:bold">计划总商铺数：</span>
+                            <span class="text-danger">@Model.TotalUnit 个</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-12">
+                    <h2>分类图表</h2>
+                </div>
+                <div class="col-lg-12">
+                    <h4>商铺数情况</h4>
+                    <div class="row text-center">
+                        <canvas id="chartUnit" height="300" width="300"></canvas>
+                        <div id="legendUnit" class="legend"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <h4>分类面积情况</h4>
+                    <div class="row text-center">
+                        <canvas id="chartArea" height="300" width="300"></canvas>
+                        <div id="legendArea" class="legend"></div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <h4>分类租金情况</h4>
+                    <div class="row text-center">
+                        <canvas id="chartRent" height="300" width="300"></canvas>
+                        <div id="legendRent" class="legend"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="lighter mt30">
+                        数据明细
+                    </h4>
+                    <div class="hr hr-18 hr-double dotted"></div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" valign="middle">租决状态</th>
+                                <th colspan="2">商铺数占比</th>
+                                <th colspan="2">分类面积占比</th>
+                                <th colspan="2">分类租金占比</th>
+                            </tr>
+                            <tr>
+                                <th>商铺数</th>
+                                <th>占比</th>
+                                <th>面积（平方米）</th>
+                                <th>占比</th>
+                                <th>实际/预计完成（万元）</th>
+                                <th>占比</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var scheduleItem in Model.ScheduleData)
+                            {
+                                <tr>
+                                    <td>@scheduleItem.RequestStatusName</td>
+                                    <td>@scheduleItem.UnitNum</td>
+                                    <td>@scheduleItem.UnitNumProp.ToString("0.00%")</td>
+                                    <td>@scheduleItem.Area.ToString("#,##0.00")</td>
+                                    <td>@scheduleItem.AreaProp.ToString("0.00%")</td>
+                                    <td>@scheduleItem.Rent.ToString("#,##0.00")</td>
+                                    <td>@scheduleItem.RnetProp.ToString("0.00%")</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td>合计</td>
+                                <td>@Model.TotalUnit</td>
+                                <td></td>
+                                <td>@Model.TotalArea.ToString("#,##0.00")</td>
+                                <td></td>
+                                <td>@Model.TotalRent.ToString("#,##0.00")</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script language="javascript" type="text/javascript" src="~/Scripts/Chart.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("ScheduleChart", "ProjectUnitRequest", new { area = "Chart" })",
+            data: getQueryData(),
+            dataType: "json",
+            success: function (result, status) {
+                var ctxUnit = document.getElementById("chartUnit").getContext("2d");
+                var pieUnit = new Chart(ctxUnit).Pie(result.UnitNumChart.data, { animation: false });
+                $("#legendUnit").html(pieUnit.generateLegend());
+
+                var ctxArea = document.getElementById("chartArea").getContext("2d");
+                var pieArea = new Chart(ctxArea).Pie(result.AreaChart.data, { animation: false });
+                $("#legendArea").html(pieArea.generateLegend());
+
+                var ctxRent = document.getElementById("chartRent").getContext("2d");
+                var pieRent = new Chart(ctxRent).Pie(result.RentChart.data, { animation: false });
+                $("#legendRent").html(pieRent.generateLegend());
+            }
+        });
+        function getQueryData() {
+            var queryInfo = {};
+            queryInfo.projectId = "@Model.QueryInfo.ProjectId";
+            queryInfo.buildingId = "@Model.QueryInfo.BuildingId";
+            queryInfo.floorId = "@Model.QueryInfo.FloorId";
+            queryInfo.unitType = "@Model.QueryInfo.UnitType";
+            return queryInfo;
+        };
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Merchant.MerchantDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>新增商户</h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                @using (Html.BeginForm("Add", "Merchant", new { area = "Plan" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>商户类型： </label>
+                        <div class="col-lg-9 input-merge">
+                            <ul>
+                                <li>
+                                    <label>
+                                        @Html.RadioButton("MerchantType", "1")公司
+                                    </label>
+                                </li>
+                                <li>
+                                    <label>
+                                        @Html.RadioButton("MerchantType", "2", true)自然人
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>名称： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("MerchantName", null, new { @class = "col-lg-5" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessage("MerchantName")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-lg-9">
+                            <span class=" alert-warning">自然人名称一经保存将不能修改，请您仔细核对自然人名称</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>中文简称： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("BriefName", null, new { @class = "col-lg-5" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessage("BriefName")
+                            </span>
+                        </div>
+                    </div>                  
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> <span class="req">*</span>详细地址： </label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("ProvinceId", ViewData["MerchantProvince"] as SelectList, "省份", new { @class = "col-lg-1" })
+                            @Html.DropDownList("CityId", ViewData["MerchantCity"] as SelectList, "市", new { @class = "col-lg-1" })
+                            @Html.TextBox("AddressLine", null, new { @class = "col-lg-3", placeHolder = "例子：南京路XX号717室" })
+                            <span class="help-inline red ml10">
+                                @Html.ValidationMessage("ProvinceId")
+                                @Html.ValidationMessage("CityId")
+                                @Html.ValidationMessage("AddressLine")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 邮政编码： </label>
+                        <div class="col-lg-9">@Html.TextBox("Zipcode", null, new { @class = "col-lg-5" })</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="form-field-2"> <span class="req">*</span>联系人身份证号码： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("ContactIDNumber", null, new { @class = "col-lg-5" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessage("ContactIDNumber")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="form-input-readonly"> <span class="req">*</span>联系人邮箱： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("ContactEmail", null, new { @class = "col-lg-5" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessage("ContactEmail")
+                            </span>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="form-field-5"> <span class="req">*</span>联系人电话： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("ContactPhone", null, new { @class = "col-lg-5" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessage("ContactPhone")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="form-field-6"> <span class="req">*</span>银行帐号： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("BankAccount", null, new { @class = "col-lg-5" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessage("BankAccount")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="form-field-tags"> <span class="req">*</span>开户银行： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("BankName", null, new { @class = "col-lg-5" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessage("BankName")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="form-field-tags"> <span class="req">*</span>开户支行： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("SubBranch", null, new { @class = "col-lg-5" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessage("SubBranch")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="form-field-tags"> <span class="req">*</span>开户名称： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("AccountName", null, new { @class = "col-lg-5" })
+                            <span class="help-inline red ml10">
+                                    @Html.ValidationMessage("AccountName")
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="form-field-tags"> 支付宝帐号： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("AlipayAccount", null, new { @class = "col-lg-5" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label" for="form-field-tags">微信支付账号： </label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("WechatAccount", Model.WechatAccount, new { @class = "col-lg-5" })
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input class="btn btn-xs btn-success btn-font input-btn formsubmit" type="submit" value="提交信息" />
+                            <input class="btn btn-xs btn-font btn-cancel" type="reset" value="重置" />
+
+                        </div>
+                    </div>
+
+                    @Html.Hidden("LicenseId", "0")
+                    @Html.Hidden("RegisterProvinceId", "0")
+                    @Html.Hidden("RegisterCityId", "0")
+                    @Html.Hidden("RegisterAddressLine", "0")
+                    @Html.Hidden("OwnerName", "0")
+                    @Html.Hidden("FinanceContact", "0")
+                    @Html.Hidden("FinancePhone", "0")
+                    @Html.Hidden("ContactName", "0")
+                    @Html.Hidden("MerchantCode", "0")
+                }
+                <!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content-area -->
+    </div>
+</div>
+
+<script language="javascript" type="text/javascript">
+    $(function () {
+        beforeUnload.config.enable = true;
+        ///选择商户类型时页面跳转
+        $("input[name='MerchantType'").click(function () {
+            var merchantType = $(this).val();
+            if (merchantType == 1) {
+                var url = "@Url.Action("Add", "Merchant", new { area = "Plan" }, null)";
+                location.href = url;
+            }
+        })
+    })
+
+    var bindCityList = function (provinceId, cityId) {
+        var provinceID = $("#" + provinceId).val();
+        var cityID = $("#" + cityId);
+        if (provinceID != null && provinceID != undefined && provinceID != "") {
+            $.ajax({
+                url: "@Url.Action("GetCityList", "Common", new { area = "Ajax" })",
+                data: { provinceID: provinceID },
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: true,
+                success: function (data) {
+                    cityID.empty();
+                    var optionTopValue = "<option value=''>" + "市" + "</option>";
+                    cityID.append(optionTopValue);
+                    var optionValue = "";
+                    data.forEach(function (item) {
+                        optionValue += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                    })
+                    cityID.append(optionValue);
+                },
+                complete: function () {
+                },
+                error: function (xh) {
+
+                    alert(xh.message);
+                }
+            })
+        }
+    };
+
+    $("#ProvinceId").change(function () {
+        bindCityList("ProvinceId", "CityId");
+    });
+
+</script>

@@ -1,0 +1,126 @@
+﻿@model NHH.Models.Plan.ProjectUnitLeasingModel
+<h4 class="lighter">招商信息</h4>
+<a class="edit-btn-canl cancelEditUnitLeasing" href="javascript:void(0);">取消编辑</a>
+<div class="hr hr-18 hr-double dotted"></div>
+<dl class="form-content form-content-edit form-row-comb">
+    <dd>
+        <label>招商责任部门：</label>
+        <span>@Model.LeasingDepartment</span>
+    </dd>
+    <dd>
+        <label>招商责任人：</label>
+        <span>
+            @Html.DropDownList("LeasingPersonID", ViewData["EmployeeList"] as SelectList)
+        </span>
+    </dd>
+    <dd>
+        <label>消防报审：</label>
+        <span>
+            <label>@Html.RadioButton("FireProtectionAuth", 1, Model.FireProtectionAuth == 1) 需要</label>
+            <label>@Html.RadioButton("FireProtectionAuth", 0, Model.FireProtectionAuth == 0) 不需要</label>
+        </span>
+    </dd>
+</dl>
+<div class="clear"></div>
+
+<dl class="form-content form-content-edit form-row-comb">
+    <dt><i>各个时间点</i></dt>
+    <dd>
+        <label>招商完成时间：</label>
+        <span class="input-daterange">@Html.TextBox("LeasingFinishDate", Model.LeasingFinishDate.ToString("yyyy-MM-dd"), new { @class = "iconTime" })</span>
+    </dd>
+    <dd>
+        <label>复尺出图完成时间：</label>
+        <span class="input-daterange">@Html.TextBox("MeasureReviewDate", Model.MeasureReviewDate.ToString("yyyy-MM-dd"), new { @class = "iconTime" })</span>
+    </dd>
+    <dd class="FireProtectionAuth" style="display:@(Model.FireProtectionAuth==0?"none":"block")">
+        <label>消防报审完成：</label>
+        <span class="input-daterange">@Html.TextBox("FireProtectionAuthDate", Model.FireProtectionAuthDate.ToString("yyyy-MM-dd"), new { @class = "iconTime" })</span>
+    </dd>
+    <dd>
+        <label>进场时间：</label>
+        <span class="input-daterange">@Html.TextBox("AccessDate", Model.AccessDate.ToString("yyyy-MM-dd"), new { @class = "iconTime" })</span>
+    </dd>
+    <dd>
+        <label>装修完成时间：</label>
+        <span class="input-daterange">@Html.TextBox("DecorationEndDate", Model.DecorationEndDate.ToString("yyyy-MM-dd"), new { @class = "iconTime" })</span>
+    </dd>
+    <dd class="leasingMsg red" style="display:none;line-height: 28px;">
+        后面的时间要大于或等于前面的时间
+    </dd>
+</dl>
+
+<div class="clear"></div>
+
+<div class="btn-edit">
+    @Html.Hidden("UnitLeasingID", Model.UnitLeasingID)
+    <a href="###" class="btn btn-info mr20" id="btnUnitLeasing">保存信息</a>
+    <a href="###" class="btn cancelEditUnitLeasing">取消编辑</a>
+</div>
+<!-- 招商信息-编辑效果 -->
+
+<script language="javascript" type="text/javascript">
+    //日期控件
+    $('.input-daterange').datepicker({ autoclose: true, format: "yyyy-mm-dd" });
+    //保存数据
+    $("#btnUnitLeasing").click(function () {
+        var data = {};
+        data.UnitId = $("#UnitId").val();
+        data.UnitLeasingID = $("#UnitLeasingID").val();
+        data.LeasingPersonID = $("#LeasingPersonID").val();
+        data.FireProtectionAuth = $("#FireProtectionAuth:checked").val();
+        data.LeasingFinishDate = $("#LeasingFinishDate").val();
+        data.MeasureReviewDate = $("#MeasureReviewDate").val();
+        data.FireProtectionAuthDate = $("#FireProtectionAuthDate").val();
+        data.AccessDate = $("#AccessDate").val();
+        data.DecorationEndDate = $("#DecorationEndDate").val();
+
+        //各个时间点判断
+        if (!leasingTimeCheck(data)) {
+            $(".leasingMsg").css("display", "block");
+            return;
+        }
+
+        var url = "@Url.Action("EditUnitLeasing", "ProjectUnit", new { area = "Plan" })";
+
+        $("#unitLeasing").load(url, data, function (response, status, xhr) {
+            $(this).html(response);
+        });
+    });
+
+    //取消编辑
+    $(".cancelEditUnitLeasing").click(function () {
+        var url = "@Url.Action("UnitLeasing", "ProjectUnit", new { area = "Plan" })";
+        url += "?unitId=" + $("#UnitId").val();
+        $("#unitLeasing").load(url);
+    });
+
+    //消防报审完成切换显示状态
+    $("input[name='FireProtectionAuth']").click(function () {
+        if ($(this).val() == 1) {
+            $(".FireProtectionAuth").css("display", "block");
+        } else {
+            $(".FireProtectionAuth").css("display", "none");
+        }
+
+    })
+
+    //各个时间点判断，后面的时间要大于前面的时间
+    var leasingTimeCheck = function (data) {
+
+        if (data.LeasingFinishDate > data.MeasureReviewDate || data.MeasureReviewDate > data.AccessDate || data.AccessDate > data.DecorationEndDate) {
+            return false;
+        }
+
+        if ($(".FireProtectionAuth").css("display") != "block") {
+            return true;
+        }
+
+        //当消防报审为需要状态时
+        if (data.MeasureReviewDate > data.FireProtectionAuthDate || data.FireProtectionAuthDate > data.AccessDate) {
+            return false;
+        }
+        return true;
+    }
+
+</script>

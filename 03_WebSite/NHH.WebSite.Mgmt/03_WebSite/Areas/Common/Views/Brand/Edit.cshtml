@@ -1,0 +1,209 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Common.BrandDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>编辑品牌</h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                @using (Html.BeginForm("Edit", "Brand", new { area = "Common" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>品牌名： </label>
+                        <div class="col-sm-9">
+                            @Html.TextBox("BrandName", null, new { @class = "col-xs-10 col-sm-5", ReadOnly="true" })
+
+                        </div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>品牌级次： </label>
+                        <div class="col-sm-9">
+                            @Html.DropDownList("BrandLevel", ViewData["BrandLevelList"] as SelectList, "请选择", new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("BrandLevel")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Success Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>业态： </label>
+                        <div class="col-sm-9 input-merge input-group">
+                            @Html.DropDownList("BizTypeId", ViewData["BizTypeList"] as SelectList, "请选择", new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("BizTypeId")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- double input Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>品类： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.DropDownList("BizCategoryId", ViewData["BizCategoryList"] as SelectList, "请选择", new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("BizCategoryId")
+                                </span>
+                            </span>
+                        </div>
+
+                    </div>
+                     <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>品牌过去入驻情况： </label>
+
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextArea("ExistingProject", null, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("ExistingProject")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 品牌年平均营业额： </label>
+
+                        <div class="col-sm-9 input-merge">@Html.TextBox("Revenue", null, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span> 面积需求： </label>
+
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBox("AreaUsage", null, new { @class = "col-xs-10 col-sm-5", @placeHolder = "数值应为小数点后两位" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("AreaUsage")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- unit Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 楼板承重： </label>
+
+                        <div class="col-sm-9 input-merge">@Html.TextBox("FloorBearing", null, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <!-- unit Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 楼高： </label>
+
+                        <div class="col-sm-9">@Html.TextBox("FloorHeight", null, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <!-- Success Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 电量需求： </label>
+                        <div class="col-sm-9">@Html.TextBox("ElectricityUsage", null, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <!-- Error Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 供水需求： </label>
+                        <div class="col-sm-9">@Html.TextBox("WaterUsage", null, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 排水需求： </label>
+                        <div class="col-sm-9">@Html.TextBox("DrainUsage", null, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 燃气需求： </label>
+                        <div class="col-sm-9">@Html.TextBox("GasUsage", null, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 排烟需求： </label>
+                        <div class="col-sm-9">@Html.TextBox("SmokeUsage", null, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <!-- Typeahead Form -->
+
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input class="btn btn-xs btn-success btn-font input-btn formsubmit" type="submit" value="提交信息" />
+                            &nbsp; &nbsp; &nbsp;
+                            <input class="btn btn-xs btn-font btn-cancel" type="reset" value="重置" />
+                        </div>
+                    </div>
+                    @Html.Hidden("BrandId")
+                    @*@Html.Hidden("BrandName")*@
+                }
+                <!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content-area -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        beforeUnload.config.enable = true;
+    });
+    var bindCityList = function (bizTypeId, bizCategoryId) {
+        var bizTypeId = $("#" + bizTypeId).val();
+        var bizCategoryId = $("#" + bizCategoryId);
+        if (bizTypeId != null && bizTypeId != undefined && bizTypeId != "") {
+            $.ajax({
+                url: "@Url.Action("GetBizCategoryList", "Common", new { area = "Ajax" })",
+                data: { bizTypeId: bizTypeId },
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: true,
+                success: function (data) {
+                    bizCategoryId.empty();
+                    var optionTopValue = "<option value=''>" + "请选择" + "</option>";
+                    bizCategoryId.append(optionTopValue);
+                    var optionValue = "";
+                    data.forEach(function (item) {
+                        optionValue += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                    })
+                    bizCategoryId.append(optionValue);
+                },
+                complete: function () {
+                },
+                error: function (xh) {
+
+                    alert(xh.message);
+                }
+            })
+        }
+    };
+
+    $("#BizTypeId").change(function () {
+        bindCityList("BizTypeId", "BizCategoryId");
+    });
+</script>

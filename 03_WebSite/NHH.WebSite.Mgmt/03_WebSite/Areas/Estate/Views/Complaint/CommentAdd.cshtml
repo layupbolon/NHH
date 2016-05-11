@@ -1,0 +1,81 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+
+@model NHH.Models.Estate.ComplaintCommentDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>新增投诉评价</h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                <form id="ComplaintCommentAddFm" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 投诉单编号： </label>
+                        <div class="col-sm-9">@Html.LabelFor(m => m.ComplaintId,Model.ComplaintId+"", new { @class = "col-xs-10 col-sm-5" })</div>
+                        @Html.HiddenFor(m => m.ComplaintId)
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"><span class="req">*</span> 投诉评分：</label>
+                        <div class="col-sm-9"> @Html.TextBoxFor(m => m.Overall, null, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"><span class="req">*</span> 响应速度： </label>
+                        <div class="col-sm-9">@Html.TextBoxFor(m => m.Speed, null, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"><span class="req">*</span> 服务速度： </label>
+                        <div class="col-sm-9">@Html.TextBoxFor(m => m.Attitude, null, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"><span class="req">*</span> 投诉评价： </label>
+                        <div class="col-sm-9">@Html.TextAreaFor(m => m.comment, 5, 5, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <!-- Disable Form -->
+                    <div class="space-4"></div>
+
+                    <!-- Typeahead Form -->
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <button class="btn btn-xs btn-success btn-font">
+                            <a href="javascript:void(0)" role="button" data-submit="submit">提交</a>
+                        </button>
+                    </div>
+                </form>
+                <!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content-area -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("a[data-submit='submit']").click(function () {
+
+        ///提交投诉单
+        $.ajax({
+            url: "@Url.Action("CommentAdd", "Complaint", new { area = "Estate" },null)",
+            type: "POST",
+            data: $("#ComplaintCommentAddFm").serialize(),
+            dataType: "JSON",
+            cache: false,
+            success: function (data) {
+                if (data == 1) {
+                    var url = "@Url.Action("CommentList", "Complaint", new {area="Estate" },null)";
+                    location.href = url;
+                } else {
+                    alert("点评失败！");
+                }
+            },
+            error: function (xhr, textStatus, error) {
+                alert(textStatus + "," + error);
+            }
+        })
+
+
+    });
+</script>

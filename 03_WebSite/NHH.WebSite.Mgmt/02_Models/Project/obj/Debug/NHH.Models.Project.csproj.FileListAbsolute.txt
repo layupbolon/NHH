@@ -1,0 +1,9 @@
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Project\bin\Debug\NHH.Models.Project.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Project\bin\Debug\NHH.Models.Project.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Project\bin\Debug\NHH.Models.Common.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Project\bin\Debug\NHH.Models.Common.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Project\obj\Debug\NHH.Models.Project.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Project\obj\Debug\NHH.Models.Project.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Project\bin\Debug\Newtonsoft.Json.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Project\bin\Debug\Newtonsoft.Json.xml
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Mgmt\02_Models\Project\obj\Debug\NHH.Models.Project.csprojResolveAssemblyReference.cache

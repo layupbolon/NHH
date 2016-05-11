@@ -1,0 +1,407 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Common.Company.CompanyDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>编辑公司</h1>
+        </div><!-- /.page-header -->
+
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                @using (Html.BeginForm("Edit", "Company", new { area = "Common" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>公司名称： </label>
+                        <div class="col-sm-9">
+                            @Html.TextBox("CompanyName", Model.CompanyName, new { @class = "col-xs-10 col-sm-5", disabled = "disabled" })
+                        </div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>公司类型： </label>
+                        <div class="col-sm-9">
+                            @Html.DropDownList("CompanyType", ViewData["CompanyTypeList"] as SelectList, new { @class = "form-control", style = "width:120px" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("CompanyType")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Success Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>公司中文简称： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBox("BriefName", Model.BriefName, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("BriefName")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span>公司英文编码： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBox("CompanyCode", Model.CompanyCode, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("CompanyCode")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- double input Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>详细地址： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.DropDownList("ProvinceID", ViewData["CompanyProvince"] as SelectList, "省份", new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("ProvinceID")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.DropDownList("CityID", ViewData["CompanyCity"] as SelectList, "市", new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("CityID")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBox("AddressLine", null, new { @class = "col-xs-10 col-sm-5", placeHolder = "请输入详细地址" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("AddressLine")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 邮政编码： </label>
+
+                        <div class="col-sm-9 input-merge ">@Html.TextBox("ZipCode", Model.ZipCode, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <!-- Default Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>营业执照注册号： </label>
+
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBox("LicenseID", Model.LicenseID, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("LicenseID")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- unit Form -->
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>注册地址： </label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.DropDownList("RegisterProvinceID", ViewData["CompanyRegisterProvince"] as SelectList, "省份", new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("RegisterProvinceID")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.DropDownList("RegisterCityID", ViewData["CompanyRegisterCity"] as SelectList, "市", new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("RegisterCityID")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"></label>
+                        <div class="col-sm-9 input-merge">
+                            @Html.TextBox("RegisterAddressLine", null, new { @class = "col-xs-10 col-sm-5", placeHolder = "请输入详细地址" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("RegisterAddressLine")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- unit Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>公司法人姓名： </label>
+
+                        <div class="col-sm-9">
+                            @Html.TextBox("OwnerName", Model.OwnerName, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("OwnerName")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Success Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="req">*</span>联系人姓名： </label>
+
+                        <div class="col-sm-9">
+                            @Html.TextBox("ContactName", Model.ContactName, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("ContactName")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Error Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-2"><span class="req">*</span>联系人身份证号码： </label>
+
+                        <div class="col-sm-9">
+                            @Html.TextBox("ContactIDNumber", Model.ContactIDNumber, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("ContactIDNumber")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Password Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"><span class="req">*</span>联系人邮箱： </label>
+
+                        <div class="col-sm-9">
+                            @Html.TextBox("ContactEmail", Model.ContactEmail, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("ContactEmail")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Disable Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-5"> <span class="req">*</span>联系人电话： </label>
+
+                        <div class="col-sm-9">
+                            @Html.TextBox("ContactPhone", Model.ContactPhone, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("ContactPhone")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Grid Sizing Form -->
+                    <div class="space-4"></div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-5"> 母公司名称： </label>
+                       
+                        <div class="col-sm-9 input-merge">
+                            @Html.DropDownList("OwnerCompanyID", ViewData["CompanyList"] as SelectList, "请选择", new { @class = "col-xs-10 col-sm-5" })
+                        </div>
+                    </div>
+                    <!-- Default Select Form -->
+
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-6"> <span class="req">*</span>银行帐号： </label>
+
+                        <div class="col-sm-9">
+                            @Html.TextBox("BankAccount", Model.FinanceInfo.BankAccount, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("BankAccount")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- help Form -->
+
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-tags"> <span class="req">*</span>开户银行： </label>
+
+                        <div class="col-sm-9">
+                            @Html.TextBox("OpeningBank", Model.FinanceInfo.OpeningBank, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("OpeningBank")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- tag Form -->
+
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-tags"> <span class="req">*</span>开户行名称： </label>
+                        <div class="col-sm-9">
+                            @Html.TextBox("OpeninBankName", Model.FinanceInfo.OpeninBankName, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("OpeninBankName")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-tags"> <span class="req">*</span>开户支行名称： </label>
+                        <div class="col-sm-9">
+                            @Html.TextBox("SubBranch", Model.FinanceInfo.SubBranch, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("SubBranch")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-tags">支付宝帐号： </label>
+                        <div class="col-sm-9">@Html.TextBox("AlipayAccount", Model.FinanceInfo.AlipayAccount, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-tags"> 微信账号： </label>
+                        <div class="col-sm-9">@Html.TextBox("WechatAccount", Model.FinanceInfo.WechatAccount, new { @class = "col-xs-10 col-sm-5" })</div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-tags"> <span class="req">*</span>财务联系人： </label>
+                        <div class="col-sm-9">
+                            @Html.TextBox("FinanceContact", Model.FinanceInfo.FinanceContact, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("FinanceContact")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-tags"> <span class="req">*</span>财务联系方式： </label>
+                        <div class="col-sm-9">
+                            @Html.TextBox("FinancePhone", Model.FinanceInfo.FinancePhone, new { @class = "col-xs-10 col-sm-5" })
+                            <span class="help-inline col-xs-12 col-sm-7">
+                                <span class="middle red">
+                                    @Html.ValidationMessage("FinancePhone")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- Typeahead Form -->
+
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input class="btn btn-xs btn-success btn-font input-btn formsubmit" type="submit" value="提交信息" />
+                            &nbsp; &nbsp; &nbsp;
+                            <input class="btn btn-xs btn-font btn-cancel" type="reset" value="重置" />
+                            &nbsp; &nbsp; &nbsp;
+                            <a class="btnDelete btn btn-xs btn-del btn-font formsubmit" data-cid=@Model.CompanyID href="javascript:void(0)">作废</a>
+
+                        </div>
+                    </div>
+                    @Html.Hidden("CompanyID", Model.CompanyID)
+                    @Html.Hidden("CompanyName")
+                }
+                <!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content-area -->
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    $(function () {
+        beforeUnload.config.enable = true;
+    });
+    var bindCityList = function (provinceId, cityId) {
+        var provinceID = $("#" + provinceId).val();
+        var cityID = $("#" + cityId);
+        if (provinceID != null && provinceID != undefined && provinceID != "") {
+            $.ajax({
+                url: "@Url.Action("GetCityList", "Common", new { area = "Ajax" })",
+                data: { provinceID: provinceID },
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                cache: false,
+                async: true,
+                success: function (data) {
+                    cityID.empty();
+                    var optionTopValue = "<option value=''>" + "市" + "</option>";
+                    cityID.append(optionTopValue);
+                    var optionValue = "";
+                    data.forEach(function (item) {
+                        optionValue += "<option value='" + item.Id + "'>" + item.Name + "</option>";
+                    })
+                    cityID.append(optionValue);
+                },
+                complete: function () {
+                },
+                error: function (xh) {
+
+                    alert(xh.message);
+                }
+            })
+        }
+    };
+
+    $("#ProvinceID").change(function () {
+        bindCityList("ProvinceID", "CityID");
+    });
+
+    $("#RegisterProvinceID").change(function () {
+        bindCityList("RegisterProvinceID", "RegisterCityID");
+    });
+
+    $(".btnDelete").click(function () {
+        var btn = $(this);
+        nhhui.confirm("确定要作废吗？作废后将不能恢复", function () {
+            var companyId = btn.attr("data-cid");
+            var url = "@Url.Action("Del", "Company", new { area = "Common" }, null)";
+            location.href = url + "?companyId=" + companyId;
+        });
+    });
+</script>

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3867A0AC-E862-47B9-BFC2-E432B7A6848A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NHH.Models.Plan</RootNamespace>
+    <AssemblyName>NHH.Models.Plan</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MerchantLicense\MerchantLicenseListModel.cs" />
+    <Compile Include="MerchantLicense\MerchantLicenseModel.cs" />
+    <Compile Include="MerchantLicense\MerchantLicenseQueryModel.cs" />
+    <Compile Include="ProjectBatchDetailModel.cs" />
+    <Compile Include="ProjectBatchInfo.cs" />
+    <Compile Include="ProjectBatchListModel.cs" />
+    <Compile Include="ProjectBatchListQueryInfo.cs" />
+    <Compile Include="ProjectBatchUnitInfo.cs" />
+    <Compile Include="ProjectBatchUnitListModel.cs" />
+    <Compile Include="ProjectBatchUnitListQueryInfo.cs" />
+    <Compile Include="ProjectPlanInfo.cs" />
+    <Compile Include="ProjectPlanListModel.cs" />
+    <Compile Include="ProjectPlanListQueryInfo.cs" />
+    <Compile Include="ProjectPlanUnitInfo.cs" />
+    <Compile Include="ProjectStoreSpecModel.cs" />
+    <Compile Include="ProjectUnitInfo.cs" />
+    <Compile Include="ProjectUnitInfoModel.cs" />
+    <Compile Include="ProjectUnitLeasingModel.cs" />
+    <Compile Include="ProjectUnitListModel.cs" />
+    <Compile Include="ProjectPlanInfoModel.cs" />
+    <Compile Include="ProjectUnitPlanInfo.cs" />
+    <Compile Include="ProjectUnitPlanModel.cs" />
+    <Compile Include="ProjectUnitRequestInfo.cs" />
+    <Compile Include="ProjectUnitRequestListModel.cs" />
+    <Compile Include="ProjectUnitRequestListQueryInfo.cs" />
+    <Compile Include="ProjectUnitRequestScheduleModel.cs" />
+    <Compile Include="ProjectUnitRequestTrackModel.cs" />
+    <Compile Include="ProjectUnitSpecModel.cs" />
+    <Compile Include="ProjectUnitSpecTemplateModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\NHH.Models.Common.csproj">
+      <Project>{c1f81f13-9f5d-4673-91a3-c9b564e8dbce}</Project>
+      <Name>NHH.Models.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NHH.Models.Approve\NHH.Models.Approve.csproj">
+      <Project>{c4766249-1770-4dde-97e5-4ce18a7f9402}</Project>
+      <Name>NHH.Models.Approve</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  有关如何配置 ASP.NET 应用程序的详细信息，请访问
+  http://go.microsoft.com/fwlink/?LinkId=301880
+  -->
+<configuration>
+  <configSections>
+        <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    </configSections>
+  <connectionStrings>
+    <add name="NHHLog" connectionString="Data Source=DB01;Initial Catalog=NHH_LOG;User Id=nhh;password=nhh@123;MultipleActiveResultSets=True;" providerName="System.Data.SqlClient" />
+    <add name="NHHEntities" connectionString="metadata=res://*/NHH.csdl|res://*/NHH.ssdl|res://*/NHH.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DB01;initial catalog=NHH;user id=nhh;password=nhh@123;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  </connectionStrings>
+  <appSettings>
+    <add key="webpages:Version" value="3.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+  </appSettings>
+  <system.web>
+    <authentication mode="Forms">
+      <forms loginUrl="/account/login/" timeout="2880" />
+    </authentication>
+    <compilation debug="true" targetFramework="4.5" />
+    <httpRuntime targetFramework="4.5" />
+    <customErrors mode="Off" defaultRedirect="/error/detail/500">
+      <error statusCode="403" redirect="/error/detail/403" />
+      <error statusCode="404" redirect="/error/detail/404" />
+      <error statusCode="500" redirect="/error/detail/500" />
+    </customErrors>
+  </system.web>
+ 
+  <system.webServer>
+    <modules>
+      <!--自定义站点处理模块-->
+      <add name="NHHMgtModule" preCondition="managedHandler" type="NHH.WebSite.Management.NHHMgtModule,NHH.WebSite.Management" />
+    </modules>
+    <staticContent>
+      <remove fileExtension=".woff" />
+       <!--In case IIS already has this mime type--> 
+      <mimeMap fileExtension=".woff" mimeType="application/x-font-woff" />
+    </staticContent>
+  </system.webServer>
+  <system.runtime.caching>
+    <memoryCache>
+      <namedCaches>
+        <add name="Default" cacheMemoryLimitMegabytes="200" pollingInterval="00:01:00" />
+      </namedCaches>
+    </memoryCache>
+  </system.runtime.caching>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" culture="neutral" publicKeyToken="30ad4fe6b2a6aeed" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Optimization" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-1.1.0.0" newVersion="1.1.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="WebGrease" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="0.0.0.0-1.6.5135.21930" newVersion="1.6.5135.21930" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Helpers" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.Mvc" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-5.2.3.0" newVersion="5.2.3.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="System.Web.WebPages" publicKeyToken="31bf3856ad364e35" />
+        <bindingRedirect oldVersion="1.0.0.0-3.0.0.0" newVersion="3.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Antlr3.Runtime" publicKeyToken="eb42632606e9261f" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-3.5.0.2" newVersion="3.5.0.2" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+</configuration>

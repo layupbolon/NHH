@@ -1,0 +1,25 @@
+﻿@model NHH.Models.Contract.PaymentTermInfo
+
+<h4 class="lighter">物业费</h4>
+@if (Model.ContractStatus == 2)
+{
+    <a class="edit-btn" href="javascript:void(0);" id="lbtnMgmtPaymentInfo" data-contractid="@Model.ContractID">编辑信息</a>
+    <script type="text/javascript">
+        $("#lbtnMgmtPaymentInfo").click(function () {
+            var url = "@Url.Action("MgmtPaymentInfo", "ContractMgmt", new { area = "Contract" })";
+            url += "?contractId=" + $("#ContractID").val();
+            $("#mgmtPaymentInfo").load(url);
+        });
+    </script>
+}
+<dl class="form-content form-content-edit form-row-comb">
+    <dd>
+        <label>月物业费：</label>
+        <span>@Model.PaymentMonthlyAmount.ToString("#,##0.00") 元/月</span>
+    </dd>
+    <dd>
+        <label>日物业费：</label>
+        <span>@Model.PaymentDailyAmount.ToString("#,##0.00") 元/天/平方米</span>
+    </dd>
+</dl>
+<div class="clear"></div>

@@ -1,0 +1,79 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Configure.SysFunctionListModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>功能信息</h1>
+        </div>
+    </div>
+    <div class="screen-area" style="height:40px">
+        <form>
+            <dl class="list-screen">
+                <dt>功能名称：</dt>
+                <dd>
+                    @Html.TextBox("FunctionName", Model.QueryInfo.FunctionName)
+                </dd>
+            </dl>
+            <div class="result-btn">
+                <a class="btn btn-xs btn-success btn-font" id="lnkSearch" href="javascript:void(0);">查询</a>
+                <a class="btn btn-xs btn-success btn-font" id="lnkSearch" href="@Url.Action("Add", "Function", new { area = "System" })">新增</a>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <h4 class="lighter mt30">
+            功能列表
+        </h4>
+        <div class="hr hr-18 hr-double dotted"></div>
+        <div class="col-xs-12">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>功能ID</th>
+                        <th>功能键值</th>
+                        <th>功能名称</th>
+                        <th>功能描述</th>
+                        <th class="col-lg-1">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.FunctionList)
+                    {
+                        <tr>
+                            <td>@item.FunctionId</td>
+                            <td>@item.FunctionKey</td>
+                            <td>@item.FunctionName</td>
+                            <td>@item.FunctionDescription</td>
+                            <td>
+                                @Html.ActionLink("编辑", "Edit", "Function", new { area = "System", functionId = item.FunctionId }, new { @class = "btn btn-success btn-font" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @{Html.RenderPartial("_PartialPaging", Model.PagingInfo);}
+        </div><!-- /.span -->
+    </div><!-- /.row -->
+</div><!-- /.page-content-area -->
+
+
+<script type="text/javascript">
+
+    //查询
+    $("#lnkSearch").click(function () {
+        var url = "@Url.Action("List", "Function", new { area = "System" })";
+        url += "?functionName=" + $("#FunctionName").val();
+        location.href = url;
+    });
+
+    //分页
+    $(".page").click(function () {
+        var url = "@Url.Action("List", "Function", new { area = "System" })";
+        url += "?functionName=" + $("#FunctionName").val();
+        url += "&page=" + $(this).attr("data-page");
+        location.href = url;
+    });
+</script>

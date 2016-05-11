@@ -1,0 +1,85 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Plan.ProjectBatchListModel
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+    <div class="page-header">
+        <h1>
+            招商批次
+        </h1>
+    </div>
+    <div class="screen-area">
+        <form>
+            <dl class="list-screen">
+                <dt>项目名称：</dt>
+                <dd>@Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList, "请选择")</dd>
+            </dl>
+            <div class="result-btn">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-success btn-font" id="btnSearch">查询</button>
+                    <button type="button" class="btn btn-sm btn-success btn-font dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a id="btnExport" href="###">导出Excel文档</a>
+                        </li>
+                    </ul>
+                </div>
+                <button class="btn btn-sm btn-success btn-font" type="button" id="btnAdd">新增批次</button>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="nhhtable" id="batchList" data-reportCode="02001" data-title="批次列表">
+                <div class="nhhtable-toolbar"></div>
+                <table></table>
+            </div>       
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnAdd").click(function () {
+            var projectId = $("#ProjectId").val();
+            if (projectId == "" || projectId == undefined) {
+                alert("请选择项目");
+                return false;
+            }
+            var url = "@Url.Action("Add", "Batch", new { area = "Plan" })";
+            location.href = url + "?projectId=" + projectId;
+            return true;
+        });
+
+        new nhhui.nhhtable2({
+            id: "batchList",
+            searchBtn: "btnSearch",
+            exportBtn: "btnExport",
+            url: "@Url.Action("GetBatchList", "Batch", new { area = "Plan" })",
+            exportUrl: "@Url.Action("Export", "Batch", new { area = "Plan" })",
+            queryParams: function (params) {
+                params.projectId = $("#ProjectId").val();
+                if (params.projectId == "" || params.projectId == undefined) {
+                    alert("请选择项目");
+                    return false;
+                }
+                return params;
+            },
+        });
+    });
+
+    function batchCodeFormatter(item) {
+        var url = "@Url.Action("Edit", "Batch", new { area = "Plan" })";
+        url += "?batchId=" + item.BatchID;
+        return "<a href=\"" + url + "\" class=\"btn btn-xs btn-link btn-font\">" + item.BatchCode + "</a>";
+    };
+    function operateFormatter(item) {
+        var url = "@Url.Action("UnitList", "Batch", new { area = "Plan" })";
+        url += "?projectId=" + item.ProjectID + "&batchId=" + item.BatchID;
+        return "<a href=\"" + url + "\" class=\"btn btn-xs btn-link btn-font\">铺位列表</a>";
+    };
+</script>

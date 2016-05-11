@@ -1,0 +1,216 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Project.FloorMapModel
+
+<link rel="stylesheet" href="~/Content/assets/css/floormap/floormap.css" />
+<link rel="stylesheet" href="~/Content/assets/css/floormap/buttons.css" />
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="floormap-wrap">
+    <div class="rowA floormapmar">
+        <div class="col-hs-1">
+            <div class="projectChoice mb20">
+                <dl class="list-screen">
+                    <dt>选择项目：</dt>
+                    <dd>@Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList, "请选择项目")</dd>
+                    <dt>选择楼宇：</dt>
+                    <dd>@Html.DropDownList("BuildingId", ViewData["BuildingList"] as SelectList, "请选择楼宇")</dd>
+                </dl>
+            </div>
+
+            <div class="floormap">
+                <ul>
+                    @foreach (var floor in Model.FloorList)
+                    {
+                        <li class="@Html.Raw(floor.FloorId == Model.QueryInfo.FloorId ? "curr" : "")">
+                            <a onclick="selectfloor(@floor.FloorId,@Model.QueryInfo.BuildingId,@Model.QueryInfo.ProjectId)">@floor.FloorName</a>
+                        </li>
+                    }
+                </ul>
+                <div class="clear"></div>
+                @*//jcanvas 的画布缩放有鼠标错位的bug。修复后放开*@
+                @*<div class="zoomwrap">
+                    <a class="narrow" href="javascript:onclick=zoomout(10);">-</a>
+                    <i id="zoomnum">100%</i>
+                    <a class="zoom" href="javascript:onclick=zoomin(10);">+</a>
+                </div>*@
+                <div id="floormap-canvas" class="floormapcanvas" style="background: url(/Content/assets/images/floorimg/@Html.Raw(Model.QueryInfo.FloorId.ToString() +".jpg") no-repeat 0 0; zoom: 100%">
+                    <canvas width="1100" height="1200" style="cursor: default;"></canvas>
+                </div>
+            </div>
+            <div class="showArea">
+                <div id="unitinfo" class="storeinfo mb20"></div>
+                <div class="screenType">
+                    <dl>
+                        <dd>
+                            <select height="23px" id="PickupListType" name="">
+                                <option value="0">选择查询类型</option>
+                                <option value="ContractStatus">合同状态</option>
+                                <option value="ProjectUnitStatus">商铺状态</option>
+                            </select>
+                        </dd>
+                    </dl>
+                    <dl class="btnarea" id="PickupList">
+                        <dd>
+                            <a style="" onclick="floormap()" class="button button-royal button-rounded button-normal">初始店铺</a>
+                        </dd>
+                    </dl>
+                </div>
+                <div id="return-info"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="FloorId" value="@Model.QueryInfo.FloorId" />
+<input type="hidden" id="FloorMapUnitId" />
+<script src="~/Content/assets/js/floormap/jcanvas.min.js"></script>
+<script type="text/javascript">
+    try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+</script>
+<script type="text/javascript">
+    $(function () {
+        //初始楼层画布JS
+        @Html.Raw(Model.FloorMapScript);
+    });
+</script>
+<script type="text/javascript">
+        //项目下拉框选择
+    $("#ProjectId").change(function () {
+        var projectId = $("#ProjectId").val();
+        var url = "@Url.Action("Info", "FloorMap", new { area = "Project" })";
+        url += "?projectId=" + projectId;
+        location.href = url;
+    });
+
+        //楼宇下拉框选择
+    $("#BuildingId").change(function () {
+        var projectId = $("#ProjectId").val();
+        var buildingId = $("#BuildingId").val();
+        var url = "@Url.Action("Info", "FloorMap", new { area = "Project" })";
+        url += "?projectId=" + projectId + "&buildingId=" + buildingId;
+        location.href = url;
+    });
+
+    //选择平面图过滤/上色按钮。并更新所有单元颜色
+    $("#PickupListType").change(function () {
+        var conditionname = $("#PickupListType").val();
+        $.ajax({
+            url: "@Url.Action("LayoutPickup", "FloorMap", new { area = "Project" })",
+            datatype: "text",
+            type: "GET",
+            data: { conditionname: conditionname },
+            success: function (result, status) {
+                $('#PickupList').html(result);
+                $(".btnColor").click();
+            },
+            error: function () {
+                $("#PickupList").html("ERROR");
+            }
+        });
+    });
+        //选择楼层链接
+    function selectfloor(floorId, buildingId, projectId) {
+        $("#FloorId").val(floorId);
+        var url = "@Url.Action("Info", "FloorMap", new { area = "Project" })";
+        url += "?floorId=" + floorId + "&buildingId=" + buildingId + "&projectId=" + projectId;
+        location.href = url;
+    }
+
+        //画布zoomin和out，有bug暂时不能用
+    function zoomin(num) {
+        var zoom = parseInt(document.getElementById("zoomnum").innerText) + num;
+        var zoomstyle = "zoom: " + zoom + "%";
+        document.getElementById("floormap-canvas").style.zoom = zoom + "%";
+        document.getElementById("zoomnum").innerText = zoom + "%";
+    }
+
+    function zoomout(num) {
+        var zoom = parseInt(document.getElementById("zoomnum").innerText) - num;
+        var zoomstyle = "zoom: " + zoom + "%";
+        document.getElementById("floormap-canvas").style.zoom = zoom + "%";
+        document.getElementById("zoomnum").innerText = zoom + "%";
+    }
+</script>
+
+<script>
+    //ajax获取unit详细信息，右边区域。
+    function getUnitDetail(floormapunitid, floorid) {
+        $("#FloorMapUnitId").val(floormapunitid);
+        $.ajax({
+            url: "@Url.Action("GetFloorMapUnit", "FloorMap", new { area = "Project" })",
+            dataType: "Html",
+            type: "GET",
+            data: { floorMapUnitID: floormapunitid, floorID: floorid },
+            success: function (result, status) {
+                $('#unitinfo').html(result);
+            },
+            error: function () {
+                $("#unitinfo").html("ERROR");
+            }
+        });
+    }
+
+    //更新平面图商铺ID，绑定
+    function BindingUnit() {
+        var floormapunitid = $("#FloorMapUnitId").val();
+        var unitid = $("#BindingUnitId").val();
+        $.ajax({
+            url: "@Url.Action("BindingFloorMapUnit", "FloorMap", new { area = "Project" })",
+            datatype: "json",
+            type: "POST",
+            data: { floorMapUnitID: floormapunitid, unitId: unitid },
+            success: function (result, status) {
+                getUnitDetail(floormapunitid, 0);
+            },
+            error: function () {
+                $("#unitinfo").html("ERROR");
+            }
+        });
+    }
+
+    //更新平面图商铺ID，解除绑定
+    function UnBindingUnit() {
+        var floormapunitid = $("#FloorMapUnitId").val();
+        $.ajax({
+            url: "@Url.Action("BindingFloorMapUnit", "FloorMap", new { area = "Project" })",
+            datatype: "json",
+            type: "POST",
+            data: { floorMapUnitID: floormapunitid, unitId: 0 },
+            success: function (result, status) {
+                getUnitDetail(floormapunitid, 0);
+            },
+            error: function () {
+                $("#unitinfo").html("ERROR");
+            }
+        });
+    }
+
+    //更新平面图单元颜色。
+    function changeLayoutColor(type, value, unitcolor) {
+        var data = {};
+        data.FloorId = $("#FloorId").val();
+        if (type == "ContractStatus") {
+            data.ContractStatus = value;
+        }
+        else if (type == "ProjectUnitStatus") {
+            data.ProjectUnitStatus = value;
+        }
+        $.ajax({
+            url: "/Project/FloorMap/Layout",
+            datatype: "json",
+            type: "GET",
+            data: data,
+            success: function (data) {
+                var unitlist = data.unitlist;
+                $.each(unitlist, function (index, value) {
+                    $('canvas').setLayer(value, {
+                        fillStyle: unitcolor,
+                    }).drawLayers();
+                });
+            },
+            error: function () {
+                $("#return-info").html("ERROR");
+            }
+        });
+    }
+
+</script>

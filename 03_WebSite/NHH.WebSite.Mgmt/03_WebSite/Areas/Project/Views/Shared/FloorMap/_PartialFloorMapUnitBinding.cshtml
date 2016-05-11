@@ -1,0 +1,25 @@
+﻿@model List<NHH.Models.Project.FloorMapUnitInfo>
+<table>
+    <tr>
+        <td class="infoarea-title">商铺编号：</td>
+        <td>
+            <select id="BindingUnitId" name="BindingUnitId">
+                <option value="0">请选择商铺</option>
+                @foreach (var floorMap in Model)
+                {
+                    <option value="@floorMap.UnitID">@Html.Raw(floorMap.FloorMapUnitID.HasValue?"*":"") @floorMap.UnitNumber </option>
+                }
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <a style="" onclick="BindingUnit()" class="button button-rounded button-normal">绑定</a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <a style="" onclick="UnBindingUnit()" class="button button-rounded button-normal">解绑</a>
+        </td>
+    </tr>
+</table>

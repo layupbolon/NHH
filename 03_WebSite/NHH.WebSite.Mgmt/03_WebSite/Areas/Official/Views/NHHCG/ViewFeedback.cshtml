@@ -1,0 +1,170 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model NHH.Models.Official.Feedback.FeedbackModel
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>查看用户反馈</h1>
+        </div>
+
+        <div class="rowA">
+            <div class="col-xs-12">
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 反馈编号： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @Model.FeedbackID
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 反馈类型： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @Model.FeedbackTypeName
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户角色： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @Model.UserTypeName
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 姓名： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @Model.CustomerName
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 电话： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @Model.Phone
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 详情： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @Model.Remark
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 状态： </label>
+                    <div class="col-sm-9">
+                        <span class="defauletext">
+                            @Model.FeedbackStatusName
+                        </span>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.AccepterName))
+                {
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 受理人： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">
+                                @Model.AccepterName
+                            </span>
+                        </div>
+                    </div>
+                }
+                @if (Model.AcceptTime.HasValue)
+                {
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 受理时间： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">
+                                @Model.AcceptTime.Value.ToString("yyyy-MM-dd HH:mm")
+                            </span>
+                        </div>
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(Model.AcceptResult))
+                {
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 受理结果： </label>
+                        <div class="col-sm-9">
+                            <span class="defauletext">
+                                @Model.AcceptResult
+                            </span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        @if (Model.Status == 1)
+        {
+            <div class="page-header">
+                <h1>处理用户反馈</h1>
+            </div>
+
+            <div class="rowA">
+                <div class="col-xs-12">
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 受理结果： </label>
+                        <div class="col-sm-9">
+                            @Html.TextAreaFor(m => m.AcceptResult, 5, 5, new { @class = "col-xs-10 col-sm-5" })
+                        </div>
+                    </div>
+
+                    <div class="space-4"></div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"></label>
+                        <div class="col-sm-9">
+                            <button class="btn btn-xs btn-success btn-font" type="button" id="btn_Process">受理</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#btn_Process").click(function () {
+            nhhui.confirm("你确定要处理此用户反馈吗？",function(){
+                var Url = '@Url.Action("Process", "NHHCG", new { area = "Official", feedbackID = Model.FeedbackID })';
+                var data = {
+                    FeedbackID:@Model.FeedbackID,
+                    AcceptResult:$("#AcceptResult").val()
+                };
+
+                $.ajax({
+                    url: Url,
+                    type: "POST",
+                    dataType: "JSON",
+                    data: data,
+                    cache: false,
+                    success: function (result) {
+                        location.href = '@Url.Action("ViewFeedback", "NHHCG", new { area = "Official", feedbackID = Model.FeedbackID })';
+                    },
+                    error: function (result) {
+                        alert("操作失败！");
+                    }
+                });
+            });            
+        });
+    });
+</script>

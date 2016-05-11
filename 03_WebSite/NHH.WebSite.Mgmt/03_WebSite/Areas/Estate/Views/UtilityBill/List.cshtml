@@ -1,0 +1,187 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Estate.UtilityBillListModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="rowA">
+    <div class="col-5">
+        <h4>水电煤气抄表</h4>
+        <div class="hr hr-18 hr-double dotted"></div>
+        <div class="screen-area" style="height:40px">
+            <dl class="list-screen">
+                <dt>选择类型：</dt>
+                <dd>@Html.DropDownList("MeterType", ViewData["MeterTypeList"] as SelectList)</dd>
+                <dt>选择项目：</dt>
+                <dd>
+                    @Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList)
+                </dd>
+                <dt>选择楼宇：</dt>
+                <dd>
+                    @Html.DropDownList("BuildingId", ViewData["BuildingList"] as SelectList, "全部")
+                </dd>
+            </dl>
+            <form>
+                <div class="result-btn">
+                    <a class="btn btn-xs btn-success btn-font" href="###" style="margin-left:15px;" id="btnDownload">导出商户列表</a>
+                    <a class="btn btn-xs btn-success btn-font" href="javascript:void(0)" style="margin-left:15px;" id="btnUpload">上传水电煤气抄表</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="rowA">
+    <div class="col-5">
+        <h4>水电煤气列表</h4>
+        <div class="hr hr-18 hr-double dotted"></div>
+        <div class="screen-area" style="height:40px;">
+            <dl class="list-screen">
+                <dd>类型：</dd>
+                <dd>
+                    @Html.DropDownList("Type", ViewData["MeterTypeList"] as SelectList, "请选择")
+                </dd>
+                <dt>商户简称：</dt>
+                <dd>
+                    @Html.TextBox("MerchantName", Model.QueryInfo.MerchantName)
+                </dd>
+            </dl>
+            <dl class="list-screen">
+                <dt>时间：</dt>
+                <dd class="input-merge input-daterange input-group" style="width:399px">
+                    @Html.TextBox("StartDate", Model.QueryInfo.StartDate.HasValue ? Model.QueryInfo.StartDate.Value.ToString("yyyy-MM-dd") : string.Empty, new { @class = "input-sm iconTime" })
+                    <b>-</b>
+                    @Html.TextBox("EndDate", Model.QueryInfo.EndDate.HasValue ? Model.QueryInfo.EndDate.Value.ToString("yyyy-MM-dd") : string.Empty, new { @class = "input-sm iconTime" })                    
+                </dd>
+            </dl>
+            <div class="result-btn">
+                <input type="button" id="btnSearch" class="btn btn-xs btn-success btn-font input-btn" value="查询" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- PAGE CONTENT BEGINS -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4 class="lighter mt30">
+                            水电煤气抄表列表
+                        </h4>
+                        <div class="hr hr-18 hr-double dotted"></div>
+                        <table id="sample-table-1" class="table table-striped table-bordered table-hover table-txthover">
+                            <thead>
+                                <tr>
+                                    <th>商户简称</th>
+                                    <th>商铺名称</th>
+                                    <th>类型</th>
+                                    <th>计量表编号</th>
+                                    <th>参数</th>
+                                    <th>上期抄表时间</th>
+                                    <th>上期抄表数</th>
+                                    <th>本期抄表时间</th>
+                                    <th>本期抄表数</th>
+                                    <th>实用数</th>
+                                    <th>单价</th>
+                                    <th>抄表金额</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    @foreach (var item in Model.UtilityBillList)
+                                    {
+                                    <tr>
+                                        <td>@item.MerchantName</td>
+                                        <td>@item.StoreName</td>
+                                        <td>@item.MeterTypeName</td>
+                                        <td>@item.MeterCode</td>
+                                        <td>@item.MeterAttr</td>
+                                        <td>@item.StartDate.ToString("yyyy-MM-dd")</td>
+                                        <td>@item.PrevNumber</td>
+                                        <td>@item.EndDate.ToString("yyyy-MM-dd")</td>
+                                        <td>@item.CurNumber</td>
+                                        <td>@item.UseNumber</td>
+                                        <td>@item.UnitPrice</td>
+                                        <td>@item.BillAmount</td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @{ Html.RenderPartial("_PartialPaging", Model.PagingInfo);}
+                        </div><!-- /.span -->
+                    </div><!-- /.row -->
+                </div><!-- /.col -->
+            </div>
+    </div>
+</div>
+
+<div id="modal" class="modal fade" tabindex="-1" aria-hidden="true" style="display: none;"></div>
+<script language="javascript" type="text/javascript" src="~/Scripts/ajaxupload.3.9.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#ProjectId").change(function () {
+            var projectId = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("GetBuildingList", "Project", new { area = "Ajax" })",
+                data: "projectId=" + projectId,
+                dataType: "JSON",
+                success: function (data, status) {
+                    var length = data.length;
+                    var strHtml = "<option value='0'>" + "全部" + "</option>";;
+                    for (var n = 0; n < length; n++) {
+                        strHtml += "<option value='" + data[n].Id + "'>" + data[n].Name + "</option>";
+                    }
+                    $("#BuildingId").html(strHtml);
+                }
+            });
+        });
+
+        //导出商户模板
+        $("#btnDownload").click(function () {
+            var url = "@Url.Action("Download", "UtilityBill", new { area = "Estate" })";
+            url += "?type=" + $("#MeterType").val();
+            url += "&projectId=" + $("#ProjectId").val();
+            url += "&buildingId=" + $("#BuildingId").val();
+            window.open(url);
+        });
+
+        $("#btnSearch").click(function () {
+            var url = "@Url.Action("List", "UtilityBill", new { area = "Estate" })";
+            url += "?MerchantName=" + $("#MerchantName").val();
+            url += "&type=" + $("#Type").val();
+            url += "&StartDate=" + $("#StartDate").val();
+            url += "&EndDate=" + $("#EndDate").val();
+
+            window.location = url;
+        });
+
+        ///翻页查询功能
+        $(".page").click(function () {
+            var url = "@Url.Action("List", "UtilityBill", new { area = "Estate" })";
+            url += "?MerchantName=" + $("#MerchantName").val();
+            url += "&StartDate=" + $("#StartDate").val();
+            url += "&EndDate=" + $("#EndDate").val();
+            url += "&page=" + $(this).attr("data-page");
+            window.location = url;
+        });
+
+        //上传导入数据
+        var button = $("#btnUpload");
+        new AjaxUpload(button, {
+            action: "@Url.Action("Upload", "UtilityBill", new { area = "Estate" })",
+            name: "ExcelFile",
+            onSubmit: function (file, ext) {
+                button.text("上传中");
+                this.disable();
+            },
+            onComplete: function (file, response) {
+                this.enable();
+                button.text("导入数据上传");
+                var result = JSON.parse(response);
+                alert(result.Message);
+
+                var page = $("#queryPageIndex").val();
+                CommonPageQuery(page);
+            }
+        });
+    })
+</script>

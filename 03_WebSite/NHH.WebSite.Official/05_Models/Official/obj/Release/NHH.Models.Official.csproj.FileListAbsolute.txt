@@ -1,0 +1,5 @@
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Official\05_Models\Official\bin\Release\NHH.Models.Official.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Official\05_Models\Official\bin\Release\NHH.Models.Official.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Official\05_Models\Official\obj\Release\NHH.Models.Official.dll
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Official\05_Models\Official\obj\Release\NHH.Models.Official.pdb
+D:\NHH\03_Coding\01_SourceCode\03_WebSite\NHH.WebSite.Official\05_Models\Official\obj\Release\NHH.Models.Official.csprojResolveAssemblyReference.cache

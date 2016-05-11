@@ -1,0 +1,149 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Common.BaseModel
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>合并铺位</h1>
+        </div><!-- /.page-header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-warning">注：有租决或租决意向的铺位不允许合铺</div>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 选择项目：</label>
+                        <div class="col-lg-9">
+                            @Html.DropDownList("ProjectID", ViewData["ProjectList"] as SelectList)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 新铺位编号： </label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                @Html.TextBox("UnitCode", "", new { placeholder = "合铺后的编号" })
+                                <span class="input-group-btn" style="display:inline-block">
+                                    <button class="btn btn-font btn-default" type="button" id="btnCheckNew">检查是否有效</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 新铺位面积：</label>
+                        <div class="col-lg-9">
+                            @Html.TextBox("UnitArea", "0", new { placeholder = "合铺后的面积" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 原铺位编号：</label>
+                        <div class="col-lg-9">
+                            <ul id="unitList"></ul>
+                            <div class="input-group">
+                                <input type="text" id="UnitCode2" placeholder="原铺位编号" />
+                                <span class="input-group-btn" style="display:inline-block">
+                                    <button class="btn btn-font btn-default" type="button" id="btnAdd">+</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 合铺原因：</label>
+                        <div class="col-lg-9">
+                            @Html.TextArea("Remark", "", new { placeholder = "请输入合铺原因", rows = "5", @class = "col-lg-5" })
+                        </div>
+                    </div>
+                    <div class="space-4"></div>
+                    <div class="clearfix form-actions">
+                        <div class="col-lg-offset-3 col-lg-9">
+                            <button class="btn btn-success btn-font" type="button" id="btnMerge">确认合铺</button>
+                        </div>
+                    </div>
+                    <div class="alert" style="display:none" id="message"></div>
+                </form>
+            </div>
+            <!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#btnCheckNew").click(function () {
+            var requestData = {};
+            requestData.projectId = $("#ProjectID").val();
+            requestData.unitNumber = $("#UnitCode").val();
+
+            $.ajax({
+                url: "@Url.Action("CheckNewNumber", "ProjectUnitMerge", new { area = "Ajax" })",
+                type: "GET",
+                data: requestData,
+                dataType: "JSON",
+                success: function (result, status) {
+                    window.nhhui.alertbox.show("message", result);
+                }
+            });
+        });
+
+        $("#btnAdd").click(function () {
+            var requestData = {};
+            requestData.projectId = $("#ProjectID").val();
+            requestData.unitNumber = $("#UnitCode2").val();
+
+            $.ajax({
+                url: "@Url.Action("GetUnitInfo", "ProjectUnitMerge", new { area = "Ajax" })",
+                type: "GET",
+                data: requestData,
+                dataType: "JSON",
+                success: function (result, status) {
+                    window.nhhui.alertbox.show("message", result);
+                    if (result.Code == 0) {
+                        var unitInfo = result.Data;
+                        var strHtml = "<li data-unitId='" + unitInfo.UnitId + "'>";
+                        strHtml += unitInfo.BuildingName;
+                        strHtml += unitInfo.FloorName;
+                        strHtml += " " + unitInfo.UnitNumber;
+                        strHtml += " " + unitInfo.UnitArea.toFixed(2) + "平方米";
+                        strHtml += "</li>";
+                        $("#unitList").prepend(strHtml);
+                        $("#UnitCode2").val("");
+
+                        var txtUnitArea = $("#UnitArea");
+                        var unitArea = parseFloat(txtUnitArea.val());
+                        unitArea += unitInfo.UnitArea;
+                        txtUnitArea.val(unitArea);
+                    }
+                }
+            });
+        });
+
+        $("#btnMerge").click(function () {
+            var requestData = {};
+            requestData.Type = 1;
+            requestData.projectId = $("#ProjectID").val();
+            requestData.unitNumber = $("#UnitCode").val();
+            requestData.unitArea = $("#UnitArea").val();
+            requestData.OriginalUnitID = new Array();
+            requestData.Remark = $("#Remark").val();
+
+            $("#unitList li").each(function (index, item) {
+                requestData.OriginalUnitID.push($(item).attr("data-unitId"));
+            });
+            $.ajax({
+                url: "@Url.Action("Merge", "ProjectUnitMerge", new { area = "Ajax" })",
+                type: "POST",
+                data: requestData,
+                dataType: "JSON",
+                success: function (result, status) {
+                    if (result.Code == 0) {
+                        var url = "@Url.Action("Edit", "ProjectUnit", new { area = "Project" })";
+                        url += "?unitId=" + result.Data;
+                        window.location.href = url;
+                        return true;
+                    }
+                    else {
+                        window.nhhui.alertbox.show("message", result);
+                    }
+                }
+            });
+        });
+    });
+</script>

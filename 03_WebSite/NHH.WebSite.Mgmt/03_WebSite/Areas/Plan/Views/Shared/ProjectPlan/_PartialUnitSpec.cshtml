@@ -1,0 +1,98 @@
+﻿@model NHH.Models.Plan.ProjectUnitSpecModel
+
+    <h4 class="lighter">交付标准</h4>
+    <a class="edit-btn" href="javascript:void(0);" id="lbtnUnitSpec" data-unitid="@Model.UnitId">编辑信息</a>
+    <div class="hr hr-18 hr-double dotted"></div>
+    <dl class="form-content textstyle">
+        <dt><i>交房标准</i></dt>
+        <dd>
+            <label>交房标准：</label>
+            <span>@Model.ConditionString</span>
+        </dd>
+    </dl>
+    <div class="clear"></div>
+    <!-- 交房标准-显示效果 -->
+
+    <dl class="form-content textstyle">
+        <dt><i>建筑结构</i></dt>
+        <dd>
+            <label>地面：</label>
+            <span>@Model.Floor</span>
+        </dd>
+        <dd>
+            <label>顶面：</label>
+            <span>@Model.Ceiling</span>
+        </dd>
+        <dd>
+            <label>墙：</label>
+            <span>@Model.Wall</span>
+        </dd>
+        <dd>
+            <label>柱：</label>
+            <span>@Model.Pillar</span>
+        </dd>
+        <dd>
+            <label>楼板承重：</label>
+            <span>@Model.FloorBearing</span>
+        </dd>
+        <dd>
+            <label>给水：</label>
+            <span>@Model.WaterSupply</span>
+        </dd>
+        <dd>
+            <label>排水：</label>
+            <span>@Model.WaterDrain</span>
+        </dd>
+        <dd>
+            <label>店铺门面/标牌：</label>
+            <span>@Model.Logo</span>
+        </dd>
+    </dl>
+    <div class="clear"></div>
+    <!-- 建筑结构-显示效果 -->
+
+    <dl class="form-content textstyle">
+        <dt><i>机电设施</i></dt>
+        <dd>
+            <label>供电系统：</label>
+            <span>@Model.ElectricityUsage</span>
+        </dd>
+        <dd>
+            <label>消防系统：</label>
+            <span>@Model.FireProtection</span>
+        </dd>
+        <dd>
+            <label>广播系统：</label>
+            <span>@Model.Broadcasting</span>
+        </dd>
+        <dd>
+            <label>空调系统：</label>
+            <span>@Model.AirCondition</span>
+        </dd>
+        <dd>
+            <label>排油烟系统：</label>
+            <span>@Model.Smoke</span>
+        </dd>
+        <dd>
+            <label>安防系统：</label>
+            <span>@Model.Security</span>
+        </dd>
+        <dd>
+            <label>综合布线：</label>
+            <span>@Model.Wiring</span>
+        </dd>
+        <dd>
+            <label>煤气：</label>
+            <span>@Model.Gas</span>
+        </dd>
+    </dl>
+    <!-- 机电设施-显示效果 -->
+    <div class="clear"></div>
+    <!-- 交付标准-显示效果 -->
+<script type="text/javascript">
+    $("#lbtnUnitSpec").click(function () {
+        var url = "@Url.Action("EditUnitSpec", "ProjectUnit", new { area="Plan"})";
+        url += "?unitId=" + $(this).attr("data-unitId");
+        $("#unitSpec").load(url);
+    });
+</script>

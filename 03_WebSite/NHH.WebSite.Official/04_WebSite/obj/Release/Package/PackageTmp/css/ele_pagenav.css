@@ -1,0 +1,114 @@
+.pageNav{
+	height:40px; 
+	font-size:0; 
+	color:#ccc;
+}
+.pageNav span,
+.pageNav a,
+.pageNav ins{font-size:18px;}
+.pageNav a {
+    border: 1px solid #999;
+	border-color:rgba(255,255,255,.4);
+	border-color:rgb(153,153,153)\9;
+	*border-color:#999;
+	display:inline-block;
+    margin-left:5px;
+	color:#ccc;
+	font-family:Tahoma;
+	border-radius:2px;
+}
+:root .pageNav a{
+	border-color:rgba(255,255,255,.4)\0;
+}
+.pageNav span.ml10 strong {_position:relative;_top:-2px;}
+.pageNav a:hover,
+.pageNav a.curr {
+    border: 1px solid #efebda;
+	border-color:rgba(255,255,255,.9);
+	border-color:rgb(240,240,240)\9;
+	*border-color:#efebda;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none!important;
+}
+.pageNav a span {
+    display: inline-block;
+    line-height: 38px;
+    padding: 0 15px;
+	border-radius:2px;
+	background-color:rgba(0,0,0,.7);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3000000', endColorstr='#b3000000',GradientType=0 );
+}
+:root .pageNav a span{
+	filter:none\0;
+	background-color:rgba(0,0,0,.7)\0;
+}
+.pageNav a:curr span,
+.pageNav a:hover span{
+	background-color:rgba(0,0,0,.75);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bf000000', endColorstr='#bf000000',GradientType=0 );
+}
+:root .pageNav a:hover span{
+	filter:none\0;
+	background-color:rgba(0,0,0,.75)\0;
+}
+.pageNav ins {
+    line-height:30px;
+    margin:0 5px 0 9px;
+    text-decoration: none;
+	display:inline-block;
+	color:#fff;
+	vertical-align:top;
+}
+
+.pageNav a.next,
+.pageNav a.pre{
+	font-family:"Microsoft Yahei";
+	overflow:hidden; 
+	vertical-align:top;
+	font-size:16px;
+}
+.pageNav a.next{
+	margin-left:10px;
+}
+.pageNav a.pre{
+	margin-right:5px;
+}
+.pageNav a.next span,
+.pageNav a.pre span{
+	padding:0;
+	width:98px;
+	text-align:center;
+	font-size:16px;
+}
+.pageNav .preDisable,
+.pageNav .nextDisable{
+	color:#808080;
+	cursor:default;
+}
+.pageNav .preDisable:hover,
+.pageNav .nextDisable:hover{
+	color:#808080;
+	border-color:rgba(255,255,255,.4);
+	border-color:rgb(153,153,153)\9;
+	*border-color:#999;
+	cursor:default;
+}
+:root .pageNav .preDisable:hover,
+:root .pageNav .nextDisable:hover{
+	border-color:rgba(255,255,255,.4)\0;
+}
+.pageNav .preDisable span,
+.pageNav .nextDisable span{
+	cursor:default;
+}
+.pageNav .preDisable:hover span,
+.pageNav .nextDisable:hover span{
+	background-color:rgba(0,0,0,.7);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3000000', endColorstr='#b3000000',GradientType=0 );
+}
+:root .pageNav .preDisable:hover span,
+:root .pageNav .nextDisable:hover span{
+	filter:none\0;
+	background-color:rgba(0,0,0,.7)\0;
+}

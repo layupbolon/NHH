@@ -1,0 +1,75 @@
+﻿@{Layout = "~/Views/Shared/_Layout.cshtml";}
+@model NHH.Models.Project.ProjectUnit.ProjectUnitAdjustModel
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <!-- page-content -->
+    <div class="page-content-area">
+        <div class="page-header">
+            <h1>铺位调整详情</h1>
+        </div><!-- /.page-header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 新铺位楼层： </label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                <span class="help-inline">@Model.BuildingName @Model.FloorName</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 新铺位编号： </label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                <span class="help-inline">@Model.UnitNumber</span>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 新铺位面积： </label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                <span class="help-inline">@Model.UnitArea.ToString("#,##0.00") 平主米</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 原铺位编号： </label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                <span class="help-inline">@Model.OriginalUnitNumber</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 原铺位面积： </label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                <span class="help-inline">@Model.OriginalUnitArea.ToString("#,##0.00") 平方米</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 调整日期： </label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                <span class="help-inline">@Model.AdjustDate.ToString("yyyy-MM-dd HH:mm")</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label"> 调整原因： </label>
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                <span class="help-inline">@Model.Remark</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.page-content-area -->
+</div>

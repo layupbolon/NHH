@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CB65AD14-D37C-481A-9926-FB984D4D4CDD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NHH.Models.Official</RootNamespace>
+    <AssemblyName>NHH.Models.Official</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ADPosition\NHHCGADPositionListModel.cs" />
+    <Compile Include="ADPosition\NHHCGADPositionModel.cs" />
+    <Compile Include="ADPosition\NHHCGADPositionQueryModel.cs" />
+    <Compile Include="Banner\BannerDetailModel.cs" />
+    <Compile Include="Banner\BannerInfoModel.cs" />
+    <Compile Include="Banner\BannerListModel.cs" />
+    <Compile Include="Banner\BannerLocation.cs" />
+    <Compile Include="Banner\BannerModel.cs" />
+    <Compile Include="Banner\BannerQueryInfo.cs" />
+    <Compile Include="Common\NHHCGCommonEnum.cs" />
+    <Compile Include="Common\NHHCGPicListModel.cs" />
+    <Compile Include="Common\NHHCGPicModel.cs" />
+    <Compile Include="Feedback\FeedbackListModel.cs" />
+    <Compile Include="Feedback\FeedbackModel.cs" />
+    <Compile Include="Feedback\FeedbackQueryModel.cs" />
+    <Compile Include="Kiosk\NHHCGKioskListModel.cs" />
+    <Compile Include="Kiosk\NHHCGKioskModel.cs" />
+    <Compile Include="Kiosk\NHHCGKioskQueryModel.cs" />
+    <Compile Include="News\NewsListModel.cs" />
+    <Compile Include="News\NewsModel.cs" />
+    <Compile Include="News\NewsQueryInfo.cs" />
+    <Compile Include="Project\NHHCGProjectListModel.cs" />
+    <Compile Include="Project\NHHCGProjectModel.cs" />
+    <Compile Include="Project\NHHCGProjectQueryModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unit\NHHCGUnitListModel.cs" />
+    <Compile Include="Unit\NHHCGUnitModel.cs" />
+    <Compile Include="Unit\NHHCGUnitQueryModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\NHH.Models.Common.csproj">
+      <Project>{c1f81f13-9f5d-4673-91a3-c9b564e8dbce}</Project>
+      <Name>NHH.Models.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NHH.Models.Approve\NHH.Models.Approve.csproj">
+      <Project>{c4766249-1770-4dde-97e5-4ce18a7f9402}</Project>
+      <Name>NHH.Models.Approve</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

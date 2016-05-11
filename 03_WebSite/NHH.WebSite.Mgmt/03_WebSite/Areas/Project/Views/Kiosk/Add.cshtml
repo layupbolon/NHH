@@ -1,0 +1,116 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@model NHH.Models.Project.Kiosk.KioskDetailModel
+
+@{Html.RenderPartial("_PartialCrumbs", Model.CrumbInfo);}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>新增多经点位</h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm("Add", "Kiosk", new { area = "Project" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span> 项目： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownList("ProjectId", ViewData["ProjectList"] as SelectList, "请选择项目", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("ProjectId")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span> 楼层： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownList("FloorId", ViewData["FloorList"] as SelectList, "请选择楼层", new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("FloorId")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span> 多经点位类型： </label>
+                    <div class="col-sm-9">
+                        @Html.DropDownList("KioskType", ViewData["KioskTypeList"] as SelectList,  new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("KioskType")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="req">*</span> 多经点位号： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBox("KioskNumber", Model.KioskNumber, new { @class = "col-xs-10 col-sm-5" })
+                        <span class="help-inline col-xs-12 col-sm-7">
+                            <span class="middle red">
+                                @Html.ValidationMessage("KioskNumber")
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1">计租面积： </label>
+                    <div class="col-sm-9">
+                        @Html.TextBox("Area", Model.Area, new { @class = "col-xs-10 col-sm-5" })<span style="text-align: center;line-height: 36px;">平方米</span>
+                        <span class="middle red">
+                            @Html.ValidationMessage("Area")
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1">位置描述： </label>
+                    <div class="col-sm-9">
+                        @Html.TextArea("Location", Model.Location, 5, 5, new { @class = "col-xs-10 col-sm-5", @placeHolder = "例如：星巴克门口电梯旁" })
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1">平面图位置： </label>
+                    <div class="col-sm-9">
+                        <a href="###" class="lnkMapFile">
+                            <img id="smallMap" src="" title="楼层平面图" alt="" width="100" />
+                        </a>
+                        @Html.Hidden("FloorMapLocation", Model.FloorMapLocation)
+                        @Html.Hidden("FloorMapX", Model.FloorMapX)
+                        @Html.Hidden("FloorMapY", Model.FloorMapY)
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-input-readonly"></label>
+                    <div class="col-sm-9">
+                        <button class="btn btn-xs btn-success btn-font" type="submit">保存</button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn btn-xs btn-success btn-font" type="reset">取消</button>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Scripts/MapLocation.js"></script>
+<script type="text/javascript">
+    $(function () {
+        MapLocation.init("smallMap");
+        MapLocation.floorChange("smallMap", "@Url.Action("GetFloorMapFile", "Floor", new { area = "Ajax" })");
+    });
+</script>
+
+
+

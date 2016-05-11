@@ -1,0 +1,107 @@
+﻿@model NHH.Models.Common.ReportFieldInfo
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header no-padding">
+            <div class="table-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <span class="white">×</span>
+                </button>
+                字段信息
+            </div>
+        </div>
+
+        <div class="modal-body no-padding nothing">
+            <div class="popWinStyle">
+                <form class="">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"> <span class="req">*</span>字段标题： </label>
+                        <div class="col-sm-9 input-group">
+                            @Html.TextBox("FieldTitle", Model.FieldTitle, new { placeholder = "字段标题", @class = "col-xs-10" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"> <span class="red">*</span>字段名称：</label>
+                        <div class="col-sm-9 input-group">
+                            @Html.TextBox("FieldName", Model.FieldName, new { placeholder = "字段名称", @class = "col-xs-10" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"> 排序名称：</label>
+                        <div class="col-sm-9 input-group">
+                            @Html.TextBox("SortName", Model.SortName, new { placeholder = "排序名称", @class = "col-xs-10" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"> 字段样式：</label>
+                        <div class="col-sm-9 input-group">
+                            @Html.TextBox("FieldClass", Model.FieldClass, new { placeholder = "字段样式", @class = "col-xs-10" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"> 前端格式：</label>
+                        <div class="col-sm-9 input-group">
+                            @Html.TextBox("Formatter", Model.Formatter, new { placeholder = "前端格式", @class = "col-xs-10" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"> 是否可排序：</label>
+                        <div class="col-sm-9 input-group">
+                            <label>
+                                @Html.RadioButton("Sortable", 1, Model.Sortable == 1, new { @id = "Sortable1", @name = "Sortable", style = "height:auto" }) 是
+                            </label>
+                            <label>
+                                @Html.RadioButton("Sortable", 0, Model.Sortable == 0, new { @id = "Sortable2", @name = "Sortable", style = "height:auto" }) 否
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"> 是否可导出：</label>
+                        <div class="col-sm-9 input-group">
+                            <label>
+                                @Html.RadioButton("Exportable", 1, Model.Exportable == 1, new { @id = "Exportable1", @name = "Exportable", style = "height:auto" }) 是
+                            </label>
+                            <label>
+                                @Html.RadioButton("Exportable", 0, Model.Exportable == 0, new { @id = "Exportable2", @name = "Exportable", style = "height:auto" }) 否
+                            </label>
+                        </div>
+                    </div>
+                    <div class="ui-btngroup" style="clear:both">
+                        @Html.Hidden("FieldID", Model.FieldID)
+                        <button class="btn btn-xs btn-success btn-font mr20" type="button" id="btnSaveField">保存</button>
+                        <button class="btn btn-xs btn-success btn-font" type="button" id="btnClose">取消</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#btnClose").click(function () {
+        $("#modal").modal("hide");
+    });
+
+    $("#btnSaveField").click(function () {
+        var requestData = {};
+        requestData.ReportId = $("#ReportID").val();
+        requestData.FieldId = $("#FieldID").val();
+        requestData.FieldTitle = $("#FieldTitle").val();
+        requestData.FieldName = $("#FieldName").val();
+        requestData.SortName = $("#SortName").val();
+        requestData.FieldClass = $("#FieldClass").val();
+        requestData.Formatter = $("#Formatter").val();
+        requestData.Sortable = $("input[name='Sortable']:checked").val();
+        requestData.Exportable = $("input[name='Exportable']:checked").val();
+
+        $.ajax({
+            url: "@Url.Action("SaveFieldInfo", "Report", new { area = "System" })",
+            data: requestData,
+            type: "POST",
+            dataType: "JSON",
+            success: function (result, status) {
+                alert(result.Message);
+                var url = "@Url.Action("Info", "Report", new { area="System"})";
+                location.href = url + "?reportId=" + $("#ReportID").val();
+            }
+        });
+    });
+</script>

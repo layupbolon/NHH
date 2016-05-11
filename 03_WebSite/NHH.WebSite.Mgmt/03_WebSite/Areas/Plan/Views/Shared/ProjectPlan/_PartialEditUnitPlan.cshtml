@@ -1,0 +1,84 @@
+﻿@model NHH.Models.Plan.ProjectUnitPlanModel
+
+<h4 class="lighter">租决规划</h4>
+<a class="edit-btn-canl cancelEditUnitPlan" href="javascript:void(0);">取消编辑</a>
+<div class="hr hr-18 hr-double dotted"></div>
+
+<dl class="form-content form-content-edit">
+    <dd>
+        <label>租决租金：</label>
+        @Html.TextBox("StandardRent", Model.StandardRent)
+        <span class="middle">元/天/平方米</span>
+    </dd>
+    <dd>
+        <label>铺位类型：</label>
+        @Html.DropDownList("UnitTypeId", ViewData["UnitTypeList"] as SelectList)
+        <label class="tips">@Html.CheckBox("IsBenchmarking", Model.IsBenchmarking) <span>是否标杆品牌</span></label>
+    </dd>
+    <dd>
+        <label>业态规划：</label>
+        @Html.DropDownList("BizTypeId", ViewData["BizTypeList"] as SelectList)
+    </dd>
+    <dd>
+        <label>招商部门：</label>
+        <span class="mr10">
+            @Html.DropDownList("CompanyId", ViewData["CompanyList"] as SelectList)
+        </span>
+        <span>
+            @Html.DropDownList("DepartmentId", ViewData["DepartmentList"] as SelectList)
+        </span>
+    </dd>
+</dl>
+
+<div class="btn-edit">
+    <a href="###" class="btn btn-info mr20" id="btnUnitPlan">保存信息</a>
+    <a href="###" class="btn cancelEditUnitPlan">取消编辑</a>
+</div>
+<!-- 租决规划-编辑效果 -->
+
+<script language="javascript" type="text/javascript">
+    //公司切换
+    $("#CompanyId").change(function () {
+        var companyId = $(this).val();
+        var department = $("#DepartmentId");
+        department.html("");
+        $.ajax({
+            type: "GET",
+            data: "companyId=" + companyId,
+            dataType: "JSON",
+            url: "@Url.Action("GetDepartmentList", "Company", new { area="Ajax" })",
+            success: function (data, status) {
+                var strHtml = "";
+                var length = data.length;
+                for (var n = 0; n < length; n++) {
+                    strHtml += "<option value='" + data[n].DepartmentID + "'>" + data[n].DepartmentName + "</option>";
+                }
+                department.html(strHtml);
+            }
+        });
+    });
+
+    //保存
+    $("#btnUnitPlan").click(function () {
+        var data = {}
+        data.UnitId = $("#UnitId").val();
+        data.StandardRent = $("#StandardRent").val();
+        data.UnitTypeId = $("#UnitTypeId").val();
+        data.IsBenchmarking = $("#IsBenchmarking").val();
+        data.BizTypeId = $("#BizTypeId").val();
+        data.CompanyId = $("#CompanyId").val();
+        data.DepartmentId = $("#DepartmentId").val();
+
+        var url = "@Url.Action("EditUnitPlan", "ProjectUnit", new { area="Plan"})";
+        $("#unitPlan").load(url, data, function (response, status, xhr) {
+            $(this).html(response);
+        });
+    });
+
+    //取消编辑
+    $(".cancelEditUnitPlan").click(function () {
+        var url = "@Url.Action("UnitPlan", "ProjectUnit", new { area="Plan"})";
+        url += "?unitId=" + $("#UnitId").val();
+        $("#unitPlan").load(url);
+    });
+</script>

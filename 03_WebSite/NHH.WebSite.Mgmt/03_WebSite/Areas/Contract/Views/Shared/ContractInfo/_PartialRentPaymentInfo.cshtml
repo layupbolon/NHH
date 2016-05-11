@@ -1,0 +1,147 @@
+﻿@model NHH.Models.Contract.PaymentTermInfo
+
+<h4 class="lighter">租金</h4>
+@if (Model.ContractStatus == 2)
+{
+    <a class="edit-btn" href="javascript:void(0);" id="lbtnRentPaymentInfo" data-contractid="@Model.ContractID">编辑信息</a>
+    <script type="text/javascript">
+        $("#lbtnRentPaymentInfo").click(function () {
+            var url = "@Url.Action("RentPaymentInfo", "ContractMgmt", new { area = "Contract" })";
+            url += "?contractId=" + $("#ContractID").val();
+            $("#rentPaymentInfo").load(url);
+        });
+    </script>
+}
+<dl class="form-content form-content-edit form-row-comb">
+    <dd>
+        <label>租赁方式：</label>
+        <span>@Model.PaymentTermsTypeText</span>
+    </dd>
+    <dd>
+        <label>租押方式：</label>
+        <span>押 @Model.DepositMonthly 付 @Model.PaymentPeriod</span>
+    </dd>
+    <dd>
+        <label>月租金：</label>
+        <span>@Model.PaymentMonthlyAmount.ToString("#,##0.00") 元/月</span>
+    </dd>
+    <dd>
+        <label>日租金：</label>
+        <span>@Model.PaymentDailyAmount.ToString("#,##0.00") 元/天/平方米</span>
+    </dd>
+</dl>
+<div class="clear"></div>
+<dl class="form-content textstyle-edit form-content-edit form-row-comb">
+    <dt><i>保底租金</i></dt>
+    <dd>
+        <label>年度租金：</label>
+        <span>
+                @if (Model.IncreaseInfo != null && Model.IncreaseInfo.IncreaseList != null)
+                {
+                    <table style="display:inline-block" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <th width="100">年度</th>
+                            <th>租金标准（元/月/平方米）</th>
+                            <th>月度租金（元/月）</th>
+                            <th>年度租金（元/年）</th>
+                        </tr>
+                        @foreach (var increase in Model.IncreaseInfo.IncreaseList)
+                        {
+                            <tr>
+                                <td>
+                                    <span>@increase.YearNum</span>
+                                </td>
+                                <td>@increase.PaymentMonthlyAmount.ToString("#,##0.00")</td>
+                                <td>@Html.Raw((increase.PaymentMonthlyAmount * Model.ContractArea).ToString("#,##0.00"))</td>
+                                <td>@Html.Raw((increase.PaymentMonthlyAmount * Model.ContractArea * 12).ToString("#,##0.00"))</td>
+                            </tr>
+                        }
+                    </table>
+                }
+                else
+                {
+                    @Html.Raw("无") 
+                }
+        </span>
+    </dd>
+</dl>
+<div class="clear"></div>
+<dl class="form-content textstyle-edit form-content-edit form-row-comb">
+    <dt><i>扣点租金</i></dt>
+    <dd>
+        <label>是否税后：</label>
+        <span>
+            @Html.Raw(Model.CommissionInfo.WithTax == 1 ? "税后" : "税前")
+        </span>
+    </dd>
+    <dd>
+        <label>按营业额扣点：</label>
+        <span>
+                @if (Model.CommissionInfo != null && Model.CommissionInfo.AmountList != null)
+                {
+                    <table style="display:inline-block;" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th width="300">营业额</th>
+                            <th>扣点比例</th>
+                        </tr>
+                        @foreach (var amount in Model.CommissionInfo.AmountList)
+                        {
+                        <tr>
+                            <td>
+                                <span>@amount.Amount2.ToString("#,##0.00") 元</span>
+                            </td>
+                            <td>@amount.Rate.ToString("0%")</td>
+                        </tr>
+                        }
+                    </table>
+                }
+                else
+                {
+                    @Html.Raw("无") 
+                }
+        </span>
+    </dd>
+    <dd>
+        <label>按营业年限扣点：</label>
+        <span>
+                @if (Model.CommissionInfo != null && Model.CommissionInfo.TimeList != null)
+                {
+                    <table style="display:inline-block;" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th width="300">年度</th>
+                            <th>扣点比例</th>
+                        </tr>
+                        @foreach (var time in Model.CommissionInfo.TimeList)
+                        {
+                            <tr>
+                                <td>
+                                    <span>@time.YearNum</span>
+                                </td>
+                                <td>
+                                    @if (time.DiscountRateList != null)
+                                    {
+                                        foreach (var disc in time.DiscountRateList)
+                                        {
+                                            <span>@Html.Raw(disc.Discount2 * 10) 折</span>
+                                            <span>扣点 @disc.Rate.ToString("0%") </span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span>
+                                            @time.Rate.ToString("0%")
+                                        </span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+                else
+                {
+                    @Html.Raw("无")
+                }
+        </span>
+    </dd>
+</dl>
+<div class="clear"></div>
